@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace KonturEdi.Api.Client
+namespace KonturEdi.Api.Client.Http.Helpers
 {
     public class UrlBuilder
     {

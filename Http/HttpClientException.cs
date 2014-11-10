@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Runtime.Remoting;
 using System.Text;
 
-namespace KonturEdi.Api.Client
+namespace KonturEdi.Api.Client.Http
 {
     public class HttpClientException : Exception
     {
@@ -22,8 +21,16 @@ namespace KonturEdi.Api.Client
             string serverMessage;
             using(var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
                 serverMessage = reader.ReadToEnd();
-            var serverException = string.IsNullOrEmpty(serverMessage) ? null : new ServerException(serverMessage, exception);
+            var serverException = string.IsNullOrEmpty(serverMessage) ? null : new HttpClientServerException(serverMessage, exception);
             return new HttpClientException(message, serverException);
+        }
+    }
+
+    public class HttpClientServerException : Exception
+    {
+        protected internal HttpClientServerException(string message, Exception innerException)
+            : base(message, innerException)
+        {
         }
     }
 }
