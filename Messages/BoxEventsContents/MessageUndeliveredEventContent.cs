@@ -1,4 +1,6 @@
-﻿namespace KonturEdi.Api.Types.Messages.Events.EventContents
+﻿using KonturEdi.Api.Types.BoxEvents;
+
+namespace KonturEdi.Api.Types.Messages.BoxEventsContents
 {
     public class MessageUndeliveredEventContent : IBoxEventContent
     {

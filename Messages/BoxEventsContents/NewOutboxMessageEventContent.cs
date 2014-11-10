@@ -1,6 +1,8 @@
-﻿namespace KonturEdi.Api.Types.Messages.Events.EventContents
+﻿using KonturEdi.Api.Types.BoxEvents;
+
+namespace KonturEdi.Api.Types.Messages.BoxEventsContents
 {
-    public class MessageReadByPartnerEventContent : IBoxEventContent
+    public class NewOutboxMessageEventContent : IBoxEventContent
     {
         public bool IsEmpty()
         {

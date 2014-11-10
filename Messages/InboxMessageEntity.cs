@@ -1,4 +1,6 @@
-﻿namespace KonturEdi.Api.Types.Messages
+﻿using KonturEdi.Api.Types.Common;
+
+namespace KonturEdi.Api.Types.Messages
 {
     public class InboxMessageEntity
     {

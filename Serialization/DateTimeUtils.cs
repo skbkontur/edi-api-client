@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace KonturEdi.Api.Types.Serialization
 {
-    public static class ApiDateTimeUtils
+    public static class DateTimeUtils
     {
         private static readonly string[] apiDateTimeFormats = new []
             {

@@ -4,9 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Xml.Serialization;
 
-using KonturEdi.Api.Types.Messages.Boxes;
-using KonturEdi.Api.Types.Messages.Events;
+using KonturEdi.Api.Types.Boxes;
+using KonturEdi.Api.Types.Messages.BoxEvents;
 
 namespace KonturEdi.Api.Types.Serialization
 {
@@ -34,17 +35,38 @@ namespace KonturEdi.Api.Types.Serialization
 
         private static System.Xml.Serialization.XmlSerializer GetSerializer(Type type)
         {
-            return serializers.GetOrAdd(type, t => new System.Xml.Serialization.XmlSerializer(t, knownTypes.Concat(new []
-                {
-                    typeof(BoxInfo),
-                    typeof(FtpBoxSettings),
-                    typeof(As2BoxSettings),
-                    typeof(ApiBoxSettings),
-                    typeof(ProviderBoxSettings),
-                }).ToArray()));
+            return serializers.GetOrAdd(type, t => new System.Xml.Serialization.XmlSerializer(t, xmlAttributeOverrides, knownTypes, null, null));
         }
 
-        private static readonly Type[] knownTypes = new BoxEventTypeRegistry().GetAllTypes();
+        private static XmlAttributeOverrides MapTypeWithName<TType>(this XmlAttributeOverrides overrides, string elementName)
+        {
+            overrides.Add(typeof(TType), new XmlAttributes
+                {
+                    XmlType = new XmlTypeAttribute
+                        {
+                            TypeName = elementName
+                        }
+                });
+            return overrides;
+        }
+
+        private static readonly XmlAttributeOverrides xmlAttributeOverrides = new XmlAttributeOverrides()
+            .MapTypeWithName<MessageBoxEventBatch>("BoxEventBatch") //Для обрабтной совместимости со старыми клиентами
+            .MapTypeWithName<MessageBoxEvent>("BoxEvent");
+
+        private static readonly Type[] knownTypes =
+            new[]
+                {
+                    new MessageBoxEventTypeRegistry().GetAllTypes(),
+                    new[]
+                        {
+                            typeof(BoxInfo),
+                            typeof(FtpBoxSettings),
+                            typeof(As2BoxSettings),
+                            typeof(ApiBoxSettings),
+                            typeof(ProviderBoxSettings),
+                        }
+                }.SelectMany(x => x.ToArray()).ToArray();
 
         private static readonly ConcurrentDictionary<Type, System.Xml.Serialization.XmlSerializer> serializers = new ConcurrentDictionary<Type, System.Xml.Serialization.XmlSerializer>();
     }

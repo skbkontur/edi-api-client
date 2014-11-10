@@ -1,4 +1,4 @@
-namespace KonturEdi.Api.Types.Messages.Boxes
+namespace KonturEdi.Api.Types.Boxes
 {
     public class BoxInfo
     {

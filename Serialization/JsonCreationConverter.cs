@@ -3,7 +3,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace KonturEdi.Api.Types.JsonConvertation
+namespace KonturEdi.Api.Types.Serialization
 {
     public abstract class JsonCreationConverter<T> : JsonConverter
     {
@@ -12,7 +12,7 @@ namespace KonturEdi.Api.Types.JsonConvertation
             return typeof(T).IsAssignableFrom(objectType);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, Newtonsoft.Json.JsonSerializer serializer)
         {
             // Load JObject from stream
             var jObject = JObject.Load(reader);
@@ -26,7 +26,7 @@ namespace KonturEdi.Api.Types.JsonConvertation
             return target;
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object value, Newtonsoft.Json.JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }

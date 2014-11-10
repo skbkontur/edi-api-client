@@ -1,6 +1,6 @@
-﻿namespace KonturEdi.Api.Types.Messages.Events
+﻿namespace KonturEdi.Api.Types.Messages.BoxEvents
 {
-    public enum BoxEventType
+    public enum MessageBoxEventType
     {
         Unknown,
         NewOutboxMessage,
