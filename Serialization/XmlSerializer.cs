@@ -7,6 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 
 using KonturEdi.Api.Types.Boxes;
+using KonturEdi.Api.Types.Connectors.Transformer;
 using KonturEdi.Api.Types.Messages.BoxEvents;
 
 namespace KonturEdi.Api.Types.Serialization
@@ -58,6 +59,7 @@ namespace KonturEdi.Api.Types.Serialization
             new[]
                 {
                     new MessageBoxEventTypeRegistry().GetAllTypes(),
+                    new TransformerConnectorBoxEventTypeRegistry().GetAllTypes(),
                     new[]
                         {
                             typeof(BoxInfo),

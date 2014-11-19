@@ -49,7 +49,15 @@
     <Compile Include="Common\MessageEntity.cs" />
     <Compile Include="Common\MessageMeta.cs" />
     <Compile Include="Connectors\ConnectorBoxesInfo.cs" />
+    <Compile Include="Connectors\ConnectorBoxEventContent.cs" />
     <Compile Include="Connectors\ConnectorBoxInfo.cs" />
+    <Compile Include="Connectors\Transformer\EventContents\NewMessageForTransformationEventContent.cs" />
+    <Compile Include="Connectors\Transformer\EventContents\TakenToTransformationEventContent.cs" />
+    <Compile Include="Connectors\Transformer\EventContents\TransformedSuccessfullyEventContent.cs" />
+    <Compile Include="Connectors\Transformer\EventContents\TransformedUnsuccessfullyEventContent.cs" />
+    <Compile Include="Connectors\Transformer\TransformerConnectorBoxEvent.cs" />
+    <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventType.cs" />
+    <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventTypeRegistry.cs" />
     <Compile Include="Messages\BoxDocumentsSettings.cs" />
     <Compile Include="Messages\BoxEventsContents\MessageDeliveredEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\MessageReadByPartnerEventContent.cs" />
