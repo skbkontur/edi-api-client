@@ -48,6 +48,8 @@
     <Compile Include="Common\MessageData.cs" />
     <Compile Include="Common\MessageEntity.cs" />
     <Compile Include="Common\MessageMeta.cs" />
+    <Compile Include="Connectors\ConnectorBoxesInfo.cs" />
+    <Compile Include="Connectors\ConnectorBoxInfo.cs" />
     <Compile Include="Messages\BoxDocumentsSettings.cs" />
     <Compile Include="Messages\BoxEventsContents\MessageDeliveredEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\MessageReadByPartnerEventContent.cs" />
