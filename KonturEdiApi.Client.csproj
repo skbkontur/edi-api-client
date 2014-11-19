@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="Http\BaseEdiApiHttpClient.cs" />
     <Compile Include="Http\Connectors\ConnectorEdiApiClient.cs" />
+    <Compile Include="Http\Connectors\TransformerConnectorEdiApiClient.cs" />
     <Compile Include="Http\Helpers\UrlBuilder.cs" />
     <Compile Include="Http\HttpClientException.cs" />
     <Compile Include="Http\Messages\MessagesEdiApiHttpClient.cs" />
@@ -46,6 +47,7 @@
     <Compile Include="IBaseEdiApiClient.cs" />
     <Compile Include="IConnectorEdiApiClient.cs" />
     <Compile Include="IMessagesEdiApiClient.cs" />
+    <Compile Include="ITransformerConnectorEdiApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
