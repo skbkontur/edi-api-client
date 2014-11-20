@@ -6,6 +6,7 @@ using System.Text;
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.BoxEvents;
+using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
 
 namespace KonturEdi.Api.Client.Http
@@ -34,6 +35,20 @@ namespace KonturEdi.Api.Client.Http
             var request = CreatePostRequest(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",konturediauth_login={0},konturediauth_password={1}", login, password); });
             using(var response = GetWebResponse(request))
                 return response.GetString();
+        }
+
+        public PartiesInfo GetAccessiblePartiesInfo(string authToken)
+        {
+            var url = new UrlBuilder(baseUri, "V1/Parties/GetAccessiblePartiesInfo").ToUri();
+            return MakeGetRequest<PartiesInfo>(url, authToken);
+        }
+
+        public PartyInfo GetPartyInfo(string authToken, string partyId)
+        {
+            var url = new UrlBuilder(baseUri, "V1/Parties/GetPartyInfo")
+                .AddParameter("partyId", partyId)
+                .ToUri();
+            return MakeGetRequest<PartyInfo>(url, authToken);
         }
 
         public BoxesInfo GetBoxesInfo(string authToken)
