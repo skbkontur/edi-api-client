@@ -74,6 +74,8 @@
     <Compile Include="Messages\OutboxMessageEntity.cs" />
     <Compile Include="Messages\OutboxMessageMeta.cs" />
     <Compile Include="Messages\Partner.cs" />
+    <Compile Include="Parties\PartiesInfo.cs" />
+    <Compile Include="Parties\PartyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\DateTimeUtils.cs" />
     <Compile Include="Serialization\IEdiApiTypesSerializer.cs" />
