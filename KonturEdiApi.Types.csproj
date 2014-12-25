@@ -84,6 +84,7 @@
     <Compile Include="Messages\OutboxMessageEntity.cs" />
     <Compile Include="Messages\OutboxMessageMeta.cs" />
     <Compile Include="Messages\Partner.cs" />
+    <Compile Include="Parties\UsersInfo.cs" />
     <Compile Include="Parties\PartiesInfo.cs" />
     <Compile Include="Parties\PartyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Serialization\JsonSerializer.cs" />
     <Compile Include="Serialization\XmlEdiApiTypesSerializer.cs" />
     <Compile Include="Serialization\XmlSerializer.cs" />
+    <Compile Include="Parties\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
