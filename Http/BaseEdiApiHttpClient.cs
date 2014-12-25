@@ -51,6 +51,14 @@ namespace KonturEdi.Api.Client.Http
             return MakeGetRequest<PartyInfo>(url, authToken);
         }
 
+        public UsersInfo GetUsersInfo(string authToken, string partyId)
+        {
+            var url = new UrlBuilder(baseUri, "V1/Users/GetUsersInfo")
+                .AddParameter("partyId", partyId)
+                .ToUri();
+            return MakeGetRequest<UsersInfo>(url, authToken);
+        }
+
         public BoxesInfo GetBoxesInfo(string authToken)
         {
             var url = new UrlBuilder(baseUri, "V1/Boxes/GetBoxesInfo").ToUri();
