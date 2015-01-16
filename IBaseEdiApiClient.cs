@@ -16,6 +16,7 @@ namespace KonturEdi.Api.Client
         PartiesInfo GetAccessiblePartiesInfo(string authToken);
         PartyInfo GetPartyInfo(string authToken, string partyId);
         BoxesInfo GetBoxesInfo(string authToken);
+        BoxInfo GetMainApiBox(string authToken, string partyId);
         OrganizationsInfo GetOrganizationsInfo(string authToken, string partyId);
 
         TBoxEventBatch GetEvents(string authToken, string connectorBoxId, string exclusiveEventId, uint? count = null);
