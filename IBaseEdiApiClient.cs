@@ -2,6 +2,7 @@
 
 using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.BoxEvents;
+using KonturEdi.Api.Types.Organization;
 using KonturEdi.Api.Types.Parties;
 
 namespace KonturEdi.Api.Client
@@ -15,6 +16,7 @@ namespace KonturEdi.Api.Client
         PartiesInfo GetAccessiblePartiesInfo(string authToken);
         PartyInfo GetPartyInfo(string authToken, string partyId);
         BoxesInfo GetBoxesInfo(string authToken);
+        OrganizationsInfo GetOrganizationsInfo(string authToken, string partyId);
 
         TBoxEventBatch GetEvents(string authToken, string connectorBoxId, string exclusiveEventId, uint? count = null);
         TBoxEventBatch GetEvents(string authToken, string connectorBoxId, DateTime fromDateTime, uint? count = null);

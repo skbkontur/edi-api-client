@@ -6,6 +6,7 @@ using System.Text;
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.BoxEvents;
+using KonturEdi.Api.Types.Organization;
 using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
 
@@ -63,6 +64,14 @@ namespace KonturEdi.Api.Client.Http
         {
             var url = new UrlBuilder(baseUri, "V1/Boxes/GetBoxesInfo").ToUri();
             return MakeGetRequest<BoxesInfo>(url, authToken);
+        }
+
+        public OrganizationsInfo GetOrganizationsInfo(string authToken, string partyId)
+        {
+            var url = new UrlBuilder(baseUri, "V1/Organizations/GetOrganizationsInfo")
+                .AddParameter("partyId", partyId)
+                .ToUri();
+            return MakeGetRequest<OrganizationsInfo>(url, authToken);
         }
 
         public virtual TBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
