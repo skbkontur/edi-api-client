@@ -85,6 +85,17 @@
     <Compile Include="Messages\OutboxMessageMeta.cs" />
     <Compile Include="Messages\Partner.cs" />
     <Compile Include="Parties\UsersInfo.cs" />
+    <Compile Include="Organization\BankAccount.cs" />
+    <Compile Include="Organization\ContactInformation.cs" />
+    <Compile Include="Organization\ForeignAddressInfo.cs" />
+    <Compile Include="Organization\IPInfo.cs" />
+    <Compile Include="Organization\OrganizationInfo.cs" />
+    <Compile Include="Organization\OrganizationsInfo.cs" />
+    <Compile Include="Organization\PartyAddress.cs" />
+    <Compile Include="Organization\PartyInfo.cs" />
+    <Compile Include="Organization\RussianAddressInfo.cs" />
+    <Compile Include="Organization\RussianPartyInfo.cs" />
+    <Compile Include="Organization\ULInfo.cs" />
     <Compile Include="Parties\PartiesInfo.cs" />
     <Compile Include="Parties\PartyType.cs" />
     <Compile Include="Parties\PartyInfo.cs" />
