@@ -89,8 +89,8 @@
     <Compile Include="Organization\ContactInformation.cs" />
     <Compile Include="Organization\ForeignAddressInfo.cs" />
     <Compile Include="Organization\IPInfo.cs" />
-    <Compile Include="Organization\OrganizationInfo.cs" />
-    <Compile Include="Organization\OrganizationsInfo.cs" />
+    <Compile Include="Organization\Organization.cs" />
+    <Compile Include="Organization\OrganizationCatalogueInfo.cs" />
     <Compile Include="Organization\PartyAddress.cs" />
     <Compile Include="Organization\PartyInfo.cs" />
     <Compile Include="Organization\RussianAddressInfo.cs" />

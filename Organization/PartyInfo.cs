@@ -1,6 +1,6 @@
 namespace KonturEdi.Api.Types.Organization
 {
-    public class PartyInformation
+    public class PartyInfo
     {
         public string Gln { get; set; }
 
@@ -10,10 +10,10 @@ namespace KonturEdi.Api.Types.Organization
         public BankAccount BankAccount { get; set; }
 
         public string SupplierCodeInBuyerSystem { get; set; }
-        public ContactInformation Chief { get; set; } // Руководитель
-        public ContactInformation Bookkeeper { get; set; } // Главный бухгалтер
+        public ContactInformation Chief { get; set; }
+        public ContactInformation Bookkeeper { get; set; }
         public ContactInformation SalesAdministration { get; set; }
 
-        public ContactInformation OrderContact { get; set; } //Контактное лицо по заказу
+        public ContactInformation OrderContact { get; set; }
     }
 }

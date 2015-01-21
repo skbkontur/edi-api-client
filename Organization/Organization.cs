@@ -2,9 +2,9 @@ using System;
 
 namespace KonturEdi.Api.Types.Organization
 {
-    public class OrganizationInfo
+    public class Organization
     {
         public DateTime? OrganizationDate { get; set; }
-        public PartyInformation PartyInformation { get; set; }
+        public PartyInfo OrganizationInfo { get; set; }
     }
 }
