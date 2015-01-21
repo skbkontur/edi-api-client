@@ -9,6 +9,7 @@ using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Organization;
 using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
+using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
 
 namespace KonturEdi.Api.Client.Http
 {
@@ -74,12 +75,12 @@ namespace KonturEdi.Api.Client.Http
             return MakeGetRequest<BoxInfo>(url, authToken);
         }
 
-        public OrganizationsInfo GetOrganizationsInfo(string authToken, string partyId)
+        public OrganizationCatalogueInfo GetOrganizationCatalogueInfo(string authToken, string partyId)
         {
-            var url = new UrlBuilder(baseUri, "V1/Organizations/GetOrganizationsInfo")
+            var url = new UrlBuilder(baseUri, "V1/Organizations/GetOrganizationCatalogueInfo")
                 .AddParameter("partyId", partyId)
                 .ToUri();
-            return MakeGetRequest<OrganizationsInfo>(url, authToken);
+            return MakeGetRequest<OrganizationCatalogueInfo>(url, authToken);
         }
 
         public virtual TBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
