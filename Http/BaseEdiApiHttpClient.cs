@@ -181,7 +181,7 @@ namespace KonturEdi.Api.Client.Http
             request.Method = "POST";
             request.Timeout = timeoutInMilliseconds;
             request.Accept = serializer.ContentType;
-            request.Headers["Authorization"] = BuildAuthorization(authToken);
+            request.Headers["Authorization"] = BuildAuthorizationHeader(authToken);
             if(content == null || content.Length == 0)
             {
                 request.Headers.Add("Content", "no");
@@ -208,11 +208,11 @@ namespace KonturEdi.Api.Client.Http
             request.Method = "GET";
             request.Timeout = timeoutInMilliseconds;
             request.Accept = serializer.ContentType;
-            request.Headers["Authorization"] = BuildAuthorization(authToken);
+            request.Headers["Authorization"] = BuildAuthorizationHeader(authToken);
             return request;
         }
 
-        private string BuildAuthorization(string authToken)
+        private string BuildAuthorizationHeader(string authToken)
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("KonturEdiAuth ");
