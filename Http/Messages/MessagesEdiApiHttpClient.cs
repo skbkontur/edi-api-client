@@ -57,5 +57,6 @@ namespace KonturEdi.Api.Client.Http.Messages
         }
 
         protected override string RelativeUrl { get { return "V1/Messages/"; } }
+        protected override string BoxIdUrlParameterName { get { return "boxId"; } }
     }
 }

@@ -2,7 +2,6 @@
 using System.Net;
 
 using KonturEdi.Api.Client.Http.Helpers;
-using KonturEdi.Api.Types;
 using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Common;
 using KonturEdi.Api.Types.Connectors;
@@ -23,7 +22,7 @@ namespace KonturEdi.Api.Client.Http.Connectors
         public MessageEntity GetMessage(string authToken, string boxId, string messageId)
         {
             var url = new UrlBuilder(BaseUri, RelativeUrl + "GetMessage")
-                .AddParameter("boxId", boxId)
+                .AddParameter(BoxIdUrlParameterName, boxId)
                 .AddParameter("messageId", messageId)
                 .ToUri();
             return MakeGetRequest<MessageEntity>(url, authToken);
@@ -34,5 +33,7 @@ namespace KonturEdi.Api.Client.Http.Connectors
             var url = new UrlBuilder(BaseUri, "V1/Boxes/GetConnectorBoxesInfo").ToUri();
             return MakeGetRequest<ConnectorBoxesInfo>(url, authToken);
         }
+
+        protected override string BoxIdUrlParameterName { get { return "connectorBoxId"; } }
     }
 }

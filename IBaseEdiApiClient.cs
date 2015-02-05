@@ -20,7 +20,7 @@ namespace KonturEdi.Api.Client
         BoxInfo GetMainApiBox(string authToken, string partyId);
         OrganizationCatalogueInfo GetOrganizationCatalogueInfo(string authToken, string partyId);
 
-        TBoxEventBatch GetEvents(string authToken, string connectorBoxId, string exclusiveEventId, uint? count = null);
-        TBoxEventBatch GetEvents(string authToken, string connectorBoxId, DateTime fromDateTime, uint? count = null);
+        TBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null);
+        TBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null);
     }
 }

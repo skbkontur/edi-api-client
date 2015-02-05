@@ -9,6 +9,7 @@ using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Organization;
 using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
+
 using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
 
 namespace KonturEdi.Api.Client.Http
@@ -53,14 +54,6 @@ namespace KonturEdi.Api.Client.Http
             return MakeGetRequest<PartyInfo>(url, authToken);
         }
 
-        public UsersInfo GetUsersInfo(string authToken, string partyId)
-        {
-            var url = new UrlBuilder(baseUri, "V1/Users/GetUsersInfo")
-                .AddParameter("partyId", partyId)
-                .ToUri();
-            return MakeGetRequest<UsersInfo>(url, authToken);
-        }
-
         public BoxesInfo GetBoxesInfo(string authToken)
         {
             var url = new UrlBuilder(baseUri, "V1/Boxes/GetBoxesInfo").ToUri();
@@ -86,7 +79,7 @@ namespace KonturEdi.Api.Client.Http
         public virtual TBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
         {
             var url = new UrlBuilder(baseUri, RelativeUrl + "GetEvents")
-                .AddParameter("boxId", boxId)
+                .AddParameter(BoxIdUrlParameterName, boxId)
                 .AddParameter("exclusiveEventId", exclusiveEventId);
             if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
@@ -100,7 +93,7 @@ namespace KonturEdi.Api.Client.Http
         public virtual TBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null)
         {
             var url = new UrlBuilder(baseUri, RelativeUrl + "GetEventsFrom")
-                .AddParameter("boxId", boxId)
+                .AddParameter(BoxIdUrlParameterName, boxId)
                 .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
             if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
@@ -109,6 +102,14 @@ namespace KonturEdi.Api.Client.Http
             foreach(var boxEvent in boxEventBatch.Events)
                 NormalizeBoxEvent(boxEvent);
             return boxEventBatch;
+        }
+
+        public UsersInfo GetUsersInfo(string authToken, string partyId)
+        {
+            var url = new UrlBuilder(baseUri, "V1/Users/GetUsersInfo")
+                .AddParameter("partyId", partyId)
+                .ToUri();
+            return MakeGetRequest<UsersInfo>(url, authToken);
         }
 
         protected TResult MakeGetRequest<TResult>(Uri requestUri, string authToken) where TResult : class
@@ -155,7 +156,7 @@ namespace KonturEdi.Api.Client.Http
         }
 
         protected abstract string RelativeUrl { get; }
-
+        protected abstract string BoxIdUrlParameterName { get; }
         protected Uri BaseUri { get { return baseUri; } }
         protected IEdiApiTypesSerializer Serializer { get { return serializer; } }
         protected const int DefaultTimeout = 30 * 1000;
@@ -226,7 +227,6 @@ namespace KonturEdi.Api.Client.Http
         private readonly IWebProxy proxy;
         private readonly int timeoutInMilliseconds;
         private readonly IEdiApiTypesSerializer serializer;
-
         private readonly IBoxEventTypeRegistry<TBoxEventType> boxEventTypeRegistry;
     }
 }

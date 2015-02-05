@@ -20,34 +20,35 @@ namespace KonturEdi.Api.Client.Http.Connectors
         {
         }
 
-        public void TakenToTransformation(string authToken, string connectorBoxId, string connectorInteractionId)
+        public void TakenToTransformation(string authToken, string boxId, string connectorInteractionId)
         {
             var url = new UrlBuilder(BaseUri, RelativeUrl + "TakenToTransformation")
-                .AddParameter("connectorBoxId", connectorBoxId)
-                .AddParameter("connectorInteractionId", connectorInteractionId)
+                .AddParameter(BoxIdUrlParameterName, boxId)
+                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
             MakeGetRequest(url, authToken);
         }
 
-        public MessageMeta TransformedSuccessfully(string authToken, string connectorBoxId, string connectorInteractionId, MessageData resultMessageData)
+        public MessageMeta TransformedSuccessfully(string authToken, string boxId, string connectorInteractionId, MessageData resultMessageData)
         {
             var url = new UrlBuilder(BaseUri, RelativeUrl + "TransformedSuccessfully")
-                .AddParameter("connectorBoxId", connectorBoxId)
-                .AddParameter("connectorInteractionId", connectorInteractionId)
+                .AddParameter(BoxIdUrlParameterName, boxId)
+                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .AddParameter("messageFileName", resultMessageData.MessageFileName)
                 .ToUri();
             return MakePostRequest<MessageMeta>(url, authToken, resultMessageData.MessageBody);
         }
 
-        public void TransformedUnsuccessfully(string authToken, string connectorBoxId, string connectorInteractionId, string[] errors)
+        public void TransformedUnsuccessfully(string authToken, string boxId, string connectorInteractionId, string[] errors)
         {
             var url = new UrlBuilder(BaseUri, RelativeUrl + "TransformedUnsuccessfully")
-                .AddParameter("connectorBoxId", connectorBoxId)
-                .AddParameter("connectorInteractionId", connectorInteractionId)
+                .AddParameter(BoxIdUrlParameterName, boxId)
+                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
             MakePostRequest(url, authToken, errors);
         }
 
         protected override string RelativeUrl { get { return "V1/Connectors/Transformers/"; } }
+        private const string connectorInteractionIdUrlParameterName = "connectorInteractionId";
     }
 }
