@@ -1,15 +1,7 @@
-﻿using KonturEdi.Api.Types.BoxEvents;
-
-namespace KonturEdi.Api.Types.Messages.BoxEventsContents
+﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents
 {
-    public class MessageUndeliveredEventContent : IBoxEventContent
+    public class MessageUndeliveredEventContent : MessageOutboxEventContent
     {
-        public bool IsEmpty()
-        {
-            return OutboxMessageMeta == null;
-        }
-
-        public OutboxMessageMeta OutboxMessageMeta { get; set; }
         public string[] MessageUndeliveryReasons { get; set; }
     }
 }

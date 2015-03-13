@@ -7,6 +7,9 @@
         NewInboxMessage,
         MessageDelivered,
         MessageUndelivered,
-        MessageReadByPartner
+        MessageReadByPartner,
+        DraftOfDocumentPackagePostedIntoDiadoc,
+        DraftOfDocumentPackageSignedByMe,
+        DraftOfDocumentPackageDeletedFromDiadoc,
     }
 }

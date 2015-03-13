@@ -2,13 +2,7 @@
 
 namespace KonturEdi.Api.Types.Messages.BoxEventsContents
 {
-    public class MessageReadByPartnerEventContent : IBoxEventContent
+    public class MessageReadByPartnerEventContent : MessageOutboxEventContent
     {
-        public bool IsEmpty()
-        {
-            return OutboxMessageMeta == null;
-        }
-
-        public OutboxMessageMeta OutboxMessageMeta { get; set; }
     }
 }

@@ -12,6 +12,9 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
             Register<MessageDeliveredEventContent>(MessageBoxEventType.MessageDelivered);
             Register<MessageReadByPartnerEventContent>(MessageBoxEventType.MessageReadByPartner);
             Register<MessageUndeliveredEventContent>(MessageBoxEventType.MessageUndelivered);
+            Register<MessageDraftOfDocumentPackagePostedIntoDiadocEventContent>(MessageBoxEventType.DraftOfDocumentPackagePostedIntoDiadoc);
+            Register<MessageDraftOfDocumentPackageSignedByMeEventContent>(MessageBoxEventType.DraftOfDocumentPackageSignedByMe);
+            Register<MessageDraftOfDocumentPackageDeletedFromDiadocEventContent>(MessageBoxEventType.DraftOfDocumentPackageDeletedFromDiadoc);
         }
     }
 }

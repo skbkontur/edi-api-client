@@ -19,7 +19,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel><Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -27,7 +28,8 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel><Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -59,11 +61,17 @@
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventType.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventTypeRegistry.cs" />
     <Compile Include="Messages\BoxDocumentsSettings.cs" />
+    <Compile Include="Messages\BoxEventsContents\MessageDiadocEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\MessageOutboxEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\MessageDraftOfDocumentPackageDeletedFromDiadocEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\MessageDraftOfDocumentPackageSignedBySenderEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\MessageDraftOfDocumentPackagePostedIntoDiadocEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\MessageDeliveredEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\MessageReadByPartnerEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\MessageUndeliveredEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\NewInboxMessageEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\NewOutboxMessageEventContent.cs" />
+    <Compile Include="Messages\DiadocUrls.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEvent.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEventBatch.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEventType.cs" />
