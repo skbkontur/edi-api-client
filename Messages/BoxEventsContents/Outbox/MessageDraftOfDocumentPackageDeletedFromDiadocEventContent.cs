@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents
+﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
 {
     public class MessageDraftOfDocumentPackageDeletedFromDiadocEventContent : MessageDiadocEventContent
     {

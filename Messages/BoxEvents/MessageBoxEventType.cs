@@ -10,6 +10,7 @@
         MessageReadByPartner,
         DraftOfDocumentPackagePostedIntoDiadoc,
         DraftOfDocumentPackageSignedByMe,
+        DraftOfDocumentPackageSignedBySender,
         DraftOfDocumentPackageDeletedFromDiadoc,
     }
 }

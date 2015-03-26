@@ -1,10 +1,10 @@
 ﻿using KonturEdi.Api.Types.BoxEvents;
 
-namespace KonturEdi.Api.Types.Messages.BoxEventsContents
+namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
 {
-    public class NewInboxMessageEventContent : IBoxEventContent
+    public class MessageInboxEventContent : IBoxEventContent
     {
-        public bool IsEmpty()
+        public virtual bool IsEmpty()
         {
             return InboxMessageMeta == null;
         }
