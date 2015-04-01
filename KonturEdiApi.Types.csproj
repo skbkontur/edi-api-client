@@ -63,7 +63,9 @@
     <Compile Include="Messages\BoxDocumentsSettings.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDraftOfDocumentPackageSignedBySenderEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageInboxEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\MessageCheckingFailEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDiadocEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\MessageCheckingOkEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageOutboxEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDraftOfDocumentPackageDeletedFromDiadocEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDraftOfDocumentPackageSignedByMeEventContent.cs" />

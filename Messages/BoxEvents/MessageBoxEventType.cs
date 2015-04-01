@@ -8,6 +8,8 @@
         MessageDelivered,
         MessageUndelivered,
         MessageReadByPartner,
+        MessageCheckingOk,
+        MessageCheckingFail,
         DraftOfDocumentPackagePostedIntoDiadoc,
         DraftOfDocumentPackageSignedByMe,
         DraftOfDocumentPackageSignedBySender,
