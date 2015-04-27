@@ -75,6 +75,7 @@
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageUndeliveredEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\NewInboxMessageEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\NewOutboxMessageEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\MessageReceivedDiadocRoamingErrorEventContent.cs" />
     <Compile Include="Messages\DiadocUrls.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEvent.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEventBatch.cs" />
