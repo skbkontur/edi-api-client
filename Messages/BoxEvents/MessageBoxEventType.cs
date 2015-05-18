@@ -14,6 +14,6 @@
         DraftOfDocumentPackageSignedByMe,
         DraftOfDocumentPackageSignedBySender,
         DraftOfDocumentPackageDeletedFromDiadoc,
-        ReceivedDiadocRoamingErrorEventContent
+        ReceivedDiadocRoamingError
     }
 }
