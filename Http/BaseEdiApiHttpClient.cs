@@ -35,9 +35,7 @@ namespace KonturEdi.Api.Client.Http
         public string Authenticate(string login, string password)
         {
             var url = new UrlBuilder(baseUri, "V1/Authenticate").ToUri();
-            var request = CreatePostRequest(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",konturediauth_login={0},konturediauth_password={1}", login, password); });
-            using(var response = GetWebResponse(request))
-                return response.GetString();
+            return MakeRequest(() => CreatePostRequest(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",konturediauth_login={0},konturediauth_password={1}", login, password); }));
         }
 
         public PartiesInfo GetAccessiblePartiesInfo(string authToken)
@@ -114,40 +112,37 @@ namespace KonturEdi.Api.Client.Http
 
         protected TResult MakeGetRequest<TResult>(Uri requestUri, string authToken) where TResult : class
         {
-            using(var response = GetWebResponse(CreateGetRequest(requestUri, authToken)))
-                return serializer.Deserialize<TResult>(response.GetString());
+            return serializer.Deserialize<TResult>(MakeRequest(() => CreateGetRequest(requestUri, authToken)));
         }
 
         protected TResult MakePostRequest<TResult>(Uri requestUri, string authToken, byte[] content) where TResult : class
         {
-            using(var response = GetWebResponse(CreatePostRequest(requestUri, authToken, content)))
-                return serializer.Deserialize<TResult>(response.GetString());
+            return serializer.Deserialize<TResult>(MakeRequest(() => CreatePostRequest(requestUri, authToken, content)));
         }
 
         protected void MakeGetRequest(Uri requestUri, string authToken)
         {
-            using(var response = GetWebResponse(CreateGetRequest(requestUri, authToken)))
-                response.GetString();
+            MakeRequest(() => CreateGetRequest(requestUri, authToken));
         }
 
         protected void MakePostRequest(Uri requestUri, string authToken, byte[] content)
         {
-            using(var response = GetWebResponse(CreatePostRequest(requestUri, authToken, content)))
-                response.GetString();
+            MakeRequest(() => CreatePostRequest(requestUri, authToken, content));
         }
 
         protected void MakePostRequest<TRequestBody>(Uri requestUri, string authToken, TRequestBody bodyObject)
             where TRequestBody : class
         {
-            using(var response = GetWebResponse(CreatePostRequest(requestUri, authToken, serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = serializer.ContentType)))
-                response.GetString();
+            MakeRequest(() => CreatePostRequest(requestUri, authToken, serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = serializer.ContentType));
         }
 
-        protected virtual WebResponse GetWebResponse(WebRequest request)
+        protected virtual string MakeRequest(Func<WebRequest> createRequest)
         {
+            var request = createRequest();
             try
             {
-                return request.GetResponse();
+                using(var response = request.GetResponse())
+                    return response.GetString();
             }
             catch(WebException exception)
             {
