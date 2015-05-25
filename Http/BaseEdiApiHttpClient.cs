@@ -35,7 +35,7 @@ namespace KonturEdi.Api.Client.Http
         public string Authenticate(string login, string password)
         {
             var url = new UrlBuilder(baseUri, "V1/Authenticate").ToUri();
-            return MakeRequest(() => CreatePostRequest(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",konturediauth_login={0},konturediauth_password={1}", login, password); }), url);
+            return MakePostRequestInternal(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",konturediauth_login={0},konturediauth_password={1}", login, password); });
         }
 
         public PartiesInfo GetAccessiblePartiesInfo(string authToken)
@@ -112,41 +112,28 @@ namespace KonturEdi.Api.Client.Http
 
         protected TResult MakeGetRequest<TResult>(Uri requestUri, string authToken) where TResult : class
         {
-            return serializer.Deserialize<TResult>(MakeRequest(() => CreateGetRequest(requestUri, authToken), requestUri));
+            return serializer.Deserialize<TResult>(MakeGetRequestInternal(requestUri, authToken));
         }
 
         protected TResult MakePostRequest<TResult>(Uri requestUri, string authToken, byte[] content) where TResult : class
         {
-            return serializer.Deserialize<TResult>(MakeRequest(() => CreatePostRequest(requestUri, authToken, content), requestUri));
+            return serializer.Deserialize<TResult>(MakePostRequestInternal(requestUri, authToken, content));
         }
 
         protected void MakeGetRequest(Uri requestUri, string authToken)
         {
-            MakeRequest(() => CreateGetRequest(requestUri, authToken), requestUri);
+            MakeGetRequestInternal(requestUri, authToken);
         }
 
         protected void MakePostRequest(Uri requestUri, string authToken, byte[] content)
         {
-            MakeRequest(() => CreatePostRequest(requestUri, authToken, content), requestUri);
+            MakePostRequestInternal(requestUri, authToken, content);
         }
 
         protected void MakePostRequest<TRequestBody>(Uri requestUri, string authToken, TRequestBody bodyObject)
             where TRequestBody : class
         {
-            MakeRequest(() => CreatePostRequest(requestUri, authToken, serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = serializer.ContentType), requestUri);
-        }
-
-        protected virtual string MakeRequest(Func<WebRequest> createRequest, Uri requestUri)
-        {
-            try
-            {
-                using(var response = createRequest().GetResponse())
-                    return response.GetString();
-            }
-            catch(WebException exception)
-            {
-                throw HttpClientException.Create(exception, requestUri);
-            }
+            MakePostRequestInternal(requestUri, authToken, serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = serializer.ContentType);
         }
 
         protected abstract string RelativeUrl { get; }
@@ -162,21 +149,11 @@ namespace KonturEdi.Api.Client.Http
                                         : null;
         }
 
-        private HttpWebRequest CreatePostRequest(Uri requestUri, string authToken, byte[] content, Action<HttpWebRequest> customizeRequest = null)
+        protected virtual string MakePostRequestInternal(Uri requestUri, string authToken, byte[] content, Action<HttpWebRequest> customizeRequest = null)
         {
-            var request = (HttpWebRequest)WebRequest.Create(requestUri);
-            request.AllowAutoRedirect = false;
-            request.AllowWriteStreamBuffering = false;
-            request.KeepAlive = true;
-            request.Proxy = proxy;
-            request.ServicePoint.Expect100Continue = false;
-            request.ServicePoint.UseNagleAlgorithm = false;
-            request.ServicePoint.ConnectionLimit = 128;
+            var request = CreateRequest(requestUri, authToken);
             request.Method = "POST";
-            request.Timeout = timeoutInMilliseconds;
-            request.Accept = serializer.ContentType;
-            request.Headers["Authorization"] = BuildAuthorization(authToken);
-            if(content == null || content.Length == 0)
+            if (content == null || content.Length == 0)
             {
                 request.Headers.Add("Content", "no");
                 content = new byte[] {1};
@@ -184,12 +161,35 @@ namespace KonturEdi.Api.Client.Http
             request.ContentLength = content.Length;
             if(customizeRequest != null)
                 customizeRequest(request);
-            using(var requestStream = request.GetRequestStream())
-                requestStream.Write(content, 0, content.Length);
-            return request;
+            try
+            {
+                using(var requestStream = request.GetRequestStream())
+                    requestStream.Write(content, 0, content.Length);
+                using(var response = request.GetResponse())
+                    return response.GetString();
+            }
+            catch(WebException exception)
+            {
+                throw HttpClientException.Create(exception, requestUri);
+            }
         }
 
-        private HttpWebRequest CreateGetRequest(Uri requestUri, string authToken)
+        protected virtual string MakeGetRequestInternal(Uri requestUri, string authToken)
+        {
+            var request = CreateRequest(requestUri, authToken);
+            request.Method = "GET";
+            try
+            {
+                using(var response = request.GetResponse())
+                    return response.GetString();
+            }
+            catch(WebException exception)
+            {
+                throw HttpClientException.Create(exception, requestUri);
+            }
+        }
+
+        private HttpWebRequest CreateRequest(Uri requestUri, string authToken)
         {
             var request = (HttpWebRequest)WebRequest.Create(requestUri);
             request.AllowAutoRedirect = false;
@@ -199,7 +199,6 @@ namespace KonturEdi.Api.Client.Http
             request.ServicePoint.Expect100Continue = false;
             request.ServicePoint.UseNagleAlgorithm = false;
             request.ServicePoint.ConnectionLimit = 128;
-            request.Method = "GET";
             request.Timeout = timeoutInMilliseconds;
             request.Accept = serializer.ContentType;
             request.Headers["Authorization"] = BuildAuthorization(authToken);
