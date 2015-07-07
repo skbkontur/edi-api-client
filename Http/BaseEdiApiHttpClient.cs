@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
+
+using Kontur.Tracing;
 
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.Boxes;
@@ -14,6 +17,21 @@ using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
 
 namespace KonturEdi.Api.Client.Http
 {
+    public class TestConfigurationProvider : IConfigurationProvider
+    {
+        public TracingConfig GetConfig()
+        {
+            return new TracingConfig()
+                {
+                    IsEnabled = true,
+                    SamplingChance = 1d,
+                    MaxSamplesPerSecond = int.MaxValue,
+                    AggregationServiceSystem = "edi-test",
+                    AggregationServiceURL = "http://vm-elastic:9003/spans"
+                };
+        }
+    }
+
     public abstract class BaseEdiApiHttpClient<TBoxEventBatch, TBoxEventType, TBoxEvent> : IBaseEdiApiClient<TBoxEventBatch, TBoxEventType, TBoxEvent>
         where TBoxEventType : struct
         where TBoxEvent : BoxEvent<TBoxEventType>
@@ -30,6 +48,11 @@ namespace KonturEdi.Api.Client.Http
             this.proxy = proxy;
             this.timeoutInMilliseconds = timeoutInMilliseconds;
             this.serializer = serializer;
+
+            //config tracing
+            if(!Trace.IsInitialized)
+                Trace.Initialize(new TestConfigurationProvider());
+
         }
 
         public string Authenticate(string login, string password)
@@ -165,9 +188,19 @@ namespace KonturEdi.Api.Client.Http
             {
             using(var requestStream = request.GetRequestStream())
                 requestStream.Write(content, 0, content.Length);
-                using(var response = request.GetResponse())
-                    return response.GetString();
-        }
+                using(var spanWriter = Trace.BeginSpan(TraceSpanKind.Client))
+                {
+                    spanWriter.RecordTimepoint(Timepoint.ClientSend);
+                    spanWriter.RecordAnnotation(Annotation.RequestUrl, request.RequestUri);
+
+
+                    using(var response = request.GetResponse())
+                    {
+                        spanWriter.RecordTimepoint(Timepoint.ClientReceive);
+                        return response.GetString();
+                    }
+                }
+            }
             catch(WebException exception)
             {
                 throw HttpClientException.Create(exception, requestUri);
@@ -180,8 +213,17 @@ namespace KonturEdi.Api.Client.Http
             request.Method = "GET";
             try
             {
-                using(var response = request.GetResponse())
-                    return response.GetString();
+                using(var spanWriter = Trace.BeginSpan(TraceSpanKind.Client))
+                {
+                    spanWriter.RecordTimepoint(Timepoint.ClientSend);
+                    spanWriter.RecordAnnotation(Annotation.RequestUrl, request.RequestUri);
+                    
+                    using(var response = request.GetResponse())
+                    {
+                        spanWriter.RecordTimepoint(Timepoint.ClientReceive);
+                        return response.GetString();
+                    }
+                }
             }
             catch(WebException exception)
             {
