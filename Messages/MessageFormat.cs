@@ -3,6 +3,7 @@
     public enum MessageFormat
     {
         Unknown,
+        Any,
         KonturXml,
         KorusXml,
         Eancom2002,

@@ -3,6 +3,7 @@
     public enum DocumentType
     {
         Unknown,
+        Any,
         Orders,
         Ordrsp,
         Desadv,
@@ -11,6 +12,7 @@
         Alcrpt,
         Stsmsg,
         Retann,
-        POrders
+        POrders,
+        PriceList,
     }
 }

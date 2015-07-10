@@ -1,9 +1,13 @@
+using KonturEdi.Api.Types.Messages;
+
 namespace KonturEdi.Api.Types.Boxes
 {
     public abstract class BoxSettings
     {
         public TransportType TransportType { get; set; }
         public bool IsMain { get; set; }
+        public DocumentType[] DocumentTypes { get; set; }
+        public MessageFormat[] CustomMessageFormats { get; set; }
     }
 
     public class FtpBoxSettings : BoxSettings
@@ -50,5 +54,4 @@ namespace KonturEdi.Api.Types.Boxes
             TransportType = TransportType.Unknown;
         }
     }
-
 }
