@@ -184,26 +184,45 @@ namespace KonturEdi.Api.Client.Http
             request.ContentLength = content.Length;
             if(customizeRequest != null)
                 customizeRequest(request);
-            try
-            {
-            using(var requestStream = request.GetRequestStream())
-                requestStream.Write(content, 0, content.Length);
-                using(var spanWriter = Trace.BeginSpan(TraceSpanKind.Client))
-                {
-                    spanWriter.RecordTimepoint(Timepoint.ClientSend);
-                    spanWriter.RecordAnnotation(Annotation.RequestUrl, request.RequestUri);
 
+            string traceId = null;
+            string traceSpanId = null;
+            string traceParentSpanId = null;
+            string traceProfileId = null;
+            bool? traceSampled = null;
+            var traceSpanKind = TraceSpanKind.Server;
+
+            var currentContext = TraceContext.Current;
+            if (currentContext != null)
+            {
+                traceId = currentContext.TraceId;
+                traceSpanId = currentContext.SpanId;
+                traceParentSpanId = currentContext.ParentSpanId;
+                traceProfileId = currentContext.ProfileId;
+                traceSampled = currentContext.IsSampled;
+                traceSpanKind = TraceSpanKind.Client;
+            }
+
+            using (Trace.DefineContext(traceId, traceSpanId, traceParentSpanId, traceProfileId, traceSampled))
+            using(var spanWriter = Trace.BeginSpan(traceSpanKind))
+            {
+                try
+                {
+                    using(var requestStream = request.GetRequestStream())
+                        requestStream.Write(content, 0, content.Length);
+
+                    RecordClientSend(spanWriter, request);
 
                     using(var response = request.GetResponse())
                     {
-                        spanWriter.RecordTimepoint(Timepoint.ClientReceive);
+                        RecordClientReceive(spanWriter, response);
                         return response.GetString();
                     }
                 }
-            }
-            catch(WebException exception)
-            {
-                throw HttpClientException.Create(exception, requestUri);
+                catch(WebException exception)
+                {
+                    throw HttpClientException.Create(exception, requestUri);
+                }
             }
         }
 
@@ -211,23 +230,43 @@ namespace KonturEdi.Api.Client.Http
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "GET";
-            try
+
+            string traceId = null;
+            string traceSpanId = null;
+            string traceParentSpanId = null;
+            string traceProfileId = null;
+            bool? traceSampled = null;
+            var traceSpanKind = TraceSpanKind.Server;
+
+            var currentContext = TraceContext.Current;
+            if (currentContext != null)
             {
-                using(var spanWriter = Trace.BeginSpan(TraceSpanKind.Client))
+                traceId = currentContext.TraceId;
+                traceSpanId = currentContext.SpanId;
+                traceParentSpanId = currentContext.ParentSpanId;
+                traceProfileId = currentContext.ProfileId;
+                traceSampled = currentContext.IsSampled;
+                traceSpanKind = TraceSpanKind.Client;
+            }
+
+            using (Trace.DefineContext(traceId, traceSpanId, traceParentSpanId, traceProfileId, traceSampled))
+            using(var spanWriter = Trace.BeginSpan(traceSpanKind))
+            {
+                try
                 {
-                    spanWriter.RecordTimepoint(Timepoint.ClientSend);
-                    spanWriter.RecordAnnotation(Annotation.RequestUrl, request.RequestUri);
-                    
+                    SetTracingHeaders(request);
+                    RecordClientSend(spanWriter, request);
+
                     using(var response = request.GetResponse())
                     {
-                        spanWriter.RecordTimepoint(Timepoint.ClientReceive);
+                        RecordClientReceive(spanWriter, response);
                         return response.GetString();
                     }
                 }
-            }
-            catch(WebException exception)
-            {
-                throw HttpClientException.Create(exception, requestUri);
+                catch(WebException exception)
+                {
+                    throw HttpClientException.Create(exception, requestUri);
+                }
             }
         }
 
@@ -263,5 +302,44 @@ namespace KonturEdi.Api.Client.Http
         private readonly int timeoutInMilliseconds;
         private readonly IEdiApiTypesSerializer serializer;
         private readonly IBoxEventTypeRegistry<TBoxEventType> boxEventTypeRegistry;
+
+        #region TracingHelpers
+
+        private static void SetTracingHeaders(HttpWebRequest webRequest)
+        {
+            var traceContext = TraceContext.Current;
+            if (traceContext == null)
+                return;
+
+            webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceId, traceContext.TraceId);
+            webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceSpanId, traceContext.SpanId);
+
+            if (!String.IsNullOrEmpty(traceContext.ParentSpanId))
+                webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceParentSpanId, traceContext.ParentSpanId);
+
+            if (!String.IsNullOrEmpty(traceContext.ProfileId))
+                webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceProfileId, traceContext.ProfileId);
+
+            if (traceContext.IsSampled)
+                webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceIsSampled, "true");
+        }
+
+        private static void RecordClientSend(ISpanWriter writer, WebRequest request)
+        {
+            writer.RecordTimepoint(Timepoint.ClientSend);
+            writer.RecordAnnotation(Annotation.RequestUrl, request.RequestUri.PathAndQuery);
+            writer.RecordAnnotation(Annotation.RequestTargetId, "BaseEdiApiHttpClient");
+            writer.RecordAnnotation(Annotation.RequestMethod, request.Method);
+            //if (request.ContentLength > 0)
+            //    writer.RecordAnnotation(Annotation.RequestBodyLength, request.ContentLength);
+        }
+
+        private void RecordClientReceive(ISpanWriter writer, WebResponse response)
+        {
+            writer.RecordTimepoint(Timepoint.ClientReceive);
+            //if (response.ContentLength > 0)
+            //    writer.RecordAnnotation(Annotation.ResponseBodyLength, response.ContentLength);
+        }
+        #endregion
     }
 }
