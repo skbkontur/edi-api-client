@@ -5,6 +5,11 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 using Kontur.Tracing;
+using Kontur.Tracing.EdiVersion;
+using Kontur.Tracing.Utilities;
+
+using Trace = Kontur.Tracing.EdiVersion.Trace;
+using TraceContext = Kontur.Tracing.EdiVersion.TraceContext;
 
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.Boxes;
@@ -49,10 +54,8 @@ namespace KonturEdi.Api.Client.Http
             this.timeoutInMilliseconds = timeoutInMilliseconds;
             this.serializer = serializer;
 
-            //config tracing
             if(!Trace.IsInitialized)
                 Trace.Initialize(new TestConfigurationProvider());
-
         }
 
         public string Authenticate(string login, string password)
@@ -102,11 +105,11 @@ namespace KonturEdi.Api.Client.Http
             var url = new UrlBuilder(baseUri, RelativeUrl + "GetEvents")
                 .AddParameter(BoxIdUrlParameterName, boxId)
                 .AddParameter("exclusiveEventId", exclusiveEventId);
-            if(count.HasValue)
+            if (count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             var boxEventBatch = MakeGetRequest<TBoxEventBatch>(url.ToUri(), authToken);
             boxEventBatch.Events = boxEventBatch.Events ?? new TBoxEvent[0];
-            foreach(var boxEvent in boxEventBatch.Events)
+            foreach (var boxEvent in boxEventBatch.Events)
                 NormalizeBoxEvent(boxEvent);
             return boxEventBatch;
         }
@@ -116,11 +119,11 @@ namespace KonturEdi.Api.Client.Http
             var url = new UrlBuilder(baseUri, RelativeUrl + "GetEventsFrom")
                 .AddParameter(BoxIdUrlParameterName, boxId)
                 .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
-            if(count.HasValue)
+            if (count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             var boxEventBatch = MakeGetRequest<TBoxEventBatch>(url.ToUri(), authToken);
             boxEventBatch.Events = boxEventBatch.Events ?? new TBoxEvent[0];
-            foreach(var boxEvent in boxEventBatch.Events)
+            foreach (var boxEvent in boxEventBatch.Events)
                 NormalizeBoxEvent(boxEvent);
             return boxEventBatch;
         }
@@ -176,53 +179,38 @@ namespace KonturEdi.Api.Client.Http
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "POST";
-            if(content == null || content.Length == 0)
+            if (content == null || content.Length == 0)
             {
                 request.Headers.Add("Content", "no");
-                content = new byte[] {1};
+                content = new byte[] { 1 };
             }
             request.ContentLength = content.Length;
-            if(customizeRequest != null)
+            if (customizeRequest != null)
                 customizeRequest(request);
 
-            string traceId = null;
-            string traceSpanId = null;
-            string traceParentSpanId = null;
-            string traceProfileId = null;
-            bool? traceSampled = null;
-            var traceSpanKind = TraceSpanKind.Server;
+            var traceContext = TraceContext.Current.IsActive ? Trace.CreateChildContext(this.GetType().Name) : Trace.CreateRootContext(this.GetType().Name);
 
-            var currentContext = TraceContext.Current;
-            if (currentContext != null)
+            try
             {
-                traceId = currentContext.TraceId;
-                traceSpanId = currentContext.SpanId;
-                traceParentSpanId = currentContext.ParentSpanId;
-                traceProfileId = currentContext.ProfileId;
-                traceSampled = currentContext.IsSampled;
-                traceSpanKind = TraceSpanKind.Client;
+                using (var requestStream = request.GetRequestStream())
+                    requestStream.Write(content, 0, content.Length);
+
+                request.SetTracingHeaders(traceContext);
+                RecordClientSend(traceContext, request);
+
+                using (var response = request.GetResponse())
+                {
+                    RecordClientReceive(traceContext, response);
+                    return response.GetString();
+                }
             }
-
-            using (Trace.DefineContext(traceId, traceSpanId, traceParentSpanId, traceProfileId, traceSampled))
-            using(var spanWriter = Trace.BeginSpan(traceSpanKind))
+            catch (WebException exception)
             {
-                try
-                {
-                    using(var requestStream = request.GetRequestStream())
-                        requestStream.Write(content, 0, content.Length);
-
-                    RecordClientSend(spanWriter, request);
-
-                    using(var response = request.GetResponse())
-                    {
-                        RecordClientReceive(spanWriter, response);
-                        return response.GetString();
-                    }
-                }
-                catch(WebException exception)
-                {
-                    throw HttpClientException.Create(exception, requestUri);
-                }
+                throw HttpClientException.Create(exception, requestUri);
+            }
+            finally
+            {
+                Trace.FinishCurrentContext();
             }
         }
 
@@ -231,42 +219,26 @@ namespace KonturEdi.Api.Client.Http
             var request = CreateRequest(requestUri, authToken);
             request.Method = "GET";
 
-            string traceId = null;
-            string traceSpanId = null;
-            string traceParentSpanId = null;
-            string traceProfileId = null;
-            bool? traceSampled = null;
-            var traceSpanKind = TraceSpanKind.Server;
+            var traceContext = TraceContext.Current.IsActive ? Trace.CreateChildContext(this.GetType().Name) : Trace.CreateRootContext(this.GetType().Name);
 
-            var currentContext = TraceContext.Current;
-            if (currentContext != null)
+            try
             {
-                traceId = currentContext.TraceId;
-                traceSpanId = currentContext.SpanId;
-                traceParentSpanId = currentContext.ParentSpanId;
-                traceProfileId = currentContext.ProfileId;
-                traceSampled = currentContext.IsSampled;
-                traceSpanKind = TraceSpanKind.Client;
+                request.SetTracingHeaders(traceContext);
+                RecordClientSend(traceContext, request);
+
+                using(var response = request.GetResponse())
+                {
+                    RecordClientReceive(traceContext, response);
+                    return response.GetString();
+                }
             }
-
-            using (Trace.DefineContext(traceId, traceSpanId, traceParentSpanId, traceProfileId, traceSampled))
-            using(var spanWriter = Trace.BeginSpan(traceSpanKind))
+            catch(WebException exception)
             {
-                try
-                {
-                    SetTracingHeaders(request);
-                    RecordClientSend(spanWriter, request);
-
-                    using(var response = request.GetResponse())
-                    {
-                        RecordClientReceive(spanWriter, response);
-                        return response.GetString();
-                    }
-                }
-                catch(WebException exception)
-                {
-                    throw HttpClientException.Create(exception, requestUri);
-                }
+                throw HttpClientException.Create(exception, requestUri);
+            }
+            finally
+            {
+                Trace.FinishCurrentContext();
             }
         }
 
@@ -291,7 +263,7 @@ namespace KonturEdi.Api.Client.Http
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("KonturEdiAuth ");
             stringBuilder.Append("konturediauth_api_client_id=" + apiClientId);
-            if(!string.IsNullOrEmpty(authToken))
+            if (!string.IsNullOrEmpty(authToken))
                 stringBuilder.Append(",konturediauth_token=" + authToken);
             return stringBuilder.ToString();
         }
@@ -305,40 +277,16 @@ namespace KonturEdi.Api.Client.Http
 
         #region TracingHelpers
 
-        private static void SetTracingHeaders(HttpWebRequest webRequest)
+        private static void RecordClientSend(ITraceContext traceContext, WebRequest request)
         {
-            var traceContext = TraceContext.Current;
-            if (traceContext == null)
-                return;
-
-            webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceId, traceContext.TraceId);
-            webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceSpanId, traceContext.SpanId);
-
-            if (!String.IsNullOrEmpty(traceContext.ParentSpanId))
-                webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceParentSpanId, traceContext.ParentSpanId);
-
-            if (!String.IsNullOrEmpty(traceContext.ProfileId))
-                webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceProfileId, traceContext.ProfileId);
-
-            if (traceContext.IsSampled)
-                webRequest.Headers.Set(TraceHttpHeaders.XKonturTraceIsSampled, "true");
+            traceContext.RecordTimepoint(Timepoint.ClientSend);
+            traceContext.RecordAnnotation(Annotation.RequestUrl, request.RequestUri.ToString());
+            traceContext.RecordAnnotation(Annotation.RequestMethod, request.Method);
         }
 
-        private static void RecordClientSend(ISpanWriter writer, WebRequest request)
+        private void RecordClientReceive(ITraceContext traceContext, WebResponse response)
         {
-            writer.RecordTimepoint(Timepoint.ClientSend);
-            writer.RecordAnnotation(Annotation.RequestUrl, request.RequestUri.PathAndQuery);
-            writer.RecordAnnotation(Annotation.RequestTargetId, "BaseEdiApiHttpClient");
-            writer.RecordAnnotation(Annotation.RequestMethod, request.Method);
-            //if (request.ContentLength > 0)
-            //    writer.RecordAnnotation(Annotation.RequestBodyLength, request.ContentLength);
-        }
-
-        private void RecordClientReceive(ISpanWriter writer, WebResponse response)
-        {
-            writer.RecordTimepoint(Timepoint.ClientReceive);
-            //if (response.ContentLength > 0)
-            //    writer.RecordAnnotation(Annotation.ResponseBodyLength, response.ContentLength);
+            traceContext.RecordTimepoint(Timepoint.ClientReceive);
         }
         #endregion
     }
