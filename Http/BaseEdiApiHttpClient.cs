@@ -256,7 +256,6 @@ namespace KonturEdi.Api.Client.Http
 
         private static void RecordClientSend(ITraceContext traceContext, HttpWebRequest request)
         {
-            Uri url;
             traceContext.RecordAnnotation(Annotation.RequestUrl, request.RequestUri.PathAndQuery);
             traceContext.RecordAnnotation(Annotation.RequestHost, string.Format("{0}:{1}", request.RequestUri.Host, request.RequestUri.Port));
             traceContext.RecordTimepoint(Timepoint.ClientSend);
