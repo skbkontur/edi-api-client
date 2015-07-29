@@ -168,11 +168,11 @@ namespace KonturEdi.Api.Client.Http
             {
                 try
                 {
-                    using(var requestStream = request.GetRequestStream())
-                        requestStream.Write(content, 0, content.Length);
-
                     SetTracingHeaders(request, traceContext);
                     RecordClientSend(traceContext, request);
+
+                    using(var requestStream = request.GetRequestStream())
+                        requestStream.Write(content, 0, content.Length);
 
                     using(var response = request.GetResponse())
                     {
