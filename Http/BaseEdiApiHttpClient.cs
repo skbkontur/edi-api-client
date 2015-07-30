@@ -12,6 +12,8 @@ using KonturEdi.Api.Types.Organization;
 using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
 
+using SKBKontur.Catalogue.Core.Http.Tracing;
+
 using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
 
 namespace KonturEdi.Api.Client.Http
@@ -168,15 +170,15 @@ namespace KonturEdi.Api.Client.Http
             {
                 try
                 {
-                    SetTracingHeaders(request, traceContext);
-                    RecordClientSend(traceContext, request);
+                    TracingHelpers.SetTracingHeaders(request, traceContext);
+                    TracingHelpers.RecordClientSend(traceContext, request);
 
                     using(var requestStream = request.GetRequestStream())
                         requestStream.Write(content, 0, content.Length);
 
                     using(var response = request.GetResponse())
                     {
-                        RecordClientReceive(traceContext);
+                        TracingHelpers.RecordClientReceive(traceContext, response);
                         return response.GetString();
                     }
                 }
@@ -196,12 +198,12 @@ namespace KonturEdi.Api.Client.Http
             {
                 try
                 {
-                    SetTracingHeaders(request, traceContext);
-                    RecordClientSend(traceContext, request);
+                    TracingHelpers.SetTracingHeaders(request, traceContext);
+                    TracingHelpers.RecordClientSend(traceContext, request);
 
                     using(var response = request.GetResponse())
                     {
-                        RecordClientReceive(traceContext);
+                        TracingHelpers.RecordClientReceive(traceContext, response);
                         return response.GetString();
                     }
                 }
@@ -244,29 +246,6 @@ namespace KonturEdi.Api.Client.Http
         private readonly int timeoutInMilliseconds;
         private readonly IEdiApiTypesSerializer serializer;
         private readonly IBoxEventTypeRegistry<TBoxEventType> boxEventTypeRegistry;
-
-        #region TracingHelpers
-
-        private static void SetTracingHeaders(HttpWebRequest request, ITraceContext traceContext)
-        {
-            request.Headers.Set(TraceHttpHeaders.XKonturTraceId, traceContext.TraceId);
-            request.Headers.Set(TraceHttpHeaders.XKonturTraceSpanId, traceContext.ContextId);
-            request.Headers.Set(TraceHttpHeaders.XKonturTraceIsSampled, traceContext.IsActive.ToString());
-        }
-
-        private static void RecordClientSend(ITraceContext traceContext, HttpWebRequest request)
-        {
-            traceContext.RecordAnnotation(Annotation.RequestUrl, request.RequestUri.PathAndQuery);
-            traceContext.RecordAnnotation(Annotation.RequestHost, string.Format("{0}:{1}", request.RequestUri.Host, request.RequestUri.Port));
-            traceContext.RecordTimepoint(Timepoint.ClientSend);
-        }
-
-        private static void RecordClientReceive(ITraceContext traceContext)
-        {
-            traceContext.RecordTimepoint(Timepoint.ClientReceive);
-        }
-
-        #endregion
 
     }
 }

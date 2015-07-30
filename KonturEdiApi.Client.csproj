@@ -33,6 +33,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Catalogue.Core.Http">
+      <HintPath>..\..\Assemblies\Temp\Catalogue.Core.Http.dll</HintPath>
+    </Reference>
     <Reference Include="Kontur.Tracing.Core">
       <HintPath>..\..\Assemblies\Kontur\Kontur.Tracing\Kontur.Tracing.Core.dll</HintPath>
     </Reference>
