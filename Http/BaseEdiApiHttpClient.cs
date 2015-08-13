@@ -3,8 +3,6 @@ using System.Globalization;
 using System.Net;
 using System.Text;
 
-using Kontur.Tracing.Core;
-
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.BoxEvents;
@@ -83,11 +81,11 @@ namespace KonturEdi.Api.Client.Http
             var url = new UrlBuilder(baseUri, RelativeUrl + "GetEvents")
                 .AddParameter(BoxIdUrlParameterName, boxId)
                 .AddParameter("exclusiveEventId", exclusiveEventId);
-            if (count.HasValue)
+            if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             var boxEventBatch = MakeGetRequest<TBoxEventBatch>(url.ToUri(), authToken);
             boxEventBatch.Events = boxEventBatch.Events ?? new TBoxEvent[0];
-            foreach (var boxEvent in boxEventBatch.Events)
+            foreach(var boxEvent in boxEventBatch.Events)
                 NormalizeBoxEvent(boxEvent);
             return boxEventBatch;
         }
@@ -97,11 +95,11 @@ namespace KonturEdi.Api.Client.Http
             var url = new UrlBuilder(baseUri, RelativeUrl + "GetEventsFrom")
                 .AddParameter(BoxIdUrlParameterName, boxId)
                 .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
-            if (count.HasValue)
+            if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             var boxEventBatch = MakeGetRequest<TBoxEventBatch>(url.ToUri(), authToken);
             boxEventBatch.Events = boxEventBatch.Events ?? new TBoxEvent[0];
-            foreach (var boxEvent in boxEventBatch.Events)
+            foreach(var boxEvent in boxEventBatch.Events)
                 NormalizeBoxEvent(boxEvent);
             return boxEventBatch;
         }
@@ -157,30 +155,22 @@ namespace KonturEdi.Api.Client.Http
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "POST";
-            if (content == null || content.Length == 0)
+            if(content == null || content.Length == 0)
             {
                 request.Headers.Add("Content", "no");
-                content = new byte[] { 1 };
+                content = new byte[] {1};
             }
             request.ContentLength = content.Length;
-            if (customizeRequest != null)
+            if(customizeRequest != null)
                 customizeRequest(request);
-
-            using(var traceContext = Trace.CreateChildContext(this.GetType().Name))
+            using(new ClientSideHttpTraceContext(string.Format("{0}-FIXME", GetType().Name), request))
             {
                 try
                 {
-                    TracingHelpers.SetTracingHeaders(request, traceContext);
-                    TracingHelpers.RecordClientSend(traceContext, request);
-
                     using(var requestStream = request.GetRequestStream())
                         requestStream.Write(content, 0, content.Length);
-
                     using(var response = request.GetResponse())
-                    {
-                        TracingHelpers.RecordClientReceive(traceContext, response);
                         return response.GetString();
-                    }
                 }
                 catch(WebException exception)
                 {
@@ -193,19 +183,12 @@ namespace KonturEdi.Api.Client.Http
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "GET";
-
-            using(var traceContext = Trace.CreateChildContext(this.GetType().Name))
+            using(new ClientSideHttpTraceContext(string.Format("{0}-FIXME", GetType().Name), request))
             {
                 try
                 {
-                    TracingHelpers.SetTracingHeaders(request, traceContext);
-                    TracingHelpers.RecordClientSend(traceContext, request);
-
                     using(var response = request.GetResponse())
-                    {
-                        TracingHelpers.RecordClientReceive(traceContext, response);
                         return response.GetString();
-                    }
                 }
                 catch(WebException exception)
                 {
@@ -235,7 +218,7 @@ namespace KonturEdi.Api.Client.Http
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("KonturEdiAuth ");
             stringBuilder.Append("konturediauth_api_client_id=" + apiClientId);
-            if (!string.IsNullOrEmpty(authToken))
+            if(!string.IsNullOrEmpty(authToken))
                 stringBuilder.Append(",konturediauth_token=" + authToken);
             return stringBuilder.ToString();
         }
@@ -246,6 +229,5 @@ namespace KonturEdi.Api.Client.Http
         private readonly int timeoutInMilliseconds;
         private readonly IEdiApiTypesSerializer serializer;
         private readonly IBoxEventTypeRegistry<TBoxEventType> boxEventTypeRegistry;
-
     }
 }
