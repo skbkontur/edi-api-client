@@ -9,6 +9,7 @@
         Desadv,
         Recadv,
         Invoic,
+        Coinvoic,
         Alcrpt,
         Stsmsg,
         Retann,
