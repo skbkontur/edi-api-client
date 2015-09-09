@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
 using System.Text;
 
 namespace KonturEdi.Api.Client.Http.Helpers
 {
     public class UrlBuilder
     {
-        public UrlBuilder(Uri uri)
-        {
-            uriBuilder = new UriBuilder(uri) {Query = ""};
-            ParseQuery(uri.Query);
-        }
-
         public UrlBuilder(Uri uri, string relativeUrl)
             : this(new Uri(uri, relativeUrl))
         {
         }
 
+        public UrlBuilder(Uri baseUri)
+        {
+            if(!string.IsNullOrEmpty(baseUri.Query))
+                throw new ArgumentException(string.Format("Base uri with non empty query is not supported: {0}", baseUri));
+            this.baseUri = baseUri;
+        }
+
         public UrlBuilder AddParameter(string name, string value)
         {
-            dict.Add(name, value);
+            queryParams.Add(name, value);
             return this;
         }
 
@@ -31,41 +32,24 @@ namespace KonturEdi.Api.Client.Http.Helpers
 
         public Uri ToUri()
         {
-            uriBuilder.Query = GetQueryString();
-            return uriBuilder.Uri;
+            return new UriBuilder(baseUri) {Query = BuildQuery()}.Uri;
         }
 
-        private string GetQueryString()
+        private string BuildQuery()
         {
-            var stringBuilder = new StringBuilder();
+            var sb = new StringBuilder();
             var isFrist = true;
-            foreach(var kvp in dict)
+            foreach(var kvp in queryParams)
             {
                 if(!isFrist)
-                    stringBuilder.Append("&");
+                    sb.Append("&");
                 isFrist = false;
-                stringBuilder.Append(kvp.Key).Append("=").Append(string.IsNullOrEmpty(kvp.Value) ? kvp.Value : kvp.Value.Replace("+", "%2B"));//TODO fast fix, но нужно решение по лучше
+                sb.Append(kvp.Key).Append("=").Append(string.IsNullOrEmpty(kvp.Value) ? kvp.Value : Uri.EscapeDataString(kvp.Value));
             }
-            return stringBuilder.ToString();
+            return sb.ToString();
         }
 
-        private void ParseQuery(string query)
-        {
-            if(string.IsNullOrEmpty(query))
-                return;
-            if(query[0] != '?')
-                throw new Exception(string.Format("What is strange query '{0}'???", query));
-            var pairs = query.Substring(1).Split(new[] {'&'});
-            dict = pairs.Select(pair =>
-                {
-                    var tokens = pair.Split(new[] {'='}, 2);
-                    if(tokens.Length != 2)
-                        throw new Exception(string.Format("What is strange query '{0}'???", query));
-                    return new KeyValuePair<string, string>(tokens[0], tokens[1]);
-                }).ToDictionary(x => x.Key, x => x.Value);
-        }
-
-        private Dictionary<string, string> dict = new Dictionary<string, string>();
-        private readonly UriBuilder uriBuilder;
+        private readonly Uri baseUri;
+        private readonly Dictionary<string, string> queryParams = new Dictionary<string, string>();
     }
 }
