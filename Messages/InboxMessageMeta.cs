@@ -6,7 +6,6 @@ namespace KonturEdi.Api.Types.Messages
     {
         public string BoxId { get; set; }
         public string MessageId { get; set; }
-        public string DocumentCirculationId { get; set; }
         public DateTime SendDateTime { get; set; }
         public Partner Sender { get; set; }
         public MessageFormat MessageFormat { get; set; }
