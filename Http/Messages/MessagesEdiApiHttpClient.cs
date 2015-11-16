@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.Net;
 
 using KonturEdi.Api.Client.Http.Helpers;
+using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Common;
 using KonturEdi.Api.Types.Messages;
 using KonturEdi.Api.Types.Messages.BoxEvents;
@@ -9,15 +11,17 @@ using KonturEdi.Api.Types.Serialization;
 
 namespace KonturEdi.Api.Client.Http.Messages
 {
-    public class MessagesEdiApiHttpClient : BaseEdiApiHttpClient<MessageBoxEventBatch, MessageBoxEventType, MessageBoxEvent>, IMessagesEdiApiClient
+    public class MessagesEdiApiHttpClient : BaseEdiApiHttpClient, IMessagesEdiApiClient
     {
+        private readonly IBoxEventTypeRegistry<MessageBoxEventType> boxEventTypeRegistry = new MessageBoxEventTypeRegistry();
+
         public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null)
             : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
         }
 
         public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null)
-            : base(new MessageBoxEventTypeRegistry(), apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
+            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 
@@ -58,5 +62,39 @@ namespace KonturEdi.Api.Client.Http.Messages
 
         protected override string RelativeUrl { get { return "V1/Messages/"; } }
         protected override string BoxIdUrlParameterName { get { return "boxId"; } }
+
+        public MessageBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
+        {
+            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetEvents")
+                .AddParameter(BoxIdUrlParameterName, boxId)
+                .AddParameter("exclusiveEventId", exclusiveEventId);
+            if(count.HasValue)
+                url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
+            return GetEvents(authToken, url);
+        }
+
+        public MessageBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null)
+        {
+            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetEventsFrom")
+                .AddParameter(BoxIdUrlParameterName, boxId)
+                .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
+            if(count.HasValue)
+                url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
+            return GetEvents(authToken, url);
+        }
+
+        private MessageBoxEventBatch GetEvents(string authToken, UrlBuilder url)
+        {
+            var boxEventBatch = MakeGetRequest<MessageBoxEventBatch>(url.ToUri(), authToken);
+            boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
+            foreach(var boxEvent in boxEventBatch.Events)
+            {
+                boxEvent.EventContent =
+                    boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)
+                        ? Serializer.NormalizeDeserializedObjectToType(boxEvent.EventContent, boxEventTypeRegistry.GetEventContentType(boxEvent.EventType))
+                        : null;
+            }
+            return boxEventBatch;
+        }
     }
 }

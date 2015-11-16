@@ -9,13 +9,10 @@ using KonturEdi.Api.Types.Serialization;
 
 namespace KonturEdi.Api.Client.Http.Connectors
 {
-    public abstract class ConnectorEdiApiClient<TBoxEventBatch, TBoxEventType, TBoxEvent> : BaseEdiApiHttpClient<TBoxEventBatch, TBoxEventType, TBoxEvent>, IConnectorEdiApiClient<TBoxEventBatch, TBoxEventType, TBoxEvent>
-        where TBoxEventType : struct
-        where TBoxEvent : BoxEvent<TBoxEventType>
-        where TBoxEventBatch : BoxEventBatch<TBoxEventType, TBoxEvent>
+    public abstract class ConnectorEdiApiClient : BaseEdiApiHttpClient, IConnectorEdiApiClient
     {
-        protected ConnectorEdiApiClient(IBoxEventTypeRegistry<TBoxEventType> boxEventTypeRegistry, string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds, IWebProxy proxy = null)
-            : base(boxEventTypeRegistry, apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
+        protected ConnectorEdiApiClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds, IWebProxy proxy = null)
+            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 

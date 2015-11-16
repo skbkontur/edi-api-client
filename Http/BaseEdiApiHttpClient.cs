@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Globalization;
 using System.Net;
 using System.Text;
 
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.Boxes;
-using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Organization;
 using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
@@ -16,17 +14,12 @@ using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
 
 namespace KonturEdi.Api.Client.Http
 {
-    public abstract class BaseEdiApiHttpClient<TBoxEventBatch, TBoxEventType, TBoxEvent> : IBaseEdiApiClient<TBoxEventBatch, TBoxEventType, TBoxEvent>
-        where TBoxEventType : struct
-        where TBoxEvent : BoxEvent<TBoxEventType>
-        where TBoxEventBatch : BoxEventBatch<TBoxEventType, TBoxEvent>
+    public abstract class BaseEdiApiHttpClient : IBaseEdiApiClient
     {
         protected BaseEdiApiHttpClient(
-            IBoxEventTypeRegistry<TBoxEventType> boxEventTypeRegistry,
             string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer,
             int timeoutInMilliseconds, IWebProxy proxy = null)
         {
-            this.boxEventTypeRegistry = boxEventTypeRegistry;
             this.apiClientId = apiClientId;
             this.baseUri = baseUri;
             this.proxy = proxy;
@@ -76,34 +69,6 @@ namespace KonturEdi.Api.Client.Http
             return MakeGetRequest<OrganizationCatalogueInfo>(url, authToken);
         }
 
-        public virtual TBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
-        {
-            var url = new UrlBuilder(baseUri, RelativeUrl + "GetEvents")
-                .AddParameter(BoxIdUrlParameterName, boxId)
-                .AddParameter("exclusiveEventId", exclusiveEventId);
-            if(count.HasValue)
-                url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
-            var boxEventBatch = MakeGetRequest<TBoxEventBatch>(url.ToUri(), authToken);
-            boxEventBatch.Events = boxEventBatch.Events ?? new TBoxEvent[0];
-            foreach(var boxEvent in boxEventBatch.Events)
-                NormalizeBoxEvent(boxEvent);
-            return boxEventBatch;
-        }
-
-        public virtual TBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null)
-        {
-            var url = new UrlBuilder(baseUri, RelativeUrl + "GetEventsFrom")
-                .AddParameter(BoxIdUrlParameterName, boxId)
-                .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
-            if(count.HasValue)
-                url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
-            var boxEventBatch = MakeGetRequest<TBoxEventBatch>(url.ToUri(), authToken);
-            boxEventBatch.Events = boxEventBatch.Events ?? new TBoxEvent[0];
-            foreach(var boxEvent in boxEventBatch.Events)
-                NormalizeBoxEvent(boxEvent);
-            return boxEventBatch;
-        }
-
         public UsersInfo GetUsersInfo(string authToken, string partyId)
         {
             var url = new UrlBuilder(baseUri, "V1/Users/GetUsersInfo")
@@ -143,13 +108,6 @@ namespace KonturEdi.Api.Client.Http
         protected Uri BaseUri { get { return baseUri; } }
         protected IEdiApiTypesSerializer Serializer { get { return serializer; } }
         protected const int DefaultTimeout = 30 * 1000;
-
-        private void NormalizeBoxEvent(TBoxEvent boxEvent)
-        {
-            boxEvent.EventContent = boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)
-                                        ? Serializer.NormalizeDeserializedObjectToType(boxEvent.EventContent, boxEventTypeRegistry.GetEventContentType(boxEvent.EventType))
-                                        : null;
-        }
 
         protected virtual string MakePostRequestInternal(Uri requestUri, string authToken, byte[] content, Action<HttpWebRequest> customizeRequest = null)
         {
@@ -228,6 +186,5 @@ namespace KonturEdi.Api.Client.Http
         private readonly IWebProxy proxy;
         private readonly int timeoutInMilliseconds;
         private readonly IEdiApiTypesSerializer serializer;
-        private readonly IBoxEventTypeRegistry<TBoxEventType> boxEventTypeRegistry;
     }
 }
