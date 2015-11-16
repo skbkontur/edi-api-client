@@ -103,8 +103,6 @@ namespace KonturEdi.Api.Client.Http
             MakePostRequestInternal(requestUri, authToken, serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = serializer.ContentType);
         }
 
-        protected abstract string RelativeUrl { get; }
-        protected abstract string BoxIdUrlParameterName { get; }
         protected Uri BaseUri { get { return baseUri; } }
         protected IEdiApiTypesSerializer Serializer { get { return serializer; } }
         protected const int DefaultTimeout = 30 * 1000;

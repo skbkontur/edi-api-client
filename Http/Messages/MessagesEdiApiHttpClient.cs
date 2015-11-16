@@ -27,7 +27,7 @@ namespace KonturEdi.Api.Client.Http.Messages
 
         public BoxDocumentsSettings GetBoxDocumentsSettings(string authToken, string boxId)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetBoxDocumentsSettings")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetBoxDocumentsSettings")
                 .AddParameter("boxId", boxId)
                 .ToUri();
             return MakeGetRequest<BoxDocumentsSettings>(url, authToken);
@@ -35,7 +35,7 @@ namespace KonturEdi.Api.Client.Http.Messages
 
         public InboxMessageEntity GetInboxMessage(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetInboxMessage")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetInboxMessage")
                 .AddParameter("boxId", boxId)
                 .AddParameter("messageId", messageId)
                 .ToUri();
@@ -44,7 +44,7 @@ namespace KonturEdi.Api.Client.Http.Messages
 
         public OutboxMessageEntity GetOutboxMessage(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetOutboxMessage")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetOutboxMessage")
                 .AddParameter("boxId", boxId)
                 .AddParameter("messageId", messageId)
                 .ToUri();
@@ -53,20 +53,17 @@ namespace KonturEdi.Api.Client.Http.Messages
 
         public OutboxMessageMeta SendMessage(string authToken, string boxId, MessageData messageData)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "SendMessage")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "SendMessage")
                 .AddParameter("boxId", boxId)
                 .AddParameter("messageFileName", messageData.MessageFileName)
                 .ToUri();
             return MakePostRequest<OutboxMessageMeta>(url, authToken, messageData.MessageBody);
         }
 
-        protected override string RelativeUrl { get { return "V1/Messages/"; } }
-        protected override string BoxIdUrlParameterName { get { return "boxId"; } }
-
         public MessageBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetEvents")
-                .AddParameter(BoxIdUrlParameterName, boxId)
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents")
+                .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter("exclusiveEventId", exclusiveEventId);
             if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
@@ -75,8 +72,8 @@ namespace KonturEdi.Api.Client.Http.Messages
 
         public MessageBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetEventsFrom")
-                .AddParameter(BoxIdUrlParameterName, boxId)
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsFrom")
+                .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
             if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
@@ -96,5 +93,8 @@ namespace KonturEdi.Api.Client.Http.Messages
             }
             return boxEventBatch;
         }
+
+        private const string relativeUrl = "V1/Messages/";
+        private const string boxIdUrlParameterName = "boxId";
     }
 }

@@ -27,8 +27,8 @@ namespace KonturEdi.Api.Client.Http.Connectors
 
         public void TakenToTransformation(string authToken, string boxId, string connectorInteractionId)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "TakenToTransformation")
-                .AddParameter(BoxIdUrlParameterName, boxId)
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TakenToTransformation")
+                .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
             MakeGetRequest(url, authToken);
@@ -36,8 +36,8 @@ namespace KonturEdi.Api.Client.Http.Connectors
 
         public MessageMeta TransformedSuccessfully(string authToken, string boxId, string connectorInteractionId, MessageData resultMessageData)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "TransformedSuccessfully")
-                .AddParameter(BoxIdUrlParameterName, boxId)
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedSuccessfully")
+                .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .AddParameter("messageFileName", resultMessageData.MessageFileName)
                 .ToUri();
@@ -46,21 +46,17 @@ namespace KonturEdi.Api.Client.Http.Connectors
 
         public void TransformedUnsuccessfully(string authToken, string boxId, string connectorInteractionId, string[] errors)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "TransformedUnsuccessfully")
-                .AddParameter(BoxIdUrlParameterName, boxId)
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedUnsuccessfully")
+                .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
             MakePostRequest(url, authToken, errors);
         }
 
-        protected override string RelativeUrl { get { return "V1/Connectors/Transformers/"; } }
-        protected override string BoxIdUrlParameterName { get { return "connectorBoxId"; } }
-        private const string connectorInteractionIdUrlParameterName = "connectorInteractionId";
-
         public TransformerConnectorBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetEvents")
-                .AddParameter(BoxIdUrlParameterName, boxId)
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents")
+                .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter("exclusiveEventId", exclusiveEventId);
             if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
@@ -69,8 +65,8 @@ namespace KonturEdi.Api.Client.Http.Connectors
 
         public TransformerConnectorBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetEventsFrom")
-                .AddParameter(BoxIdUrlParameterName, boxId)
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsFrom")
+                .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
             if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
@@ -93,8 +89,8 @@ namespace KonturEdi.Api.Client.Http.Connectors
 
         public MessageEntity GetMessage(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetMessage")
-                .AddParameter(BoxIdUrlParameterName, boxId)
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetMessage")
+                .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter("messageId", messageId)
                 .ToUri();
             return MakeGetRequest<MessageEntity>(url, authToken);
@@ -105,5 +101,9 @@ namespace KonturEdi.Api.Client.Http.Connectors
             var url = new UrlBuilder(BaseUri, "V1/Boxes/GetConnectorBoxesInfo").ToUri();
             return MakeGetRequest<ConnectorBoxesInfo>(url, authToken);
         }
+
+        private const string relativeUrl = "V1/Connectors/Transformers/";
+        private const string boxIdUrlParameterName = "connectorBoxId";
+        private const string connectorInteractionIdUrlParameterName = "connectorInteractionId";
     }
 }
