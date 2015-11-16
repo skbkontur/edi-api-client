@@ -5,12 +5,13 @@ using System.Net;
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Common;
+using KonturEdi.Api.Types.Connectors;
 using KonturEdi.Api.Types.Connectors.Transformer;
 using KonturEdi.Api.Types.Serialization;
 
 namespace KonturEdi.Api.Client.Http.Connectors
 {
-    public class TransformerConnectorEdiApiClient : ConnectorEdiApiClient, ITransformerConnectorEdiApiClient
+    public class TransformerConnectorEdiApiClient : BaseEdiApiHttpClient, ITransformerConnectorEdiApiClient
     {
         private readonly IBoxEventTypeRegistry<TransformerConnectorBoxEventType> boxEventTypeRegistry = new TransformerConnectorBoxEventTypeRegistry();
 
@@ -53,6 +54,7 @@ namespace KonturEdi.Api.Client.Http.Connectors
         }
 
         protected override string RelativeUrl { get { return "V1/Connectors/Transformers/"; } }
+        protected override string BoxIdUrlParameterName { get { return "connectorBoxId"; } }
         private const string connectorInteractionIdUrlParameterName = "connectorInteractionId";
 
         public TransformerConnectorBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
@@ -87,6 +89,21 @@ namespace KonturEdi.Api.Client.Http.Connectors
                         : null;
             }
             return boxEventBatch;
+        }
+
+        public MessageEntity GetMessage(string authToken, string boxId, string messageId)
+        {
+            var url = new UrlBuilder(BaseUri, RelativeUrl + "GetMessage")
+                .AddParameter(BoxIdUrlParameterName, boxId)
+                .AddParameter("messageId", messageId)
+                .ToUri();
+            return MakeGetRequest<MessageEntity>(url, authToken);
+        }
+
+        public ConnectorBoxesInfo GetConnectorBoxesInfo(string authToken)
+        {
+            var url = new UrlBuilder(BaseUri, "V1/Boxes/GetConnectorBoxesInfo").ToUri();
+            return MakeGetRequest<ConnectorBoxesInfo>(url, authToken);
         }
     }
 }
