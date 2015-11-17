@@ -93,6 +93,7 @@
     <Compile Include="Messages\DocumentType.cs" />
     <Compile Include="Messages\InboxMessageEntity.cs" />
     <Compile Include="Messages\InboxMessageMeta.cs" />
+    <Compile Include="Messages\MessageDeliveryResult.cs" />
     <Compile Include="Messages\MessageFormat.cs" />
     <Compile Include="Messages\OutboxMessageEntity.cs" />
     <Compile Include="Messages\BasicMessageMeta.cs" />
