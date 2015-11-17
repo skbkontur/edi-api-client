@@ -33,22 +33,31 @@ namespace KonturEdi.Api.Client.Http.Messages
             return MakeGetRequest<BoxDocumentsSettings>(url, authToken);
         }
 
-        public InboxMessageEntity GetInboxMessage(string authToken, string boxId, string messageId)
+        public MessageData GetMessage(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetInboxMessage")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetMessage")
                 .AddParameter("boxId", boxId)
                 .AddParameter("messageId", messageId)
                 .ToUri();
-            return MakeGetRequest<InboxMessageEntity>(url, authToken);
+            return MakeGetRequest<MessageData>(url, authToken);
         }
 
-        public OutboxMessageEntity GetOutboxMessage(string authToken, string boxId, string messageId)
+        public InboxMessageMeta GetInboxMessageMeta(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetOutboxMessage")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetInboxMessageMeta")
                 .AddParameter("boxId", boxId)
                 .AddParameter("messageId", messageId)
                 .ToUri();
-            return MakeGetRequest<OutboxMessageEntity>(url, authToken);
+            return MakeGetRequest<InboxMessageMeta>(url, authToken);
+        }
+
+        public OutboxMessageMeta GetOutboxMessageMeta(string authToken, string boxId, string messageId)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetOutboxMessageMeta")
+                .AddParameter("boxId", boxId)
+                .AddParameter("messageId", messageId)
+                .ToUri();
+            return MakeGetRequest<OutboxMessageMeta>(url, authToken);
         }
 
         public OutboxMessageMeta SendMessage(string authToken, string boxId, MessageData messageData)
