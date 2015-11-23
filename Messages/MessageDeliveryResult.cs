@@ -4,8 +4,11 @@ namespace KonturEdi.Api.Types.Messages
 {
     public class MessageDeliveryResult
     {
-        public DateTime FirstDeliveryToClientTime { get; set; } // for SLA
-        public DateTime? SuccessfulDeliveryTime { get; set; }
-        public string[] DeliveryErrors { get; set; }
+        public DateTime? DeliveryTimestamp { get; set; }
+
+        //[CanBeNull]
+        public string DeliveryError { get; set; }
+
+        public DateTime FirstDeliveryAttemptTimestamp { get; set; }
     }
 }
