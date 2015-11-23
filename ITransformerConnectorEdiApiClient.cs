@@ -1,5 +1,7 @@
 ﻿using System;
 
+using JetBrains.Annotations;
+
 using KonturEdi.Api.Types.Common;
 using KonturEdi.Api.Types.Connectors;
 using KonturEdi.Api.Types.Connectors.Transformer;
@@ -8,12 +10,12 @@ namespace KonturEdi.Api.Client
 {
     public interface ITransformerConnectorEdiApiClient : IBaseEdiApiClient
     {
-        void TakenToTransformation(string authToken, string connectorBoxId, string connectorInteractionId);
-        MessageMeta TransformedSuccessfully(string authToken, string connectorBoxId, string connectorInteractionId, MessageData resultMessageData);
-        void TransformedUnsuccessfully(string authToken, string connectorBoxId, string connectorInteractionId, string[] errors);
-        TransformerConnectorBoxEventBatch GetEvents(string authToken, string connectorBoxId, string exclusiveEventId, uint? count = null);
-        TransformerConnectorBoxEventBatch GetEvents(string authToken, string connectorBoxId, DateTime fromDateTime, uint? count = null);
-        MessageEntity GetMessage(string authToken, string connectorBoxId, string messageId);
-        ConnectorBoxesInfo GetConnectorBoxesInfo(string authToken);
+        void TakenToTransformation([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId);
+        [NotNull] MessageMeta TransformedSuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] MessageData resultMessageData);
+        void TransformedUnsuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string[] errors);
+        [NotNull] TransformerConnectorBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string connectorBoxId, [CanBeNull] string exclusiveEventId, uint? count = null);
+        [NotNull] TransformerConnectorBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string connectorBoxId, DateTime fromDateTime, uint? count = null);
+        [NotNull] MessageEntity GetMessage([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string messageId);
+        [NotNull] ConnectorBoxesInfo GetConnectorBoxesInfo([NotNull] string authToken);
     }
 }

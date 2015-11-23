@@ -2,6 +2,8 @@
 using System.Net;
 using System.Text;
 
+using JetBrains.Annotations;
+
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.Organization;
@@ -27,19 +29,22 @@ namespace KonturEdi.Api.Client.Http
             this.serializer = serializer;
         }
 
-        public string Authenticate(string login, string password)
+        [NotNull]
+        public string Authenticate([NotNull] string login, [NotNull] string password)
         {
             var url = new UrlBuilder(baseUri, "V1/Authenticate").ToUri();
             return MakePostRequestInternal(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",konturediauth_login={0},konturediauth_password={1}", login, password); });
         }
 
-        public PartiesInfo GetAccessiblePartiesInfo(string authToken)
+        [NotNull]
+        public PartiesInfo GetAccessiblePartiesInfo([NotNull] string authToken)
         {
             var url = new UrlBuilder(baseUri, "V1/Parties/GetAccessiblePartiesInfo").ToUri();
             return MakeGetRequest<PartiesInfo>(url, authToken);
         }
 
-        public PartyInfo GetPartyInfo(string authToken, string partyId)
+        [NotNull]
+        public PartyInfo GetPartyInfo([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(baseUri, "V1/Parties/GetPartyInfo")
                 .AddParameter("partyId", partyId)
@@ -47,13 +52,15 @@ namespace KonturEdi.Api.Client.Http
             return MakeGetRequest<PartyInfo>(url, authToken);
         }
 
-        public BoxesInfo GetBoxesInfo(string authToken)
+        [NotNull]
+        public BoxesInfo GetBoxesInfo([NotNull] string authToken)
         {
             var url = new UrlBuilder(baseUri, "V1/Boxes/GetBoxesInfo").ToUri();
             return MakeGetRequest<BoxesInfo>(url, authToken);
         }
 
-        public BoxInfo GetMainApiBox(string authToken, string partyId)
+        [NotNull]
+        public BoxInfo GetMainApiBox([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(baseUri, "V1/Boxes/GetMainApiBox")
                 .AddParameter("partyId", partyId)
@@ -61,7 +68,8 @@ namespace KonturEdi.Api.Client.Http
             return MakeGetRequest<BoxInfo>(url, authToken);
         }
 
-        public OrganizationCatalogueInfo GetOrganizationCatalogueInfo(string authToken, string partyId)
+        [NotNull]
+        public OrganizationCatalogueInfo GetOrganizationCatalogueInfo([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(baseUri, "V1/Organizations/GetOrganizationCatalogueInfo")
                 .AddParameter("partyId", partyId)
@@ -69,7 +77,8 @@ namespace KonturEdi.Api.Client.Http
             return MakeGetRequest<OrganizationCatalogueInfo>(url, authToken);
         }
 
-        public UsersInfo GetUsersInfo(string authToken, string partyId)
+        [NotNull]
+        public UsersInfo GetUsersInfo([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(baseUri, "V1/Users/GetUsersInfo")
                 .AddParameter("partyId", partyId)
@@ -107,7 +116,7 @@ namespace KonturEdi.Api.Client.Http
         protected IEdiApiTypesSerializer Serializer { get { return serializer; } }
         protected const int DefaultTimeout = 30 * 1000;
 
-        protected virtual string MakePostRequestInternal(Uri requestUri, string authToken, byte[] content, Action<HttpWebRequest> customizeRequest = null)
+        protected virtual string MakePostRequestInternal([NotNull] Uri requestUri, [NotNull] string authToken, [CanBeNull] byte[] content, [CanBeNull] Action<HttpWebRequest> customizeRequest = null)
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "POST";
@@ -135,7 +144,7 @@ namespace KonturEdi.Api.Client.Http
             }
         }
 
-        protected virtual string MakeGetRequestInternal(Uri requestUri, string authToken)
+        protected virtual string MakeGetRequestInternal([NotNull] Uri requestUri, [NotNull] string authToken)
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "GET";

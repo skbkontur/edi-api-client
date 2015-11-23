@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Net;
 
+using JetBrains.Annotations;
+
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Common;
@@ -25,7 +27,8 @@ namespace KonturEdi.Api.Client.Http.Messages
         {
         }
 
-        public BoxDocumentsSettings GetBoxDocumentsSettings(string authToken, string boxId)
+        [NotNull]
+        public BoxDocumentsSettings GetBoxDocumentsSettings([NotNull] string authToken, [NotNull] string boxId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetBoxDocumentsSettings")
                 .AddParameter("boxId", boxId)
@@ -33,7 +36,8 @@ namespace KonturEdi.Api.Client.Http.Messages
             return MakeGetRequest<BoxDocumentsSettings>(url, authToken);
         }
 
-        public MessageData GetMessage(string authToken, string boxId, string messageId)
+        [NotNull]
+        public MessageData GetMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetMessage")
                 .AddParameter("boxId", boxId)
@@ -42,7 +46,8 @@ namespace KonturEdi.Api.Client.Http.Messages
             return MakeGetRequest<MessageData>(url, authToken);
         }
 
-        public InboxMessageMeta GetInboxMessageMeta(string authToken, string boxId, string messageId)
+        [NotNull]
+        public InboxMessageMeta GetInboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetInboxMessageMeta")
                 .AddParameter("boxId", boxId)
@@ -51,7 +56,8 @@ namespace KonturEdi.Api.Client.Http.Messages
             return MakeGetRequest<InboxMessageMeta>(url, authToken);
         }
 
-        public OutboxMessageMeta GetOutboxMessageMeta(string authToken, string boxId, string messageId)
+        [NotNull]
+        public OutboxMessageMeta GetOutboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetOutboxMessageMeta")
                 .AddParameter("boxId", boxId)
@@ -60,7 +66,8 @@ namespace KonturEdi.Api.Client.Http.Messages
             return MakeGetRequest<OutboxMessageMeta>(url, authToken);
         }
 
-        public OutboxMessageMeta SendMessage(string authToken, string boxId, MessageData messageData)
+        [NotNull]
+        public OutboxMessageMeta SendMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] MessageData messageData)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "SendMessage")
                 .AddParameter("boxId", boxId)
@@ -69,7 +76,8 @@ namespace KonturEdi.Api.Client.Http.Messages
             return MakePostRequest<OutboxMessageMeta>(url, authToken, messageData.MessageBody);
         }
 
-        public MessageBoxEventBatch GetEvents(string authToken, string boxId, string exclusiveEventId, uint? count = null)
+        [NotNull]
+        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, string exclusiveEventId, uint? count = null)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents")
                 .AddParameter(boxIdUrlParameterName, boxId)
@@ -79,7 +87,8 @@ namespace KonturEdi.Api.Client.Http.Messages
             return GetEvents(authToken, url);
         }
 
-        public MessageBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null)
+        [NotNull]
+        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, DateTime fromDateTime, uint? count = null)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsFrom")
                 .AddParameter(boxIdUrlParameterName, boxId)
@@ -89,7 +98,8 @@ namespace KonturEdi.Api.Client.Http.Messages
             return GetEvents(authToken, url);
         }
 
-        private MessageBoxEventBatch GetEvents(string authToken, UrlBuilder url)
+        [NotNull]
+        private MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] UrlBuilder url)
         {
             var boxEventBatch = MakeGetRequest<MessageBoxEventBatch>(url.ToUri(), authToken);
             boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
