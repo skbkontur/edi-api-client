@@ -5,5 +5,6 @@
         public string MessageUrl { get; set; }
         public string InvoiceUrl { get; set; }
         public string Torg12Url { get; set; }
+        public string InvoiceCorrectionUrl { get; set; }
     }
 }
