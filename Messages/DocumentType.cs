@@ -13,8 +13,6 @@
         Alcrpt,
         Stsmsg,
         Retann,
-        Retdes,
-        Retrec,
         POrders,
         PriceList,
     }
