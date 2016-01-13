@@ -74,20 +74,20 @@ namespace KonturEdi.Api.Client.Http.Messages
             return MakePostRequest<OutboxMessageMeta>(url, authToken, messageData.MessageBody);
         }
 
-        public void StartMessageDelivery(string authToken, string boxId, string documentCirculationId)
+        public void StartMessageDelivery(string authToken, string boxId, string messageId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "StartMessageDelivery")
                 .AddParameter("boxId", boxId)
-                .AddParameter("documentCirculationId", documentCirculationId)
+                .AddParameter("messageId", messageId)
                 .ToUri();
             MakeGetRequest(url, authToken);
         }
 
-        public void FinishMessageDelivery(string authToken, string boxId, string documentCirculationId, MessageDeliveryResult messageDeliveryResult)
+        public void FinishMessageDelivery(string authToken, string boxId, string messageId, MessageDeliveryResult messageDeliveryResult)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "FinishMessageDelivery")
                 .AddParameter("boxId", boxId)
-                .AddParameter("documentCirculationId", documentCirculationId)
+                .AddParameter("messageId", messageId)
                 .ToUri();
             MakePostRequest(url, authToken, messageDeliveryResult);
         }
