@@ -45,6 +45,8 @@ namespace KonturEdi.Api.Types.Boxes
         {
             TransportType = TransportType.Api;
         }
+
+        public bool DeliveryNotificationEnabled { get; set; }
     }
 
     public class UnknowBoxSettings : BoxSettings
