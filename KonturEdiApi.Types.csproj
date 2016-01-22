@@ -58,11 +58,13 @@
     <Compile Include="Connectors\Transformer\EventContents\TransformedSuccessfullyEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformedUnsuccessfullyEventContent.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEvent.cs" />
+    <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventBatch.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventType.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventTypeRegistry.cs" />
     <Compile Include="Messages\BoxDocumentsSettings.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDraftOfDocumentPackageSignedBySenderEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageInboxEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\IMessageDiadocEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageCheckingFailEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDiadocEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageCheckingOkEventContent.cs" />

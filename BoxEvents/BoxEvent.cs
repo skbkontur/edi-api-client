@@ -22,5 +22,4 @@ namespace KonturEdi.Api.Types.BoxEvents
         public TBoxEventType EventType { get; set; }
         public TEventContent EventContent { get; set; }
     }
-
 }

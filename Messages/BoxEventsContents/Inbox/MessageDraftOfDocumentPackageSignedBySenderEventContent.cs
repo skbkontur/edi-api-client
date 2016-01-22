@@ -1,6 +1,8 @@
-﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
+﻿using KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox;
+
+namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
 {
-    public class MessageDraftOfDocumentPackageSignedBySenderEventContent : MessageInboxEventContent
+    public class MessageDraftOfDocumentPackageSignedBySenderEventContent : MessageInboxEventContent, IMessageDiadocEventContent
     {
         public BasicMessageMeta InboxMessageMeta { get; set; }
 
