@@ -80,7 +80,7 @@ namespace KonturEdi.Api.Client.Http.Messages
                 .AddParameter("boxId", boxId)
                 .AddParameter("messageId", messageId)
                 .ToUri();
-            MakeGetRequest(url, authToken);
+            MakePostRequest(url, authToken, new byte[0]);
         }
 
         public void FinishMessageDelivery(string authToken, string boxId, string messageId, MessageDeliveryResult messageDeliveryResult)
