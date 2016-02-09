@@ -27,13 +27,13 @@ namespace KonturEdi.Api.Client.Http.Connectors
         {
         }
 
-        public void TakenToTransformation([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId)
+        public void TransformationStarted([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TakenToTransformation")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationStarted")
                 .AddParameter(boxIdUrlParameterName, connectorBoxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
-            MakeGetRequest(url, authToken);
+            MakePostRequest(url, authToken, new byte[0]);
         }
 
         [NotNull]
