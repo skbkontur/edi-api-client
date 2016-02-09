@@ -95,7 +95,7 @@
     <Compile Include="Messages\InboxMessageMeta.cs" />
     <Compile Include="Messages\MessageFormat.cs" />
     <Compile Include="Messages\OutboxMessageEntity.cs" />
-    <Compile Include="Messages\OutboxMessageMeta.cs" />
+    <Compile Include="Messages\BasicMessageMeta.cs" />
     <Compile Include="Messages\Partner.cs" />
     <Compile Include="Parties\UsersInfo.cs" />
     <Compile Include="Organization\BankAccount.cs" />

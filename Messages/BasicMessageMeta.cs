@@ -1,6 +1,6 @@
 ﻿namespace KonturEdi.Api.Types.Messages
 {
-    public class OutboxMessageMeta
+    public class BasicMessageMeta
     {
         public string BoxId { get; set; }
         public string MessageId { get; set; }

@@ -2,5 +2,11 @@
 {
     public class NewInboxMessageEventContent : MessageInboxEventContent
     {
+        public InboxMessageMeta InboxMessageMeta { get; set; }
+
+        public override bool IsEmpty()
+        {
+            return InboxMessageMeta == null;
+        }
     }
 }

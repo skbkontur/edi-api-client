@@ -2,13 +2,8 @@
 
 namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
 {
-    public class MessageInboxEventContent : IBoxEventContent
+    public abstract class MessageInboxEventContent : IBoxEventContent
     {
-        public virtual bool IsEmpty()
-        {
-            return InboxMessageMeta == null;
-        }
-
-        public InboxMessageMeta InboxMessageMeta { get; set; }
+        public abstract bool IsEmpty();
     }
 }
