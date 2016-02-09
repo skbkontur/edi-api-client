@@ -33,7 +33,7 @@ namespace KonturEdi.Api.Client.Http.Connectors
                 .AddParameter(boxIdUrlParameterName, connectorBoxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
-            MakePostRequest(url, authToken, new byte[0]);
+            MakePostRequest(url, authToken, content : null);
         }
 
         [NotNull]
