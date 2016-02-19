@@ -57,23 +57,23 @@ namespace KonturEdi.Api.Client.Http.Messages
         }
 
         [NotNull]
-        public BasicMessageMeta GetOutboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public OutboxMessageMeta GetOutboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetOutboxMessageMeta")
                 .AddParameter("boxId", boxId)
                 .AddParameter("messageId", messageId)
                 .ToUri();
-            return MakeGetRequest<BasicMessageMeta>(url, authToken);
+            return MakeGetRequest<OutboxMessageMeta>(url, authToken);
         }
 
         [NotNull]
-        public BasicMessageMeta SendMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] MessageData messageData)
+        public OutboxMessageMeta SendMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] MessageData messageData)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "SendMessage")
                 .AddParameter("boxId", boxId)
                 .AddParameter("messageFileName", messageData.MessageFileName)
                 .ToUri();
-            return MakePostRequest<BasicMessageMeta>(url, authToken, messageData.MessageBody);
+            return MakePostRequest<OutboxMessageMeta>(url, authToken, messageData.MessageBody);
         }
 
         [NotNull]
