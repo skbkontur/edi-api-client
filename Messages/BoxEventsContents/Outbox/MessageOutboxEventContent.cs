@@ -9,6 +9,6 @@ namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
             return OutboxMessageMeta == null;
         }
 
-        public BasicMessageMeta OutboxMessageMeta { get; set; }
+        public OutboxMessageMeta OutboxMessageMeta { get; set; }
     }
 }
