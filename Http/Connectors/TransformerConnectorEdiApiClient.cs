@@ -15,8 +15,6 @@ namespace KonturEdi.Api.Client.Http.Connectors
 {
     public class TransformerConnectorEdiApiClient : BaseEdiApiHttpClient, ITransformerConnectorEdiApiClient
     {
-        private readonly IBoxEventTypeRegistry<TransformerConnectorBoxEventType> boxEventTypeRegistry = new TransformerConnectorBoxEventTypeRegistry();
-
         public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null)
             : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
@@ -113,5 +111,6 @@ namespace KonturEdi.Api.Client.Http.Connectors
         private const string relativeUrl = "V1/Connectors/Transformers/";
         private const string boxIdUrlParameterName = "connectorBoxId";
         private const string connectorInteractionIdUrlParameterName = "connectorInteractionId";
+        private readonly IBoxEventTypeRegistry<TransformerConnectorBoxEventType> boxEventTypeRegistry = new TransformerConnectorBoxEventTypeRegistry();
     }
 }

@@ -15,8 +15,6 @@ namespace KonturEdi.Api.Client.Http.Messages
 {
     public class MessagesEdiApiHttpClient : BaseEdiApiHttpClient, IMessagesEdiApiClient
     {
-        private readonly IBoxEventTypeRegistry<MessageBoxEventType> boxEventTypeRegistry = new MessageBoxEventTypeRegistry();
-
         public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null)
             : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
@@ -115,5 +113,6 @@ namespace KonturEdi.Api.Client.Http.Messages
 
         private const string relativeUrl = "V1/Messages/";
         private const string boxIdUrlParameterName = "boxId";
+        private readonly IBoxEventTypeRegistry<MessageBoxEventType> boxEventTypeRegistry = new MessageBoxEventTypeRegistry();
     }
 }
