@@ -8,7 +8,7 @@ namespace KonturEdi.Api.Types.Connectors
     {
         public string ConnectorInteractionId { get; set; }
         public string DocumentCirculationId { get; set; }
-        
+
         public bool IsEmpty()
         {
             throw new NotImplementedException();
