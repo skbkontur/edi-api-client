@@ -22,6 +22,7 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
             Register<MessageDraftOfDocumentPackageSignedBySenderEventContent>(MessageBoxEventType.DraftOfDocumentPackageSignedBySender);
             Register<MessageDraftOfDocumentPackageDeletedFromDiadocEventContent>(MessageBoxEventType.DraftOfDocumentPackageDeletedFromDiadoc);
             Register<MessageReceivedDiadocRoamingErrorEventContent>(MessageBoxEventType.ReceivedDiadocRoamingError);
+            Register<MessageDiadocRevocationAcceptedEventContent>(MessageBoxEventType.DiadocRevocationAccepted);
             Register<NewInboxDocumentEventContent>(MessageBoxEventType.NewInboxDocument);
         }
     }
