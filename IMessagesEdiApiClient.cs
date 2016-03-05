@@ -31,8 +31,8 @@ namespace KonturEdi.Api.Client
         [NotNull]
         MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, DateTime fromDateTime, uint? count = null);
 
-        void MessageDeliveryStarted(string authToken, string boxId, string documentCirculationId);
+        void MessageDeliveryStarted([NotNull] string authToken, [NotNull] string boxId, [NotNull] string documentCirculationId);
 
-        void MessageDeliveryFinished(string authToken, string boxId, string documentCirculationId, MessageDeliveryResult messageDeliveryResult);
+        void MessageDeliveryFinished([NotNull] string authToken, [NotNull] string boxId, [NotNull] string documentCirculationId, [NotNull] MessageDeliveryResult messageDeliveryResult);
     }
 }
