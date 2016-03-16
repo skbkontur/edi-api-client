@@ -7,8 +7,12 @@ using JetBrains.Annotations;
 using KonturEdi.Api.Client.Http.Helpers;
 using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Internal;
-using KonturEdi.Api.Types.Internal.BoxEvents;
+using KonturEdi.Api.Types.Messages.BoxEvents;
+using KonturEdi.Api.Types.Messages.BoxEventsContents;
 using KonturEdi.Api.Types.Serialization;
+
+using MessageBoxEvent = KonturEdi.Api.Types.Internal.BoxEvents.MessageBoxEvent;
+using MessageBoxEventBatch = KonturEdi.Api.Types.Internal.BoxEvents.MessageBoxEventBatch;
 
 namespace KonturEdi.Api.Client.Http.Internal
 {

@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 
 using KonturEdi.Api.Types.Internal;
 using KonturEdi.Api.Types.Internal.BoxEvents;
+using KonturEdi.Api.Types.Messages.BoxEventsContents;
 
 namespace KonturEdi.Api.Client
 {
