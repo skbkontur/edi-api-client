@@ -2,6 +2,7 @@
 
 using KonturEdi.Api.Types.Internal.DocumentSpecificFields;
 using KonturEdi.Api.Types.Messages;
+using KonturEdi.Api.Types.Messages.BoxEventsContents;
 using KonturEdi.Api.Types.Organization;
 
 namespace KonturEdi.Api.Types.Internal
@@ -32,11 +33,5 @@ namespace KonturEdi.Api.Types.Internal
         public RetrecFields RetrecFields { get; set; }
         public AlcrptFields AlcrptFields { get; set; }
         public CoinvoicFields CoinvoicFields { get; set; }
-    }
-
-    public class DocumentId
-    {
-        public string BoxId { get; set; }
-        public string EntityId { get; set; }
     }
 }

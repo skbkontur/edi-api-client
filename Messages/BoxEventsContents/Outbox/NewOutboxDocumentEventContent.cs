@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Internal.BoxEventsContents
+﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
 {
     public class NewOutboxDocumentEventContent : DocumentEventContent
     {

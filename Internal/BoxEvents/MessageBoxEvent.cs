@@ -1,6 +1,7 @@
 ﻿using System;
 
 using KonturEdi.Api.Types.BoxEvents;
+using KonturEdi.Api.Types.Messages.BoxEvents;
 
 namespace KonturEdi.Api.Types.Internal.BoxEvents
 {

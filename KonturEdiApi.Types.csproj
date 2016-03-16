@@ -61,13 +61,11 @@
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventBatch.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventType.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventTypeRegistry.cs" />
-    <Compile Include="Internal\BoxEventsContents\DocumentEventContent.cs" />
-    <Compile Include="Internal\BoxEventsContents\NewInboxDocumentEventContent.cs" />
-    <Compile Include="Internal\BoxEventsContents\NewOutboxDocumentEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\DocumentEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Inbox\NewInboxDocumentEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\NewOutboxDocumentEventContent.cs" />
     <Compile Include="Internal\BoxEvents\MessageBoxEvent.cs" />
     <Compile Include="Internal\BoxEvents\MessageBoxEventBatch.cs" />
-    <Compile Include="Internal\BoxEvents\MessageBoxEventType.cs" />
-    <Compile Include="Internal\BoxEvents\MessageBoxEventTypeRegistry.cs" />
     <Compile Include="Internal\Document.cs" />
     <Compile Include="Internal\DocumentSpecificFields\OrderBasedDocumentFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\PartinFields.cs" />

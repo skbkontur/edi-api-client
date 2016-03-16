@@ -6,6 +6,7 @@
         NewOutboxMessage,
         NewInboxMessage,
         RecognizeMessage,
+        NewOutboxDocument,
         MessageDelivered,
         MessageUndelivered,
         MessageReadByPartner,
@@ -15,6 +16,7 @@
         DraftOfDocumentPackageSignedByMe,
         DraftOfDocumentPackageSignedBySender,
         DraftOfDocumentPackageDeletedFromDiadoc,
-        ReceivedDiadocRoamingError
-    }
+        ReceivedDiadocRoamingError,
+        NewInboxDocument,
+   }
 }
