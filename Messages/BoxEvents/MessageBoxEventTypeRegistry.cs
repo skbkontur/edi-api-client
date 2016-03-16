@@ -10,6 +10,7 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
         {
             Register<NewOutboxMessageEventContent>(MessageBoxEventType.NewOutboxMessage);
             Register<NewInboxMessageEventContent>(MessageBoxEventType.NewInboxMessage);
+            Register<RecognizeMessageEventContent>(MessageBoxEventType.RecognizeMessage);
             Register<MessageDeliveredEventContent>(MessageBoxEventType.MessageDelivered);
             Register<MessageReadByPartnerEventContent>(MessageBoxEventType.MessageReadByPartner);
             Register<MessageUndeliveredEventContent>(MessageBoxEventType.MessageUndelivered);

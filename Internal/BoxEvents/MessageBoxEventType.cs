@@ -1,11 +1,11 @@
-﻿namespace KonturEdi.Api.Types.Messages.BoxEvents
+﻿namespace KonturEdi.Api.Types.Internal.BoxEvents
 {
     public enum MessageBoxEventType
     {
         Unknown,
         NewOutboxMessage,
-        NewInboxMessage,
         RecognizeMessage,
+        NewOutboxDocument,
         MessageDelivered,
         MessageUndelivered,
         MessageReadByPartner,
@@ -15,6 +15,7 @@
         DraftOfDocumentPackageSignedByMe,
         DraftOfDocumentPackageSignedBySender,
         DraftOfDocumentPackageDeletedFromDiadoc,
-        ReceivedDiadocRoamingError
+        ReceivedDiadocRoamingError,
+        NewInboxDocument,
     }
 }
