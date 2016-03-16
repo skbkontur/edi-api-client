@@ -47,9 +47,11 @@
     <Compile Include="Http\Connectors\TransformerConnectorEdiApiClient.cs" />
     <Compile Include="Http\Helpers\UrlBuilder.cs" />
     <Compile Include="Http\HttpClientException.cs" />
+    <Compile Include="Http\Internal\InternalEdiApiHttpClient.cs" />
     <Compile Include="Http\Messages\MessagesEdiApiHttpClient.cs" />
     <Compile Include="Http\WebExtensions.cs" />
     <Compile Include="IBaseEdiApiClient.cs" />
+    <Compile Include="IInternalEdiApiHttpClient.cs" />
     <Compile Include="IMessagesEdiApiClient.cs" />
     <Compile Include="ITransformerConnectorEdiApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
