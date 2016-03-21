@@ -54,7 +54,7 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
 
         public int? PackageLevel { get; set; }
 
-        public PartyInfo UltimateCustomer { get; set; }
+        public string UltimateCustomerGln { get; set; }
 
         public GoodItemAdditionalInfo AdditionalInfo { get; set; }
     }

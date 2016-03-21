@@ -24,7 +24,7 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public string InvoiceNumber { get; set; }
         public DateTime? InvoiceDate { get; set; }
 
-        public PartyInfo Carrier { get; set; }
+        public string CarrierGln { get; set; }
 
         public Transportation Transportation { get; set; }
 

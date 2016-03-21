@@ -3,7 +3,6 @@
 using KonturEdi.Api.Types.Internal.DocumentSpecificFields;
 using KonturEdi.Api.Types.Messages;
 using KonturEdi.Api.Types.Messages.BoxEventsContents;
-using KonturEdi.Api.Types.Organization;
 
 namespace KonturEdi.Api.Types.Internal
 {
@@ -12,9 +11,8 @@ namespace KonturEdi.Api.Types.Internal
         public DocumentId DocumentId { get; set; }
         public string DocumentCirculationId { get; set; }
         public DocumentType Type { get; set; }
-        public string Kind { get; set; }
-        public PartyInfo Recipient { get; set; }
-        public PartyInfo Sender { get; set; }
+        public string RecipientPartyId { get; set; }
+        public string SenderPartyId { get; set; }
         public DateTime? CreationDateTimeBySender { get; set; }
         public string Number { get; set; }
         public DateTime? Date { get; set; }
@@ -33,5 +31,6 @@ namespace KonturEdi.Api.Types.Internal
         public RetrecFields RetrecFields { get; set; }
         public AlcrptFields AlcrptFields { get; set; }
         public CoinvoicFields CoinvoicFields { get; set; }
+        public PartinFields PartinFields { get; set; }
     }
 }

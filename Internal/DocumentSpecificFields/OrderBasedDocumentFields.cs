@@ -1,19 +1,17 @@
 ﻿using System;
 
-using KonturEdi.Api.Types.Organization;
-
 namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 {
     public abstract class OrderBasedDocumentFields
     {
-        public PartyInfo Supplier { get; set; }
-        public PartyInfo Buyer { get; set; }
-        public PartyInfo DeliveryParty { get; set; }
-        public PartyInfo Shipper { get; set; }
-        public PartyInfo Payer { get; set; }
-        public PartyInfo Invoicee { get; set; }
-        public PartyInfo UltimateCustomer { get; set; }
-        public PartyInfo WarehouseKeeper { get; set; }
+        public string SupplierGln { get; set; }
+        public string BuyerGln { get; set; }
+        public string DeliveryPartyGln { get; set; }
+        public string ShipperGln { get; set; }
+        public string PayerGln { get; set; }
+        public string InvoiceeGln { get; set; }
+        public string UltimateCustomerGln { get; set; }
+        public string WarehouseKeeperGln { get; set; }
 
         public string OrdersNumber { get; set; }
 

@@ -2,6 +2,7 @@
 {
     public enum DocumentRevisionType
     {
+        Unknown,
         Original,
         Canceled,
         Changed,

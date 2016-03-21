@@ -21,8 +21,8 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
         public Volume Volume { get; set; }
         public DateTime? BottlingDate { get; set; }
         public Certificate Certificate { get; set; }
-        public PartyInfo Manufacturer { get; set; }
-        public PartyInfo ForeignManufacturer { get; set; }
+        public string ManufacturerGln { get; set; }
+        public string ForeignManufacturerGln { get; set; }
         public LicenseSeller LicenseSeller { get; set; }
 
         public string[] CustomDeclarationNumbers { get; set; }

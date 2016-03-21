@@ -4,7 +4,7 @@
     {
         public string OwnerId { get; set; }
 
-        public Organization.Organization[] BuyersOrPayers { get; set; }
-        public Organization.Organization[] ShippersOrConsignees { get; set; }
+        public string[] BuyerOrPayerGlns { get; set; }
+        public string[] ShipperOrConsigneeGlns { get; set; }
     }
 }

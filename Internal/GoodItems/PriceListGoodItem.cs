@@ -42,7 +42,7 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
         public string Package { get; set; }
         public string PackageType { get; set; }
 
-        public PartyInfo Manufacturer { get; set; }
+        public string ManufacturerGln { get; set; }
 
         public string Comment { get; set; }
 

@@ -31,10 +31,10 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string[] FinancialCodes { get; set; }
 
-        public PartyInfo Supplier { get; set; }
-        public PartyInfo Buyer { get; set; }
+        public string SupplierGln { get; set; }
+        public string BuyerGln { get; set; }
 
-        public PartyInfo[] DeliveryParties { get; set; }
+        public string[] DeliveryPartyGlns { get; set; }
 
         public string CurrencyCode { get; set; }
 

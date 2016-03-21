@@ -7,6 +7,7 @@
         Orders,
         Ordrsp,
         Desadv,
+        DesadvViaInvoic,
         Recadv,
         Invoic,
         Coinvoic,
@@ -16,6 +17,8 @@
         Retdes,
         Retrec,
         POrders,
+        Pricat,
         PriceList,
+        Partin,
     }
 }
