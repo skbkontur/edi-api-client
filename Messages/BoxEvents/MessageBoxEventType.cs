@@ -18,5 +18,5 @@
         DraftOfDocumentPackageDeletedFromDiadoc,
         ReceivedDiadocRoamingError,
         NewInboxDocument,
-   }
+    }
 }

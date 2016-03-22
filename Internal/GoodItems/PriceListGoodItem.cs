@@ -1,6 +1,4 @@
-﻿using KonturEdi.Api.Types.Organization;
-
-namespace KonturEdi.Api.Types.Internal.GoodItems
+﻿namespace KonturEdi.Api.Types.Internal.GoodItems
 {
     public class PriceListGoodItem : GoodItemBase
     {

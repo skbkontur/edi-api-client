@@ -1,7 +1,6 @@
 ﻿using System;
 
 using KonturEdi.Api.Types.Internal.GoodItems;
-using KonturEdi.Api.Types.Organization;
 
 namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 {

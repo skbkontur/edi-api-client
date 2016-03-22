@@ -1,7 +1,5 @@
 ﻿using System;
 
-using KonturEdi.Api.Types.Organization;
-
 namespace KonturEdi.Api.Types.Internal.GoodItems
 {
     public class AlcrptGoodItem : GoodItemBase
