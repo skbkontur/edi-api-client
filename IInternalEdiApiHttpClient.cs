@@ -2,6 +2,7 @@ using System;
 
 using JetBrains.Annotations;
 
+using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.Internal;
 using KonturEdi.Api.Types.Internal.BoxEvents;
 using KonturEdi.Api.Types.Messages.BoxEventsContents;
@@ -18,5 +19,8 @@ namespace KonturEdi.Api.Client
 
         [NotNull]
         string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime);
+
+        [NotNull]
+        BoxesInfo GetBoxesInfo([NotNull] string authToken, [NotNull] string partyId);
     }
 }

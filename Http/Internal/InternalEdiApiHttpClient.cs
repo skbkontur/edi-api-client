@@ -5,6 +5,7 @@ using System.Net;
 using JetBrains.Annotations;
 
 using KonturEdi.Api.Client.Http.Helpers;
+using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Internal;
 using KonturEdi.Api.Types.Messages.BoxEvents;
@@ -64,6 +65,14 @@ namespace KonturEdi.Api.Client.Http.Internal
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents")
                 .AddParameter("beforeDateTime", DateTimeUtils.ToString(beforeDateTime));
             return MakeGetRequest<string>(url.ToUri(), authToken);
+        }
+
+        [NotNull]
+        public BoxesInfo GetBoxesInfo([NotNull] string authToken, [NotNull] string partyId)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetBoxesInfo")
+                .AddParameter("partyId", partyId);
+            return MakeGetRequest<BoxesInfo>(url.ToUri(), authToken);
         }
 
         private const string relativeUrl = "V1/Internal/";
