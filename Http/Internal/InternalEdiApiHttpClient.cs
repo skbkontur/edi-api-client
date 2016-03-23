@@ -68,15 +68,6 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [NotNull]
-        [Obsolete("(avk): удалю после переезда на новые ленты событий")]
-        public string GetFirstEventPointer([NotNull] string authToken, DateTime afterDateTime)
-        {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetFirstEventPointer")
-                .AddParameter("afterDateTime", DateTimeUtils.ToString(afterDateTime));
-            return MakeGetRequestInternal(url.ToUri(), authToken);
-        }
-
-        [NotNull]
         public BoxesInfo GetBoxesInfo([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetBoxesInfo")

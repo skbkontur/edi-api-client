@@ -21,10 +21,6 @@ namespace KonturEdi.Api.Client
         string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime);
 
         [NotNull]
-        [Obsolete("(avk): удалю после переезда на новые ленты событий")]
-        string GetFirstEventPointer([NotNull] string authToken, DateTime afterDateTime);
-
-        [NotNull]
         BoxesInfo GetBoxesInfo([NotNull] string authToken, [NotNull] string partyId);
 
         [NotNull]
