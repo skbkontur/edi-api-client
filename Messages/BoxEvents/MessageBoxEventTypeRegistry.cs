@@ -11,7 +11,7 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
             Register<NewOutboxMessageEventContent>(MessageBoxEventType.NewOutboxMessage);
             Register<NewInboxMessageEventContent>(MessageBoxEventType.NewInboxMessage);
             Register<RecognizeMessageEventContent>(MessageBoxEventType.RecognizeMessage);
-            Register<NewOutboxMessageEventContent>(MessageBoxEventType.NewOutboxDocument);
+            Register<NewOutboxDocumentEventContent>(MessageBoxEventType.NewOutboxDocument);
             Register<MessageDeliveredEventContent>(MessageBoxEventType.MessageDelivered);
             Register<MessageReadByPartnerEventContent>(MessageBoxEventType.MessageReadByPartner);
             Register<MessageUndeliveredEventContent>(MessageBoxEventType.MessageUndelivered);
@@ -22,7 +22,7 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
             Register<MessageDraftOfDocumentPackageSignedBySenderEventContent>(MessageBoxEventType.DraftOfDocumentPackageSignedBySender);
             Register<MessageDraftOfDocumentPackageDeletedFromDiadocEventContent>(MessageBoxEventType.DraftOfDocumentPackageDeletedFromDiadoc);
             Register<MessageReceivedDiadocRoamingErrorEventContent>(MessageBoxEventType.ReceivedDiadocRoamingError);
-            Register<NewInboxMessageEventContent>(MessageBoxEventType.NewInboxDocument);
+            Register<NewInboxDocumentEventContent>(MessageBoxEventType.NewInboxDocument);
         }
     }
 }
