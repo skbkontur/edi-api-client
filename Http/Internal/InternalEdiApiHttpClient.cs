@@ -62,9 +62,9 @@ namespace KonturEdi.Api.Client.Http.Internal
         [NotNull]
         public string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetLastEventPointer")
                 .AddParameter("beforeDateTime", DateTimeUtils.ToString(beforeDateTime));
-            return MakeGetRequest<string>(url.ToUri(), authToken);
+            return MakeGetRequestInternal(url.ToUri(), authToken);
         }
 
         [NotNull]
