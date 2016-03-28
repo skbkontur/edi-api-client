@@ -7,7 +7,6 @@
         Orders,
         Ordrsp,
         Desadv,
-        DesadvViaInvoic,
         Recadv,
         Invoic,
         Coinvoic,

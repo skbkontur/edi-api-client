@@ -2,7 +2,7 @@
 {
     public class RecognizeMessageEventContent : MessageOutboxEventContent
     {
-        public DocumentType MessageType { get; set; }
+        public DocumentType DocumentType { get; set; }
         public string SenderPartyId { get; set; }
         public string RecipientPartyId { get; set; }
     }
