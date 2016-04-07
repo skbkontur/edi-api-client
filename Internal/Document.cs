@@ -19,7 +19,6 @@ namespace KonturEdi.Api.Types.Internal
 
         public OrdersFields OrdersFields { get; set; }
         public DesadvFields DesadvFields { get; set; }
-        public DesadvViaInvoicFields DesadvViaInvoicFields { get; set; }
         public OrdrspFields OrdrspFields { get; set; }
         public RecadvFields RecadvFields { get; set; }
         public InvoicFields InvoicFields { get; set; }
