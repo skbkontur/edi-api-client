@@ -64,8 +64,7 @@
     <Compile Include="Messages\BoxEventsContents\DocumentEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\NewInboxDocumentEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\NewOutboxDocumentEventContent.cs" />
-    <Compile Include="Internal\BoxEvents\MessageBoxEvent.cs" />
-    <Compile Include="Internal\BoxEvents\MessageBoxEventBatch.cs" />
+    <Compile Include="Internal\MessageBoxEventBatch.cs" />
     <Compile Include="Internal\Document.cs" />
     <Compile Include="Internal\DocumentSpecificFields\OrderBasedDocumentFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\PartinFields.cs" />

@@ -43,8 +43,6 @@
         public string ManufacturerGln { get; set; }
 
         public string Comment { get; set; }
-
-        public bool DevelopmentMode { get; set; }
     }
 
     public class Price
