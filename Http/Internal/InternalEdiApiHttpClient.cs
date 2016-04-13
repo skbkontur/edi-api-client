@@ -12,8 +12,7 @@ using KonturEdi.Api.Types.Messages.BoxEvents;
 using KonturEdi.Api.Types.Messages.BoxEventsContents;
 using KonturEdi.Api.Types.Serialization;
 
-using MessageBoxEvent = KonturEdi.Api.Types.Internal.BoxEvents.MessageBoxEvent;
-using MessageBoxEventBatch = KonturEdi.Api.Types.Internal.BoxEvents.MessageBoxEventBatch;
+using MessageBoxEventBatch = KonturEdi.Api.Types.Internal.MessageBoxEventBatch;
 
 namespace KonturEdi.Api.Client.Http.Internal
 {
@@ -40,7 +39,7 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [NotNull]
-        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, uint? count = null)
+        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, int? count = null)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents");
             if(!string.IsNullOrWhiteSpace(exclusiveEventPointer))
