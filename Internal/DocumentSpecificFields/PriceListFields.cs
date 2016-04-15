@@ -4,7 +4,7 @@ using KonturEdi.Api.Types.Internal.GoodItems;
 
 namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 {
-    public class PricatFields
+    public class PriceListFields
     {
         public string FromGln { get; set; }
 

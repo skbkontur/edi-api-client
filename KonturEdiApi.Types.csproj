@@ -114,7 +114,7 @@
     <Compile Include="Internal\DocumentSpecificFields\OrdrspFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\POrdersFields.cs" />
     <Compile Include="Internal\GoodItems\PriceListGoodItem.cs" />
-    <Compile Include="Internal\DocumentSpecificFields\PricatFields.cs" />
+    <Compile Include="Internal\DocumentSpecificFields\PriceListFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\RecadvFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\RetannFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\RetdesFields.cs" />
