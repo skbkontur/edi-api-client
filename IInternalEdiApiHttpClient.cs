@@ -17,6 +17,10 @@ namespace KonturEdi.Api.Client
         MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, int? count = null);
 
         [NotNull]
+        string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime);
+
+        [NotNull]
+        [Obsolete("(avk): удалю после переезда на новые ленты событий")]
         string GetFirstEventPointer([NotNull] string authToken, DateTime afterDateTime);
 
         [NotNull]
