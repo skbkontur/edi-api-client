@@ -59,10 +59,11 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [NotNull]
-        public string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime)
+        public string GetFirstEventPointer([NotNull] string authToken, DateTime afterDateTime)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetLastEventPointer")
-                .AddParameter("beforeDateTime", DateTimeUtils.ToString(beforeDateTime));
+            // todo (avk): вернуться на GetLastEventPointer после переезда на новые ленты событий
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetFirstEventPointer")
+                .AddParameter("afterDateTime", DateTimeUtils.ToString(afterDateTime));
             return MakeGetRequestInternal(url.ToUri(), authToken);
         }
 
