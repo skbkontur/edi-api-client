@@ -50,6 +50,8 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
 
         public Quantity DeliveredQuantity { get; set; }
 
+        public Quantity GrossWeight { get; set; }
+
         public int? PackageLevel { get; set; }
 
         public string UltimateCustomerGln { get; set; }
