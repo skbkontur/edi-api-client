@@ -28,7 +28,7 @@ namespace KonturEdi.Api.Client.Http.Internal
         {
         }
 
-        [NotNull]
+        [CanBeNull]
         public Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetDocument")

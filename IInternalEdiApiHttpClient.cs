@@ -10,7 +10,7 @@ namespace KonturEdi.Api.Client
 {
     public interface IInternalEdiApiHttpClient
     {
-        [NotNull]
+        [CanBeNull]
         Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId);
 
         [NotNull]
