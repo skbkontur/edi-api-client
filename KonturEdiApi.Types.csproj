@@ -107,7 +107,7 @@
     <Compile Include="Internal\DocumentSpecificFields\DesadvFields.cs" />
     <Compile Include="Internal\GoodItems\AlcrptGoodItem.cs" />
     <Compile Include="Internal\GoodItems\GoodItemBase.cs" />
-    <Compile Include="Internal\GoodItems\GoodItemWithAdditionalInfo.cs" />
+    <Compile Include="Internal\GoodItems\GoodItemAdditionalInfo.cs" />
     <Compile Include="Internal\GoodItems\GoodNumber.cs" />
     <Compile Include="Internal\DocumentSpecificFields\InvoicFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\OrdersFields.cs" />

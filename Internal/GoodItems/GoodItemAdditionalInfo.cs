@@ -1,6 +1,6 @@
 ﻿namespace KonturEdi.Api.Types.Internal.GoodItems
 {
-    public class GoodItemAdditionalInfo : GoodItemBase
+    public class GoodItemAdditionalInfo
     {
         public bool IsReturnableContainer { get; set; }
 
