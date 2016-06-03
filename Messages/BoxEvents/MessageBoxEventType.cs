@@ -18,6 +18,7 @@
         DraftOfDocumentPackageDeletedFromDiadoc,
         ReceivedDiadocRoamingError,
         NewInboxDocument,
-        DiadocRevocationAccepted
+        DiadocRevocationAccepted,
+        DiadocRevocationAcceptedForBuyer
     }
 }
