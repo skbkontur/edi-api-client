@@ -7,6 +7,7 @@
         Canceled,
         Changed,
         Replace,
-        Copy
+        Copy,
+        Provisional
     }
 }
