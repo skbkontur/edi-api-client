@@ -34,6 +34,15 @@ namespace KonturEdi.Api.Client.Http.Connectors
             MakePostRequest(url, authToken, content : null);
         }
 
+        public void TransformationDelayed([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string reason)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationDelayed")
+                .AddParameter(boxIdUrlParameterName, connectorBoxId)
+                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
+                .ToUri();
+            MakePostRequest(url, authToken, reason);
+        }
+
         [NotNull]
         public MessageMeta TransformedSuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] MessageData resultMessageData)
         {
