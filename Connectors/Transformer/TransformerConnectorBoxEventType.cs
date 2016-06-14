@@ -7,6 +7,7 @@
         NewMessageForTransformation,
         ConnectorTakenToTransformation,
         ConnectorTransformationDelayed,
+        ConnectorTransformationProceeded,
         ConnectorTransformedSuccessfully,
         ConnectorTransformedUnsuccessfully,
     }
