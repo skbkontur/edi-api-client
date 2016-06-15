@@ -9,8 +9,8 @@ namespace KonturEdi.Api.Types.Connectors.Transformer
         {
             Register<NewMessageForTransformationEventContent>(TransformerConnectorBoxEventType.NewMessageForTransformation);
             Register<TakenToTransformationEventContent>(TransformerConnectorBoxEventType.ConnectorTakenToTransformation);
-            Register<TransformationDelayedEventContent>(TransformerConnectorBoxEventType.ConnectorTransformationDelayed);
-            Register<TransformationProceededEventContent>(TransformerConnectorBoxEventType.ConnectorTransformationProceeded);
+            Register<TransformationPausedEventContent>(TransformerConnectorBoxEventType.ConnectorTransformationPaused);
+            Register<TransformationResumedEventContent>(TransformerConnectorBoxEventType.ConnectorTransformationResumed);
             Register<TransformedSuccessfullyEventContent>(TransformerConnectorBoxEventType.ConnectorTransformedSuccessfully);
             Register<TransformedUnsuccessfullyEventContent>(TransformerConnectorBoxEventType.ConnectorTransformedUnsuccessfully);
         }

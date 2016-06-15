@@ -2,7 +2,7 @@
 
 namespace KonturEdi.Api.Types.Connectors.Transformer.EventContents
 {
-    public class TransformationDelayedEventContent : ConnectorBoxEventContent
+    public class TransformationResumedEventContent : ConnectorBoxEventContent
     {
         public MessageMeta MessageMeta { get; set; }
     }
