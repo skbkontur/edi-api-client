@@ -34,18 +34,18 @@ namespace KonturEdi.Api.Client.Http.Connectors
             MakePostRequest(url, authToken, content : null);
         }
 
-        public void TransformationDelayed([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string reason)
+        public void TransformationPaused([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string reason)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationDelayed")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationPaused")
                 .AddParameter(boxIdUrlParameterName, connectorBoxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
             MakePostRequest(url, authToken, reason);
         }
 
-        public void TransformationProceeded([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId)
+        public void TransformationResumed([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationProceeded")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationResumed")
                 .AddParameter(boxIdUrlParameterName, connectorBoxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();

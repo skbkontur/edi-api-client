@@ -12,9 +12,9 @@ namespace KonturEdi.Api.Client
     {
         void TransformationStarted([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId);
 
-        void TransformationDelayed([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string reason);
+        void TransformationPaused([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string reason);
 
-        void TransformationProceeded([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId);
+        void TransformationResumed([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId);
 
         [NotNull]
         MessageMeta TransformedSuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] MessageData resultMessageData);
