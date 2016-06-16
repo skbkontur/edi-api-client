@@ -10,6 +10,7 @@ using KonturEdi.Api.Types.BoxEvents;
 using KonturEdi.Api.Types.Internal;
 using KonturEdi.Api.Types.Messages.BoxEvents;
 using KonturEdi.Api.Types.Messages.BoxEventsContents;
+using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
 
 using MessageBoxEventBatch = KonturEdi.Api.Types.Internal.MessageBoxEventBatch;
@@ -81,6 +82,14 @@ namespace KonturEdi.Api.Client.Http.Internal
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetBoxesInfo")
                 .AddParameter("partyId", partyId);
             return MakeGetRequest<BoxesInfo>(url.ToUri(), authToken);
+        }
+
+        [NotNull]
+        public InternalPartyInfo GetExtendedPartyInfo([NotNull] string authToken, [NotNull] string partyId)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartyInfo")
+                .AddParameter("partyId", partyId);
+            return MakeGetRequest<InternalPartyInfo>(url.ToUri(), authToken);
         }
 
         private const string relativeUrl = "V1/Internal/";

@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.Internal;
 using KonturEdi.Api.Types.Messages.BoxEventsContents;
+using KonturEdi.Api.Types.Parties;
 
 namespace KonturEdi.Api.Client
 {
@@ -25,5 +26,8 @@ namespace KonturEdi.Api.Client
 
         [NotNull]
         BoxesInfo GetBoxesInfo([NotNull] string authToken, [NotNull] string partyId);
+
+        [NotNull]
+        InternalPartyInfo GetExtendedPartyInfo([NotNull] string authToken, [NotNull] string partyId);
     }
 }
