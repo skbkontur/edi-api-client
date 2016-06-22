@@ -11,8 +11,8 @@ namespace KonturEdi.Api.Types.Internal
         public DocumentId DocumentId { get; set; }
         public string DocumentCirculationId { get; set; }
         public DocumentType Type { get; set; }
-        public string RecipientPartyId { get; set; }
         public string SenderPartyId { get; set; }
+        public string RecipientPartyId { get; set; }
         public DateTime? CreationDateTimeBySender { get; set; }
         public string Number { get; set; }
         public DateTime? Date { get; set; }
