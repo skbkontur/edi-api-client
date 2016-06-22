@@ -16,6 +16,7 @@ namespace KonturEdi.Api.Types.Internal
         public DateTime? CreationDateTimeBySender { get; set; }
         public string Number { get; set; }
         public DateTime? Date { get; set; }
+        public LinkedDocumentInfo[] LinkedDocuments { get; set; }
 
         public OrdersFields OrdersFields { get; set; }
         public DesadvFields DesadvFields { get; set; }

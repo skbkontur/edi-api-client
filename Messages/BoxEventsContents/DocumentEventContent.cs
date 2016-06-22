@@ -12,10 +12,4 @@ namespace KonturEdi.Api.Types.Messages.BoxEventsContents
             return DocumentId == null;
         }
     }
-
-    public class DocumentId
-    {
-        public string BoxId { get; set; }
-        public string EntityId { get; set; }
-    }
 }

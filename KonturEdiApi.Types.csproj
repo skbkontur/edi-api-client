@@ -61,7 +61,9 @@
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventBatch.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventType.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventTypeRegistry.cs" />
+    <Compile Include="Internal\LinkedDocumentInfo.cs" />
     <Compile Include="Messages\BoxEventsContents\DocumentEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\DocumentId.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\NewInboxDocumentEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDiadocRevocationAcceptedForBuyerEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\NewOutboxDocumentEventContent.cs" />
