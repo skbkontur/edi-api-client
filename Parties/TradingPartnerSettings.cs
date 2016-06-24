@@ -6,8 +6,8 @@ namespace KonturEdi.Api.Types.Parties
     {
         public string PartnerPartyId { get; set; }
         public ConcretePartyRole PartnerPartyRole { get; set; }
-        public string OwnProviderId { get; set; }
-        public string PartnerProviderId { get; set; }
+        public string OwnProviderPartyId { get; set; }
+        public string PartnerProviderPartyId { get; set; }
         public TrafficType TrafficType { get; set; }
         public DocumentSettings[] UsedDocumentTypes { get; set; }
     }
