@@ -85,9 +85,9 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [NotNull]
-        public InternalPartyInfo GetExtendedPartyInfo([NotNull] string authToken, [NotNull] string partyId)
+        public InternalPartyInfo GetInternalPartyInfo([NotNull] string authToken, [NotNull] string partyId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartyInfo")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetInternalPartyInfo")
                 .AddParameter("partyId", partyId);
             return MakeGetRequest<InternalPartyInfo>(url.ToUri(), authToken);
         }

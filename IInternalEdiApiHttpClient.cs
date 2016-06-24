@@ -28,6 +28,6 @@ namespace KonturEdi.Api.Client
         BoxesInfo GetBoxesInfo([NotNull] string authToken, [NotNull] string partyId);
 
         [NotNull]
-        InternalPartyInfo GetExtendedPartyInfo([NotNull] string authToken, [NotNull] string partyId);
+        InternalPartyInfo GetInternalPartyInfo([NotNull] string authToken, [NotNull] string partyId);
     }
 }
