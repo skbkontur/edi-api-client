@@ -30,10 +30,22 @@ namespace KonturEdi.Api.Client.Http
         }
 
         [NotNull]
+        public string Authenticate([NotNull] string portalSid)
+        {
+            return DoAuthenticate(string.Format("konturediauth_portalsid={0}", portalSid));
+        }
+
+        [NotNull]
         public string Authenticate([NotNull] string login, [NotNull] string password)
         {
+            return DoAuthenticate(string.Format("konturediauth_login={0},konturediauth_password={1}", login, password));
+        }
+
+        [NotNull]
+        private string DoAuthenticate([NotNull] string authCredentials)
+        {
             var url = new UrlBuilder(baseUri, "V1/Authenticate").ToUri();
-            return MakePostRequestInternal(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",konturediauth_login={0},konturediauth_password={1}", login, password); });
+            return MakePostRequestInternal(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",{0}", authCredentials); });
         }
 
         [NotNull]

@@ -11,6 +11,9 @@ namespace KonturEdi.Api.Client
     public interface IBaseEdiApiClient
     {
         [NotNull]
+        string Authenticate([NotNull] string portalSid);
+
+        [NotNull]
         string Authenticate([NotNull] string login, [NotNull] string password);
 
         [NotNull]
