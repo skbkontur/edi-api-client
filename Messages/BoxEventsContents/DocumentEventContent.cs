@@ -6,10 +6,5 @@ namespace KonturEdi.Api.Types.Messages.BoxEventsContents
     {
         public DocumentId DocumentId { get; set; }
         public string DocumentCirculationId { get; set; }
-
-        public bool IsEmpty()
-        {
-            return DocumentId == null;
-        }
     }
 }

@@ -75,7 +75,6 @@
     <Compile Include="Internal\GoodItems\RetannGoodItem.cs" />
     <Compile Include="Messages\BoxDocumentsSettings.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDraftOfDocumentPackageSignedBySenderEventContent.cs" />
-    <Compile Include="Messages\BoxEventsContents\Inbox\MessageInboxEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\AcceptedRevocationInfo.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\DiadocDocumentType.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\IMessageDiadocEventContent.cs" />

@@ -1,8 +1,9 @@
-﻿using KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox;
+﻿using KonturEdi.Api.Types.BoxEvents;
+using KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox;
 
 namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
 {
-    public class MessageDiadocRevocationAcceptedForBuyerEventContent : MessageInboxEventContent, IMessageDiadocEventContent
+    public class MessageDiadocRevocationAcceptedForBuyerEventContent : IBoxEventContent, IMessageDiadocEventContent
     {
         public BasicMessageMeta InboxMessageMeta { get; set; }
         public AcceptedRevocationInfo AcceptedRevocationInfo { get; set; }
@@ -12,10 +13,5 @@ namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
         public string MessageId { get; set; }
         public string Torg12Id { get; set; }
         public DiadocUrls DiadocUrls { get; set; }
-
-        public override bool IsEmpty()
-        {
-            return InboxMessageMeta == null;
-        }
     }
 }

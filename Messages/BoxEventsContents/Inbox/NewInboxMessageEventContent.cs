@@ -1,12 +1,9 @@
-﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
+﻿using KonturEdi.Api.Types.BoxEvents;
+
+namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
 {
-    public class NewInboxMessageEventContent : MessageInboxEventContent
+    public class NewInboxMessageEventContent : IBoxEventContent
     {
         public InboxMessageMeta InboxMessageMeta { get; set; }
-
-        public override bool IsEmpty()
-        {
-            return InboxMessageMeta == null;
-        }
     }
 }
