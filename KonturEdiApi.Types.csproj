@@ -65,6 +65,7 @@
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventTypeRegistry.cs" />
     <Compile Include="Internal\DocumentSpecificFields\RetinsFields.cs" />
     <Compile Include="Internal\GoodItems\RetinsGoodItem.cs" />
+    <Compile Include="Internal\DocumentSpecificFields\RetinvFields.cs" />
     <Compile Include="Internal\LinkedDocumentInfo.cs" />
     <Compile Include="Messages\BoxEventsContents\DocumentEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\DocumentId.cs" />

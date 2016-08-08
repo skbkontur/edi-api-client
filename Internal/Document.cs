@@ -29,6 +29,7 @@ namespace KonturEdi.Api.Types.Internal
         public PriceListFields PriceListFields { get; set; }
         public RetdesFields RetdesFields { get; set; }
         public RetrecFields RetrecFields { get; set; }
+        public RetinvFields RetinvFields { get; set; }
         public AlcrptFields AlcrptFields { get; set; }
         public CoinvoicFields CoinvoicFields { get; set; }
         public PartinFields PartinFields { get; set; }
