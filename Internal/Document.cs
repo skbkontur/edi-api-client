@@ -24,6 +24,7 @@ namespace KonturEdi.Api.Types.Internal
         public RecadvFields RecadvFields { get; set; }
         public InvoicFields InvoicFields { get; set; }
         public RetannFields RetannFields { get; set; }
+        public RetinsFields RetinsFields { get; set; }
         public POrdersFields POrdersFields { get; set; }
         public PriceListFields PriceListFields { get; set; }
         public RetdesFields RetdesFields { get; set; }
