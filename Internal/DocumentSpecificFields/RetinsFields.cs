@@ -20,8 +20,11 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public string DespatchAdviceNumber { get; set; }
         public DateTime? DespatchDate { get; set; }
 
-        public string ReturnDespatchAdviceNumber { get; set; }
-        public DateTime? ReturnDespatchDate { get; set; }
+        public string ReturnDeliveryNoteNumber { get; set; }
+        public DateTime? ReturnDeliveryNoteDate { get; set; }
+
+        public string DeliveryNoteNumber { get; set; }
+        public DateTime? DeliveryNoteDate { get; set; }
 
         public string ReturnInvoicNumber { get; set; }
         public DateTime? ReturnInvoicDate { get; set; }
