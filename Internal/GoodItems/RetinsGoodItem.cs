@@ -15,6 +15,9 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
         public string DespatchAdviceNumber { get; set; }
         public DateTime? DespatchDate { get; set; }
 
+        public string DeliveryNoteNumber { get; set; }
+        public DateTime? DeliveryNoteDate { get; set; }
+
         //public PhysicalOrLogicalState[] ReturnPhysicalOrLogicalStates { get; set; }
     }
 }
