@@ -16,6 +16,8 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
 
         public DateTime? ManufactoringDate { get; set; }
 
+        public DateTime? EstimatedDeliveryDate { get; set; }
+
         public decimal? Price { get; set; }
 
         public decimal? PriceCataloguePrice { get; set; }
