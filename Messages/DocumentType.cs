@@ -20,6 +20,6 @@
         POrders,
         Pricat,
         PriceList,
-        Partin,
+        Partin
     }
 }
