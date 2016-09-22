@@ -1,4 +1,5 @@
 ﻿using KonturEdi.Api.Types.BoxEvents;
+using KonturEdi.Api.Types.Messages.BoxEventsContents;
 using KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox;
 using KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox;
 
@@ -25,6 +26,7 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
             Register<MessageDiadocRevocationAcceptedEventContent>(MessageBoxEventType.DiadocRevocationAccepted);
             Register<MessageDiadocRevocationAcceptedForBuyerEventContent>(MessageBoxEventType.DiadocRevocationAcceptedForBuyer);
             Register<NewInboxDocumentEventContent>(MessageBoxEventType.NewInboxDocument);
+            Register<ProcessingTimesReportEventContent>(MessageBoxEventType.ProcessingTimesReport);
         }
     }
 }

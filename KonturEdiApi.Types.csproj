@@ -97,6 +97,8 @@
     <Compile Include="Messages\BoxEventsContents\Outbox\NewOutboxMessageEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageReceivedDiadocRoamingErrorEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\RecognizeMessageEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\ProcessingTimes.cs" />
+    <Compile Include="Messages\BoxEventsContents\ProcessingTimesReportEventContent.cs" />
     <Compile Include="Messages\DiadocUrls.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEvent.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEventBatch.cs" />

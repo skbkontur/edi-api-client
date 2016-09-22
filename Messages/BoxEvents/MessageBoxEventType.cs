@@ -19,6 +19,7 @@
         ReceivedDiadocRoamingError,
         NewInboxDocument,
         DiadocRevocationAccepted,
-        DiadocRevocationAcceptedForBuyer
+        DiadocRevocationAcceptedForBuyer,
+        ProcessingTimesReport,
     }
 }
