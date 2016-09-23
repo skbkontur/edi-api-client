@@ -22,8 +22,8 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public string ReceivingAdviceNumber { get; set; }
         public DateTime? ReceivingDate { get; set; }
 
-        public string InvoicNumber { get; set; }
-        public DateTime? InvoicDate { get; set; }
+        public string ReturnInvoicNumber { get; set; }
+        public DateTime? ReturnInvoicDate { get; set; }
 
         public decimal? RetannTotalVAT { get; set; }
         public decimal? RetannTotalWithVat { get; set; }
