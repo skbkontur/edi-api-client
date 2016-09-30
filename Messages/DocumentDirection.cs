@@ -3,6 +3,7 @@
     public enum DocumentDirection
     {
         FromMe,
-        ToMe
+        ToMe,
+        Bidirectional
     }
 }
