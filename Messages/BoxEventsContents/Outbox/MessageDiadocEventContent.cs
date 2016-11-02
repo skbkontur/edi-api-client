@@ -6,6 +6,7 @@
         public string InvoiceId { get; set; }
         public string MessageId { get; set; }
         public string Torg12Id { get; set; }
+        public string InvoiceCorrectionId { get; set; }
         public DiadocUrls DiadocUrls { get; set; }
     }
 }
