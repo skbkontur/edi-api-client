@@ -20,6 +20,10 @@
         POrders,
         Pricat,
         PriceList,
-        Partin
+        Partin,
+        Delfor,
+        Coacsu,
+        Invrpt,
+        Slsrpt
     }
 }
