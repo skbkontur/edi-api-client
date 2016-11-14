@@ -23,6 +23,9 @@ namespace KonturEdi.Api.Client
         PartyInfo GetPartyInfo([NotNull] string authToken, [NotNull] string partyId);
 
         [NotNull]
+        PartyInfo GetPartyInfoByGln([NotNull] string authToken, [NotNull] string partyGln);
+
+        [NotNull]
         BoxesInfo GetBoxesInfo([NotNull] string authToken);
 
         [NotNull]
