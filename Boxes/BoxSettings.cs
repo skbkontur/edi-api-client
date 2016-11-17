@@ -39,6 +39,14 @@ namespace KonturEdi.Api.Types.Boxes
         }
     }
 
+    public class WebBoxSettings : BoxSettings
+    {
+        public WebBoxSettings()
+        {
+            TransportType = TransportType.Web;
+        }
+    }
+
     public class ApiBoxSettings : BoxSettings
     {
         public ApiBoxSettings()

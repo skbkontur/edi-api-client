@@ -6,6 +6,7 @@ namespace KonturEdi.Api.Types.Boxes
         Api,
         As2,
         Ftp,
-        Provider
+        Provider,
+        Web
     }
 }

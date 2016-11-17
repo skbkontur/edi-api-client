@@ -22,6 +22,8 @@ namespace KonturEdi.Api.Types.Serialization
                     return new FtpBoxSettings();
                 if(transportType == TransportType.Provider)
                     return new ProviderBoxSettings();
+                if(transportType == TransportType.Web)
+                    return new WebBoxSettings();
             }
             return null;
         }
