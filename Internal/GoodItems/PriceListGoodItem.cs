@@ -41,6 +41,7 @@
         public string PackageType { get; set; }
 
         public string ManufacturerGln { get; set; }
+        public string LocatinOfGoodsGln { get; set; }
 
         public string Comment { get; set; }
     }

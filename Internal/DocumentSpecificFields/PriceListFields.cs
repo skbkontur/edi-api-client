@@ -32,6 +32,7 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string SupplierGln { get; set; }
         public string BuyerGln { get; set; }
+        public string InvoiceeGln { get; set; }
 
         public string[] DeliveryPartyGlns { get; set; }
 
