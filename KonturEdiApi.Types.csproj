@@ -179,6 +179,12 @@
     <Compile Include="Serialization\XmlSerializer.cs" />
     <Compile Include="Parties\UserInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MessagesFormats\MessagesFormats.csproj">
+      <Project>{3D18FEA0-B3A4-4025-9905-C51EAD2E9855}</Project>
+      <Name>MessagesFormats</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
