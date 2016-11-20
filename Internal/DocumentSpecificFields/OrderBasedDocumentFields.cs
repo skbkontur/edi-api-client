@@ -13,6 +13,9 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public string UltimateCustomerGln { get; set; }
         public string WarehouseKeeperGln { get; set; }
 
+        public string VersionOfModule1C { get; set; }
+        public string VersionOf1C { get; set; }
+
         public string OrdersNumber { get; set; }
 
         public DateTime? OrdersDate { get; set; }
