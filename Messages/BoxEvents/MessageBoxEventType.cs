@@ -21,5 +21,9 @@
         DiadocRevocationAccepted,
         DiadocRevocationAcceptedForBuyer,
         ProcessingTimesReport,
+        DocumentPackageSignedByRecipientOk,
+        DocumentPackageSignedByMeOk,
+        DocumentPackageSignedByRecipientFail,
+        DocumentPackageSignedByMeFail,
     }
 }
