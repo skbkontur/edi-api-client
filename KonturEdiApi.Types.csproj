@@ -69,8 +69,10 @@
     <Compile Include="Internal\DocumentSpecificFields\InvrptFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\RetinsFields.cs" />
     <Compile Include="Internal\GoodItems\InvrptGoodItem.cs" />
+    <Compile Include="Internal\DocumentSpecificFields\SlsrptFields.cs" />
     <Compile Include="Internal\GoodItems\RetinsGoodItem.cs" />
     <Compile Include="Internal\DocumentSpecificFields\RetinvFields.cs" />
+    <Compile Include="Internal\GoodItems\SalesLocation.cs" />
     <Compile Include="Internal\LinkedDocumentInfo.cs" />
     <Compile Include="Internal\PhysicalOrLogicalState.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\AmendmentRequestedEventContent.cs" />

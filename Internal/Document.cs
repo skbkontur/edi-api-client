@@ -34,5 +34,6 @@ namespace KonturEdi.Api.Types.Internal
         public CoinvoicFields CoinvoicFields { get; set; }
         public PartinFields PartinFields { get; set; }
         public InvrptFields InvrptFields { get; set; }
+        public SlsrptFields SlsrptFields { get; set; }
     }
 }
