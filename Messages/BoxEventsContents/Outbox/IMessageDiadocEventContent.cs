@@ -8,6 +8,7 @@ namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
         string Torg12Id { get; set; }
         string InvoiceCorrectionId { get; set; }
         string UniversalTranferDocumentId { get; set; }
+        string UniversalCorrectionDocumentId { get; set; }
         DiadocUrls DiadocUrls { get; set; }
     }
 }
