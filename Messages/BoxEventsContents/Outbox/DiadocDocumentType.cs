@@ -5,6 +5,7 @@ namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
         Invoice,
         Torg12,
         CorrectiveInvoice,
-        UniversalTranferDocument
+        UniversalTranferDocument,
+        UniversalCorrectionDocument
     }
 }
