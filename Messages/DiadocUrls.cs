@@ -6,7 +6,7 @@
         public string InvoiceUrl { get; set; }
         public string Torg12Url { get; set; }
         public string InvoiceCorrectionUrl { get; set; }
-        public string UniversalTranferDocumentUrl { get; set; }
+        public string UniversalTransferDocumentUrl { get; set; }
         public string UniversalCorrectionDocumentUrl { get; set; }
     }
 }
