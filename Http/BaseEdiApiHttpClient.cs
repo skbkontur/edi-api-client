@@ -81,13 +81,13 @@ namespace KonturEdi.Api.Client.Http
         }
 
         [NotNull]
-        public BoxesInfo GetBoxByGln([NotNull] string authToken, string gln, bool isTest = false)
+        public BoxInfo GetBoxByGln([NotNull] string authToken, string gln, bool isTest = false)
         {
             var url = new UrlBuilder(baseUri, "V1/Boxes/GetBoxByGln")
                 .AddParameter("gln", gln)
                 .AddParameter("isTest", isTest.ToString())
                 .ToUri();
-            return MakeGetRequest<BoxesInfo>(url, authToken);
+            return MakeGetRequest<BoxInfo>(url, authToken);
         }
 
         [NotNull]

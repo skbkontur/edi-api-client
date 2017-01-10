@@ -29,6 +29,9 @@ namespace KonturEdi.Api.Client
         BoxesInfo GetBoxesInfo([NotNull] string authToken);
 
         [NotNull]
+        BoxInfo GetBoxByGln([NotNull] string authToken, string gln, bool isTest);
+
+        [NotNull]
         BoxInfo GetMainApiBox([NotNull] string authToken, [NotNull] string partyId);
 
         [NotNull]
