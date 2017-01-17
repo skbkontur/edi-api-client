@@ -53,6 +53,7 @@
     <Compile Include="Connectors\ConnectorBoxesInfo.cs" />
     <Compile Include="Connectors\ConnectorBoxEventContent.cs" />
     <Compile Include="Connectors\ConnectorBoxInfo.cs" />
+    <Compile Include="Connectors\ServiceMessageData.cs" />
     <Compile Include="Connectors\Transformer\EventContents\NewMessageForTransformationEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TakenToTransformationEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformationPausedEventContent.cs" />
