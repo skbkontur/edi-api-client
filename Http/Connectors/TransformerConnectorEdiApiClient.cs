@@ -77,11 +77,10 @@ namespace KonturEdi.Api.Client.Http.Connectors
             var url = new UrlBuilder(BaseUri, relativeUrl + "StopProcessing")
                 .AddParameter(boxIdUrlParameterName, connectorBoxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .AddParameter("messageId", connectorServiceMessageData.MessageId)
-                .AddParameter("messageDetails", connectorServiceMessageData.MessageDetails)
+                .AddParameter("documentNumber", connectorServiceMessageData.DocumentNumber)
                 .AddParameter("recipientGln", connectorServiceMessageData.RecipientGln)
                 .ToUri();
-            MakePostRequest(url, authToken, content : null);
+            MakePostRequest(url, authToken, connectorServiceMessageData.MessageDetails);
         }
 
         [NotNull]
