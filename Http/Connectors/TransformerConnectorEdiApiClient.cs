@@ -81,7 +81,7 @@ namespace KonturEdi.Api.Client.Http.Connectors
                 .AddParameter("messageDetails", connectorServiceMessageData.MessageDetails)
                 .AddParameter("recipientGln", connectorServiceMessageData.RecipientGln)
                 .ToUri();
-            MakePostRequest(url, authToken, connectorServiceMessageData.MessageBody);
+            MakePostRequest(url, authToken, content : null);
         }
 
         [NotNull]
