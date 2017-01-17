@@ -72,16 +72,16 @@ namespace KonturEdi.Api.Client.Http.Connectors
             MakePostRequest(url, authToken, errors);
         }
 
-        public void StopProcessing([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ServiceMessageData serviceMessageData)
+        public void StopProcessing([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorServiceMessageData connectorServiceMessageData)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "StopProcessing")
                 .AddParameter(boxIdUrlParameterName, connectorBoxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .AddParameter("messageId", serviceMessageData.MessageId)
-                .AddParameter("messageDetails", serviceMessageData.MessageId)
-                .AddParameter("recipientGln", serviceMessageData.RecipientGln)
+                .AddParameter("messageId", connectorServiceMessageData.MessageId)
+                .AddParameter("messageDetails", connectorServiceMessageData.MessageDetails)
+                .AddParameter("recipientGln", connectorServiceMessageData.RecipientGln)
                 .ToUri();
-            MakePostRequest(url, authToken, serviceMessageData.MessageBody);
+            MakePostRequest(url, authToken, connectorServiceMessageData.MessageBody);
         }
 
         [NotNull]
