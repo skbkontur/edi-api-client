@@ -16,12 +16,7 @@ namespace KonturEdi.Api.Client
 
         void TransformationResumed([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId);
 
-        [NotNull]
-        MessageMeta TransformedSuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] MessageData resultMessageData);
-
-        void TransformedUnsuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string[] errors);
-
-        void StopProcessing([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorServiceMessageData connectorServiceMessageData);
+        void TransformationFinished([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorTransformationResult transformationResult);
 
         [NotNull]
         TransformerConnectorBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string connectorBoxId, [CanBeNull] string exclusiveEventId, uint? count = null);

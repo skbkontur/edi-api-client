@@ -52,33 +52,13 @@ namespace KonturEdi.Api.Client.Http.Connectors
             MakePostRequest(url, authToken, content : null);
         }
 
-        [NotNull]
-        public MessageMeta TransformedSuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] MessageData resultMessageData)
+        public void TransformationFinished([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorTransformationResult transformationResult)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedSuccessfully")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .AddParameter("messageFileName", resultMessageData.MessageFileName)
-                .ToUri();
-            return MakePostRequest<MessageMeta>(url, authToken, resultMessageData.MessageBody);
-        }
-
-        public void TransformedUnsuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string[] errors)
-        {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedUnsuccessfully")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationFinished")
                 .AddParameter(boxIdUrlParameterName, connectorBoxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
-            MakePostRequest(url, authToken, errors);
-        }
-
-        public void StopProcessing([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorServiceMessageData connectorServiceMessageData)
-        {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedSuccessfullyForServiceMessage")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .ToUri();
-            MakePostRequest(url, authToken, connectorServiceMessageData);
+            MakePostRequest(url, authToken, transformationResult);
         }
 
         [NotNull]
