@@ -32,6 +32,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Assemblies\json.net\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -54,6 +58,7 @@
     <Compile Include="Connectors\ConnectorBoxEventContent.cs" />
     <Compile Include="Connectors\ConnectorBoxInfo.cs" />
     <Compile Include="Connectors\ConnectorServiceMessageData.cs" />
+    <Compile Include="Connectors\Transformer\ConnectorTransformationResult.cs" />
     <Compile Include="Connectors\Transformer\EventContents\NewMessageForTransformationEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TakenToTransformationEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformationFinishedWithServiceMessageEventContent.cs" />
@@ -61,6 +66,7 @@
     <Compile Include="Connectors\Transformer\EventContents\TransformationResumedEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformedSuccessfullyEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformedUnsuccessfullyEventContent.cs" />
+    <Compile Include="Connectors\Transformer\TransformationResultType.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEvent.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventBatch.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventType.cs" />
