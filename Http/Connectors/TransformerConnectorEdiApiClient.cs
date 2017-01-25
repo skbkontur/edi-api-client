@@ -54,60 +54,11 @@ namespace KonturEdi.Api.Client.Http.Connectors
 
         public void TransformationFinished([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorTransformationResult transformationResult)
         {
-            switch(transformationResult.TransformationResultType)
-            {
-            case TransformationResultType.SuccessfullyTransformed:
-                TransformedSuccessfully(authToken, connectorBoxId, connectorInteractionId, transformationResult.MessageData);
-                break;
-            case TransformationResultType.UnsuccessfullyTransformed:
-                TransformedUnsuccessfully(authToken, connectorBoxId, connectorInteractionId, transformationResult.Errors);
-                break;
-            case TransformationResultType.SuccessfullyTransformedForServiceMessage:
-                TransformedSuccessfullyForServiceMessage(authToken, connectorBoxId, connectorInteractionId, transformationResult.ServiceMessageData);
-                break;
-            case TransformationResultType.FinishedWithoutTransformation:
-                TransformedSuccessfullyWithoutTransformation(authToken, connectorBoxId, connectorInteractionId);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(string.Format("Unknown transformation result type: {0}", transformationResult.TransformationResultType));
-            }
-        }
-
-        private void TransformedSuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] MessageData resultMessageData)
-        {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedSuccessfully")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .AddParameter("messageFileName", resultMessageData.MessageFileName)
-                .ToUri();
-            MakePostRequest(url, authToken, resultMessageData.MessageBody);
-        }
-
-        private void TransformedUnsuccessfully([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string[] errors)
-        {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedUnsuccessfully")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationFinished")
                 .AddParameter(boxIdUrlParameterName, connectorBoxId)
                 .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
                 .ToUri();
-            MakePostRequest(url, authToken, errors);
-        }
-
-        private void TransformedSuccessfullyForServiceMessage([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorServiceMessageData serviceMessageData)
-        {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedSuccessfullyForServiceMessage")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .ToUri();
-            MakePostRequest(url, authToken, serviceMessageData);
-        }
-
-        private void TransformedSuccessfullyWithoutTransformation([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId)
-        {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "TransformedSuccessfullyWithoutTransformation")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .ToUri();
-            MakePostRequest(url, authToken, null);
+            MakePostRequest(url, authToken, transformationResult);
         }
 
         [NotNull]
