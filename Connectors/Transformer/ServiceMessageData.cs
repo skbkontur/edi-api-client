@@ -1,6 +1,6 @@
-﻿namespace KonturEdi.Api.Types.Connectors
+﻿namespace KonturEdi.Api.Types.Connectors.Transformer
 {
-    public class ConnectorServiceMessageData
+    public class ServiceMessageData
     {
         public string DocumentNumber { get; set; }
         public string Comment { get; set; }

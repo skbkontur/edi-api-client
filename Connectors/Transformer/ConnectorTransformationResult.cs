@@ -10,6 +10,6 @@ namespace KonturEdi.Api.Types.Connectors.Transformer
 
         public string[] Errors { get; set; }
 
-        public ConnectorServiceMessageData ConnectorServiceMessageData { get; set; }
+        public ServiceMessageData ServiceMessageData { get; set; }
     }
 }

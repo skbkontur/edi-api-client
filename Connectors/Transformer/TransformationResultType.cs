@@ -3,7 +3,7 @@
     public enum TransformationResultType 
     {
         TransformedSuccessfully,
-        TransformedUnsuccessfully,
+        TransformationFailed,
         RecognizedAsServiceMessage,
         FinishedWithoutTransformation,
     }
