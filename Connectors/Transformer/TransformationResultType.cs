@@ -2,9 +2,9 @@
 {
     public enum TransformationResultType
     {
-        TransformedSuccessfully,
-        TransformationFailed,
-        RecognizedAsServiceMessage,
-        FinishedWithoutTransformation,
+        Failure = 0,
+        SuccessWithTransformation = 1,
+        SuccessWithNoTransformation = 2,
+        SuccessForServiceMessage = 3,
     }
 }
