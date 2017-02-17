@@ -13,7 +13,6 @@ namespace KonturEdi.Api.Types.Connectors.Transformer
             Register<TransformationResumedEventContent>(TransformerConnectorBoxEventType.ConnectorTransformationResumed);
             Register<TransformedSuccessfullyEventContent>(TransformerConnectorBoxEventType.ConnectorTransformedSuccessfully);
             Register<TransformedUnsuccessfullyEventContent>(TransformerConnectorBoxEventType.ConnectorTransformedUnsuccessfully);
-            Register<TransformationFinishedWithServiceMessageEventContent>(TransformerConnectorBoxEventType.ConnectorTransformationFinishedWithServiceMessage);
         }
     }
 }

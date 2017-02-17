@@ -56,7 +56,6 @@
     <Compile Include="Connectors\Transformer\ConnectorTransformationResult.cs" />
     <Compile Include="Connectors\Transformer\EventContents\NewMessageForTransformationEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TakenToTransformationEventContent.cs" />
-    <Compile Include="Connectors\Transformer\EventContents\TransformationFinishedWithServiceMessageEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformationPausedEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformationResumedEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformedSuccessfullyEventContent.cs" />

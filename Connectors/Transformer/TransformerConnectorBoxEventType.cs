@@ -10,6 +10,5 @@
         ConnectorTransformationResumed,
         ConnectorTransformedSuccessfully,
         ConnectorTransformedUnsuccessfully,
-        ConnectorTransformationFinishedWithServiceMessage
     }
 }

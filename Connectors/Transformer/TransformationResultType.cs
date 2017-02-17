@@ -1,6 +1,6 @@
 ﻿namespace KonturEdi.Api.Types.Connectors.Transformer
 {
-    public enum TransformationResultType 
+    public enum TransformationResultType
     {
         TransformedSuccessfully,
         TransformationFailed,
