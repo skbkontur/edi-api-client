@@ -73,6 +73,12 @@
     <Compile Include="Messages\BoxEventsContents\DocumentId.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDocumentPackageSignedByMeFailEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDocumentPackageSignedByMeOkEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Inbox\MessageDraftOfPriceListPostedIntoDiadoc.cs" />
+    <Compile Include="Messages\BoxEventsContents\Inbox\MessageDraftOfPriceListSignedByMe.cs" />
+    <Compile Include="Messages\BoxEventsContents\Inbox\MessageInboxDiadocEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Inbox\MessageInboxEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Inbox\MessagePriceListSignedByRecipientFailEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Inbox\MessagePriceListSignedByRecipientOkEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\NewInboxDocumentEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDiadocRevocationAcceptedForBuyerEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDocumentPackageSignedByRecipientFailEventContent.cs" />

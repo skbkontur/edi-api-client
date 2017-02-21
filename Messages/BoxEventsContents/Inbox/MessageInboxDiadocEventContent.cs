@@ -1,6 +1,8 @@
-﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
+﻿using KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox;
+
+namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
 {
-    public class MessageDiadocEventContent : MessageOutboxEventContent, IMessageDiadocEventContent
+    public class MessageInboxDiadocEventContent : MessageInboxEventContent, IMessageDiadocEventContent
     {
         public string DiadocBoxId { get; set; }
         public string InvoiceId { get; set; }

@@ -31,6 +31,10 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
             Register<MessageDocumentPackageSignedByMeOkEventContent>(MessageBoxEventType.DocumentPackageSignedByMeOk);
             Register<MessageDocumentPackageSignedByRecipientFailEventContent>(MessageBoxEventType.DocumentPackageSignedByRecipientFail);
             Register<MessageDocumentPackageSignedByMeFailEventContent>(MessageBoxEventType.DocumentPackageSignedByMeFail);
+            Register<MessagePriceListSignedByRecipientFailEventContent>(MessageBoxEventType.DocumentPackageSignedByRecipientFail);
+            Register<MessagePriceListSignedByRecipientOkEventContent>(MessageBoxEventType.DocumentPackageSignedByRecipientOk);
+            Register<MessageDraftOfPriceListPostedIntoDiadoc>(MessageBoxEventType.DraftOfDocumentPackagePostedIntoDiadoc);
+            Register<MessageDraftOfPriceListSignedByMe>(MessageBoxEventType.DraftOfDocumentPackageSignedByMe);
         }
     }
 }
