@@ -25,5 +25,9 @@
         DocumentPackageSignedByMeOk,
         DocumentPackageSignedByRecipientFail,
         DocumentPackageSignedByMeFail,
+        InboxDocumentPackageSignedByRecipientFail,
+        InboxDocumentPackageSignedByRecipientOk,
+        InboxDraftOfDocumentPackagePostedIntoDiadoc,
+        InboxDraftOfDocumentPackageSignedByMe
     }
 }
