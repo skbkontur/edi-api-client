@@ -11,5 +11,7 @@
         public string Size { get; set; }
 
         public string Comment { get; set; }
+
+        public string ProductAlcoCode { get; set; }
     }
 }
