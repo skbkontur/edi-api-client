@@ -36,9 +36,10 @@
         public Price PriceWithVAT { get; set; }
 
         public Price CostOfInstallation { get; set; }
+        public Price NetPriceWithPickup { get; set; }
+        public Price NetPriceWithDeliveryToDC { get; set; }
 
-        public string Package { get; set; }
-        public string PackageType { get; set; }
+        public PackageForItem PriceCataloguePackageForItem { get; set; }
 
         public string ManufacturerGln { get; set; }
         public string LocatinOfGoodsGln { get; set; }
@@ -50,6 +51,16 @@
     {
         public decimal? Value { get; set; }
         public string MeasurementUnitCode { get; set; }
+    }
+
+    public class PackageForItem
+    {
+        public decimal? Quantity { get; set; }
+        public string PackageType { get; set; }
+        public string PackageMarking { get; set; }
+
+        public Quantity PackageHeight { get; set; }
+        public Quantity PackageGrossWeight { get; set; }
     }
 
     public enum PricatGoodItemStatus
