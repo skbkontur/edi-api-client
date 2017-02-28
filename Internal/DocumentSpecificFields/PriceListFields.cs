@@ -28,7 +28,7 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string SegmentOfBuyerAssortment { get; set; }
 
-        public string FinancialCodes { get; set; }
+        public string[] FinancialCodes { get; set; }
 
         public string SupplierGln { get; set; }
         public string BuyerGln { get; set; }
