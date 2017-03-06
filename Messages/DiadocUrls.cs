@@ -8,6 +8,5 @@
         public string InvoiceCorrectionUrl { get; set; }
         public string UniversalTransferDocumentUrl { get; set; }
         public string UniversalCorrectionDocumentUrl { get; set; }
-        public string PriceListUrl { get; set; }
     }
 }

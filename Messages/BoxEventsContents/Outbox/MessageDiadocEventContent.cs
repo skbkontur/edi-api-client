@@ -9,7 +9,6 @@
         public string InvoiceCorrectionId { get; set; }
         public string UniversalTransferDocumentId { get; set; }
         public string UniversalCorrectionDocumentId { get; set; }
-        public string PriceListDocumentId { get; set; }
         public DiadocUrls DiadocUrls { get; set; }
     }
 }
