@@ -29,7 +29,7 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public string ReturnInvoicNumber { get; set; }
         public DateTime? ReturnInvoicDate { get; set; }
 
-        //public PhysicalOrLogicalState[] ReturnPhysicalOrLogicalStates { get; set; }
+        public PhysicalOrLogicalState[] ReturnPhysicalOrLogicalStates { get; set; }
 
         public decimal? RetinsTotalVAT { get; set; }
         public decimal? RetinsTotalWithVat { get; set; }

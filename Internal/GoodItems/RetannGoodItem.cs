@@ -25,5 +25,7 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
 
         public string InvoicNumber { get; set; }
         public DateTime? InvoicDate { get; set; }
+
+        public PhysicalOrLogicalState[] ReturnPhysicalOrLogicalStates { get; set; }
     }
 }

@@ -18,6 +18,6 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
         public string DeliveryNoteNumber { get; set; }
         public DateTime? DeliveryNoteDate { get; set; }
 
-        //public PhysicalOrLogicalState[] ReturnPhysicalOrLogicalStates { get; set; }
+        public PhysicalOrLogicalState[] ReturnPhysicalOrLogicalStates { get; set; }
     }
 }
