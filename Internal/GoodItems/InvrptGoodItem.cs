@@ -1,6 +1,4 @@
-﻿using SKBKontur.Catalogue.EDI.MessagesFormats.References;
-
-namespace KonturEdi.Api.Types.Internal.GoodItems
+﻿namespace KonturEdi.Api.Types.Internal.GoodItems
 {
     public class InvrptGoodItem : GoodItemBase
     {
@@ -25,16 +23,9 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
 
     public enum QuantityType
     {
-        [ReferenceCode("ActualStock")]
         ActualStock,
-
-        [ReferenceCode("OrderedQuantity")]
         OrderedQuantity,
-
-        [ReferenceCode("DeliveredQuantity")]
         DeliveredQuantity,
-
-        [ReferenceCode("ReceivedQuantity")]
         ReceivedQuantity
     }
 }
