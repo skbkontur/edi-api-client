@@ -90,6 +90,7 @@ namespace KonturEdi.Api.Client.Http
         }
 
         [NotNull]
+        [Obsolete("{ageev_ps} Порвать после перехода коннекторов на GetPartyInfoByDepartmentGln")]
         public BoxInfo GetBoxByGln([NotNull] string authToken, string gln, bool isTest = false)
         {
             var url = new UrlBuilder(baseUri, "V1/Boxes/GetBoxByGln")
