@@ -36,5 +36,8 @@ namespace KonturEdi.Api.Client
 
         [NotNull]
         OrganizationCatalogueInfo GetOrganizationCatalogueInfo([NotNull] string authToken, [NotNull] string partyId);
+
+        [NotNull]
+        PartyInfo GetPartyInfoByDepartmentGln([NotNull] string authToken, [NotNull] string departmentGln);
     }
 }

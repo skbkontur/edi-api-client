@@ -74,6 +74,15 @@ namespace KonturEdi.Api.Client.Http
         }
 
         [NotNull]
+        public PartyInfo GetPartyInfoByDepartmentGln([NotNull] string authToken, [NotNull] string departmentGln)
+        {
+            var url = new UrlBuilder(baseUri, "V1/Parties/GetPartyInfoByDepartmentGln")
+                .AddParameter("departmentGln", departmentGln)
+                .ToUri();
+            return MakeGetRequest<PartyInfo>(url, authToken);
+        }
+
+        [NotNull]
         public BoxesInfo GetBoxesInfo([NotNull] string authToken)
         {
             var url = new UrlBuilder(baseUri, "V1/Boxes/GetBoxesInfo").ToUri();
