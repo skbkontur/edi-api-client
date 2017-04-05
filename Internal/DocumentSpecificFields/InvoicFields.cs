@@ -27,6 +27,10 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public DateTime? ReceivingDate { get; set; }
 
+        public string SpecificationNumber { get; set; }
+
+        public DateTime? SpecificationDate { get; set; }
+
         public string ReceivingAdviceNumberInBuyerSystem { get; set; }
 
         public string CurrencyCode { get; set; }
@@ -63,6 +67,7 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string CustomerReferenceNumber { get; set; }
 
+        public string FreeText { get; set; }
         public string FactoringEncription { get; set; }
         public CommonGoodItem[] GoodItems { get; set; }
 
