@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
+﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents
 {
     public class AcceptedRevocationInfo
     {

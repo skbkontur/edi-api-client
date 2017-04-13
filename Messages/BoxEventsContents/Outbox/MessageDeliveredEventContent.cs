@@ -1,6 +1,6 @@
 ﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
 {
-    public class MessageDeliveredEventContent : MessageOutboxEventContent
+    public class MessageDeliveredEventContent : OutboxEventContentBase
     {
     }
 }

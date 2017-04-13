@@ -1,6 +1,6 @@
 ﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
 {
-    public class MessageDraftOfDocumentPackagePostedIntoDiadocEventContent : MessageDiadocEventContent
+    public class MessageDraftOfDocumentPackagePostedIntoDiadocEventContent : OutboxDiadocEventContentBase
     {
     }
 }

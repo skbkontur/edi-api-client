@@ -1,6 +1,6 @@
 ﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
 {
-    public class RecognizeMessageEventContent : MessageOutboxEventContent
+    public class RecognizeMessageEventContent : OutboxEventContentBase
     {
         public DocumentType DocumentType { get; set; }
         public string SenderPartyId { get; set; }

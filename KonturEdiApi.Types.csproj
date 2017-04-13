@@ -81,6 +81,8 @@
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDiadocRevocationAcceptedForBuyerEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDocumentPackageSignedByRecipientFailEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDocumentPackageSignedByRecipientOkEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Inbox\InboxDiadocEventContentBase.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\OutboxDiadocEventContentBase.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\NewOutboxDocumentEventContent.cs" />
     <Compile Include="Internal\MessageBoxEventBatch.cs" />
     <Compile Include="Internal\Document.cs" />
@@ -90,13 +92,12 @@
     <Compile Include="Internal\GoodItems\RetannGoodItem.cs" />
     <Compile Include="Messages\BoxDocumentsSettings.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDraftOfDocumentPackageSignedBySenderEventContent.cs" />
-    <Compile Include="Messages\BoxEventsContents\Outbox\AcceptedRevocationInfo.cs" />
-    <Compile Include="Messages\BoxEventsContents\Outbox\DiadocDocumentType.cs" />
-    <Compile Include="Messages\BoxEventsContents\Outbox\IMessageDiadocEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\AcceptedRevocationInfo.cs" />
+    <Compile Include="Messages\BoxEventsContents\DiadocDocumentType.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageCheckingFailEventContent.cs" />
-    <Compile Include="Messages\BoxEventsContents\Outbox\MessageDiadocEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\DiadocEventContentBase.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageCheckingOkEventContent.cs" />
-    <Compile Include="Messages\BoxEventsContents\Outbox\MessageOutboxEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\OutboxEventContentBase.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDraftOfDocumentPackageDeletedFromDiadocEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDraftOfDocumentPackageSignedByMeEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDraftOfDocumentPackagePostedIntoDiadocEventContent.cs" />
