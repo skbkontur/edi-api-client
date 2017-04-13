@@ -25,5 +25,6 @@
         DocumentPackageSignedByMeOk,
         DocumentPackageSignedByRecipientFail,
         DocumentPackageSignedByMeFail,
+        AmendmentRequested,
     }
 }

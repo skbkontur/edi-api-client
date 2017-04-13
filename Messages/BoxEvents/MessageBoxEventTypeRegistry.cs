@@ -31,6 +31,7 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
             Register<MessageDocumentPackageSignedByMeOkEventContent>(MessageBoxEventType.DocumentPackageSignedByMeOk);
             Register<MessageDocumentPackageSignedByRecipientFailEventContent>(MessageBoxEventType.DocumentPackageSignedByRecipientFail);
             Register<MessageDocumentPackageSignedByMeFailEventContent>(MessageBoxEventType.DocumentPackageSignedByMeFail);
+            Register<AmendmentRequestedEventContent>(MessageBoxEventType.AmendmentRequested);
         }
     }
 }
