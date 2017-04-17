@@ -37,6 +37,8 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
 
         public string VATRate { get; set; }
 
+        public string VeterinaryCertificateMercuryId { get; set; }
+
         public decimal? ExciseTax { get; set; }
 
         public decimal? VATSummary { get; set; }
