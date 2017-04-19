@@ -20,6 +20,6 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string CurrencyCode { get; set; }
 
-        public SalesLocation[] SalesLocations { get; set; }
+        public SalesInLocation[] SalesInLocations { get; set; }
     }
 }

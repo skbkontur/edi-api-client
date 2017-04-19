@@ -1,6 +1,6 @@
 ﻿namespace KonturEdi.Api.Types.Internal.GoodItems
 {
-    public class SalesLocation
+    public class SalesInLocation
     {
         public string Gln { get; set; }
         public SlsrptGoodItem[] GoodItems { get; set; }
