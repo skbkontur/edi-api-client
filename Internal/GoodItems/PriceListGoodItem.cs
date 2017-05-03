@@ -24,6 +24,7 @@
         public Quantity OnePlaceQuantity { get; set; }
         public Quantity IncrementalOrderQuantity { get; set; }
         public Quantity QuantityInPackage { get; set; }
+        public Quantity PromotionQuantity { get; set; }
 
         public string[] CountriesOfOriginCode { get; set; }
         public string[] CustomDeclarationNumbers { get; set; }

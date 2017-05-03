@@ -38,7 +38,8 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string CurrencyCode { get; set; }
 
-        public string SalesRegion { get; set; }
+        public string[] SalesRegions { get; set; }
+        public string[] StoreFormats { get; set; }
 
         public string Comment { get; set; }
 
