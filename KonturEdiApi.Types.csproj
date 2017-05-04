@@ -73,7 +73,7 @@
     <Compile Include="Internal\DocumentSpecificFields\RetinvFields.cs" />
     <Compile Include="Internal\LinkedDocumentInfo.cs" />
     <Compile Include="Internal\PhysicalOrLogicalState.cs" />
-    <Compile Include="Messages\BoxEventsContents\AmendmentRequestedEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\AmendmentRequestedEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\DocumentEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\DocumentId.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDocumentPackageSignedByMeFailEventContent.cs" />
