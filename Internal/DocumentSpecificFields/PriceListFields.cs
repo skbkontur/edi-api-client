@@ -21,6 +21,9 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
+        public DateTime? PromotionStartDate { get; set; }
+        public DateTime? PromotionEndDate { get; set; }
+
         public string ContractNumber { get; set; }
         public DateTime? ContractDate { get; set; }
 
