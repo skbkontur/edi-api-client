@@ -28,6 +28,7 @@
 
         public string[] CountriesOfOriginCode { get; set; }
         public string[] CustomDeclarationNumbers { get; set; }
+        public string[] SalesRegions { get; set; }
 
         public decimal? ExciseTax { get; set; }
         public string VATRate { get; set; }
