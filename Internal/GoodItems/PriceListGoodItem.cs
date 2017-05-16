@@ -29,6 +29,7 @@
         public string[] CountriesOfOriginCode { get; set; }
         public string[] CustomDeclarationNumbers { get; set; }
         public string[] SalesRegions { get; set; }
+        public string SalesRange { get; set; }
 
         public decimal? ExciseTax { get; set; }
         public string VATRate { get; set; }
@@ -47,6 +48,8 @@
         public string LocatinOfGoodsGln { get; set; }
 
         public string Comment { get; set; }
+        public string[] CodesOfEgais { get; set; }
+        public string ProductAlcoCode { get; set; }
     }
 
     public class Price
