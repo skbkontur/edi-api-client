@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
@@ -52,7 +52,7 @@ namespace KonturEdi.Api.Types.Serialization
         }
 
         private static readonly XmlAttributeOverrides xmlAttributeOverrides = new XmlAttributeOverrides()
-            .MapTypeWithName<MessageBoxEventBatch>("BoxEventBatch") //Для обрабтной совместимости со старыми клиентами
+            .MapTypeWithName<MessageBoxEventBatch>("BoxEventBatch") //Р”Р»СЏ РѕР±СЂР°Р±С‚РЅРѕР№ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё СЃРѕ СЃС‚Р°СЂС‹РјРё РєР»РёРµРЅС‚Р°РјРё
             .MapTypeWithName<MessageBoxEvent>("BoxEvent");
 
         private static readonly Type[] knownTypes =
