@@ -26,6 +26,9 @@
         ActualStock,
         OrderedQuantity,
         DeliveredQuantity,
-        ReceivedQuantity
+        ReceivedQuantity,
+        OpeningStock,
+        ClosingStock,
+        SalesQuantity
     }
 }
