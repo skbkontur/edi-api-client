@@ -31,6 +31,9 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public DateTime? SpecificationDate { get; set; }
 
+        public string ProposalOrdersNumber { get; set; }
+        public DateTime? ProposalOrdersDate { get; set; }
+
         public string ReceivingAdviceNumberInBuyerSystem { get; set; }
 
         public string CurrencyCode { get; set; }
@@ -58,7 +61,9 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public decimal? InvoicTotalVATForIV { get; set; }
 
         public decimal? InvoicTaxableTotalForIV { get { return invoicTaxableTotalForIV ?? invoicTotalForIV; } set { invoicTaxableTotalForIV = value; } }
-
+        public decimal? InvoicTotalDiscount { get; set; }
+        public decimal? InvoicTotalCharges { get; set; }
+        public decimal? InvoicTotalPackingCost { get; set; }
         public Sg52[] TotalsSpecifiedForTax { get; set; }
 
         public TransportationCosts TransportationCosts { get; set; }
