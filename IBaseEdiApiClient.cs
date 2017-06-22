@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+
+using JetBrains.Annotations;
 
 using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.Organization;
@@ -27,6 +29,10 @@ namespace KonturEdi.Api.Client
 
         [NotNull]
         BoxesInfo GetBoxesInfo([NotNull] string authToken);
+
+        [NotNull]
+        [Obsolete("{ageev_ps} Порвать после перехода коннекторов на GetPartyInfoByDepartmentGln")]
+        BoxInfo GetBoxByGln([NotNull] string authToken, string gln, bool isTest);
 
         [NotNull]
         BoxInfo GetMainApiBox([NotNull] string authToken, [NotNull] string partyId);
