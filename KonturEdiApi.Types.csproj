@@ -61,6 +61,7 @@
     <Compile Include="Connectors\Transformer\EventContents\TransformedSuccessfullyEventContent.cs" />
     <Compile Include="Connectors\Transformer\EventContents\TransformedUnsuccessfullyEventContent.cs" />
     <Compile Include="Connectors\Transformer\ServiceMessageData.cs" />
+    <Compile Include="Connectors\Transformer\ServiceMessageMeta.cs" />
     <Compile Include="Connectors\Transformer\TransformationResultType.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEvent.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventBatch.cs" />
