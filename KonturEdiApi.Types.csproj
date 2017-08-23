@@ -89,6 +89,7 @@
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDocumentPackageSignedByMeOkEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\NewInboxDocumentEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\MessageDiadocRevocationAcceptedForBuyerEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\Outbox\DiadocDocumentDeliveredEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDocumentPackageSignedByRecipientFailEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Outbox\MessageDocumentPackageSignedByRecipientOkEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\Inbox\InboxDiadocEventContentBase.cs" />

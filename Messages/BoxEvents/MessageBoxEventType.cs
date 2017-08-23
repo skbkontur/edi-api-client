@@ -26,5 +26,6 @@
         DocumentPackageSignedByRecipientFail,
         DocumentPackageSignedByMeFail,
         AmendmentRequested,
+        DiadocDocumentDelivered,
     }
 }
