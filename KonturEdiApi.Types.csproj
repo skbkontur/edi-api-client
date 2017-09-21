@@ -67,7 +67,12 @@
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventBatch.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventType.cs" />
     <Compile Include="Connectors\Transformer\TransformerConnectorBoxEventTypeRegistry.cs" />
+    <Compile Include="Internal\DocumentSpecificFields\BookingConfirmationStatus.cs" />
     <Compile Include="Internal\DocumentSpecificFields\DelforFields.cs" />
+    <Compile Include="Internal\DocumentSpecificFields\IftmbcFields.cs" />
+    <Compile Include="Internal\DocumentSpecificFields\IftmbfFields.cs" />
+    <Compile Include="Internal\DocumentSpecificFields\IftmbcTransportDetails.cs" />
+    <Compile Include="Internal\DocumentSpecificFields\IftmbfTransportDetails.cs" />
     <Compile Include="Internal\DocumentSpecificFields\InvrptFields.cs" />
     <Compile Include="Internal\DocumentSpecificFields\RetinsFields.cs" />
     <Compile Include="Internal\GoodItems\InvrptGoodItem.cs" />

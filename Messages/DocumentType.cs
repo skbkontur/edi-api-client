@@ -24,6 +24,8 @@
         Delfor,
         Coacsu,
         Invrpt,
-        Slsrpt
+        Slsrpt,
+        Iftmbf,
+        Iftmbc
     }
 }
