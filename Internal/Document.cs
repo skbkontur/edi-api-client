@@ -35,5 +35,6 @@ namespace KonturEdi.Api.Types.Internal
         public PartinFields PartinFields { get; set; }
         public InvrptFields InvrptFields { get; set; }
         public SlsrptFields SlsrptFields { get; set; }
+        public DelforFields DelforFields { get; set; }
     }
 }
