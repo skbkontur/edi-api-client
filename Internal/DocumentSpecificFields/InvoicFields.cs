@@ -31,6 +31,9 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public DateTime? SpecificationDate { get; set; }
 
+        public string GovernmentContractNumber { get; set; }
+        public DateTime? GovernmentContractDate { get; set; }
+
         public string ProposalOrdersNumber { get; set; }
         public DateTime? ProposalOrdersDate { get; set; }
 
