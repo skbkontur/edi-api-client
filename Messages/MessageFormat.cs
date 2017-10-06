@@ -8,6 +8,5 @@
         KorusXml,
         Eancom2002,
         EcrRusXml,
-        CisLinkXml
     }
 }
