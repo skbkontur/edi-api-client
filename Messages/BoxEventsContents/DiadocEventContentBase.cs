@@ -1,6 +1,4 @@
-﻿using Diadoc.Api.Proto.Invoicing;
-
-namespace KonturEdi.Api.Types.Messages.BoxEventsContents
+﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents
 {
     public abstract class DiadocEventContentBase
     {
@@ -13,6 +11,6 @@ namespace KonturEdi.Api.Types.Messages.BoxEventsContents
         public string UniversalCorrectionDocumentId { get; set; }
         public string NonformalizedId { get; set; }
         public DiadocUrls DiadocUrls { get; set; }
-        public FunctionType? UniversalDocumentFunction { get; set; }
+        public UniversalDocumentFunctionType? UniversalDocumentFunction { get; set; }
     }
 }

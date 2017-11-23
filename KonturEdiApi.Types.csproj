@@ -32,10 +32,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DiadocApi, Version=1.37.0.0, Culture=neutral, PublicKeyToken=d18fd4c7ad3c243e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Assemblies\Diadoc\DiadocApi.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Assemblies\json.net\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -126,6 +122,7 @@
     <Compile Include="Messages\BoxEventsContents\Outbox\RecognizeMessageEventContent.cs" />
     <Compile Include="Messages\BoxEventsContents\ProcessingTimes.cs" />
     <Compile Include="Messages\BoxEventsContents\ProcessingTimesReportEventContent.cs" />
+    <Compile Include="Messages\BoxEventsContents\UniversalDocumentFunctionType.cs" />
     <Compile Include="Messages\DiadocUrls.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEvent.cs" />
     <Compile Include="Messages\BoxEvents\MessageBoxEventBatch.cs" />
