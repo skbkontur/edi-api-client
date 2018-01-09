@@ -57,8 +57,10 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
         public Quantity DeliveredQuantity { get; set; }
 
         public Quantity GrossWeight { get; set; }
-
         public Quantity NetWeight { get; set; }
+
+        public Quantity UnitGrossWeight { get; set; }
+        public Quantity UnitNetWeight { get; set; }
 
         public Quantity NotDeliveredQuantity { get; set; }
         public Quantity OvershippedQuantity { get; set; }
