@@ -4,6 +4,8 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 {
     public class IftmbcFields
     {
+        public string VersionOf1C { get; set; }
+        public string VersionOfModule1C { get; set; }
         public DateTime? CreationDateTimeBySender { get; set; }
         public string BookingConfirmationNumber { get; set; }
         public DateTime? BookingConfirmationDate { get; set; }
