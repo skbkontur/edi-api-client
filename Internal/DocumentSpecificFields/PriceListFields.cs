@@ -48,6 +48,9 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string PrivateNote { get; set; }
 
+        public string VersionOfModule1C { get; set; }
+        public string VersionOf1C { get; set; }
+
         public PriceListGoodItem[] GoodItems { get; set; }
     }
 
