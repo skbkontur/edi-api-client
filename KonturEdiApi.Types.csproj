@@ -132,7 +132,6 @@
     <Compile Include="Messages\BoxEvents\MessageBoxEventTypeRegistry.cs" />
     <Compile Include="Messages\DirectSending\AS2SendDetails.cs" />
     <Compile Include="Messages\DirectSending\DirectSendTransportType.cs" />
-    <Compile Include="Messages\DirectSending\FtpSendDetails.cs" />
     <Compile Include="Messages\DirectSending\MessageDirectlyToTransportSendResult.cs" />
     <Compile Include="Messages\DirectSending\MessageToSend.cs" />
     <Compile Include="Messages\DocumentDetails.cs" />
