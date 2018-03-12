@@ -1,4 +1,4 @@
-namespace KonturEdi.Api.Types.Messages.BoxEventsContents
+﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents
 {
     public enum DiadocDocumentType
     {
@@ -6,6 +6,8 @@ namespace KonturEdi.Api.Types.Messages.BoxEventsContents
         Torg12,
         CorrectiveInvoice,
         UniversalTransferDocument,
-        UniversalCorrectionDocument
+        UniversalCorrectionDocument,
+        PriceList,
+        Nonformalized
     }
 }
