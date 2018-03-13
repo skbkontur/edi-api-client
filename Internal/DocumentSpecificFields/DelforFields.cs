@@ -20,6 +20,8 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public DeliveryForecastDuration? Duration { get; set; }
         public string SupplierGln { get; set; }
         public string BuyerGln { get; set; }
+        public string VersionOf1C { get; set; }
+        public string VersionOfModule1C { get; set; }
         public ScheduleItem[] ScheduleItems { get; set; }
     }
 

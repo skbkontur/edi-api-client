@@ -21,7 +21,8 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public string InventoryReporterGln { get; set; }
 
         public string CurrencyCode { get; set; }
-
+        public string VersionOf1C { get; set; }
+        public string VersionOfModule1C { get; set; }
         public InvrptGoodItem[] GoodItems { get; set; }
     }
 }
