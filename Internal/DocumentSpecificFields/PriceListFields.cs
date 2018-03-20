@@ -51,6 +51,9 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public string VersionOfModule1C { get; set; }
         public string VersionOf1C { get; set; }
 
+        public bool IsTest { get; set; }
+        public string PriceCatalogueName { get; set; }
+
         public PriceListGoodItem[] GoodItems { get; set; }
     }
 
