@@ -2,7 +2,6 @@
 {
     public enum DirectSendTransportType
     {
-        Ftp,
         As2,
         Unknown
     }
