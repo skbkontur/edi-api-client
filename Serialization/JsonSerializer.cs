@@ -36,13 +36,13 @@ namespace KonturEdi.Api.Types.Serialization
         {
             public override void WriteJson(JsonWriter writer, object value, Newtonsoft.Json.JsonSerializer serializer)
             {
-                if (value == null)
+                if(value == null)
                     writer.WriteNull();
                 else
                 {
                     var @enum = (Enum)value;
                     var stringValue = @enum.ToString();
-                    if (char.IsNumber(stringValue[0]) || stringValue[0] == 45)
+                    if(char.IsNumber(stringValue[0]) || stringValue[0] == 45)
                         throw new JsonSerializationException(string.Format("Cannot serialize EnumValue '{0}'", stringValue));
                     writer.WriteValue(stringValue);
                 }
@@ -52,11 +52,11 @@ namespace KonturEdi.Api.Types.Serialization
             {
                 Type enumType;
                 var isNullable = objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>);
-                if (isNullable)
+                if(isNullable)
                     enumType = Nullable.GetUnderlyingType(objectType);
                 else
                     enumType = objectType;
-                switch (reader.TokenType)
+                switch(reader.TokenType)
                 {
                 case JsonToken.Null:
                     {
@@ -66,7 +66,7 @@ namespace KonturEdi.Api.Types.Serialization
                     {
                         var stringValue = reader.Value.ToString();
                         Enum enumValue;
-                        if (GetEnumParser(enumType).TryParse(stringValue, out enumValue))
+                        if(GetEnumParser(enumType).TryParse(stringValue, out enumValue))
                             return enumValue;
                         return isNullable ? null : (object)0;
                     }
@@ -77,18 +77,18 @@ namespace KonturEdi.Api.Types.Serialization
 
             public override bool CanConvert(Type objectType)
             {
-                if (objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                if(objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>))
                     objectType = Nullable.GetUnderlyingType(objectType);
                 return objectType.IsEnum;
             }
 
             private static EnumParser GetEnumParser(Type enumType)
             {
-                if (!enumParserByType.ContainsKey(enumType))
+                if(!enumParserByType.ContainsKey(enumType))
                 {
-                    lock (enumParserByType)
+                    lock(enumParserByType)
                     {
-                        if (!enumParserByType.ContainsKey(enumType))
+                        if(!enumParserByType.ContainsKey(enumType))
                             enumParserByType[enumType] = new EnumParser(enumType);
                     }
                 }
@@ -101,7 +101,7 @@ namespace KonturEdi.Api.Types.Serialization
             {
                 public EnumParser(Type type)
                 {
-                    if (!type.IsEnum)
+                    if(!type.IsEnum)
                         throw new Exception("Type must be Enum");
                     var enumValues = type.GetEnumValues().Cast<Enum>();
                     stringToEnum = enumValues.ToDictionary(enumValue => enumValue.ToString(), StringComparer.InvariantCultureIgnoreCase);

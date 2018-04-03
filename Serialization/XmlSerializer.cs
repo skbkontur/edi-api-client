@@ -16,10 +16,10 @@ namespace KonturEdi.Api.Types.Serialization
     {
         public static string Serialize(object obj)
         {
-            if (ReferenceEquals(null, obj))
+            if(ReferenceEquals(null, obj))
                 return "";
-            using (var stream = new MemoryStream())
-            using (var xmlWriter = XmlWriter.Create(stream, new XmlWriterSettings {OmitXmlDeclaration = false, Encoding = new UTF8Encoding(false), Indent = true}))
+            using(var stream = new MemoryStream())
+            using(var xmlWriter = XmlWriter.Create(stream, new XmlWriterSettings {OmitXmlDeclaration = false, Encoding = new UTF8Encoding(false), Indent = true}))
             {
                 GetSerializer(obj.GetType()).Serialize(xmlWriter, obj);
                 return new UTF8Encoding(false).GetString(stream.ToArray());
@@ -28,9 +28,9 @@ namespace KonturEdi.Api.Types.Serialization
 
         public static T Deserialize<T>(string serializedData) where T : class
         {
-            if (string.IsNullOrEmpty(serializedData))
+            if(string.IsNullOrEmpty(serializedData))
                 return null;
-            using (var xmlReader = XmlReader.Create(new StringReader(serializedData)))
+            using(var xmlReader = XmlReader.Create(new StringReader(serializedData)))
                 return (T)GetSerializer(typeof(T)).Deserialize(xmlReader);
         }
 

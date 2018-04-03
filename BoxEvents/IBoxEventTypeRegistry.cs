@@ -27,14 +27,14 @@ namespace KonturEdi.Api.Types.BoxEvents
 
         public TBoxEventType GetEventType(Type eventContentType)
         {
-            if (!IsSupportedEventContentType(eventContentType))
+            if(!IsSupportedEventContentType(eventContentType))
                 throw new Exception(string.Format("Unknown eventContentType {0}", eventContentType.FullName));
             return eventTypeByType[eventContentType];
         }
 
         public Type GetEventContentType(TBoxEventType eventType)
         {
-            if (!IsSupportedEventType(eventType))
+            if(!IsSupportedEventType(eventType))
                 throw new Exception(string.Format("Unknown boxEventType {0}", eventType));
             return typeByEventType[eventType];
         }

@@ -18,9 +18,9 @@ namespace KonturEdi.Api.Types.Serialization
 
         public object NormalizeDeserializedObjectToType(object obj, Type targetType)
         {
-            if (ReferenceEquals(null, obj))
+            if(ReferenceEquals(null, obj))
                 return null;
-            if (!(obj is JObject))
+            if(!(obj is JObject))
                 throw new NotSupportedException(string.Format("Only JObject is alloweed here. obj.GetType() = {0}, targetType = {1}", obj.GetType(), targetType));
             return JsonSerializer.Deserialize(obj as JObject, targetType);
         }
