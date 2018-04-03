@@ -15,7 +15,7 @@ namespace KonturEdi.Api.Client.Http
         {
             var responseStream = response.GetResponseStream();
             var responseLength = (int)response.ContentLength;
-            using(var binaryReader = new BinaryReader(responseStream))
+            using (var binaryReader = new BinaryReader(responseStream))
             {
                 var bytes = binaryReader.ReadBytes(responseLength);
                 return Encoding.UTF8.GetString(bytes);

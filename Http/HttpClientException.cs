@@ -16,10 +16,10 @@ namespace KonturEdi.Api.Client.Http
         {
             var message = "Request for url '" + requestUri + "' failed";
             var response = exception.Response as HttpWebResponse;
-            if(response == null)
+            if (response == null)
                 return new HttpClientException(message, exception);
             string serverMessage;
-            using(var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+            using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
                 serverMessage = reader.ReadToEnd();
             var serverException = string.IsNullOrEmpty(serverMessage) ? null : new HttpClientServerException(serverMessage, exception);
             return new HttpClientException(message, serverException);
