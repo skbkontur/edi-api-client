@@ -150,24 +150,24 @@ namespace KonturEdi.Api.Client.Http
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "POST";
-            if (content == null || content.Length == 0)
+            if(content == null || content.Length == 0)
             {
                 request.Headers.Add("Content", "no");
                 content = new byte[] {1};
             }
             request.ContentLength = content.Length;
-            if (customizeRequest != null)
+            if(customizeRequest != null)
                 customizeRequest(request);
-            using (new ClientSideHttpTraceContext(string.Format("{0}-FIXME", GetType().Name), request))
+            using(new ClientSideHttpTraceContext(string.Format("{0}-FIXME", GetType().Name), request))
             {
                 try
                 {
-                    using (var requestStream = request.GetRequestStream())
+                    using(var requestStream = request.GetRequestStream())
                         requestStream.Write(content, 0, content.Length);
-                    using (var response = request.GetResponse())
+                    using(var response = request.GetResponse())
                         return response.GetString();
                 }
-                catch (WebException exception)
+                catch(WebException exception)
                 {
                     throw HttpClientException.Create(exception, requestUri);
                 }
@@ -178,14 +178,14 @@ namespace KonturEdi.Api.Client.Http
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "GET";
-            using (new ClientSideHttpTraceContext(string.Format("{0}-FIXME", GetType().Name), request))
+            using(new ClientSideHttpTraceContext(string.Format("{0}-FIXME", GetType().Name), request))
             {
                 try
                 {
-                    using (var response = request.GetResponse())
+                    using(var response = request.GetResponse())
                         return response.GetString();
                 }
-                catch (WebException exception)
+                catch(WebException exception)
                 {
                     throw HttpClientException.Create(exception, requestUri);
                 }
@@ -213,7 +213,7 @@ namespace KonturEdi.Api.Client.Http
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("KonturEdiAuth ");
             stringBuilder.Append("konturediauth_api_client_id=" + apiClientId);
-            if (!string.IsNullOrEmpty(authToken))
+            if(!string.IsNullOrEmpty(authToken))
                 stringBuilder.Append(",konturediauth_token=" + authToken);
             return stringBuilder.ToString();
         }

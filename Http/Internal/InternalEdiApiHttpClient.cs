@@ -43,13 +43,13 @@ namespace KonturEdi.Api.Client.Http.Internal
         public MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, int? count = null)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents");
-            if (!string.IsNullOrWhiteSpace(exclusiveEventPointer))
+            if(!string.IsNullOrWhiteSpace(exclusiveEventPointer))
                 url.AddParameter("exclusiveEventPointer", exclusiveEventPointer);
-            if (count.HasValue)
+            if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             var boxEventBatch = MakeGetRequest<MessageBoxEventBatch>(url.ToUri(), authToken);
             boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
-            foreach (var boxEvent in boxEventBatch.Events)
+            foreach(var boxEvent in boxEventBatch.Events)
             {
                 boxEvent.EventContent =
                     boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)

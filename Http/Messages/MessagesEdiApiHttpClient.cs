@@ -98,7 +98,7 @@ namespace KonturEdi.Api.Client.Http.Messages
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents")
                 .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter("exclusiveEventId", exclusiveEventId);
-            if (count.HasValue)
+            if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             return GetEvents(authToken, url);
         }
@@ -109,7 +109,7 @@ namespace KonturEdi.Api.Client.Http.Messages
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsFrom")
                 .AddParameter(boxIdUrlParameterName, boxId)
                 .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
-            if (count.HasValue)
+            if(count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             return GetEvents(authToken, url);
         }
@@ -119,7 +119,7 @@ namespace KonturEdi.Api.Client.Http.Messages
         {
             var boxEventBatch = MakeGetRequest<MessageBoxEventBatch>(url.ToUri(), authToken);
             boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
-            foreach (var boxEvent in boxEventBatch.Events)
+            foreach(var boxEvent in boxEventBatch.Events)
             {
                 boxEvent.EventContent =
                     boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)

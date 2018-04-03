@@ -13,7 +13,7 @@ namespace KonturEdi.Api.Client.Http.Helpers
 
         public UrlBuilder(Uri baseUri)
         {
-            if (!string.IsNullOrEmpty(baseUri.Query))
+            if(!string.IsNullOrEmpty(baseUri.Query))
                 throw new ArgumentException(string.Format("Base uri with non empty query is not supported: {0}", baseUri));
             this.baseUri = baseUri;
         }
@@ -38,9 +38,9 @@ namespace KonturEdi.Api.Client.Http.Helpers
         {
             var sb = new StringBuilder();
             var isFrist = true;
-            foreach (var kvp in queryParams)
+            foreach(var kvp in queryParams)
             {
-                if (!isFrist)
+                if(!isFrist)
                     sb.Append("&");
                 isFrist = false;
                 sb.Append(kvp.Key).Append("=").Append(string.IsNullOrEmpty(kvp.Value) ? kvp.Value : Uri.EscapeDataString(kvp.Value));
