@@ -83,6 +83,28 @@ namespace KonturEdi.Api.Client.Http.Internal
             return MakeGetRequest<InternalPartyInfo>(url.ToUri(), authToken);
         }
 
+        [NotNull]
+        public string AddOrUpdateParty([NotNull] string authToken, [NotNull] string partyId, [NotNull] EditablePartySettings editablePartySettings)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "AddOrUpdateParty")
+                .AddParameter("partyId", partyId);
+            return MakePostRequest<EditablePartySettings, string>(url.ToUri(), authToken, editablePartySettings);
+        }
+
+        public void AddEmployee([NotNull] string authToken, [NotNull] string partyId, [NotNull] string email)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "AddEmployee")
+                .AddParameter("partyId", partyId)
+                .AddParameter("email", email);
+            MakeGetRequest(url.ToUri(), authToken);
+        }
+
+        public void AddOrUpdateTradingPartnersSettings([NotNull] string authToken, [NotNull] EditableTradingPartnersSettings settingsToWrite)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "AddOrUpdateTradingPartnersSettings");
+            MakePostRequest(url.ToUri(), authToken, settingsToWrite);
+        }
+
         private const string relativeUrl = "V1/Internal/";
         private readonly IBoxEventTypeRegistry<MessageBoxEventType> boxEventTypeRegistry = new MessageBoxEventTypeRegistry();
     }

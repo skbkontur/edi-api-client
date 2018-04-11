@@ -23,10 +23,10 @@ namespace KonturEdi.Api.Client.Http
             int timeoutInMilliseconds, IWebProxy proxy = null)
         {
             this.apiClientId = apiClientId;
-            this.baseUri = baseUri;
+            this.BaseUri = baseUri;
             this.proxy = proxy;
             this.timeoutInMilliseconds = timeoutInMilliseconds;
-            this.serializer = serializer;
+            this.Serializer = serializer;
         }
 
         [NotNull]
@@ -44,21 +44,21 @@ namespace KonturEdi.Api.Client.Http
         [NotNull]
         private string DoAuthenticate([NotNull] string authCredentials)
         {
-            var url = new UrlBuilder(baseUri, "V1/Authenticate").ToUri();
+            var url = new UrlBuilder(BaseUri, "V1/Authenticate").ToUri();
             return MakePostRequestInternal(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",{0}", authCredentials); });
         }
 
         [NotNull]
         public PartiesInfo GetAccessiblePartiesInfo([NotNull] string authToken)
         {
-            var url = new UrlBuilder(baseUri, "V1/Parties/GetAccessiblePartiesInfo").ToUri();
+            var url = new UrlBuilder(BaseUri, "V1/Parties/GetAccessiblePartiesInfo").ToUri();
             return MakeGetRequest<PartiesInfo>(url, authToken);
         }
 
         [NotNull]
         public PartyInfo GetPartyInfo([NotNull] string authToken, [NotNull] string partyId)
         {
-            var url = new UrlBuilder(baseUri, "V1/Parties/GetPartyInfo")
+            var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfo")
                 .AddParameter("partyId", partyId)
                 .ToUri();
             return MakeGetRequest<PartyInfo>(url, authToken);
@@ -67,7 +67,7 @@ namespace KonturEdi.Api.Client.Http
         [NotNull]
         public PartyInfo GetPartyInfoByGln([NotNull] string authToken, [NotNull] string partyGln)
         {
-            var url = new UrlBuilder(baseUri, "V1/Parties/GetPartyInfoByGln")
+            var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfoByGln")
                 .AddParameter("partyGln", partyGln)
                 .ToUri();
             return MakeGetRequest<PartyInfo>(url, authToken);
@@ -76,7 +76,7 @@ namespace KonturEdi.Api.Client.Http
         [NotNull]
         public PartyInfo GetPartyInfoByDepartmentGln([NotNull] string authToken, [NotNull] string departmentGln)
         {
-            var url = new UrlBuilder(baseUri, "V1/Parties/GetPartyInfoByDepartmentGln")
+            var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfoByDepartmentGln")
                 .AddParameter("departmentGln", departmentGln)
                 .ToUri();
             return MakeGetRequest<PartyInfo>(url, authToken);
@@ -85,14 +85,14 @@ namespace KonturEdi.Api.Client.Http
         [NotNull]
         public BoxesInfo GetBoxesInfo([NotNull] string authToken)
         {
-            var url = new UrlBuilder(baseUri, "V1/Boxes/GetBoxesInfo").ToUri();
+            var url = new UrlBuilder(BaseUri, "V1/Boxes/GetBoxesInfo").ToUri();
             return MakeGetRequest<BoxesInfo>(url, authToken);
         }
 
         [NotNull]
         public BoxInfo GetMainApiBox([NotNull] string authToken, [NotNull] string partyId)
         {
-            var url = new UrlBuilder(baseUri, "V1/Boxes/GetMainApiBox")
+            var url = new UrlBuilder(BaseUri, "V1/Boxes/GetMainApiBox")
                 .AddParameter("partyId", partyId)
                 .ToUri();
             return MakeGetRequest<BoxInfo>(url, authToken);
@@ -101,7 +101,7 @@ namespace KonturEdi.Api.Client.Http
         [NotNull]
         public OrganizationCatalogueInfo GetOrganizationCatalogueInfo([NotNull] string authToken, [NotNull] string partyId)
         {
-            var url = new UrlBuilder(baseUri, "V1/Organizations/GetOrganizationCatalogueInfo")
+            var url = new UrlBuilder(BaseUri, "V1/Organizations/GetOrganizationCatalogueInfo")
                 .AddParameter("partyId", partyId)
                 .ToUri();
             return MakeGetRequest<OrganizationCatalogueInfo>(url, authToken);
@@ -110,7 +110,7 @@ namespace KonturEdi.Api.Client.Http
         [NotNull]
         public UsersInfo GetUsersInfo([NotNull] string authToken, [NotNull] string partyId)
         {
-            var url = new UrlBuilder(baseUri, "V1/Users/GetUsersInfo")
+            var url = new UrlBuilder(BaseUri, "V1/Users/GetUsersInfo")
                 .AddParameter("partyId", partyId)
                 .ToUri();
             return MakeGetRequest<UsersInfo>(url, authToken);
@@ -118,12 +118,12 @@ namespace KonturEdi.Api.Client.Http
 
         protected TResult MakeGetRequest<TResult>(Uri requestUri, string authToken) where TResult : class
         {
-            return serializer.Deserialize<TResult>(MakeGetRequestInternal(requestUri, authToken));
+            return Serializer.Deserialize<TResult>(MakeGetRequestInternal(requestUri, authToken));
         }
 
         protected TResult MakePostRequest<TResult>(Uri requestUri, string authToken, byte[] content) where TResult : class
         {
-            return serializer.Deserialize<TResult>(MakePostRequestInternal(requestUri, authToken, content));
+            return Serializer.Deserialize<TResult>(MakePostRequestInternal(requestUri, authToken, content));
         }
 
         protected void MakeGetRequest(Uri requestUri, string authToken)
@@ -139,11 +139,18 @@ namespace KonturEdi.Api.Client.Http
         protected void MakePostRequest<TRequestBody>(Uri requestUri, string authToken, TRequestBody bodyObject)
             where TRequestBody : class
         {
-            MakePostRequestInternal(requestUri, authToken, serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = serializer.ContentType);
+            MakePostRequestInternal(requestUri, authToken, Serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = Serializer.ContentType);
         }
 
-        protected Uri BaseUri { get { return baseUri; } }
-        protected IEdiApiTypesSerializer Serializer { get { return serializer; } }
+        protected TResult MakePostRequest<TRequestBody, TResult>(Uri requestUri, string authToken, TRequestBody bodyObject)
+            where TRequestBody : class
+            where TResult : class
+        {
+            return Serializer.Deserialize<TResult>(MakePostRequestInternal(requestUri, authToken, Serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = Serializer.ContentType));
+        }
+
+        protected Uri BaseUri { get; }
+        protected IEdiApiTypesSerializer Serializer { get; }
         protected const int DefaultTimeout = 30 * 1000;
 
         protected virtual string MakePostRequestInternal([NotNull] Uri requestUri, [NotNull] string authToken, [CanBeNull] byte[] content, [CanBeNull] Action<HttpWebRequest> customizeRequest = null)
@@ -203,7 +210,7 @@ namespace KonturEdi.Api.Client.Http
             request.ServicePoint.UseNagleAlgorithm = false;
             request.ServicePoint.ConnectionLimit = 128;
             request.Timeout = timeoutInMilliseconds;
-            request.Accept = serializer.ContentType;
+            request.Accept = Serializer.ContentType;
             request.Headers["Authorization"] = BuildAuthorizationHeader(authToken);
             return request;
         }
@@ -219,9 +226,7 @@ namespace KonturEdi.Api.Client.Http
         }
 
         private readonly string apiClientId;
-        private readonly Uri baseUri;
         private readonly IWebProxy proxy;
         private readonly int timeoutInMilliseconds;
-        private readonly IEdiApiTypesSerializer serializer;
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using JetBrains.Annotations;
 
@@ -25,5 +25,12 @@ namespace KonturEdi.Api.Client
 
         [NotNull]
         InternalPartyInfo GetInternalPartyInfo([NotNull] string authToken, [NotNull] string partyId);
+
+        [NotNull]
+        string AddOrUpdateParty([NotNull] string authToken, [NotNull] string partyId, [NotNull] EditablePartySettings editablePartySettings);
+
+        void AddEmployee([NotNull] string authToken, [NotNull] string partyId, [NotNull] string email);
+
+        void AddOrUpdateTradingPartnersSettings([NotNull] string authToken, [NotNull] EditableTradingPartnersSettings settingsToWrite);
     }
 }
