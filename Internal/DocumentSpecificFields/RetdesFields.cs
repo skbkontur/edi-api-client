@@ -16,9 +16,6 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public DocumentRevisionType DocumentRevisionType { get; set; }
         public CommonGoodItem[] GoodItems { get; set; }
 
-        private decimal? desadvTotal;
-        private decimal? desadvTaxableTotal;
-
         public string AnnouncementForReturnsNumber { get; set; }
         public DateTime? AnnouncementForReturnsDate { get; set; }
 
@@ -30,5 +27,8 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string ReturnInvoiceNumber { get; set; }
         public DateTime? ReturnInvoiceDate { get; set; }
+
+        private decimal? desadvTotal;
+        private decimal? desadvTaxableTotal;
     }
 }
