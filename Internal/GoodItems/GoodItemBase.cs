@@ -13,5 +13,7 @@
         public string AdditionalId { get; set; }
 
         public string SerialNumber { get; set; }
+
+        public string ForeignTradeCode { get; set; }
     }
 }
