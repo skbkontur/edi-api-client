@@ -22,5 +22,11 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public DocumentRevisionType? DocumentRevisionType { get; set; }
         public CommonGoodItem[] GoodItems { get; set; }
+
+        public string AnnouncementForReturnsNumber { get; set; }
+        public DateTime? AnnouncementForReturnsDate { get; set; }
+
+        public string ReturnDeliveryNoteNumber { get; set; }
+        public DateTime? ReturnDeliveryNoteDate { get; set; }
     }
 }
