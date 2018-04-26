@@ -2,5 +2,6 @@
 {
     public class NewOutboxDocumentEventContent : DocumentEventContent
     {
+        public DocumentType DocumentType { get; set; }
     }
 }
