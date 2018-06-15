@@ -75,7 +75,10 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         Original,
         NotAccepted,
         Provisional,
-        Definitive
+        Definitive,
+        Response,
+        NotProcessed,
+        Accepted
     }
 
     public class IdentifierInPriceChain
