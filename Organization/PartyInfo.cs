@@ -1,4 +1,4 @@
-namespace KonturEdi.Api.Types.Organization
+﻿namespace KonturEdi.Api.Types.Organization
 {
     public class PartyInfo
     {
@@ -15,5 +15,7 @@ namespace KonturEdi.Api.Types.Organization
         public ContactInformation SalesAdministration { get; set; }
 
         public ContactInformation OrderContact { get; set; }
+
+        public string LocalizationType { get; set; }
     }
 }
