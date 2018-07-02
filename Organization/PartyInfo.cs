@@ -5,11 +5,13 @@
         public string Gln { get; set; }
 
         public PartyAddress PartyAddress { get; set; }
+        public GeoCoordinates GeoCoordinates { get; set; }
         public RussianPartyInfo RussianPartyInfo { get; set; }
 
         public BankAccount BankAccount { get; set; }
 
         public string SupplierCodeInBuyerSystem { get; set; }
+        public string BusinessEntityMercuryId { get; set; }
         public ContactInformation Chief { get; set; }
         public ContactInformation Bookkeeper { get; set; }
         public ContactInformation SalesAdministration { get; set; }
