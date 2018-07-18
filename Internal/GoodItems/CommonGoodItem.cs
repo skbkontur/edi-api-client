@@ -12,13 +12,9 @@ namespace KonturEdi.Api.Types.Internal.GoodItems
 
         public DateTime? ExpireDate { get; set; }
 
-        public DateTimeRange ExpireDateRange { get; set; }
-
         public DateTime? FreshnessDate { get; set; }
 
         public DateTime? ManufactoringDate { get; set; }
-
-        public DateTimeRange ManufactoringDateRange { get; set; }
 
         public DateTime? BottlingDate { get; set; }
 
