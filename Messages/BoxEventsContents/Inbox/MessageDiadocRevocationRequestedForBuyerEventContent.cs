@@ -2,6 +2,6 @@
 {
     public class MessageDiadocRevocationRequestedForBuyerEventContent : InboxDiadocEventContentBase
     {
-        public AcceptedRevocationInfo RevocationInfo { get; set; }
+        public RevocationInfo RevocationInfo { get; set; }
     }
 }

@@ -17,7 +17,6 @@
         DraftOfDocumentPackageSignedBySender,
         DraftOfDocumentPackageDeletedFromDiadoc,
         ReceivedDiadocRoamingError,
-        SentDiadocRoamingError,
         NewInboxDocument,
         DiadocRevocationAccepted,
         DiadocRevocationAcceptedForBuyer,

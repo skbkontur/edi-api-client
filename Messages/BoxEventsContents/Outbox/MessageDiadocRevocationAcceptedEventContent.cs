@@ -2,6 +2,6 @@
 {
     public class MessageDiadocRevocationAcceptedEventContent : OutboxDiadocEventContentBase
     {
-        public AcceptedRevocationInfo AcceptedRevocationInfo { get; set; }
+        public RevocationInfo AcceptedRevocationInfo { get; set; }
     }
 }
