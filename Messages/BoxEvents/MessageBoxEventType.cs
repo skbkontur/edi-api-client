@@ -20,8 +20,6 @@
         NewInboxDocument,
         DiadocRevocationAccepted,
         DiadocRevocationAcceptedForBuyer,
-        DiadocRevocationRequested,
-        DiadocRevocationRequestedForBuyer,
         ProcessingTimesReport,
         DocumentPackageSignedByRecipientOk,
         DocumentPackageSignedByMeOk,
@@ -29,5 +27,7 @@
         DocumentPackageSignedByMeFail,
         AmendmentRequested,
         DiadocDocumentDelivered,
+        DiadocRevocationRequested,
+        DiadocRevocationRequestedForBuyer,
     }
 }
