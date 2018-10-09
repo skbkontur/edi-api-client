@@ -26,7 +26,6 @@ namespace KonturEdi.Api.Types.Messages.BoxEvents
             Register<MessageDiadocRevocationAcceptedEventContent>(MessageBoxEventType.DiadocRevocationAccepted);
             Register<MessageDiadocRevocationAcceptedForBuyerEventContent>(MessageBoxEventType.DiadocRevocationAcceptedForBuyer);
             Register<MessageDiadocRevocationRequestedEventContent>(MessageBoxEventType.DiadocRevocationRequested);
-            Register<MessageDiadocRevocationRequestedForBuyerEventContent>(MessageBoxEventType.DiadocRevocationRequestedForBuyer);
             Register<NewInboxDocumentEventContent>(MessageBoxEventType.NewInboxDocument);
             Register<ProcessingTimesReportEventContent>(MessageBoxEventType.ProcessingTimesReport);
             Register<MessageDocumentPackageSignedByRecipientOkEventContent>(MessageBoxEventType.DocumentPackageSignedByRecipientOk);

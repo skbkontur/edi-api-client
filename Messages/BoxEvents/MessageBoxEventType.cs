@@ -28,6 +28,5 @@
         AmendmentRequested,
         DiadocDocumentDelivered,
         DiadocRevocationRequested,
-        DiadocRevocationRequestedForBuyer,
     }
 }
