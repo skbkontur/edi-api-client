@@ -11,10 +11,4 @@
     <ProjectReference Include="..\KonturEdiApi.Types\KonturEdiApi.Types.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Catalogue.Core.Http">
-      <HintPath>..\..\Assemblies\Temp\Catalogue.Core.Http.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

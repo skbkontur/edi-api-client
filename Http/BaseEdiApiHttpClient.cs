@@ -10,8 +10,6 @@ using KonturEdi.Api.Types.Organization;
 using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
 
-using SKBKontur.Catalogue.Core.Http.Tracing;
-
 using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
 
 namespace KonturEdi.Api.Client.Http
@@ -163,21 +161,17 @@ namespace KonturEdi.Api.Client.Http
                 content = new byte[] {1};
             }
             request.ContentLength = content.Length;
-            if (customizeRequest != null)
-                customizeRequest(request);
-            using (new ClientSideHttpTraceContext(string.Format("{0}-FIXME", GetType().Name), request))
+            customizeRequest?.Invoke(request);
+            try
             {
-                try
-                {
-                    using (var requestStream = request.GetRequestStream())
-                        requestStream.Write(content, 0, content.Length);
-                    using (var response = request.GetResponse())
-                        return response.GetString();
-                }
-                catch (WebException exception)
-                {
-                    throw HttpClientException.Create(exception, requestUri);
-                }
+                using (var requestStream = request.GetRequestStream())
+                    requestStream.Write(content, 0, content.Length);
+                using (var response = request.GetResponse())
+                    return response.GetString();
+            }
+            catch (WebException exception)
+            {
+                throw HttpClientException.Create(exception, requestUri);
             }
         }
 
@@ -185,17 +179,14 @@ namespace KonturEdi.Api.Client.Http
         {
             var request = CreateRequest(requestUri, authToken);
             request.Method = "GET";
-            using (new ClientSideHttpTraceContext(string.Format("{0}-FIXME", GetType().Name), request))
+            try
             {
-                try
-                {
-                    using (var response = request.GetResponse())
-                        return response.GetString();
-                }
-                catch (WebException exception)
-                {
-                    throw HttpClientException.Create(exception, requestUri);
-                }
+                using (var response = request.GetResponse())
+                    return response.GetString();
+            }
+            catch (WebException exception)
+            {
+                throw HttpClientException.Create(exception, requestUri);
             }
         }
 
