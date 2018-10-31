@@ -12,6 +12,9 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public DateTime? SalesPeriodFrom { get; set; }
         public DateTime? SalesPeriodTo { get; set; }
 
+        public DateTime? SubscriptionPeriodStartDate { get; set; }
+        public DateTime? SubscriptionPeriodEndDate { get; set; }
+
         public string ContractNumber { get; set; }
         public DateTime? ContractDate { get; set; }
 
