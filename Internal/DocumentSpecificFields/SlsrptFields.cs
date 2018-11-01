@@ -23,6 +23,8 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
 
         public string CurrencyCode { get; set; }
 
+        public string StoreFormats { get; set; }
+
         public string VersionOf1C { get; set; }
         public string VersionOfModule1C { get; set; }
 
