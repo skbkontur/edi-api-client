@@ -16,8 +16,6 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         public string OriginPriceCatalogueNumber { get; set; }
         public DateTime? OriginPriceCatalogueDate { get; set; }
 
-        public IdentifierInPriceChain IdentifierInPriceChain { get; set; }
-
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
@@ -79,13 +77,5 @@ namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
         Response,
         NotProcessed,
         Accepted
-    }
-
-    public class IdentifierInPriceChain
-    {
-        public string Number { get; set; }
-        public DateTime? Date { get; set; }
-        public string PreviousNumber { get; set; }
-        public DateTime? PreviousDate { get; set; }
     }
 }
