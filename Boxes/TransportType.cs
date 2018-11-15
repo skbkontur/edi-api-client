@@ -1,4 +1,4 @@
-namespace KonturEdi.Api.Types.Boxes
+﻿namespace KonturEdi.Api.Types.Boxes
 {
     public enum TransportType
     {
@@ -7,6 +7,7 @@ namespace KonturEdi.Api.Types.Boxes
         As2,
         Ftp,
         Provider,
-        Web
+        Web,
+        WebMonitoring
     }
 }

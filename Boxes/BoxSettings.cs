@@ -1,4 +1,4 @@
-using KonturEdi.Api.Types.Messages;
+﻿using KonturEdi.Api.Types.Messages;
 
 namespace KonturEdi.Api.Types.Boxes
 {
@@ -44,6 +44,14 @@ namespace KonturEdi.Api.Types.Boxes
         public WebBoxSettings()
         {
             TransportType = TransportType.Web;
+        }
+    }
+
+    public class WebMonitoringBoxSettings : BoxSettings
+    {
+        public WebMonitoringBoxSettings()
+        {
+            TransportType = TransportType.WebMonitoring;
         }
     }
 
