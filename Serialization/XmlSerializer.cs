@@ -68,7 +68,6 @@ namespace KonturEdi.Api.Types.Serialization
                             typeof(ApiBoxSettings),
                             typeof(ProviderBoxSettings),
                             typeof(WebBoxSettings),
-                            typeof(WebMonitoringBoxSettings),
                         }
                 }.SelectMany(x => x.ToArray()).ToArray();
 

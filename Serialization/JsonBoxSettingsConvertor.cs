@@ -24,8 +24,6 @@ namespace KonturEdi.Api.Types.Serialization
                     return new ProviderBoxSettings();
                 if (transportType == TransportType.Web)
                     return new WebBoxSettings();
-                if (transportType == TransportType.WebMonitoring)
-                    return new WebMonitoringBoxSettings();
             }
             return null;
         }

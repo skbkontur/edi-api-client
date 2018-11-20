@@ -7,7 +7,6 @@
         As2,
         Ftp,
         Provider,
-        Web,
-        WebMonitoring
+        Web
     }
 }
