@@ -12,7 +12,7 @@ namespace KonturEdi.Api.Client
     public interface IInternalEdiApiHttpClient
     {
         [CanBeNull]
-        Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId);
+        Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId, bool includeRelatedDocuments = true);
 
         [NotNull]
         MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, int? count = null);

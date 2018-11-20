@@ -30,11 +30,12 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [CanBeNull]
-        public Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId)
+        public Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId, bool includeRelatedDocuments = true)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetDocument")
                 .AddParameter("boxId", documentId.BoxId)
                 .AddParameter("entityId", documentId.EntityId)
+                .AddParameter("includeRelatedDocuments", includeRelatedDocuments.ToString())
                 .ToUri();
             return MakeGetRequest<Document>(url, authToken);
         }
