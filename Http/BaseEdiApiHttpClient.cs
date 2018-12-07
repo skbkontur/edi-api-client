@@ -11,8 +11,6 @@ using KonturEdi.Api.Types.Parties;
 using KonturEdi.Api.Types.Serialization;
 
 using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
-using PartiesInfoForUser = KonturEdi.Api.Types.Parties.PartiesInfoForUser;
-using PartiesInfoWithEmployees = KonturEdi.Api.Types.Parties.PartiesInfoWithEmployees;
 
 namespace KonturEdi.Api.Client.Http
 {
@@ -56,12 +54,12 @@ namespace KonturEdi.Api.Client.Http
         }
 
         [NotNull]
-        public PartiesInfoForUser GetPartiesByUser([NotNull] string authToken, [NotNull] string userId)
+        public PartyInfoWithEmployee[] GetPartiesByUser([NotNull] string authToken, [NotNull] string userId)
         {
             var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartiesByUser")
                 .AddParameter("userId", userId)
                 .ToUri();
-            return MakeGetRequest<PartiesInfoForUser>(url, authToken);
+            return MakeGetRequest<PartyInfoWithEmployee[]>(url, authToken);
         }
 
         [NotNull]
@@ -92,12 +90,12 @@ namespace KonturEdi.Api.Client.Http
         }
 
         [NotNull]
-        public PartiesInfoWithEmployees GetPartiesInfoByInn([NotNull] string authToken, [NotNull] string partyInn)
+        public PartyInfoWithEmployees[] GetPartiesInfoByInn([NotNull] string authToken, [NotNull] string partyInn)
         {
             var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartiesInfoByInn")
                 .AddParameter("partyInn", partyInn)
                 .ToUri();
-            return MakeGetRequest<PartiesInfoWithEmployees>(url, authToken);
+            return MakeGetRequest<PartyInfoWithEmployees[]>(url, authToken);
         }
 
         [NotNull]
