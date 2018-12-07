@@ -1,7 +1,10 @@
 ﻿namespace KonturEdi.Api.Types.Parties
 {
-    public class PartyInfoWithEmployees : PartyInfo
+    public class PartyInfoWithEmployees
     {
-        public PartyEmployee[] PartyEmployees { get; set; }
+        public string PartyId { get; set; }
+        public string Gln { get; set; }
+        public string BillingId { get; set; }
+        public PartyEmployee[] Users { get; set; }
     }
 }

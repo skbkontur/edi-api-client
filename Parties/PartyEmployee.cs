@@ -1,14 +1,10 @@
-﻿using System;
-
-using JetBrains.Annotations;
+﻿using SKBKontur.Catalogue.EDI.Domain.Auth;
 
 namespace KonturEdi.Api.Types.Parties
 {
     public class PartyEmployee
     {
-        public Guid UserId { get; set; }
-
-        [CanBeNull]
-        public PartyAccessLevel? ExtendedPartyAccessLevel { get; set; }
+        public string UserId { get; set; }
+        public ExtendedPartyAccessLevel? ExtendedPartyAccessLevel { get; set; }
     }
 }
