@@ -85,6 +85,24 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [NotNull]
+        public PartyInfoWithEmployee[] GetPartiesByUser([NotNull] string authToken, [NotNull] string userId)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartiesByUser")
+                .AddParameter("userId", userId)
+                .ToUri();
+            return MakeGetRequest<PartyInfoWithEmployee[]>(url, authToken);
+        }
+
+        [NotNull]
+        public PartyInfoWithEmployees[] GetPartiesInfoByInn([NotNull] string authToken, [NotNull] string partyInn)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartiesInfoByInn")
+                .AddParameter("partyInn", partyInn)
+                .ToUri();
+            return MakeGetRequest<PartyInfoWithEmployees[]>(url, authToken);
+        }
+
+        [NotNull]
         public string AddOrUpdateParty([NotNull] string authToken, [NotNull] string partyId, [NotNull] EditablePartySettings editablePartySettings)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "AddOrUpdateParty")
