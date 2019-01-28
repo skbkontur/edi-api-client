@@ -1,6 +1,4 @@
-﻿using SKBKontur.Catalogue.EDI.Domain.Auth;
-
-namespace KonturEdi.Api.Types.Parties
+﻿namespace KonturEdi.Api.Types.Parties
 {
     public class PartyInfoWithEmployee
     {
