@@ -103,6 +103,15 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [NotNull]
+        public PartySettings GetPartySettings([NotNull] string authToken, [NotNull] string partyId)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartySettings")
+                      .AddParameter("partyId", partyId)
+                      .ToUri();
+            return MakeGetRequest<PartySettings>(url, authToken);
+        }
+
+        [NotNull]
         public string AddOrUpdateParty([NotNull] string authToken, [NotNull] string partyId, [NotNull] EditablePartySettings editablePartySettings)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "AddOrUpdateParty")
