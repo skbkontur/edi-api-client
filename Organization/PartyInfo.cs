@@ -20,5 +20,6 @@
         public ContactInformation OrderContact { get; set; }
 
         public string LocalizationType { get; set; }
+        public bool UsesSimplifiedTaxSystem { get; set; }
     }
 }
