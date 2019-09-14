@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>KonturEdi.Api.Types</RootNamespace>
     <AssemblyName>KonturEdi.Api.Types</AssemblyName>
     <OutputPath>..\..\Assemblies\Temp\</OutputPath>
