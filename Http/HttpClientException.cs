@@ -15,13 +15,16 @@ namespace KonturEdi.Api.Client.Http
         public static HttpClientException Create(WebException exception, Uri requestUri)
         {
             var message = "Request for url '" + requestUri + "' failed";
-            var response = exception.Response as HttpWebResponse;
-            if (response == null)
+            if (!(exception.Response is HttpWebResponse response))
                 return new HttpClientException(message, exception);
-            string serverMessage;
-            using (var reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
-                serverMessage = reader.ReadToEnd();
-            var serverException = string.IsNullOrEmpty(serverMessage) ? null : new HttpClientServerException(serverMessage, exception);
+            string serverMessage = null;
+            var responseStream = response.GetResponseStream();
+            if (responseStream != null)
+            {
+                using (var reader = new StreamReader(responseStream, Encoding.UTF8))
+                    serverMessage = reader.ReadToEnd();
+            }
+            var serverException = new HttpClientServerException(serverMessage, exception);
             return new HttpClientException(message, serverException);
         }
     }
