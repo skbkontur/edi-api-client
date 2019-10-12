@@ -13,6 +13,7 @@
         public string SupplierCodeInBuyerSystem { get; set; }
         public string BusinessEntityMercuryId { get; set; }
         public string AreaEntityMercuryId { get; set; }
+        public string FilialGln { get; set; }
         public ContactInformation Chief { get; set; }
         public ContactInformation Bookkeeper { get; set; }
         public ContactInformation SalesAdministration { get; set; }
