@@ -61,6 +61,22 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [NotNull]
+        public MessageBoxEvent[] GetEventsByCirculationId([NotNull] string authToken, [NotNull] string documentCirculationId)
+        {
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsByCirculationId")
+                .AddParameter("documentCirculationId", documentCirculationId);
+            var boxEvents = MakeGetRequest<MessageBoxEvent[]>(url.ToUri(), authToken);
+            foreach (var boxEvent in boxEvents)
+            {
+                boxEvent.EventContent =
+                    boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)
+                        ? Serializer.NormalizeDeserializedObjectToType(boxEvent.EventContent, boxEventTypeRegistry.GetEventContentType(boxEvent.EventType))
+                        : null;
+            }
+            return boxEvents;
+        }
+
+        [NotNull]
         public string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetLastEventPointer")

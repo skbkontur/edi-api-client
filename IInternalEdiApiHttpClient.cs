@@ -4,8 +4,11 @@ using JetBrains.Annotations;
 
 using KonturEdi.Api.Types.Boxes;
 using KonturEdi.Api.Types.Internal;
+using KonturEdi.Api.Types.Messages.BoxEvents;
 using KonturEdi.Api.Types.Messages.BoxEventsContents;
 using KonturEdi.Api.Types.Parties;
+
+using MessageBoxEventBatch = KonturEdi.Api.Types.Internal.MessageBoxEventBatch;
 
 namespace KonturEdi.Api.Client
 {
@@ -16,6 +19,9 @@ namespace KonturEdi.Api.Client
 
         [NotNull]
         MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, int? count = null);
+
+        [NotNull]
+        MessageBoxEvent[] GetEventsByCirculationId([NotNull] string authToken, [NotNull] string documentCirculationId);
 
         [NotNull]
         string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime);
