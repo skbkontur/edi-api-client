@@ -61,9 +61,9 @@ namespace KonturEdi.Api.Client.Http.Internal
         }
 
         [NotNull]
-        public MessageBoxEvent[] GetEventsByCirculationId([NotNull] string authToken, [NotNull] string documentCirculationId)
+        public MessageBoxEvent[] GetEventsByDocumentCirculationId([NotNull] string authToken, [NotNull] string documentCirculationId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsByCirculationId")
+            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsByDocumentCirculationId")
                 .AddParameter("documentCirculationId", documentCirculationId);
             var boxEvents = MakeGetRequest<MessageBoxEvent[]>(url.ToUri(), authToken);
             foreach (var boxEvent in boxEvents)

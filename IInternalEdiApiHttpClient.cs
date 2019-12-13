@@ -21,7 +21,7 @@ namespace KonturEdi.Api.Client
         MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, int? count = null);
 
         [NotNull]
-        MessageBoxEvent[] GetEventsByCirculationId([NotNull] string authToken, [NotNull] string documentCirculationId);
+        MessageBoxEvent[] GetEventsByDocumentCirculationId([NotNull] string authToken, [NotNull] string documentCirculationId);
 
         [NotNull]
         string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime);
