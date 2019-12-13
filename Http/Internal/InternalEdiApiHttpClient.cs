@@ -51,12 +51,7 @@ namespace KonturEdi.Api.Client.Http.Internal
             var boxEventBatch = MakeGetRequest<MessageBoxEventBatch>(url.ToUri(), authToken);
             boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
             foreach (var boxEvent in boxEventBatch.Events)
-            {
-                boxEvent.EventContent =
-                    boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)
-                        ? Serializer.NormalizeDeserializedObjectToType(boxEvent.EventContent, boxEventTypeRegistry.GetEventContentType(boxEvent.EventType))
-                        : null;
-            }
+                AdjustEventContent(boxEvent);
             return boxEventBatch;
         }
 
@@ -67,12 +62,7 @@ namespace KonturEdi.Api.Client.Http.Internal
                 .AddParameter("documentCirculationId", documentCirculationId);
             var boxEvents = MakeGetRequest<MessageBoxEvent[]>(url.ToUri(), authToken);
             foreach (var boxEvent in boxEvents)
-            {
-                boxEvent.EventContent =
-                    boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)
-                        ? Serializer.NormalizeDeserializedObjectToType(boxEvent.EventContent, boxEventTypeRegistry.GetEventContentType(boxEvent.EventType))
-                        : null;
-            }
+                AdjustEventContent(boxEvent);
             return boxEvents;
         }
 
@@ -147,6 +137,14 @@ namespace KonturEdi.Api.Client.Http.Internal
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "AddOrUpdateTradingPartnersSettings");
             MakePostRequest(url.ToUri(), authToken, settingsToWrite);
+        }
+
+        private void AdjustEventContent(MessageBoxEvent boxEvent)
+        {
+            boxEvent.EventContent =
+                boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)
+                    ? Serializer.NormalizeDeserializedObjectToType(boxEvent.EventContent, boxEventTypeRegistry.GetEventContentType(boxEvent.EventType))
+                    : null;
         }
 
         private const string relativeUrl = "V1/Internal/";
