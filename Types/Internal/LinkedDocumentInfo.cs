@@ -1,6 +1,6 @@
-﻿using KonturEdi.Api.Types.Messages;
+﻿using SkbKontur.EdiApi.Types.Messages;
 
-namespace KonturEdi.Api.Types.Internal
+namespace SkbKontur.EdiApi.Types.Internal
 {
     public class LinkedDocumentInfo
     {

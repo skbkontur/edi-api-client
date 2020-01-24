@@ -1,6 +1,6 @@
 using System;
 
-namespace KonturEdi.Api.Types.Messages.BoxEventsContents
+namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents
 {
     public class ProcessingTimes
     {

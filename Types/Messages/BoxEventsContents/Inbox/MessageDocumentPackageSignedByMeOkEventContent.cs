@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox
+﻿namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents.Inbox
 {
     public class MessageDocumentPackageSignedByMeOkEventContent : InboxDiadocEventContentBase
     {

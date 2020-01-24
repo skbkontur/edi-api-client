@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.BoxEvents
+﻿namespace SkbKontur.EdiApi.Types.BoxEvents
 {
     public interface IBoxEventContent
     {

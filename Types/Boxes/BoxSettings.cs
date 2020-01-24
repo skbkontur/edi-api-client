@@ -1,6 +1,6 @@
-﻿using KonturEdi.Api.Types.Messages;
+﻿using SkbKontur.EdiApi.Types.Messages;
 
-namespace KonturEdi.Api.Types.Boxes
+namespace SkbKontur.EdiApi.Types.Boxes
 {
     public abstract class BoxSettings
     {

@@ -2,11 +2,11 @@
 
 using JetBrains.Annotations;
 
-using KonturEdi.Api.Types.Common;
-using KonturEdi.Api.Types.Messages;
-using KonturEdi.Api.Types.Messages.BoxEvents;
+using SkbKontur.EdiApi.Types.Common;
+using SkbKontur.EdiApi.Types.Messages;
+using SkbKontur.EdiApi.Types.Messages.BoxEvents;
 
-namespace KonturEdi.Api.Client
+namespace SkbKontur.EdiApi.Client
 {
     public interface IMessagesEdiApiClient : IBaseEdiApiClient
     {

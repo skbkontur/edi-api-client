@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KonturEdi.Api.Types.Serialization
+namespace SkbKontur.EdiApi.Types.Serialization
 {
     public class XmlEdiApiTypesSerializer : IEdiApiTypesSerializer
     {

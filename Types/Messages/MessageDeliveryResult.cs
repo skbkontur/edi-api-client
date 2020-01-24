@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KonturEdi.Api.Types.Messages
+namespace SkbKontur.EdiApi.Types.Messages
 {
     public class MessageDeliveryResult
     {

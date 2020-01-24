@@ -1,6 +1,6 @@
-﻿using KonturEdi.Api.Types.Internal.GoodItems;
+﻿using SkbKontur.EdiApi.Types.Internal.GoodItems;
 
-namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
+namespace SkbKontur.EdiApi.Types.Internal.DocumentSpecificFields
 {
     public class IftmbfTransportDetails
     {

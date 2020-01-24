@@ -1,6 +1,6 @@
-﻿using KonturEdi.Api.Types.Common;
+﻿using SkbKontur.EdiApi.Types.Common;
 
-namespace KonturEdi.Api.Types.Connectors.Transformer.EventContents
+namespace SkbKontur.EdiApi.Types.Connectors.Transformer.EventContents
 {
     public class TransformationPausedEventContent : ConnectorBoxEventContent
     {

@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Boxes
+﻿namespace SkbKontur.EdiApi.Types.Boxes
 {
     public enum TransportType
     {

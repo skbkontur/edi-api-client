@@ -2,15 +2,15 @@
 
 using JetBrains.Annotations;
 
-using KonturEdi.Api.Types.Boxes;
-using KonturEdi.Api.Types.Internal;
-using KonturEdi.Api.Types.Messages.BoxEvents;
-using KonturEdi.Api.Types.Messages.BoxEventsContents;
-using KonturEdi.Api.Types.Parties;
+using SkbKontur.EdiApi.Types.Boxes;
+using SkbKontur.EdiApi.Types.Internal;
+using SkbKontur.EdiApi.Types.Messages.BoxEvents;
+using SkbKontur.EdiApi.Types.Messages.BoxEventsContents;
+using SkbKontur.EdiApi.Types.Parties;
 
-using MessageBoxEventBatch = KonturEdi.Api.Types.Internal.MessageBoxEventBatch;
+using MessageBoxEventBatch = SkbKontur.EdiApi.Types.Internal.MessageBoxEventBatch;
 
-namespace KonturEdi.Api.Client
+namespace SkbKontur.EdiApi.Client
 {
     public interface IInternalEdiApiHttpClient
     {

@@ -1,7 +1,7 @@
-﻿using KonturEdi.Api.Types.BoxEvents;
-using KonturEdi.Api.Types.Connectors.Transformer.EventContents;
+﻿using SkbKontur.EdiApi.Types.BoxEvents;
+using SkbKontur.EdiApi.Types.Connectors.Transformer.EventContents;
 
-namespace KonturEdi.Api.Types.Connectors.Transformer
+namespace SkbKontur.EdiApi.Types.Connectors.Transformer
 {
     public class TransformerConnectorBoxEventTypeRegistry : BoxEventTypeRegistry<TransformerConnectorBoxEventType>
     {

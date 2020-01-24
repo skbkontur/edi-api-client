@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KonturEdi.Api.Types.Internal.GoodItems
+namespace SkbKontur.EdiApi.Types.Internal.GoodItems
 {
     public class PriceListGoodItem : GoodItemBase
     {

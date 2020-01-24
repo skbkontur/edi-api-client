@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Parties
+﻿namespace SkbKontur.EdiApi.Types.Parties
 {
     public class UserInfo
     {

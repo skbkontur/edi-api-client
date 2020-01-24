@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Messages.BoxEvents
+﻿namespace SkbKontur.EdiApi.Types.Messages.BoxEvents
 {
     public enum MessageBoxEventType
     {

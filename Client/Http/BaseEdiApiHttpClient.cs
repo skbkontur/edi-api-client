@@ -4,15 +4,15 @@ using System.Text;
 
 using JetBrains.Annotations;
 
-using KonturEdi.Api.Client.Http.Helpers;
-using KonturEdi.Api.Types.Boxes;
-using KonturEdi.Api.Types.Organization;
-using KonturEdi.Api.Types.Parties;
-using KonturEdi.Api.Types.Serialization;
+using SkbKontur.EdiApi.Client.Http.Helpers;
+using SkbKontur.EdiApi.Types.Boxes;
+using SkbKontur.EdiApi.Types.Organization;
+using SkbKontur.EdiApi.Types.Parties;
+using SkbKontur.EdiApi.Types.Serialization;
 
-using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
+using PartyInfo = SkbKontur.EdiApi.Types.Parties.PartyInfo;
 
-namespace KonturEdi.Api.Client.Http
+namespace SkbKontur.EdiApi.Client.Http
 {
     public abstract class BaseEdiApiHttpClient : IBaseEdiApiClient
     {

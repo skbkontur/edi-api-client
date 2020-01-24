@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace KonturEdi.Api.Client.Http
+namespace SkbKontur.EdiApi.Client.Http
 {
     public class HttpClientException : Exception
     {

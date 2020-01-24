@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Connectors
+﻿namespace SkbKontur.EdiApi.Types.Connectors
 {
     public abstract class ConnectorBoxEventContent
     {

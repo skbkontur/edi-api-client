@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KonturEdi.Api.Client.Http.Helpers
+namespace SkbKontur.EdiApi.Client.Http.Helpers
 {
     public class UrlBuilder
     {

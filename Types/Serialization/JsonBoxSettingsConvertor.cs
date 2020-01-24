@@ -1,10 +1,10 @@
 ﻿using System;
 
-using KonturEdi.Api.Types.Boxes;
-
 using Newtonsoft.Json.Linq;
 
-namespace KonturEdi.Api.Types.Serialization
+using SkbKontur.EdiApi.Types.Boxes;
+
+namespace SkbKontur.EdiApi.Types.Serialization
 {
     public class JsonBoxSettingsConvertor : JsonCreationConverter<BoxSettings>
     {

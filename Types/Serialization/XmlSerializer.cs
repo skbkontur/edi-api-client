@@ -6,11 +6,11 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-using KonturEdi.Api.Types.Boxes;
-using KonturEdi.Api.Types.Connectors.Transformer;
-using KonturEdi.Api.Types.Messages.BoxEvents;
+using SkbKontur.EdiApi.Types.Boxes;
+using SkbKontur.EdiApi.Types.Connectors.Transformer;
+using SkbKontur.EdiApi.Types.Messages.BoxEvents;
 
-namespace KonturEdi.Api.Types.Serialization
+namespace SkbKontur.EdiApi.Types.Serialization
 {
     public static class XmlSerializer
     {

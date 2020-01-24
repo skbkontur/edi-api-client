@@ -1,6 +1,6 @@
-﻿using KonturEdi.Api.Types.Common;
+﻿using SkbKontur.EdiApi.Types.Common;
 
-namespace KonturEdi.Api.Types.Messages
+namespace SkbKontur.EdiApi.Types.Messages
 {
     public class OutboxMessageEntity
     {

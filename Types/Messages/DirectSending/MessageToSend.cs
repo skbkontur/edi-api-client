@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Messages.DirectSending
+﻿namespace SkbKontur.EdiApi.Types.Messages.DirectSending
 {
     public class MessageToSend
     {

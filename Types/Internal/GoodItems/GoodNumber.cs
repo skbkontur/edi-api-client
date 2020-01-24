@@ -1,6 +1,6 @@
-﻿using KonturEdi.Api.Types.Messages;
+﻿using SkbKontur.EdiApi.Types.Messages;
 
-namespace KonturEdi.Api.Types.Internal.GoodItems
+namespace SkbKontur.EdiApi.Types.Internal.GoodItems
 {
     public class GoodNumber
     {

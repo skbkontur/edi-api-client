@@ -4,14 +4,14 @@ using System.Net;
 
 using JetBrains.Annotations;
 
-using KonturEdi.Api.Client.Http.Helpers;
-using KonturEdi.Api.Types.BoxEvents;
-using KonturEdi.Api.Types.Common;
-using KonturEdi.Api.Types.Connectors;
-using KonturEdi.Api.Types.Connectors.Transformer;
-using KonturEdi.Api.Types.Serialization;
+using SkbKontur.EdiApi.Client.Http.Helpers;
+using SkbKontur.EdiApi.Types.BoxEvents;
+using SkbKontur.EdiApi.Types.Common;
+using SkbKontur.EdiApi.Types.Connectors;
+using SkbKontur.EdiApi.Types.Connectors.Transformer;
+using SkbKontur.EdiApi.Types.Serialization;
 
-namespace KonturEdi.Api.Client.Http.Connectors
+namespace SkbKontur.EdiApi.Client.Http.Connectors
 {
     public class TransformerConnectorEdiApiClient : BaseEdiApiHttpClient, ITransformerConnectorEdiApiClient
     {

@@ -1,4 +1,4 @@
-namespace KonturEdi.Api.Types.Organization
+namespace SkbKontur.EdiApi.Types.Organization
 {
     public class ULInfo
     {

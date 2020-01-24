@@ -4,18 +4,18 @@ using System.Net;
 
 using JetBrains.Annotations;
 
-using KonturEdi.Api.Client.Http.Helpers;
-using KonturEdi.Api.Types.Boxes;
-using KonturEdi.Api.Types.BoxEvents;
-using KonturEdi.Api.Types.Internal;
-using KonturEdi.Api.Types.Messages.BoxEvents;
-using KonturEdi.Api.Types.Messages.BoxEventsContents;
-using KonturEdi.Api.Types.Parties;
-using KonturEdi.Api.Types.Serialization;
+using SkbKontur.EdiApi.Client.Http.Helpers;
+using SkbKontur.EdiApi.Types.Boxes;
+using SkbKontur.EdiApi.Types.BoxEvents;
+using SkbKontur.EdiApi.Types.Internal;
+using SkbKontur.EdiApi.Types.Messages.BoxEvents;
+using SkbKontur.EdiApi.Types.Messages.BoxEventsContents;
+using SkbKontur.EdiApi.Types.Parties;
+using SkbKontur.EdiApi.Types.Serialization;
 
-using MessageBoxEventBatch = KonturEdi.Api.Types.Internal.MessageBoxEventBatch;
+using MessageBoxEventBatch = SkbKontur.EdiApi.Types.Internal.MessageBoxEventBatch;
 
-namespace KonturEdi.Api.Client.Http.Internal
+namespace SkbKontur.EdiApi.Client.Http.Internal
 {
     public class InternalEdiApiHttpClient : BaseEdiApiHttpClient, IInternalEdiApiHttpClient
     {

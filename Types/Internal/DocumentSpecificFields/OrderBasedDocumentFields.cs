@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KonturEdi.Api.Types.Internal.DocumentSpecificFields
+namespace SkbKontur.EdiApi.Types.Internal.DocumentSpecificFields
 {
     public abstract class OrderBasedDocumentFields
     {

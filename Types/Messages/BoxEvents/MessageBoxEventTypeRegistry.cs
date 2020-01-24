@@ -1,9 +1,9 @@
-﻿using KonturEdi.Api.Types.BoxEvents;
-using KonturEdi.Api.Types.Messages.BoxEventsContents;
-using KonturEdi.Api.Types.Messages.BoxEventsContents.Inbox;
-using KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox;
+﻿using SkbKontur.EdiApi.Types.BoxEvents;
+using SkbKontur.EdiApi.Types.Messages.BoxEventsContents;
+using SkbKontur.EdiApi.Types.Messages.BoxEventsContents.Inbox;
+using SkbKontur.EdiApi.Types.Messages.BoxEventsContents.Outbox;
 
-namespace KonturEdi.Api.Types.Messages.BoxEvents
+namespace SkbKontur.EdiApi.Types.Messages.BoxEvents
 {
     public class MessageBoxEventTypeRegistry : BoxEventTypeRegistry<MessageBoxEventType>
     {

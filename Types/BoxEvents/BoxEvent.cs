@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KonturEdi.Api.Types.BoxEvents
+namespace SkbKontur.EdiApi.Types.BoxEvents
 {
     public abstract class BoxEvent<TBoxEventType>
         where TBoxEventType : struct

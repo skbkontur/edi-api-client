@@ -1,6 +1,6 @@
-using KonturEdi.Api.Types.BoxEvents;
+using SkbKontur.EdiApi.Types.BoxEvents;
 
-namespace KonturEdi.Api.Types.Messages.BoxEventsContents
+namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents
 {
     public abstract class DocumentEventContent : IBoxEventContent
     {

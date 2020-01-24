@@ -2,11 +2,11 @@
 
 using JetBrains.Annotations;
 
-using KonturEdi.Api.Types.Common;
-using KonturEdi.Api.Types.Connectors;
-using KonturEdi.Api.Types.Connectors.Transformer;
+using SkbKontur.EdiApi.Types.Common;
+using SkbKontur.EdiApi.Types.Connectors;
+using SkbKontur.EdiApi.Types.Connectors.Transformer;
 
-namespace KonturEdi.Api.Client
+namespace SkbKontur.EdiApi.Client
 {
     public interface ITransformerConnectorEdiApiClient : IBaseEdiApiClient
     {

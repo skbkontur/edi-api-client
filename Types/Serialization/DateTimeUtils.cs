@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace KonturEdi.Api.Types.Serialization
+namespace SkbKontur.EdiApi.Types.Serialization
 {
     public static class DateTimeUtils
     {

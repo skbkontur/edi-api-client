@@ -2,10 +2,10 @@
 
 using JetBrains.Annotations;
 
-using KonturEdi.Api.Types.Messages;
-using KonturEdi.Api.Types.Parties;
+using SkbKontur.EdiApi.Types.Messages;
+using SkbKontur.EdiApi.Types.Parties;
 
-namespace KonturEdi.Api.Types.Internal
+namespace SkbKontur.EdiApi.Types.Internal
 {
     public class EditablePartySettings
     {

@@ -1,12 +1,12 @@
 ﻿using JetBrains.Annotations;
 
-using KonturEdi.Api.Types.Boxes;
-using KonturEdi.Api.Types.Organization;
-using KonturEdi.Api.Types.Parties;
+using SkbKontur.EdiApi.Types.Boxes;
+using SkbKontur.EdiApi.Types.Organization;
+using SkbKontur.EdiApi.Types.Parties;
 
-using PartyInfo = KonturEdi.Api.Types.Parties.PartyInfo;
+using PartyInfo = SkbKontur.EdiApi.Types.Parties.PartyInfo;
 
-namespace KonturEdi.Api.Client
+namespace SkbKontur.EdiApi.Client
 {
     public interface IBaseEdiApiClient
     {

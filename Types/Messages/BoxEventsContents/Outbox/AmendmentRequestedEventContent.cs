@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace KonturEdi.Api.Types.Messages.BoxEventsContents.Outbox
+namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents.Outbox
 {
     public class AmendmentRequestedEventContent : OutboxDiadocEventContentBase
     {

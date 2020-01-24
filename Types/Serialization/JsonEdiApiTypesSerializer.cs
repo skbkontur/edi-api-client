@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json.Linq;
 
-namespace KonturEdi.Api.Types.Serialization
+namespace SkbKontur.EdiApi.Types.Serialization
 {
     public class JsonEdiApiTypesSerializer : IEdiApiTypesSerializer
     {

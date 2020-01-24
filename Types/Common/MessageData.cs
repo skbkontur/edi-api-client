@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Common
+﻿namespace SkbKontur.EdiApi.Types.Common
 {
     public class MessageData
     {

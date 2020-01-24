@@ -1,4 +1,4 @@
-﻿namespace KonturEdi.Api.Types.Messages
+﻿namespace SkbKontur.EdiApi.Types.Messages
 {
     public class DiadocUrls
     {

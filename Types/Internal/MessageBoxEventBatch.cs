@@ -1,6 +1,6 @@
-﻿using KonturEdi.Api.Types.Messages.BoxEvents;
+﻿using SkbKontur.EdiApi.Types.Messages.BoxEvents;
 
-namespace KonturEdi.Api.Types.Internal
+namespace SkbKontur.EdiApi.Types.Internal
 {
     public class MessageBoxEventBatch
     {
