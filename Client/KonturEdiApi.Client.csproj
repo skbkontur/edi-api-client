@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>KonturEdi.Api.Client</RootNamespace>
+    <AssemblyName>KonturEdi.Api.Client</AssemblyName>
+    <OutputPath>..\..\Assemblies\Temp\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KonturEdiApi.Types\KonturEdiApi.Types.csproj" />
+  </ItemGroup>
+
+</Project>
