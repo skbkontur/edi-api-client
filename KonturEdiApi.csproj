@@ -2,9 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>KonturEdi.Api.Types</RootNamespace>
-    <AssemblyName>KonturEdi.Api.Types</AssemblyName>
-    <OutputPath>..\..\Assemblies\Temp\</OutputPath>
+    <RootNamespace>KonturEdi.Api</RootNamespace>
+    <AssemblyName>KonturEdi.Api</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
