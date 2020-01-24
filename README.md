@@ -1,7 +1,7 @@
 # Kontur EDI API
 
 [![NuGet Status]
-[![Build status](https://ci.appveyor.com/api/projects/status/go1dt374gdly32rr?svg=true)](https://ci.appveyor.com/project/skbkontur/edi-api)
+[![Build status](https://ci.appveyor.com/api/projects/status/rcukrlaqfp3wypa6?svg=true)](https://ci.appveyor.com/project/skbkontur/edi-api-client)
 
 ## Описание
 
