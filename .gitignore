@@ -8,8 +8,6 @@
 *.user
 *.pyc
 _ReSharper.*
-.cake/*
-!.cake/packages.config
 /packages
 desktop.ini
 *-assets*.json
