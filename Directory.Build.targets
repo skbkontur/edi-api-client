@@ -9,12 +9,12 @@
 
   <Target Name="SetNuSpecProperties" BeforeTargets="GenerateNuspec" DependsOnTargets="GetBuildVersion">
     <PropertyGroup>
-      <PackageId>KonturEdiApi</PackageId>
+      <PackageId>SkbKontur.EdiApi.Client</PackageId>
       <Authors>EDI</Authors>
       <PackageTags>EDI API client</PackageTags>
-      <PackageDescription>Code generation mechanics for documents conversion and validation</PackageDescription>
+      <PackageDescription>EDI API client implementation</PackageDescription>
       <RepositoryType>git</RepositoryType>
-      <RepositoryUrl>https://github.com/skbkontur/edi-api</RepositoryUrl>
+      <RepositoryUrl>https://github.com/skbkontur/edi-api-client</RepositoryUrl>
       <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
       <PackageReleaseNotes>$(RepositoryUrl)/releases/tag/v$(MajorMinorVersion)-release</PackageReleaseNotes>
     </PropertyGroup>

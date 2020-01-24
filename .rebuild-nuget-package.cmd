@@ -1,6 +1,6 @@
 @echo off
 
-set SolutionName=KonturEdiApi
+set SolutionName=EdiApi.Client
 
 rem reset current directory to the location of this script
 pushd "%~dp0"

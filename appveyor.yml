@@ -27,11 +27,11 @@ nuget:
 
 before_build:
   - cmd: dotnet --info
-  - cmd: dotnet restore ./KonturEdiApi.sln --verbosity minimal
+  - cmd: dotnet restore ./EdiApi.Client.sln --verbosity minimal
 
 build_script:
-  - cmd: dotnet build --configuration Release ./KonturEdiApi.sln
-  - cmd: dotnet pack --no-build --configuration Release ./KonturEdiApi.sln
+  - cmd: dotnet build --configuration Release ./EdiApi.Client.sln
+  - cmd: dotnet pack --no-build --configuration Release ./EdiApi.Client.sln
 
 artifacts:
   - path: './bin/Release/*.nupkg'

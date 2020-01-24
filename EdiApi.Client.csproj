@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>KonturEdi.Api</RootNamespace>
-    <AssemblyName>KonturEdi.Api</AssemblyName>
+    <RootNamespace>SkbKontur.EdiApi</RootNamespace>
+    <AssemblyName>EdiApi.Client</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
