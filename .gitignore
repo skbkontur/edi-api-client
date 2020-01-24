@@ -1,0 +1,17 @@
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+.vs/
+.idea
+*.suo
+*.user
+*.pyc
+_ReSharper.*
+.cake/*
+!.cake/packages.config
+/packages
+desktop.ini
+*-assets*.json
+*.sublime-project
+*.sublime-workspace
