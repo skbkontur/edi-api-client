@@ -34,7 +34,7 @@ build_script:
   - cmd: dotnet pack --no-build --configuration Release ./EdiApi.Client.sln
 
 artifacts:
-  - path: './bin/Release/*.nupkg'
+  - path: './EdiApi.Client/bin/Release/*.nupkg'
 
 deploy:
   - provider: NuGet
