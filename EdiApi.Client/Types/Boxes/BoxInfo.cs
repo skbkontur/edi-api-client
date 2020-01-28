@@ -1,4 +1,4 @@
-namespace SkbKontur.EdiApi.Types.Boxes
+namespace SkbKontur.EdiApi.Client.Types.Boxes
 {
     public class BoxInfo
     {

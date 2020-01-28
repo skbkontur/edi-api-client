@@ -1,10 +1,10 @@
 using JetBrains.Annotations;
 
-using SkbKontur.EdiApi.Types.Boxes;
-using SkbKontur.EdiApi.Types.Organization;
-using SkbKontur.EdiApi.Types.Parties;
+using SkbKontur.EdiApi.Client.Types.Boxes;
+using SkbKontur.EdiApi.Client.Types.Organization;
+using SkbKontur.EdiApi.Client.Types.Parties;
 
-using PartyInfo = SkbKontur.EdiApi.Types.Parties.PartyInfo;
+using PartyInfo = SkbKontur.EdiApi.Client.Types.Parties.PartyInfo;
 
 namespace SkbKontur.EdiApi.Client
 {

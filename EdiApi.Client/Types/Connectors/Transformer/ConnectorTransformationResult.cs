@@ -1,6 +1,6 @@
-﻿using SkbKontur.EdiApi.Types.Common;
+﻿using SkbKontur.EdiApi.Client.Types.Common;
 
-namespace SkbKontur.EdiApi.Types.Connectors.Transformer
+namespace SkbKontur.EdiApi.Client.Types.Connectors.Transformer
 {
     public class ConnectorTransformationResult
     {

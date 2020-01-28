@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents
+﻿namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
 {
     public enum DiadocDocumentType
     {

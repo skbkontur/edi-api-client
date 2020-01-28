@@ -1,6 +1,6 @@
-﻿using SkbKontur.EdiApi.Types.Messages;
+﻿using SkbKontur.EdiApi.Client.Types.Messages;
 
-namespace SkbKontur.EdiApi.Types.Parties
+namespace SkbKontur.EdiApi.Client.Types.Parties
 {
     public class TradingPartnerSettings
     {

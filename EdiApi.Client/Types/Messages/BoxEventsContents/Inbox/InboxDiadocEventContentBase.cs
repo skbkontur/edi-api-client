@@ -1,6 +1,6 @@
-﻿using SkbKontur.EdiApi.Types.BoxEvents;
+﻿using SkbKontur.EdiApi.Client.Types.BoxEvents;
 
-namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents.Inbox
+namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.Inbox
 {
     public abstract class InboxDiadocEventContentBase : DiadocEventContentBase, IBoxEventContent
     {

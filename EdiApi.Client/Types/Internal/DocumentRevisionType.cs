@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Internal
+﻿namespace SkbKontur.EdiApi.Client.Types.Internal
 {
     public enum DocumentRevisionType
     {

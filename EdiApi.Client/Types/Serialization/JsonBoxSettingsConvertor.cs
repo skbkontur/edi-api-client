@@ -2,9 +2,9 @@
 
 using Newtonsoft.Json.Linq;
 
-using SkbKontur.EdiApi.Types.Boxes;
+using SkbKontur.EdiApi.Client.Types.Boxes;
 
-namespace SkbKontur.EdiApi.Types.Serialization
+namespace SkbKontur.EdiApi.Client.Types.Serialization
 {
     public class JsonBoxSettingsConvertor : JsonCreationConverter<BoxSettings>
     {

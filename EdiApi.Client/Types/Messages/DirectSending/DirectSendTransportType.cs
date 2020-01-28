@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Messages.DirectSending
+﻿namespace SkbKontur.EdiApi.Client.Types.Messages.DirectSending
 {
     public enum DirectSendTransportType
     {

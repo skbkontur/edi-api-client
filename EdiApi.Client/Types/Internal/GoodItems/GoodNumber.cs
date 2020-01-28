@@ -1,6 +1,6 @@
-﻿using SkbKontur.EdiApi.Types.Messages;
+﻿using SkbKontur.EdiApi.Client.Types.Messages;
 
-namespace SkbKontur.EdiApi.Types.Internal.GoodItems
+namespace SkbKontur.EdiApi.Client.Types.Internal.GoodItems
 {
     public class GoodNumber
     {

@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Connectors.Transformer.EventContents
+﻿namespace SkbKontur.EdiApi.Client.Types.Connectors.Transformer.EventContents
 {
     public class TransformedUnsuccessfullyEventContent : ConnectorBoxEventContent
     {

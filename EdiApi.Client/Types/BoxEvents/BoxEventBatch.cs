@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.BoxEvents
+﻿namespace SkbKontur.EdiApi.Client.Types.BoxEvents
 {
     public class BoxEventBatch<TBoxEventType, TBoxEvent>
         where TBoxEventType : struct

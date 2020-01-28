@@ -2,13 +2,13 @@ using System;
 
 using JetBrains.Annotations;
 
-using SkbKontur.EdiApi.Types.Boxes;
-using SkbKontur.EdiApi.Types.Internal;
-using SkbKontur.EdiApi.Types.Messages.BoxEvents;
-using SkbKontur.EdiApi.Types.Messages.BoxEventsContents;
-using SkbKontur.EdiApi.Types.Parties;
+using SkbKontur.EdiApi.Client.Types.Boxes;
+using SkbKontur.EdiApi.Client.Types.Internal;
+using SkbKontur.EdiApi.Client.Types.Messages.BoxEvents;
+using SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents;
+using SkbKontur.EdiApi.Client.Types.Parties;
 
-using MessageBoxEventBatch = SkbKontur.EdiApi.Types.Internal.MessageBoxEventBatch;
+using MessageBoxEventBatch = SkbKontur.EdiApi.Client.Types.Internal.MessageBoxEventBatch;
 
 namespace SkbKontur.EdiApi.Client
 {

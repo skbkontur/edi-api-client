@@ -6,11 +6,11 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-using SkbKontur.EdiApi.Types.Boxes;
-using SkbKontur.EdiApi.Types.Connectors.Transformer;
-using SkbKontur.EdiApi.Types.Messages.BoxEvents;
+using SkbKontur.EdiApi.Client.Types.Boxes;
+using SkbKontur.EdiApi.Client.Types.Connectors.Transformer;
+using SkbKontur.EdiApi.Client.Types.Messages.BoxEvents;
 
-namespace SkbKontur.EdiApi.Types.Serialization
+namespace SkbKontur.EdiApi.Client.Types.Serialization
 {
     public static class XmlSerializer
     {
@@ -52,8 +52,8 @@ namespace SkbKontur.EdiApi.Types.Serialization
         }
 
         private static readonly XmlAttributeOverrides xmlAttributeOverrides = new XmlAttributeOverrides()
-                                                                              .MapTypeWithName<MessageBoxEventBatch>("BoxEventBatch") //Для обратной совместимости со старыми клиентами
-                                                                              .MapTypeWithName<MessageBoxEvent>("BoxEvent");
+            .MapTypeWithName<MessageBoxEventBatch>("BoxEventBatch") //Для обратной совместимости со старыми клиентами
+            .MapTypeWithName<MessageBoxEvent>("BoxEvent");
 
         private static readonly Type[] knownTypes =
             new[]

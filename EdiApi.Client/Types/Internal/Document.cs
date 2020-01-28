@@ -1,10 +1,10 @@
 ﻿using System;
 
-using SkbKontur.EdiApi.Types.Internal.DocumentSpecificFields;
-using SkbKontur.EdiApi.Types.Messages;
-using SkbKontur.EdiApi.Types.Messages.BoxEventsContents;
+using SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields;
+using SkbKontur.EdiApi.Client.Types.Messages;
+using SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents;
 
-namespace SkbKontur.EdiApi.Types.Internal
+namespace SkbKontur.EdiApi.Client.Types.Internal
 {
     public class Document
     {

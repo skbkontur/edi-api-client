@@ -1,6 +1,6 @@
-﻿using SkbKontur.EdiApi.Types.Boxes;
+﻿using SkbKontur.EdiApi.Client.Types.Boxes;
 
-namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents.Outbox
+namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.Outbox
 {
     public class NewOutboxMessageEventContent : OutboxEventContentBase
     {

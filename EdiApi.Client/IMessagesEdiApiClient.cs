@@ -2,9 +2,9 @@ using System;
 
 using JetBrains.Annotations;
 
-using SkbKontur.EdiApi.Types.Common;
-using SkbKontur.EdiApi.Types.Messages;
-using SkbKontur.EdiApi.Types.Messages.BoxEvents;
+using SkbKontur.EdiApi.Client.Types.Common;
+using SkbKontur.EdiApi.Client.Types.Messages;
+using SkbKontur.EdiApi.Client.Types.Messages.BoxEvents;
 
 namespace SkbKontur.EdiApi.Client
 {

@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Connectors.Transformer
+﻿namespace SkbKontur.EdiApi.Client.Types.Connectors.Transformer
 {
     public class ServiceMessageMeta
     {

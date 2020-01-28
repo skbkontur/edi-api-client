@@ -1,8 +1,8 @@
 using System;
 
-using SkbKontur.EdiApi.Types.BoxEvents;
+using SkbKontur.EdiApi.Client.Types.BoxEvents;
 
-namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents
+namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
 {
     public class ProcessingTimesReportEventContent : IBoxEventContent
     {

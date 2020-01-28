@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Internal.DocumentSpecificFields
+﻿namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
 {
     public enum BookingConfirmationStatus
     {

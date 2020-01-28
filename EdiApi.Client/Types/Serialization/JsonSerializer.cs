@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
-namespace SkbKontur.EdiApi.Types.Serialization
+namespace SkbKontur.EdiApi.Client.Types.Serialization
 {
     public static class JsonSerializer
     {

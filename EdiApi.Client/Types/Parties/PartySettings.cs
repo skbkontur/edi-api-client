@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace SkbKontur.EdiApi.Types.Parties
+namespace SkbKontur.EdiApi.Client.Types.Parties
 {
     public class PartySettings
     {

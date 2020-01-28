@@ -1,6 +1,6 @@
-﻿using SkbKontur.EdiApi.Types.BoxEvents;
+﻿using SkbKontur.EdiApi.Client.Types.BoxEvents;
 
-namespace SkbKontur.EdiApi.Types.Connectors.Transformer
+namespace SkbKontur.EdiApi.Client.Types.Connectors.Transformer
 {
     public class TransformerConnectorBoxEventBatch : BoxEventBatch<TransformerConnectorBoxEventType, TransformerConnectorBoxEvent>
     {

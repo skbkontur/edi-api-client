@@ -2,9 +2,9 @@ using System;
 
 using JetBrains.Annotations;
 
-using SkbKontur.EdiApi.Types.Common;
-using SkbKontur.EdiApi.Types.Connectors;
-using SkbKontur.EdiApi.Types.Connectors.Transformer;
+using SkbKontur.EdiApi.Client.Types.Common;
+using SkbKontur.EdiApi.Client.Types.Connectors;
+using SkbKontur.EdiApi.Client.Types.Connectors.Transformer;
 
 namespace SkbKontur.EdiApi.Client
 {

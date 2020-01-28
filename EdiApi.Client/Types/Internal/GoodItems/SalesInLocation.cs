@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Internal.GoodItems
+﻿namespace SkbKontur.EdiApi.Client.Types.Internal.GoodItems
 {
     public class SalesInLocation
     {

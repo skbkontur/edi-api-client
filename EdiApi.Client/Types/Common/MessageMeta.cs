@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Common
+﻿namespace SkbKontur.EdiApi.Client.Types.Common
 {
     public class MessageMeta
     {

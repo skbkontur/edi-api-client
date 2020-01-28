@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Messages.BoxEventsContents.Inbox
+﻿namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.Inbox
 {
     public class MessageDraftOfDocumentPackageSignedBySenderEventContent : InboxDiadocEventContentBase
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SkbKontur.EdiApi.Types.BoxEvents
+namespace SkbKontur.EdiApi.Client.Types.BoxEvents
 {
     public interface IBoxEventTypeRegistry<TBoxEventType>
     {

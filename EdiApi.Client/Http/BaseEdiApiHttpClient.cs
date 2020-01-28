@@ -5,12 +5,12 @@ using System.Text;
 using JetBrains.Annotations;
 
 using SkbKontur.EdiApi.Client.Http.Helpers;
-using SkbKontur.EdiApi.Types.Boxes;
-using SkbKontur.EdiApi.Types.Organization;
-using SkbKontur.EdiApi.Types.Parties;
-using SkbKontur.EdiApi.Types.Serialization;
+using SkbKontur.EdiApi.Client.Types.Boxes;
+using SkbKontur.EdiApi.Client.Types.Organization;
+using SkbKontur.EdiApi.Client.Types.Parties;
+using SkbKontur.EdiApi.Client.Types.Serialization;
 
-using PartyInfo = SkbKontur.EdiApi.Types.Parties.PartyInfo;
+using PartyInfo = SkbKontur.EdiApi.Client.Types.Parties.PartyInfo;
 
 namespace SkbKontur.EdiApi.Client.Http
 {
@@ -57,8 +57,8 @@ namespace SkbKontur.EdiApi.Client.Http
         public PartyInfo GetPartyInfo([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfo")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
+                .AddParameter("partyId", partyId)
+                .ToUri();
             return MakeGetRequest<PartyInfo>(url, authToken);
         }
 
@@ -66,8 +66,8 @@ namespace SkbKontur.EdiApi.Client.Http
         public PartyInfo GetPartyInfoByGln([NotNull] string authToken, [NotNull] string partyGln)
         {
             var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfoByGln")
-                      .AddParameter("partyGln", partyGln)
-                      .ToUri();
+                .AddParameter("partyGln", partyGln)
+                .ToUri();
             return MakeGetRequest<PartyInfo>(url, authToken);
         }
 
@@ -75,8 +75,8 @@ namespace SkbKontur.EdiApi.Client.Http
         public PartyInfo GetPartyInfoByDepartmentGln([NotNull] string authToken, [NotNull] string departmentGln)
         {
             var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfoByDepartmentGln")
-                      .AddParameter("departmentGln", departmentGln)
-                      .ToUri();
+                .AddParameter("departmentGln", departmentGln)
+                .ToUri();
             return MakeGetRequest<PartyInfo>(url, authToken);
         }
 
@@ -91,8 +91,8 @@ namespace SkbKontur.EdiApi.Client.Http
         public BoxInfo GetMainApiBox([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(BaseUri, "V1/Boxes/GetMainApiBox")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
+                .AddParameter("partyId", partyId)
+                .ToUri();
             return MakeGetRequest<BoxInfo>(url, authToken);
         }
 
@@ -100,8 +100,8 @@ namespace SkbKontur.EdiApi.Client.Http
         public OrganizationCatalogueInfo GetOrganizationCatalogueInfo([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(BaseUri, "V1/Organizations/GetOrganizationCatalogueInfo")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
+                .AddParameter("partyId", partyId)
+                .ToUri();
             return MakeGetRequest<OrganizationCatalogueInfo>(url, authToken);
         }
 
@@ -109,8 +109,8 @@ namespace SkbKontur.EdiApi.Client.Http
         public UsersInfo GetUsersInfo([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(BaseUri, "V1/Users/GetUsersInfo")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
+                .AddParameter("partyId", partyId)
+                .ToUri();
             return MakeGetRequest<UsersInfo>(url, authToken);
         }
 

@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Types.Organization
+﻿namespace SkbKontur.EdiApi.Client.Types.Organization
 {
     public class PartyInfo
     {
