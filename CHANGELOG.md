@@ -1,4 +1,4 @@
 # Changelog
 
-## v1.0.? - 2020.01.24
+## v1.0.10 - 2020.01.28
 - Released first public client version
