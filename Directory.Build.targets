@@ -9,8 +9,8 @@
 
   <Target Name="SetNuSpecProperties" BeforeTargets="GenerateNuspec" DependsOnTargets="GetBuildVersion">
     <PropertyGroup>
-      <PackageId>SkbKontur.EdiApi.Client</PackageId>
-      <Authors>EDI</Authors>
+      <PackageId>$(AssemblyName)</PackageId>
+      <Authors>EDI Team</Authors>
       <PackageTags>EDI API client</PackageTags>
       <PackageDescription>EDI API client implementation</PackageDescription>
       <RepositoryType>git</RepositoryType>

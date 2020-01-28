@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using JetBrains.Annotations;
 
@@ -8,6 +8,7 @@ using SkbKontur.EdiApi.Types.Connectors.Transformer;
 
 namespace SkbKontur.EdiApi.Client
 {
+    [PublicAPI]
     public interface ITransformerConnectorEdiApiClient : IBaseEdiApiClient
     {
         void TransformationStarted([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId);

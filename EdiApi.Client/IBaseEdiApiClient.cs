@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 
 using SkbKontur.EdiApi.Types.Boxes;
 using SkbKontur.EdiApi.Types.Organization;
@@ -8,6 +8,7 @@ using PartyInfo = SkbKontur.EdiApi.Types.Parties.PartyInfo;
 
 namespace SkbKontur.EdiApi.Client
 {
+    [PublicAPI]
     public interface IBaseEdiApiClient
     {
         [NotNull]

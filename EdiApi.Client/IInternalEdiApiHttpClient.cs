@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using JetBrains.Annotations;
 
@@ -12,6 +12,7 @@ using MessageBoxEventBatch = SkbKontur.EdiApi.Types.Internal.MessageBoxEventBatc
 
 namespace SkbKontur.EdiApi.Client
 {
+    [PublicAPI]
     public interface IInternalEdiApiHttpClient
     {
         [CanBeNull]

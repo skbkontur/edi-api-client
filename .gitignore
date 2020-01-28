@@ -6,10 +6,4 @@
 .idea
 *.suo
 *.user
-*.pyc
 _ReSharper.*
-/packages
-desktop.ini
-*-assets*.json
-*.sublime-project
-*.sublime-workspace

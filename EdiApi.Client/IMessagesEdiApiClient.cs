@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using JetBrains.Annotations;
 
@@ -8,6 +8,7 @@ using SkbKontur.EdiApi.Types.Messages.BoxEvents;
 
 namespace SkbKontur.EdiApi.Client
 {
+    [PublicAPI]
     public interface IMessagesEdiApiClient : IBaseEdiApiClient
     {
         [NotNull]
