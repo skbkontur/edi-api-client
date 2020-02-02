@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Text;
 
@@ -194,7 +194,7 @@ namespace SkbKontur.EdiApi.Client.Http
         {
             var request = (HttpWebRequest)WebRequest.Create(requestUri);
             request.AllowAutoRedirect = false;
-            request.AllowWriteStreamBuffering = false;
+            request.AllowWriteStreamBuffering = true;
             request.KeepAlive = true;
             request.Proxy = proxy;
             request.ServicePoint.Expect100Continue = false;
