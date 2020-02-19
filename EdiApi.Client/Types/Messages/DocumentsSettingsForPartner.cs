@@ -1,8 +1,11 @@
-﻿namespace SkbKontur.EdiApi.Client.Types.Messages
+﻿using SkbKontur.EdiApi.Client.Types.Messages.Diadoc;
+
+namespace SkbKontur.EdiApi.Client.Types.Messages
 {
     public class DocumentsSettingsForPartner
     {
         public Partner Partner { get; set; }
         public DocumentSettings[] DocumentSettings { get; set; }
+        public DiadocSettings DiadocSettings { get; set; }
     }
 }
