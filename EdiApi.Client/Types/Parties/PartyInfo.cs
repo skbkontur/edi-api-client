@@ -12,5 +12,6 @@ namespace SkbKontur.EdiApi.Client.Types.Parties
         public PartyType PartyTypeCode { get; set; }
         public string DiadocOrgId { get; set; }
         public DateTime? OrganizationCatalogueUpdateTime { get; set; }
+        public bool LicenseAgreementAccepted { get; set; }
     }
 }
