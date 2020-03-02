@@ -4,7 +4,7 @@
     {
         Default,
         Buyer,
-        DeliveryParty,
+        DeliveryPoint,
         Invoicee,
         Payer,
     }
