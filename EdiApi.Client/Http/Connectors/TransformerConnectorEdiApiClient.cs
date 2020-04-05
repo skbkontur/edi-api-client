@@ -28,36 +28,36 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
         public void TransformationStarted([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationStarted")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .ToUri();
+                      .AddParameter(boxIdUrlParameterName, connectorBoxId)
+                      .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
+                      .ToUri();
             MakePostRequest(url, authToken, content : null);
         }
 
         public void TransformationPaused([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string reason)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationPaused")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .ToUri();
+                      .AddParameter(boxIdUrlParameterName, connectorBoxId)
+                      .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
+                      .ToUri();
             MakePostRequest(url, authToken, reason);
         }
 
         public void TransformationResumed([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationResumed")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .ToUri();
+                      .AddParameter(boxIdUrlParameterName, connectorBoxId)
+                      .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
+                      .ToUri();
             MakePostRequest(url, authToken, content : null);
         }
 
         public void TransformationFinished([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorTransformationResult transformationResult)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "TransformationFinished")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
-                .ToUri();
+                      .AddParameter(boxIdUrlParameterName, connectorBoxId)
+                      .AddParameter(connectorInteractionIdUrlParameterName, connectorInteractionId)
+                      .ToUri();
             MakePostRequest(url, authToken, transformationResult);
         }
 
@@ -65,8 +65,8 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
         public TransformerConnectorBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string connectorBoxId, [CanBeNull] string exclusiveEventId, uint? count = null)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter("exclusiveEventId", exclusiveEventId);
+                      .AddParameter(boxIdUrlParameterName, connectorBoxId)
+                      .AddParameter("exclusiveEventId", exclusiveEventId);
             if (count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             return GetEvents(authToken, url);
@@ -76,8 +76,8 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
         public TransformerConnectorBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string connectorBoxId, DateTime fromDateTime, uint? count = null)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsFrom")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
+                      .AddParameter(boxIdUrlParameterName, connectorBoxId)
+                      .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
             if (count.HasValue)
                 url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             return GetEvents(authToken, url);
@@ -102,9 +102,9 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
         public MessageEntity GetMessage([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string messageId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetMessage")
-                .AddParameter(boxIdUrlParameterName, connectorBoxId)
-                .AddParameter("messageId", messageId)
-                .ToUri();
+                      .AddParameter(boxIdUrlParameterName, connectorBoxId)
+                      .AddParameter("messageId", messageId)
+                      .ToUri();
             return MakeGetRequest<MessageEntity>(url, authToken);
         }
 

@@ -52,8 +52,8 @@ namespace SkbKontur.EdiApi.Client.Types.Serialization
         }
 
         private static readonly XmlAttributeOverrides xmlAttributeOverrides = new XmlAttributeOverrides()
-            .MapTypeWithName<MessageBoxEventBatch>("BoxEventBatch") //Для обратной совместимости со старыми клиентами
-            .MapTypeWithName<MessageBoxEvent>("BoxEvent");
+                                                                              .MapTypeWithName<MessageBoxEventBatch>("BoxEventBatch") //Для обратной совместимости со старыми клиентами
+                                                                              .MapTypeWithName<MessageBoxEvent>("BoxEvent");
 
         private static readonly Type[] knownTypes =
             new[]

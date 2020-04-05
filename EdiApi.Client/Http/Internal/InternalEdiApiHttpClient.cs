@@ -33,10 +33,10 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
         public Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId, bool includeRelatedDocuments = true)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetDocument")
-                .AddParameter("boxId", documentId.BoxId)
-                .AddParameter("entityId", documentId.EntityId)
-                .AddParameter("includeRelatedDocuments", includeRelatedDocuments.ToString())
-                .ToUri();
+                      .AddParameter("boxId", documentId.BoxId)
+                      .AddParameter("entityId", documentId.EntityId)
+                      .AddParameter("includeRelatedDocuments", includeRelatedDocuments.ToString())
+                      .ToUri();
             return MakeGetRequest<Document>(url, authToken);
         }
 
@@ -94,8 +94,8 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
         public PartyInfoWithEmployee[] GetPartiesByUser([NotNull] string authToken, [NotNull] string userId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartiesByUser")
-                .AddParameter("userId", userId)
-                .ToUri();
+                      .AddParameter("userId", userId)
+                      .ToUri();
             return MakeGetRequest<PartyInfoWithEmployee[]>(url, authToken);
         }
 
@@ -103,8 +103,8 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
         public PartyInfoWithEmployees[] GetPartiesInfoByInn([NotNull] string authToken, [NotNull] string partyInn)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartiesInfoByInn")
-                .AddParameter("partyInn", partyInn)
-                .ToUri();
+                      .AddParameter("partyInn", partyInn)
+                      .ToUri();
             return MakeGetRequest<PartyInfoWithEmployees[]>(url, authToken);
         }
 
@@ -112,8 +112,8 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
         public PartySettings GetPartySettings([NotNull] string authToken, [NotNull] string partyId)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartySettings")
-                .AddParameter("partyId", partyId)
-                .ToUri();
+                      .AddParameter("partyId", partyId)
+                      .ToUri();
             return MakeGetRequest<PartySettings>(url, authToken);
         }
 
@@ -128,8 +128,8 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
         public void AddEmployee([NotNull] string authToken, [NotNull] string partyId, [NotNull] string email)
         {
             var url = new UrlBuilder(BaseUri, relativeUrl + "AddEmployee")
-                .AddParameter("partyId", partyId)
-                .AddParameter("email", email);
+                      .AddParameter("partyId", partyId)
+                      .AddParameter("email", email);
             MakePostRequest(url.ToUri(), authToken, content : null);
         }
 
