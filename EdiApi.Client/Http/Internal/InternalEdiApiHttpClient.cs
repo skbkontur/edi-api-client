@@ -130,7 +130,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var url = new UrlBuilder(BaseUri, relativeUrl + "AddEmployee")
                 .AddParameter("partyId", partyId)
                 .AddParameter("email", email);
-            MakeGetRequest(url.ToUri(), authToken);
+            MakePostRequest(url.ToUri(), authToken, content : null);
         }
 
         public void AddOrUpdateTradingPartnersSettings([NotNull] string authToken, [NotNull] EditableTradingPartnersSettings settingsToWrite)
