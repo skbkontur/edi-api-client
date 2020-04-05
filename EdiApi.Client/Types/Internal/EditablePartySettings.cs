@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using JetBrains.Annotations;
 
@@ -12,24 +12,20 @@ namespace SkbKontur.EdiApi.Client.Types.Internal
         [NotNull]
         public EditablePartyInfo PartyInfo { get; set; }
 
-        [CanBeNull]
-        public EditableBillingSettings BillingSettings { get; set; }
+        [NotNull]
+        public EditableDeliverySettings DeliverySettings { get; set; }
 
         [CanBeNull]
         public EditableConnectorSettings ConnectorSettings { get; set; }
 
-        [NotNull]
-        public EditableDeliverySettings DeliverySettings { get; set; }
-    }
-
-    public class EditableBillingSettings
-    {
-        [NotNull]
-        public string BillingId { get; set; }
+        [CanBeNull]
+        public EditableWebInterfaceSettings WebInterfaceSettings { get; set; }
     }
 
     public class EditableDeliverySettings
     {
+        public bool UseTestBoxes { get; set; }
+
         [CanBeNull]
         public EditableApiSettings ApiBoxSettings { get; set; }
 
@@ -78,19 +74,24 @@ namespace SkbKontur.EdiApi.Client.Types.Internal
 
     public class EditablePartyInfo
     {
+        public PartyType PartyType { get; set; }
+
         [NotNull]
         public string Gln { get; set; }
 
         [NotNull]
         public string Name { get; set; }
 
-        public PartyType PartyType { get; set; }
-
         [NotNull]
         public string Inn { get; set; }
 
         [NotNull]
         public string Kpp { get; set; }
+
+        [CanBeNull]
+        public string BillingAccountId { get; set; }
+
+        public bool CreateNewBillingAccount { get; set; }
     }
 
     public class EditableTradingPartnersSettings
@@ -109,5 +110,16 @@ namespace SkbKontur.EdiApi.Client.Types.Internal
 
         [NotNull]
         public DocumentType[] UsedMessages { get; set; }
+    }
+
+    public class EditableWebInterfaceSettings
+    {
+        public WebInterfaceKind DefaultWebInterface { get; set; }
+    }
+
+    public enum WebInterfaceKind
+    {
+        Monitoring,
+        SupplierInterface
     }
 }

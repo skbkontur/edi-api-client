@@ -13,7 +13,7 @@ namespace SkbKontur.EdiApi.Client.Types.Parties
         public string DiadocOrgId { get; set; }
         public DateTime? OrganizationCatalogueUpdateTime { get; set; }
         public bool LicenseAgreementAccepted { get; set; }
-        public BuyerBoxSelectionStrategy BuyerBoxSelectionStrategy {get; set; }
-        public SupplierBoxSelectionStrategy SupplierBoxSelectionStrategy {get; set; }
+        public BuyerBoxSelectionStrategy BuyerBoxSelectionStrategy { get; set; }
+        public SupplierBoxSelectionStrategy SupplierBoxSelectionStrategy { get; set; }
     }
 }
