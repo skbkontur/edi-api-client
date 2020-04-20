@@ -1,5 +1,8 @@
 # История изменений
 
+## v1.3 - 2020.04.20
+- Добавлено свойство `BillingAccountId` в `InternalPartyInfo`. Это тоже самое, что `PortalGroupId`. `PortalGroupId` теперь obsolete и будет удалено в будущих версиях.
+
 ## v1.2 - 2020.04.05
 - Доработка метода `AddOrUpdateParty` для интеграции с Контур.Продажами (EDISUP-13100).
 - Метод `AddEmployee` использует POST-запрос.
