@@ -8,6 +8,7 @@ namespace SkbKontur.EdiApi.Client.Types.Parties
         public string PortalGroupId { get; set; }
 
         public string BillingAccountId { get; set; }
+        public bool IsTest { get; set; }
         public TradingPartnerSettings[] TradingPartnerSettings { get; set; }
     }
 }
