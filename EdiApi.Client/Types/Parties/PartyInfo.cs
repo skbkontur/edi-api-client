@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace SkbKontur.EdiApi.Client.Types.Parties
 {
@@ -15,5 +15,7 @@ namespace SkbKontur.EdiApi.Client.Types.Parties
         public bool LicenseAgreementAccepted { get; set; }
         public BuyerBoxSelectionStrategy BuyerBoxSelectionStrategy { get; set; }
         public SupplierBoxSelectionStrategy SupplierBoxSelectionStrategy { get; set; }
+
+        public PaidFeatureInfo[] PaidFeatures { get; set; }
     }
 }
