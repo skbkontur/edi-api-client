@@ -1,5 +1,8 @@
 # История изменений
 
+## v1.5 - 2020.05.31
+- Добавлено свойство `IsTest` в `InternalPartyInfo`. Обозначает, что организация является тестовой.
+
 ## v1.4 - 2020.04.28
 - Исправлен баг в `InternalPartyInfo`. Свойство `InternalPartyInfo.PortalGroupId` не сериализовалась в XML с помощью `System.Xml.Serialization.XmlSerializer`. Теперь снова сериализуется.
 
