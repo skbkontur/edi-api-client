@@ -5,6 +5,5 @@
         Unknown = 0,
         Module1C = 1,
         FtpTransport = 2,
-        EdiApi = 3,
     }
 }
