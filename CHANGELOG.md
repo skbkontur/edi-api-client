@@ -1,5 +1,9 @@
 # История изменений
 
+## v1.7 - 2020.10.28
+- Добавлены: `enum PaidFeatureType`, `class PaidPeriod`, `class PaidFeatureInfo`.
+- В `class PartyInfo` добавлено свойство `PaidFeatures`, обозначающее информацию о платных услугах для организации.
+
 ## v1.6 - 2020.06.15
 - В `enum PartyType` добавлено значение `Provider`, обозначающее тип организации Провайдер.
 
