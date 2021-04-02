@@ -18,11 +18,12 @@ namespace SkbKontur.EdiApi.Client.Http
     {
         protected BaseEdiApiHttpClient(
             string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer,
-            int timeoutInMilliseconds, IWebProxy proxy = null)
+            int timeoutInMilliseconds, IWebProxy proxy = null, bool enableKeepAlive = true)
         {
             this.apiClientId = apiClientId;
             this.BaseUri = baseUri;
             this.proxy = proxy;
+            this.enableKeepAlive = enableKeepAlive;
             this.timeoutInMilliseconds = timeoutInMilliseconds;
             this.Serializer = serializer;
         }
@@ -195,7 +196,7 @@ namespace SkbKontur.EdiApi.Client.Http
             var request = (HttpWebRequest)WebRequest.Create(requestUri);
             request.AllowAutoRedirect = false;
             request.AllowWriteStreamBuffering = true;
-            request.KeepAlive = true;
+            request.KeepAlive = enableKeepAlive;
             request.Proxy = proxy;
             request.ServicePoint.Expect100Continue = false;
             request.ServicePoint.UseNagleAlgorithm = false;
@@ -218,6 +219,7 @@ namespace SkbKontur.EdiApi.Client.Http
 
         private readonly string apiClientId;
         private readonly IWebProxy proxy;
+        private readonly bool enableKeepAlive;
         private readonly int timeoutInMilliseconds;
     }
 }
