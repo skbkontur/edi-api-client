@@ -1,6 +1,9 @@
 # История изменений
 
-## v1.7 - 2020.10.28
+## v1.7.8 - 2020.04.02
+- Добавлен параметр `enableKeepAlive` в конструктор класса `BaseEdiApiHttpClient`.
+
+## v1.7.6 - 2020.10.28
 - Добавлены: `enum PaidFeatureType`, `class PaidPeriod`, `class PaidFeatureInfo`.
 - В `class PartyInfo` добавлено свойство `PaidFeatures`, обозначающее информацию о платных услугах для организации.
 
