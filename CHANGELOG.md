@@ -1,5 +1,8 @@
 # История изменений
 
+## v1.7.10 - 2020.04.02
+- Добавлен параметр `enableKeepAlive` в конструктор классов `TransformerConnectorEdiApiClient`, `InternalEdiApiHttpClient` и `MessagesEdiApiHttpClient`.
+
 ## v1.7.8 - 2020.04.02
 - Добавлен параметр `enableKeepAlive` в конструктор класса `BaseEdiApiHttpClient`.
 
