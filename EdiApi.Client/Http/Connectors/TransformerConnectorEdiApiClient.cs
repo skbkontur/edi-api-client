@@ -15,13 +15,13 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
 {
     public class TransformerConnectorEdiApiClient : BaseEdiApiHttpClient, ITransformerConnectorEdiApiClient
     {
-        public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null)
-            : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
+        public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
+            : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, enableKeepAlive)
         {
         }
 
-        public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null)
-            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
+        public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
+            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy, enableKeepAlive)
         {
         }
 
