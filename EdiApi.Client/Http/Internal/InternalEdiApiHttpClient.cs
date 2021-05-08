@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Net;
 
 using JetBrains.Annotations;
 
-using SkbKontur.EdiApi.Client.Http.Helpers;
 using SkbKontur.EdiApi.Client.Types.Boxes;
 using SkbKontur.EdiApi.Client.Types.BoxEvents;
 using SkbKontur.EdiApi.Client.Types.Internal;
@@ -12,6 +11,9 @@ using SkbKontur.EdiApi.Client.Types.Messages.BoxEvents;
 using SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents;
 using SkbKontur.EdiApi.Client.Types.Parties;
 using SkbKontur.EdiApi.Client.Types.Serialization;
+
+using Vostok.Clusterclient.Core;
+using Vostok.Clusterclient.Core.Model;
 
 using MessageBoxEventBatch = SkbKontur.EdiApi.Client.Types.Internal.MessageBoxEventBatch;
 
@@ -29,114 +31,173 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
         {
         }
 
+        public InternalEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
+            : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, enableKeepAlive)
+        {
+        }
+
+        public InternalEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
+            : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, enableKeepAlive)
+        {
+        }
+
         [CanBeNull]
         public Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId, bool includeRelatedDocuments = true)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetDocument")
-                      .AddParameter("boxId", documentId.BoxId)
-                      .AddParameter("entityId", documentId.EntityId)
-                      .AddParameter("includeRelatedDocuments", includeRelatedDocuments.ToString())
-                      .ToUri();
-            return MakeGetRequest<Document>(url, authToken);
+            var request = BuildGetRequest("V1/Internal/GetDocument", null, authToken)
+                          .WithAdditionalQueryParameter("boxId", documentId.BoxId)
+                          .WithAdditionalQueryParameter("entityId", documentId.EntityId)
+                          .WithAdditionalQueryParameter("includeRelatedDocuments", includeRelatedDocuments.ToString());
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<Document>(result.Response.Content.ToString());
         }
 
         [NotNull]
         public MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, int? count = null)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents");
+            var request = BuildGetRequest("V1/Internal/GetEvents", null, authToken);
+
             if (!string.IsNullOrWhiteSpace(exclusiveEventPointer))
-                url.AddParameter("exclusiveEventPointer", exclusiveEventPointer);
+            {
+                request = request.WithAdditionalQueryParameter("exclusiveEventPointer", exclusiveEventPointer);
+            }
             if (count.HasValue)
-                url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
-            var boxEventBatch = MakeGetRequest<MessageBoxEventBatch>(url.ToUri(), authToken);
-            boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
+            {
+                request = request.WithAdditionalQueryParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            var boxEventBatch = Serializer.Deserialize<MessageBoxEventBatch>(result.Response.Content.ToString());
             foreach (var boxEvent in boxEventBatch.Events)
+            {
                 AdjustEventContent(boxEvent);
+            }
+
             return boxEventBatch;
         }
 
         [NotNull]
         public MessageBoxEvent[] GetEventsByDocumentCirculationId([NotNull] string authToken, [NotNull] string documentCirculationId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsByDocumentCirculationId")
-                .AddParameter("documentCirculationId", documentCirculationId);
-            var boxEvents = MakeGetRequest<MessageBoxEvent[]>(url.ToUri(), authToken);
+            var request = BuildGetRequest("V1/Internal/GetEventsByDocumentCirculationId", null, authToken)
+                .WithAdditionalQueryParameter("documentCirculationId", documentCirculationId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            var boxEvents = Serializer.Deserialize<MessageBoxEvent[]>(result.Response.Content.ToString());
             foreach (var boxEvent in boxEvents)
+            {
                 AdjustEventContent(boxEvent);
+            }
             return boxEvents;
         }
 
         [NotNull]
         public string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetLastEventPointer")
-                .AddParameter("beforeDateTime", DateTimeUtils.ToString(beforeDateTime));
-            return MakeGetRequestInternal(url.ToUri(), authToken);
+            var request = BuildGetRequest("V1/Internal/GetLastEventPointer", null, authToken)
+                .WithAdditionalQueryParameter("beforeDateTime", DateTimeUtils.ToString(beforeDateTime));
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return result.Response.Content.ToString();
         }
 
         [NotNull]
         public BoxesInfo GetBoxesInfo([NotNull] string authToken, [NotNull] string partyId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetBoxesInfo")
-                .AddParameter("partyId", partyId);
-            return MakeGetRequest<BoxesInfo>(url.ToUri(), authToken);
+            var request = BuildGetRequest("V1/Internal/GetBoxesInfo", null, authToken)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<BoxesInfo>(result.Response.Content.ToString());
         }
 
         [NotNull]
         public InternalPartyInfo GetInternalPartyInfo([NotNull] string authToken, [NotNull] string partyId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetInternalPartyInfo")
-                .AddParameter("partyId", partyId);
-            return MakeGetRequest<InternalPartyInfo>(url.ToUri(), authToken);
+            var request = BuildGetRequest("V1/Internal/GetInternalPartyInfo", null, authToken)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<InternalPartyInfo>(result.Response.Content.ToString());
         }
 
         [NotNull]
         public PartyInfoWithEmployee[] GetPartiesByUser([NotNull] string authToken, [NotNull] string userId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartiesByUser")
-                      .AddParameter("userId", userId)
-                      .ToUri();
-            return MakeGetRequest<PartyInfoWithEmployee[]>(url, authToken);
+            var request = BuildGetRequest("V1/Internal/GetPartiesByUser", null, authToken)
+                .WithAdditionalQueryParameter("userId", userId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<PartyInfoWithEmployee[]>(result.Response.Content.ToString());
         }
 
         [NotNull]
         public PartyInfoWithEmployees[] GetPartiesInfoByInn([NotNull] string authToken, [NotNull] string partyInn)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartiesInfoByInn")
-                      .AddParameter("partyInn", partyInn)
-                      .ToUri();
-            return MakeGetRequest<PartyInfoWithEmployees[]>(url, authToken);
+            var request = BuildGetRequest("V1/Internal/GetPartiesInfoByInn", null, authToken)
+                .WithAdditionalQueryParameter("partyInn", partyInn);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<PartyInfoWithEmployees[]>(result.Response.Content.ToString());
         }
 
         [NotNull]
         public PartySettings GetPartySettings([NotNull] string authToken, [NotNull] string partyId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetPartySettings")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
-            return MakeGetRequest<PartySettings>(url, authToken);
+            var request = BuildGetRequest("V1/Internal/GetPartySettings", null, authToken)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<PartySettings>(result.Response.Content.ToString());
         }
 
         [NotNull]
         public string AddOrUpdateParty([NotNull] string authToken, [NotNull] string partyId, [NotNull] EditablePartySettings editablePartySettings)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "AddOrUpdateParty")
-                .AddParameter("partyId", partyId);
-            return MakePostRequest<EditablePartySettings, string>(url.ToUri(), authToken, editablePartySettings);
+            var request = BuildPostRequest("V1/Internal/AddOrUpdateParty", null, authToken, editablePartySettings)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<string>(result.Response.Content.ToString());
         }
 
         public void AddEmployee([NotNull] string authToken, [NotNull] string partyId, [NotNull] string email)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "AddEmployee")
-                      .AddParameter("partyId", partyId)
-                      .AddParameter("email", email);
-            MakePostRequest(url.ToUri(), authToken, content : null);
+            var request = BuildPostRequest("V1/Internal/AddEmployee", null, authToken, Array.Empty<byte>())
+                          .WithAdditionalQueryParameter("partyId", partyId)
+                          .WithAdditionalQueryParameter("email", email);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
         }
 
         public void AddOrUpdateTradingPartnersSettings([NotNull] string authToken, [NotNull] EditableTradingPartnersSettings settingsToWrite)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "AddOrUpdateTradingPartnersSettings");
-            MakePostRequest(url.ToUri(), authToken, settingsToWrite);
+            var request = BuildPostRequest("V1/Internal/AddOrUpdateTradingPartnersSettings", null, authToken, settingsToWrite);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
         }
 
         private void AdjustEventContent(MessageBoxEvent boxEvent)
@@ -147,7 +208,6 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
                     : null;
         }
 
-        private const string relativeUrl = "V1/Internal/";
         private readonly IBoxEventTypeRegistry<MessageBoxEventType> boxEventTypeRegistry = new MessageBoxEventTypeRegistry();
     }
 }
