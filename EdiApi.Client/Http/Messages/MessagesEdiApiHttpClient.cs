@@ -2,8 +2,6 @@ using System;
 using System.Globalization;
 using System.Net;
 
-using JetBrains.Annotations;
-
 using SkbKontur.EdiApi.Client.Types.BoxEvents;
 using SkbKontur.EdiApi.Client.Types.Common;
 using SkbKontur.EdiApi.Client.Types.Messages;
@@ -12,35 +10,37 @@ using SkbKontur.EdiApi.Client.Types.Serialization;
 
 using Vostok.Clusterclient.Core;
 using Vostok.Clusterclient.Core.Model;
+using Vostok.Tracing.Abstractions;
+
+#nullable enable
 
 namespace SkbKontur.EdiApi.Client.Http.Messages
 {
     public class MessagesEdiApiHttpClient : BaseEdiApiHttpClient, IMessagesEdiApiClient
     {
-        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, enableKeepAlive)
+        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+            : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
         }
 
-        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy, enableKeepAlive)
+        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 
-        public MessagesEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, enableKeepAlive)
+        public MessagesEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+            : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, tracer)
         {
         }
 
-        public MessagesEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, enableKeepAlive)
+        public MessagesEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+            : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, tracer)
         {
         }
 
-        [NotNull]
-        public BoxDocumentsSettings GetBoxDocumentsSettings([NotNull] string authToken, [NotNull] string boxId)
+        public BoxDocumentsSettings GetBoxDocumentsSettings(string authToken, string boxId)
         {
-            var request = BuildGetRequest("V1/Messages/GetBoxDocumentsSettings", null, authToken)
+            var request = BuildGetRequest("V1/Messages/GetBoxDocumentsSettings", authToken : authToken)
                 .WithAdditionalQueryParameter("boxId", boxId);
 
             var result = clusterClient.Send(request);
@@ -49,10 +49,9 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
             return Serializer.Deserialize<BoxDocumentsSettings>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public MessageData GetMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public MessageData GetMessage(string authToken, string boxId, string messageId)
         {
-            var request = BuildGetRequest("V1/Messages/GetMessage", null, authToken)
+            var request = BuildGetRequest("V1/Messages/GetMessage", authToken : authToken)
                           .WithAdditionalQueryParameter("boxId", boxId)
                           .WithAdditionalQueryParameter("messageId", messageId);
 
@@ -62,10 +61,9 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
             return Serializer.Deserialize<MessageData>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public InboxMessageMeta GetInboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public InboxMessageMeta GetInboxMessageMeta(string authToken, string boxId, string messageId)
         {
-            var request = BuildGetRequest("V1/Messages/GetInboxMessageMeta", null, authToken)
+            var request = BuildGetRequest("V1/Messages/GetInboxMessageMeta", authToken : authToken)
                           .WithAdditionalQueryParameter("boxId", boxId)
                           .WithAdditionalQueryParameter("messageId", messageId);
 
@@ -75,10 +73,9 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
             return Serializer.Deserialize<InboxMessageMeta>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public OutboxMessageMeta GetOutboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public OutboxMessageMeta GetOutboxMessageMeta(string authToken, string boxId, string messageId)
         {
-            var request = BuildGetRequest("V1/Messages/GetOutboxMessageMeta", null, authToken)
+            var request = BuildGetRequest("V1/Messages/GetOutboxMessageMeta", authToken : authToken)
                           .WithAdditionalQueryParameter("boxId", boxId)
                           .WithAdditionalQueryParameter("messageId", messageId);
 
@@ -88,8 +85,7 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
             return Serializer.Deserialize<OutboxMessageMeta>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public OutboxMessageMeta SendMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] MessageData messageData)
+        public OutboxMessageMeta SendMessage(string authToken, string boxId, MessageData messageData)
         {
             var request = BuildPostRequest("V1/Messages/SendMessage", null, authToken, messageData.MessageBody)
                           .WithAdditionalQueryParameter("boxId", boxId)
@@ -101,9 +97,9 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
             return Serializer.Deserialize<OutboxMessageMeta>(result.Response.Content.ToString());
         }
 
-        public void MessageDeliveryStarted([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public void MessageDeliveryStarted(string authToken, string boxId, string messageId)
         {
-            var request = BuildPostRequest("V1/Messages/MessageDeliveryStarted", null, authToken, Array.Empty<byte>())
+            var request = BuildPostRequest("V1/Messages/MessageDeliveryStarted", authToken: authToken)
                           .WithAdditionalQueryParameter("boxId", boxId)
                           .WithAdditionalQueryParameter("messageId", messageId);
 
@@ -111,7 +107,7 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
             EnsureSuccessResult(result);
         }
 
-        public void MessageDeliveryFinished([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId, [NotNull] MessageDeliveryResult messageDeliveryResult)
+        public void MessageDeliveryFinished(string authToken, string boxId, string messageId, MessageDeliveryResult messageDeliveryResult)
         {
             var request = BuildPostRequest("V1/Messages/MessageDeliveryFinished", null, authToken, messageDeliveryResult)
                           .WithAdditionalQueryParameter("boxId", boxId)
@@ -121,10 +117,9 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
             EnsureSuccessResult(result);
         }
 
-        [NotNull]
-        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, string exclusiveEventId, uint? count = null)
+        public MessageBoxEventBatch GetEvents(string authToken, string boxId, string? exclusiveEventId, uint? count = null)
         {
-            var request = BuildGetRequest("V1/Messages/GetEvents", null, authToken)
+            var request = BuildGetRequest("V1/Messages/GetEvents", authToken : authToken)
                           .WithAdditionalQueryParameter("boxId", boxId)
                           .WithAdditionalQueryParameter("exclusiveEventId", exclusiveEventId);
 
@@ -133,26 +128,12 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
                 request = request.WithAdditionalQueryParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             }
 
-            var result = clusterClient.Send(request);
-            EnsureSuccessResult(result);
-
-            var boxEventBatch = Serializer.Deserialize<MessageBoxEventBatch>(result.Response.Content.ToString());
-            boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
-            foreach (var boxEvent in boxEventBatch.Events)
-            {
-                boxEvent.EventContent =
-                    boxEventTypeRegistry.IsSupportedEventType(boxEvent.EventType)
-                        ? Serializer.NormalizeDeserializedObjectToType(boxEvent.EventContent, boxEventTypeRegistry.GetEventContentType(boxEvent.EventType))
-                        : null;
-            }
-
-            return boxEventBatch;
+            return GetEventsInternal(request);
         }
 
-        [NotNull]
-        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, DateTime fromDateTime, uint? count = null)
+        public MessageBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null)
         {
-            var request = BuildGetRequest("V1/Messages/GetEventsFrom", null, authToken)
+            var request = BuildGetRequest("V1/Messages/GetEventsFrom", authToken : authToken)
                           .WithAdditionalQueryParameter("boxId", boxId)
                           .WithAdditionalQueryParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
 
@@ -161,11 +142,16 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
                 request = request.WithAdditionalQueryParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
             }
 
+            return GetEventsInternal(request);
+        }
+
+        private MessageBoxEventBatch GetEventsInternal(Request request)
+        {
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
             var boxEventBatch = Serializer.Deserialize<MessageBoxEventBatch>(result.Response.Content.ToString());
-            boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
+            boxEventBatch.Events ??= new MessageBoxEvent[0];
             foreach (var boxEvent in boxEventBatch.Events)
             {
                 boxEvent.EventContent =

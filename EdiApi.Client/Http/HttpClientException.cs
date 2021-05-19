@@ -24,9 +24,9 @@ namespace SkbKontur.EdiApi.Client.Http
 
             if (!result.Response.HasContent)
             {
-                throw new HttpClientException(message, statusCode);
+                return new HttpClientException(message, statusCode);
             }
-            throw new HttpClientException(message, statusCode, new HttpClientServerException(result.Response.Content.ToString()));
+            return new HttpClientException(message, statusCode, new HttpClientServerException(result.Response.Content.ToString()));
         }
     }
 

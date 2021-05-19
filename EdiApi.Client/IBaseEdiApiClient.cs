@@ -1,41 +1,31 @@
-using JetBrains.Annotations;
-
 using SkbKontur.EdiApi.Client.Types.Boxes;
 using SkbKontur.EdiApi.Client.Types.Organization;
 using SkbKontur.EdiApi.Client.Types.Parties;
 
 using PartyInfo = SkbKontur.EdiApi.Client.Types.Parties.PartyInfo;
 
+#nullable enable
+
 namespace SkbKontur.EdiApi.Client
 {
-    [PublicAPI]
     public interface IBaseEdiApiClient
     {
-        [NotNull]
-        string Authenticate([NotNull] string portalSid);
+        string Authenticate(string portalSid);
 
-        [NotNull]
-        string Authenticate([NotNull] string login, [NotNull] string password);
+        string Authenticate(string login, string password);
 
-        [NotNull]
-        PartiesInfo GetAccessiblePartiesInfo([NotNull] string authToken);
+        PartiesInfo GetAccessiblePartiesInfo(string authToken);
 
-        [NotNull]
-        PartyInfo GetPartyInfo([NotNull] string authToken, [NotNull] string partyId);
+        PartyInfo GetPartyInfo(string authToken, string partyId);
 
-        [NotNull]
-        PartyInfo GetPartyInfoByGln([NotNull] string authToken, [NotNull] string partyGln);
+        PartyInfo GetPartyInfoByGln(string authToken, string partyGln);
 
-        [NotNull]
-        BoxesInfo GetBoxesInfo([NotNull] string authToken);
+        BoxesInfo GetBoxesInfo(string authToken);
 
-        [NotNull]
-        BoxInfo GetMainApiBox([NotNull] string authToken, [NotNull] string partyId);
+        BoxInfo GetMainApiBox(string authToken, string partyId);
 
-        [NotNull]
-        OrganizationCatalogueInfo GetOrganizationCatalogueInfo([NotNull] string authToken, [NotNull] string partyId);
+        OrganizationCatalogueInfo GetOrganizationCatalogueInfo(string authToken, string partyId);
 
-        [NotNull]
-        PartyInfo GetPartyInfoByDepartmentGln([NotNull] string authToken, [NotNull] string departmentGln);
+        PartyInfo GetPartyInfoByDepartmentGln(string authToken, string departmentGln);
     }
 }

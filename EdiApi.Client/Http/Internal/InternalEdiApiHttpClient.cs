@@ -2,8 +2,6 @@ using System;
 using System.Globalization;
 using System.Net;
 
-using JetBrains.Annotations;
-
 using SkbKontur.EdiApi.Client.Types.Boxes;
 using SkbKontur.EdiApi.Client.Types.BoxEvents;
 using SkbKontur.EdiApi.Client.Types.Internal;
@@ -14,37 +12,39 @@ using SkbKontur.EdiApi.Client.Types.Serialization;
 
 using Vostok.Clusterclient.Core;
 using Vostok.Clusterclient.Core.Model;
+using Vostok.Tracing.Abstractions;
 
 using MessageBoxEventBatch = SkbKontur.EdiApi.Client.Types.Internal.MessageBoxEventBatch;
+
+#nullable enable
 
 namespace SkbKontur.EdiApi.Client.Http.Internal
 {
     public class InternalEdiApiHttpClient : BaseEdiApiHttpClient, IInternalEdiApiHttpClient
     {
-        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, enableKeepAlive)
+        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+            : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy, enableKeepAlive)
+        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, enableKeepAlive)
+        public InternalEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+            : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, tracer)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, enableKeepAlive)
+        public InternalEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+            : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, tracer)
         {
         }
 
-        [CanBeNull]
-        public Document GetDocument([NotNull] string authToken, [NotNull] DocumentId documentId, bool includeRelatedDocuments = true)
+        public Document? GetDocument(string authToken, DocumentId documentId, bool includeRelatedDocuments = true)
         {
-            var request = BuildGetRequest("V1/Internal/GetDocument", null, authToken)
+            var request = BuildGetRequest("V1/Internal/GetDocument", authToken : authToken)
                           .WithAdditionalQueryParameter("boxId", documentId.BoxId)
                           .WithAdditionalQueryParameter("entityId", documentId.EntityId)
                           .WithAdditionalQueryParameter("includeRelatedDocuments", includeRelatedDocuments.ToString());
@@ -55,10 +55,9 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return Serializer.Deserialize<Document>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [CanBeNull] string exclusiveEventPointer, int? count = null)
+        public MessageBoxEventBatch GetEvents(string authToken, string? exclusiveEventPointer, int? count = null)
         {
-            var request = BuildGetRequest("V1/Internal/GetEvents", null, authToken);
+            var request = BuildGetRequest("V1/Internal/GetEvents", authToken : authToken);
 
             if (!string.IsNullOrWhiteSpace(exclusiveEventPointer))
             {
@@ -81,10 +80,9 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return boxEventBatch;
         }
 
-        [NotNull]
-        public MessageBoxEvent[] GetEventsByDocumentCirculationId([NotNull] string authToken, [NotNull] string documentCirculationId)
+        public MessageBoxEvent[] GetEventsByDocumentCirculationId(string authToken, string documentCirculationId)
         {
-            var request = BuildGetRequest("V1/Internal/GetEventsByDocumentCirculationId", null, authToken)
+            var request = BuildGetRequest("V1/Internal/GetEventsByDocumentCirculationId", authToken : authToken)
                 .WithAdditionalQueryParameter("documentCirculationId", documentCirculationId);
 
             var result = clusterClient.Send(request);
@@ -98,10 +96,9 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return boxEvents;
         }
 
-        [NotNull]
-        public string GetLastEventPointer([NotNull] string authToken, DateTime beforeDateTime)
+        public string GetLastEventPointer(string authToken, DateTime beforeDateTime)
         {
-            var request = BuildGetRequest("V1/Internal/GetLastEventPointer", null, authToken)
+            var request = BuildGetRequest("V1/Internal/GetLastEventPointer", authToken : authToken)
                 .WithAdditionalQueryParameter("beforeDateTime", DateTimeUtils.ToString(beforeDateTime));
 
             var result = clusterClient.Send(request);
@@ -110,10 +107,9 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return result.Response.Content.ToString();
         }
 
-        [NotNull]
-        public BoxesInfo GetBoxesInfo([NotNull] string authToken, [NotNull] string partyId)
+        public BoxesInfo GetBoxesInfo(string authToken, string partyId)
         {
-            var request = BuildGetRequest("V1/Internal/GetBoxesInfo", null, authToken)
+            var request = BuildGetRequest("V1/Internal/GetBoxesInfo", authToken : authToken)
                 .WithAdditionalQueryParameter("partyId", partyId);
 
             var result = clusterClient.Send(request);
@@ -122,10 +118,9 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return Serializer.Deserialize<BoxesInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public InternalPartyInfo GetInternalPartyInfo([NotNull] string authToken, [NotNull] string partyId)
+        public InternalPartyInfo GetInternalPartyInfo(string authToken, string partyId)
         {
-            var request = BuildGetRequest("V1/Internal/GetInternalPartyInfo", null, authToken)
+            var request = BuildGetRequest("V1/Internal/GetInternalPartyInfo", authToken : authToken)
                 .WithAdditionalQueryParameter("partyId", partyId);
 
             var result = clusterClient.Send(request);
@@ -134,10 +129,9 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return Serializer.Deserialize<InternalPartyInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public PartyInfoWithEmployee[] GetPartiesByUser([NotNull] string authToken, [NotNull] string userId)
+        public PartyInfoWithEmployee[] GetPartiesByUser(string authToken, string userId)
         {
-            var request = BuildGetRequest("V1/Internal/GetPartiesByUser", null, authToken)
+            var request = BuildGetRequest("V1/Internal/GetPartiesByUser", authToken : authToken)
                 .WithAdditionalQueryParameter("userId", userId);
 
             var result = clusterClient.Send(request);
@@ -146,8 +140,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return Serializer.Deserialize<PartyInfoWithEmployee[]>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public PartyInfoWithEmployees[] GetPartiesInfoByInn([NotNull] string authToken, [NotNull] string partyInn)
+        public PartyInfoWithEmployees[] GetPartiesInfoByInn(string authToken, string partyInn)
         {
             var request = BuildGetRequest("V1/Internal/GetPartiesInfoByInn", null, authToken)
                 .WithAdditionalQueryParameter("partyInn", partyInn);
@@ -158,10 +151,9 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return Serializer.Deserialize<PartyInfoWithEmployees[]>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public PartySettings GetPartySettings([NotNull] string authToken, [NotNull] string partyId)
+        public PartySettings GetPartySettings(string authToken, string partyId)
         {
-            var request = BuildGetRequest("V1/Internal/GetPartySettings", null, authToken)
+            var request = BuildGetRequest("V1/Internal/GetPartySettings", authToken : authToken)
                 .WithAdditionalQueryParameter("partyId", partyId);
 
             var result = clusterClient.Send(request);
@@ -170,8 +162,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return Serializer.Deserialize<PartySettings>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public string AddOrUpdateParty([NotNull] string authToken, [NotNull] string partyId, [NotNull] EditablePartySettings editablePartySettings)
+        public string AddOrUpdateParty(string authToken, string partyId, EditablePartySettings editablePartySettings)
         {
             var request = BuildPostRequest("V1/Internal/AddOrUpdateParty", null, authToken, editablePartySettings)
                 .WithAdditionalQueryParameter("partyId", partyId);
@@ -182,9 +173,9 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             return Serializer.Deserialize<string>(result.Response.Content.ToString());
         }
 
-        public void AddEmployee([NotNull] string authToken, [NotNull] string partyId, [NotNull] string email)
+        public void AddEmployee(string authToken, string partyId, string email)
         {
-            var request = BuildPostRequest("V1/Internal/AddEmployee", null, authToken, Array.Empty<byte>())
+            var request = BuildPostRequest("V1/Internal/AddEmployee", authToken : authToken)
                           .WithAdditionalQueryParameter("partyId", partyId)
                           .WithAdditionalQueryParameter("email", email);
 
@@ -192,7 +183,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             EnsureSuccessResult(result);
         }
 
-        public void AddOrUpdateTradingPartnersSettings([NotNull] string authToken, [NotNull] EditableTradingPartnersSettings settingsToWrite)
+        public void AddOrUpdateTradingPartnersSettings(string authToken, EditableTradingPartnersSettings settingsToWrite)
         {
             var request = BuildPostRequest("V1/Internal/AddOrUpdateTradingPartnersSettings", null, authToken, settingsToWrite);
 

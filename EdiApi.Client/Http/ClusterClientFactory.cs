@@ -3,8 +3,12 @@ using System.Net;
 
 using Vostok.Clusterclient.Core;
 using Vostok.Clusterclient.Singular;
+using Vostok.Clusterclient.Tracing;
 using Vostok.Clusterclient.Transport;
 using Vostok.Logging.Abstractions;
+using Vostok.Tracing.Abstractions;
+
+#nullable enable
 
 namespace SkbKontur.EdiApi.Client.Http
 {
@@ -13,9 +17,8 @@ namespace SkbKontur.EdiApi.Client.Http
         public static IClusterClient Get(
             Uri externalUri,
             int defaultRequestTimeoutMs,
-            IWebProxy proxy,
-            bool enableKeepAlive,
-            ILog log = null
+            IWebProxy? proxy = null,
+            ILog? log = null
         )
         {
             if (externalUri == null)
@@ -31,8 +34,7 @@ namespace SkbKontur.EdiApi.Client.Http
                         new UniversalTransportSettings
                             {
                                 AllowAutoRedirect = false,
-                                Proxy = proxy,
-                                TcpKeepAliveEnabled = enableKeepAlive
+                                Proxy = proxy
                             });
                 });
         }
@@ -40,9 +42,9 @@ namespace SkbKontur.EdiApi.Client.Http
         public static IClusterClient Get(
             string environmentName,
             int defaultRequestTimeoutMs,
-            IWebProxy proxy,
-            bool enableKeepAlive,
-            ILog log = null
+            IWebProxy? proxy = null,
+            ILog? log = null,
+            ITracer? tracer = null
         )
         {
             if (string.IsNullOrEmpty(environmentName))
@@ -58,9 +60,11 @@ namespace SkbKontur.EdiApi.Client.Http
                         new UniversalTransportSettings
                             {
                                 AllowAutoRedirect = false,
-                                Proxy = proxy,
-                                TcpKeepAliveEnabled = enableKeepAlive
+                                Proxy = proxy
                             });
+
+                    if(tracer != null)
+                        configuration.SetupDistributedTracing(tracer);
                 });
         }
     }

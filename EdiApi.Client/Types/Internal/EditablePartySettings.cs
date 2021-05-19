@@ -1,36 +1,30 @@
 using System.Collections.Generic;
 
-using JetBrains.Annotations;
-
 using SkbKontur.EdiApi.Client.Types.Messages;
 using SkbKontur.EdiApi.Client.Types.Parties;
+
+#nullable enable
 
 namespace SkbKontur.EdiApi.Client.Types.Internal
 {
     public class EditablePartySettings
     {
-        [NotNull]
-        public EditablePartyInfo PartyInfo { get; set; }
+        public EditablePartyInfo PartyInfo { get; set; } = default!;
 
-        [NotNull]
-        public EditableDeliverySettings DeliverySettings { get; set; }
+        public EditableDeliverySettings DeliverySettings { get; set; } = default!;
 
-        [CanBeNull]
-        public EditableConnectorSettings ConnectorSettings { get; set; }
+        public EditableConnectorSettings? ConnectorSettings { get; set; }
 
-        [CanBeNull]
-        public EditableWebInterfaceSettings WebInterfaceSettings { get; set; }
+        public EditableWebInterfaceSettings? WebInterfaceSettings { get; set; }
     }
 
     public class EditableDeliverySettings
     {
         public bool UseTestBoxes { get; set; }
 
-        [CanBeNull]
-        public EditableApiSettings ApiBoxSettings { get; set; }
+        public EditableApiSettings? ApiBoxSettings { get; set; }
 
-        [NotNull]
-        public string XmlEncoding { get; set; }
+        public string XmlEncoding { get; set; } = default!;
 
         public MessageFormat MessageFormat { get; set; }
         public MessageFormat StatusMessageFormat { get; set; }
@@ -45,71 +39,55 @@ namespace SkbKontur.EdiApi.Client.Types.Internal
     {
         public EditableConnectorSettings() => InboxByDocTypeBoxes = new List<EditableConnectorBoxForDocType>();
 
-        [CanBeNull]
-        public EditableConnectorBox AllOutboxBox { get; set; }
+        public EditableConnectorBox? AllOutboxBox { get; set; }
 
-        [CanBeNull]
-        public EditableConnectorBox AllInboxBox { get; set; }
+        public EditableConnectorBox? AllInboxBox { get; set; }
 
-        [ItemNotNull]
         public List<EditableConnectorBoxForDocType> InboxByDocTypeBoxes { get; set; }
     }
 
     public class EditableConnectorBox
     {
-        [NotNull]
-        public string Id { get; set; }
+        public string Id { get; set; } = default!;
 
-        [NotNull]
-        public string Name { get; set; }
+        public string Name { get; set; } = default!;
     }
 
     public class EditableConnectorBoxForDocType
     {
         public DocumentType DocumentType { get; set; }
 
-        [NotNull]
-        public EditableConnectorBox Box { get; set; }
+        public EditableConnectorBox Box { get; set; } = default!;
     }
 
     public class EditablePartyInfo
     {
         public PartyType PartyType { get; set; }
 
-        [NotNull]
-        public string Gln { get; set; }
+        public string Gln { get; set; } = default!;
 
-        [NotNull]
-        public string Name { get; set; }
+        public string Name { get; set; } = default!;
 
-        [NotNull]
-        public string Inn { get; set; }
+        public string Inn { get; set; } = default!;
 
-        [NotNull]
-        public string Kpp { get; set; }
+        public string Kpp { get; set; } = default!;
 
-        [CanBeNull]
-        public string BillingAccountId { get; set; }
+        public string? BillingAccountId { get; set; }
 
         public bool CreateNewBillingAccount { get; set; }
     }
 
     public class EditableTradingPartnersSettings
     {
-        [NotNull]
-        public string BuyerId { get; set; }
+        public string BuyerId { get; set; } = default!;
 
-        [NotNull]
-        public string SupplierId { get; set; }
+        public string SupplierId { get; set; } = default!;
 
-        [CanBeNull]
-        public string BuyerRoamingProviderId { get; set; }
+        public string? BuyerRoamingProviderId { get; set; }
 
-        [CanBeNull]
-        public string SupplierRoamingProviderId { get; set; }
+        public string? SupplierRoamingProviderId { get; set; }
 
-        [NotNull]
-        public DocumentType[] UsedMessages { get; set; }
+        public DocumentType[] UsedMessages { get; set; } = default!;
     }
 
     public class EditableWebInterfaceSettings

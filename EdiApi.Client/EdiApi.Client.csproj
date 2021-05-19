@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
     <AssemblyName>SkbKontur.EdiApi.Client</AssemblyName>
     <RootNamespace>$(AssemblyName)</RootNamespace>
   </PropertyGroup>
@@ -12,10 +13,6 @@
     <PackageReference Include="Vostok.ClusterClient.Singular" Version="0.1.11" />
     <PackageReference Include="Vostok.ClusterClient.Tracing" Version="0.1.4" />
     <PackageReference Include="Vostok.ClusterClient.Transport" Version="0.1.17" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="Nerdbank.GitVersioning" Version="3.4.194" />
   </ItemGroup>
 
 </Project>
