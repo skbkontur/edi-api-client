@@ -1,124 +1,157 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Net;
 
-using JetBrains.Annotations;
-
-using SkbKontur.EdiApi.Client.Http.Helpers;
 using SkbKontur.EdiApi.Client.Types.BoxEvents;
 using SkbKontur.EdiApi.Client.Types.Common;
 using SkbKontur.EdiApi.Client.Types.Messages;
 using SkbKontur.EdiApi.Client.Types.Messages.BoxEvents;
 using SkbKontur.EdiApi.Client.Types.Serialization;
 
+using Vostok.Clusterclient.Core;
+using Vostok.Clusterclient.Core.Model;
+using Vostok.Tracing.Abstractions;
+
+#nullable enable
+
 namespace SkbKontur.EdiApi.Client.Http.Messages
 {
     public class MessagesEdiApiHttpClient : BaseEdiApiHttpClient, IMessagesEdiApiClient
     {
-        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, enableKeepAlive)
+        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+            : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
         }
 
-        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy proxy = null, bool enableKeepAlive = true)
-            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy, enableKeepAlive)
+        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+            : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 
-        [NotNull]
-        public BoxDocumentsSettings GetBoxDocumentsSettings([NotNull] string authToken, [NotNull] string boxId)
+        public MessagesEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+            : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, tracer)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetBoxDocumentsSettings")
-                      .AddParameter("boxId", boxId)
-                      .ToUri();
-            return MakeGetRequest<BoxDocumentsSettings>(url, authToken);
         }
 
-        [NotNull]
-        public MessageData GetMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public MessagesEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+            : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, tracer)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetMessage")
-                      .AddParameter("boxId", boxId)
-                      .AddParameter("messageId", messageId)
-                      .ToUri();
-            return MakeGetRequest<MessageData>(url, authToken);
         }
 
-        [NotNull]
-        public InboxMessageMeta GetInboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public BoxDocumentsSettings GetBoxDocumentsSettings(string authToken, string boxId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetInboxMessageMeta")
-                      .AddParameter("boxId", boxId)
-                      .AddParameter("messageId", messageId)
-                      .ToUri();
-            return MakeGetRequest<InboxMessageMeta>(url, authToken);
+            var request = BuildGetRequest("V1/Messages/GetBoxDocumentsSettings", authToken : authToken)
+                .WithAdditionalQueryParameter("boxId", boxId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<BoxDocumentsSettings>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public OutboxMessageMeta GetOutboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public MessageData GetMessage(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetOutboxMessageMeta")
-                      .AddParameter("boxId", boxId)
-                      .AddParameter("messageId", messageId)
-                      .ToUri();
-            return MakeGetRequest<OutboxMessageMeta>(url, authToken);
+            var request = BuildGetRequest("V1/Messages/GetMessage", authToken : authToken)
+                          .WithAdditionalQueryParameter("boxId", boxId)
+                          .WithAdditionalQueryParameter("messageId", messageId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<MessageData>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public OutboxMessageMeta SendMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] MessageData messageData)
+        public InboxMessageMeta GetInboxMessageMeta(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "SendMessage")
-                      .AddParameter("boxId", boxId)
-                      .AddParameter("messageFileName", messageData.MessageFileName)
-                      .ToUri();
-            return MakePostRequest<OutboxMessageMeta>(url, authToken, messageData.MessageBody);
+            var request = BuildGetRequest("V1/Messages/GetInboxMessageMeta", authToken : authToken)
+                          .WithAdditionalQueryParameter("boxId", boxId)
+                          .WithAdditionalQueryParameter("messageId", messageId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<InboxMessageMeta>(result.Response.Content.ToString());
         }
 
-        public void MessageDeliveryStarted([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId)
+        public OutboxMessageMeta GetOutboxMessageMeta(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "MessageDeliveryStarted")
-                      .AddParameter("boxId", boxId)
-                      .AddParameter("messageId", messageId)
-                      .ToUri();
-            MakePostRequest(url, authToken, content : null);
+            var request = BuildGetRequest("V1/Messages/GetOutboxMessageMeta", authToken : authToken)
+                          .WithAdditionalQueryParameter("boxId", boxId)
+                          .WithAdditionalQueryParameter("messageId", messageId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<OutboxMessageMeta>(result.Response.Content.ToString());
         }
 
-        public void MessageDeliveryFinished([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId, [NotNull] MessageDeliveryResult messageDeliveryResult)
+        public OutboxMessageMeta SendMessage(string authToken, string boxId, MessageData messageData)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "MessageDeliveryFinished")
-                      .AddParameter("boxId", boxId)
-                      .AddParameter("messageId", messageId)
-                      .ToUri();
-            MakePostRequest(url, authToken, messageDeliveryResult);
+            var request = BuildPostRequest("V1/Messages/SendMessage", null, authToken, messageData.MessageBody)
+                          .WithAdditionalQueryParameter("boxId", boxId)
+                          .WithAdditionalQueryParameter("messageFileName", messageData.MessageFileName);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<OutboxMessageMeta>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, string exclusiveEventId, uint? count = null)
+        public void MessageDeliveryStarted(string authToken, string boxId, string messageId)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEvents")
-                      .AddParameter(boxIdUrlParameterName, boxId)
-                      .AddParameter("exclusiveEventId", exclusiveEventId);
+            var request = BuildPostRequest("V1/Messages/MessageDeliveryStarted", authToken: authToken)
+                          .WithAdditionalQueryParameter("boxId", boxId)
+                          .WithAdditionalQueryParameter("messageId", messageId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+        }
+
+        public void MessageDeliveryFinished(string authToken, string boxId, string messageId, MessageDeliveryResult messageDeliveryResult)
+        {
+            var request = BuildPostRequest("V1/Messages/MessageDeliveryFinished", null, authToken, messageDeliveryResult)
+                          .WithAdditionalQueryParameter("boxId", boxId)
+                          .WithAdditionalQueryParameter("messageId", messageId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+        }
+
+        public MessageBoxEventBatch GetEvents(string authToken, string boxId, string? exclusiveEventId, uint? count = null)
+        {
+            var request = BuildGetRequest("V1/Messages/GetEvents", authToken : authToken)
+                          .WithAdditionalQueryParameter("boxId", boxId)
+                          .WithAdditionalQueryParameter("exclusiveEventId", exclusiveEventId);
+
             if (count.HasValue)
-                url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
-            return GetEvents(authToken, url);
+            {
+                request = request.WithAdditionalQueryParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            return GetEventsInternal(request);
         }
 
-        [NotNull]
-        public MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, DateTime fromDateTime, uint? count = null)
+        public MessageBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null)
         {
-            var url = new UrlBuilder(BaseUri, relativeUrl + "GetEventsFrom")
-                      .AddParameter(boxIdUrlParameterName, boxId)
-                      .AddParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
+            var request = BuildGetRequest("V1/Messages/GetEventsFrom", authToken : authToken)
+                          .WithAdditionalQueryParameter("boxId", boxId)
+                          .WithAdditionalQueryParameter("fromDateTime", DateTimeUtils.ToString(fromDateTime));
+
             if (count.HasValue)
-                url.AddParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
-            return GetEvents(authToken, url);
+            {
+                request = request.WithAdditionalQueryParameter("count", count.Value.ToString(CultureInfo.InvariantCulture));
+            }
+
+            return GetEventsInternal(request);
         }
 
-        [NotNull]
-        private MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] UrlBuilder url)
+        private MessageBoxEventBatch GetEventsInternal(Request request)
         {
-            var boxEventBatch = MakeGetRequest<MessageBoxEventBatch>(url.ToUri(), authToken);
-            boxEventBatch.Events = boxEventBatch.Events ?? new MessageBoxEvent[0];
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            var boxEventBatch = Serializer.Deserialize<MessageBoxEventBatch>(result.Response.Content.ToString());
+            boxEventBatch.Events ??= new MessageBoxEvent[0];
             foreach (var boxEvent in boxEventBatch.Events)
             {
                 boxEvent.EventContent =
@@ -126,11 +159,10 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
                         ? Serializer.NormalizeDeserializedObjectToType(boxEvent.EventContent, boxEventTypeRegistry.GetEventContentType(boxEvent.EventType))
                         : null;
             }
+
             return boxEventBatch;
         }
 
-        private const string relativeUrl = "V1/Messages/";
-        private const string boxIdUrlParameterName = "boxId";
         private readonly IBoxEventTypeRegistry<MessageBoxEventType> boxEventTypeRegistry = new MessageBoxEventTypeRegistry();
     }
 }

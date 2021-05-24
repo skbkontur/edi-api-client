@@ -2,15 +2,18 @@ using System;
 using System.Net;
 using System.Text;
 
-using JetBrains.Annotations;
-
-using SkbKontur.EdiApi.Client.Http.Helpers;
 using SkbKontur.EdiApi.Client.Types.Boxes;
 using SkbKontur.EdiApi.Client.Types.Organization;
 using SkbKontur.EdiApi.Client.Types.Parties;
 using SkbKontur.EdiApi.Client.Types.Serialization;
 
+using Vostok.Clusterclient.Core;
+using Vostok.Clusterclient.Core.Model;
+using Vostok.Tracing.Abstractions;
+
 using PartyInfo = SkbKontur.EdiApi.Client.Types.Parties.PartyInfo;
+
+#nullable enable
 
 namespace SkbKontur.EdiApi.Client.Http
 {
@@ -18,208 +21,197 @@ namespace SkbKontur.EdiApi.Client.Http
     {
         protected BaseEdiApiHttpClient(
             string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer,
-            int timeoutInMilliseconds, IWebProxy proxy = null, bool enableKeepAlive = true)
+            int timeoutInMilliseconds, IWebProxy? proxy = null)
         {
             this.apiClientId = apiClientId;
-            this.BaseUri = baseUri;
-            this.proxy = proxy;
-            this.enableKeepAlive = enableKeepAlive;
-            this.timeoutInMilliseconds = timeoutInMilliseconds;
-            this.Serializer = serializer;
+            Serializer = serializer;
+            clusterClient = ClusterClientFactory.Get(baseUri, timeoutInMilliseconds, proxy);
         }
 
-        [NotNull]
-        public string Authenticate([NotNull] string portalSid)
+        protected BaseEdiApiHttpClient(
+            string apiClientId, string environment, IEdiApiTypesSerializer serializer,
+            int timeoutInMilliseconds, IWebProxy? proxy = null, ITracer? tracer = null)
         {
-            return DoAuthenticate(string.Format("konturediauth_portalsid={0}", portalSid));
+            this.apiClientId = apiClientId;
+            Serializer = serializer;
+            clusterClient = ClusterClientFactory.Get(environment, timeoutInMilliseconds, proxy, tracer : tracer);
         }
 
-        [NotNull]
-        public string Authenticate([NotNull] string login, [NotNull] string password)
+        public string Authenticate(string portalSid) =>
+            DoAuthenticate(new AuthCredentials {PortalSid = portalSid});
+
+        public string Authenticate(string login, string password) =>
+            DoAuthenticate(new AuthCredentials {Login = login, Password = password});
+
+        private string DoAuthenticate(AuthCredentials authCredentials)
         {
-            return DoAuthenticate(string.Format("konturediauth_login={0},konturediauth_password={1}", login, password));
+            var request = BuildPostRequest("V1/Authenticate", authCredentials);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return result.Response.Content.ToString();
         }
 
-        [NotNull]
-        private string DoAuthenticate([NotNull] string authCredentials)
+        public PartiesInfo GetAccessiblePartiesInfo(string authToken)
         {
-            var url = new UrlBuilder(BaseUri, "V1/Authenticate").ToUri();
-            return MakePostRequestInternal(url, null, null, webRequest => { webRequest.Headers["Authorization"] += string.Format(",{0}", authCredentials); });
+            var request = BuildGetRequest("V1/Parties/GetAccessiblePartiesInfo", authToken : authToken);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<PartiesInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public PartiesInfo GetAccessiblePartiesInfo([NotNull] string authToken)
+        public PartyInfo GetPartyInfo(string authToken, string partyId)
         {
-            var url = new UrlBuilder(BaseUri, "V1/Parties/GetAccessiblePartiesInfo").ToUri();
-            return MakeGetRequest<PartiesInfo>(url, authToken);
+            var request = BuildGetRequest("V1/Parties/GetPartyInfo", authToken : authToken)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<PartyInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public PartyInfo GetPartyInfo([NotNull] string authToken, [NotNull] string partyId)
+        public PartyInfo GetPartyInfoByGln(string authToken, string partyGln)
         {
-            var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfo")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
-            return MakeGetRequest<PartyInfo>(url, authToken);
+            var request = BuildGetRequest("V1/Parties/GetPartyInfoByGln", authToken : authToken)
+                .WithAdditionalQueryParameter("partyGln", partyGln);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<PartyInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public PartyInfo GetPartyInfoByGln([NotNull] string authToken, [NotNull] string partyGln)
+        public PartyInfo GetPartyInfoByDepartmentGln(string authToken, string departmentGln)
         {
-            var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfoByGln")
-                      .AddParameter("partyGln", partyGln)
-                      .ToUri();
-            return MakeGetRequest<PartyInfo>(url, authToken);
+            var request = BuildGetRequest("V1/Parties/GetPartyInfoByDepartmentGln", authToken : authToken)
+                .WithAdditionalQueryParameter("departmentGln", departmentGln);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<PartyInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public PartyInfo GetPartyInfoByDepartmentGln([NotNull] string authToken, [NotNull] string departmentGln)
+        public BoxesInfo GetBoxesInfo(string authToken)
         {
-            var url = new UrlBuilder(BaseUri, "V1/Parties/GetPartyInfoByDepartmentGln")
-                      .AddParameter("departmentGln", departmentGln)
-                      .ToUri();
-            return MakeGetRequest<PartyInfo>(url, authToken);
+            var request = BuildGetRequest("V1/Boxes/GetBoxesInfo", authToken : authToken);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<BoxesInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public BoxesInfo GetBoxesInfo([NotNull] string authToken)
+        public BoxInfo GetMainApiBox(string authToken, string partyId)
         {
-            var url = new UrlBuilder(BaseUri, "V1/Boxes/GetBoxesInfo").ToUri();
-            return MakeGetRequest<BoxesInfo>(url, authToken);
+            var request = BuildGetRequest("V1/Boxes/GetMainApiBox", authToken : authToken)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<BoxInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public BoxInfo GetMainApiBox([NotNull] string authToken, [NotNull] string partyId)
+        public OrganizationCatalogueInfo GetOrganizationCatalogueInfo(string authToken, string partyId)
         {
-            var url = new UrlBuilder(BaseUri, "V1/Boxes/GetMainApiBox")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
-            return MakeGetRequest<BoxInfo>(url, authToken);
+            var request = BuildGetRequest("V1/Organizations/GetOrganizationCatalogueInfo", authToken : authToken)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<OrganizationCatalogueInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public OrganizationCatalogueInfo GetOrganizationCatalogueInfo([NotNull] string authToken, [NotNull] string partyId)
+        public UsersInfo GetUsersInfo(string authToken, string partyId)
         {
-            var url = new UrlBuilder(BaseUri, "V1/Organizations/GetOrganizationCatalogueInfo")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
-            return MakeGetRequest<OrganizationCatalogueInfo>(url, authToken);
+            var request = BuildGetRequest("V1/Users/GetUsersInfo", authToken : authToken)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<UsersInfo>(result.Response.Content.ToString());
         }
 
-        [NotNull]
-        public UsersInfo GetUsersInfo([NotNull] string authToken, [NotNull] string partyId)
-        {
-            var url = new UrlBuilder(BaseUri, "V1/Users/GetUsersInfo")
-                      .AddParameter("partyId", partyId)
-                      .ToUri();
-            return MakeGetRequest<UsersInfo>(url, authToken);
-        }
-
-        protected TResult MakeGetRequest<TResult>(Uri requestUri, string authToken) where TResult : class
-        {
-            return Serializer.Deserialize<TResult>(MakeGetRequestInternal(requestUri, authToken));
-        }
-
-        protected TResult MakePostRequest<TResult>(Uri requestUri, string authToken, byte[] content) where TResult : class
-        {
-            return Serializer.Deserialize<TResult>(MakePostRequestInternal(requestUri, authToken, content));
-        }
-
-        protected void MakeGetRequest(Uri requestUri, string authToken)
-        {
-            MakeGetRequestInternal(requestUri, authToken);
-        }
-
-        protected void MakePostRequest(Uri requestUri, string authToken, byte[] content)
-        {
-            MakePostRequestInternal(requestUri, authToken, content);
-        }
-
-        protected void MakePostRequest<TRequestBody>(Uri requestUri, string authToken, TRequestBody bodyObject)
-            where TRequestBody : class
-        {
-            MakePostRequestInternal(requestUri, authToken, Serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = Serializer.ContentType);
-        }
-
-        protected TResult MakePostRequest<TRequestBody, TResult>(Uri requestUri, string authToken, TRequestBody bodyObject)
-            where TRequestBody : class
-            where TResult : class
-        {
-            return Serializer.Deserialize<TResult>(MakePostRequestInternal(requestUri, authToken, Serializer.Serialize(bodyObject).GetBytes(), req => req.ContentType = Serializer.ContentType));
-        }
-
-        protected Uri BaseUri { get; }
         protected IEdiApiTypesSerializer Serializer { get; }
+
         protected const int DefaultTimeout = 30 * 1000;
 
-        protected virtual string MakePostRequestInternal([NotNull] Uri requestUri, [NotNull] string authToken, [CanBeNull] byte[] content, [CanBeNull] Action<HttpWebRequest> customizeRequest = null)
-        {
-            var request = CreateRequest(requestUri, authToken);
-            request.Method = "POST";
-            if (content == null || content.Length == 0)
-            {
-                request.Headers.Add("Content", "no");
-                content = new byte[] {1};
-            }
-            request.ContentLength = content.Length;
-            customizeRequest?.Invoke(request);
-            try
-            {
-                using (var requestStream = request.GetRequestStream())
-                    requestStream.Write(content, 0, content.Length);
-                using (var response = request.GetResponse())
-                    return response.GetString();
-            }
-            catch (WebException exception)
-            {
-                throw HttpClientException.Create(exception, requestUri);
-            }
-        }
+        protected virtual Request BuildPostRequest(string relativeUrl, AuthCredentials? authCredentials = null, string? authToken = null)
+            => BuildPostRequest(relativeUrl, authCredentials, authToken, Array.Empty<byte>());
 
-        protected virtual string MakeGetRequestInternal([NotNull] Uri requestUri, [NotNull] string authToken)
+        protected virtual Request BuildPostRequest<TContent>(string relativeUrl, AuthCredentials? authCredentials, string? authToken, TContent? content)
+            where TContent : class
         {
-            var request = CreateRequest(requestUri, authToken);
-            request.Method = "GET";
-            try
-            {
-                using (var response = request.GetResponse())
-                    return response.GetString();
-            }
-            catch (WebException exception)
-            {
-                throw HttpClientException.Create(exception, requestUri);
-            }
-        }
+            var request = Request.Post(relativeUrl)
+                                 .WithHeader("Authorization", BuildAuthorizationHeader(authCredentials, authToken))
+                                 .WithAcceptHeader(Serializer.ContentType);
 
-        private HttpWebRequest CreateRequest(Uri requestUri, string authToken)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(requestUri);
-            request.AllowAutoRedirect = false;
-            request.AllowWriteStreamBuffering = true;
-            request.KeepAlive = enableKeepAlive;
-            request.Proxy = proxy;
-            request.ServicePoint.Expect100Continue = false;
-            request.ServicePoint.UseNagleAlgorithm = false;
-            request.ServicePoint.ConnectionLimit = 128;
-            request.Timeout = timeoutInMilliseconds;
-            request.Accept = Serializer.ContentType;
-            request.Headers["Authorization"] = BuildAuthorizationHeader(authToken);
+            var data = content as byte[];
+
+            if (data == null && content != null)
+            {
+                data = Encoding.UTF8.GetBytes(Serializer.Serialize(content));
+                request = request.WithContentTypeHeader(Serializer.ContentType);
+            }
+
+            if (data == null || data.Length == 0)
+            {
+                request = request.WithHeader("Content", "no");
+                data = new byte[] {1};
+            }
+
+            request = request.WithContent(data);
+
             return request;
         }
 
-        private string BuildAuthorizationHeader(string authToken)
+        protected virtual Request BuildGetRequest(string relativeUrl, AuthCredentials? authCredentials = null, string? authToken = null)
+        {
+            var request = Request.Get(relativeUrl)
+                                 .WithHeader("Authorization", BuildAuthorizationHeader(authCredentials, authToken))
+                                 .WithAcceptHeader(Serializer.ContentType);
+
+            return request;
+        }
+
+        protected virtual void EnsureSuccessResult(ClusterResult result)
+        {
+            if (!result.Response.IsSuccessful)
+            {
+                throw HttpClientException.Create(result);
+            }
+        }
+
+        private string BuildAuthorizationHeader(AuthCredentials? authCredentials, string? authToken)
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("KonturEdiAuth ");
             stringBuilder.Append("konturediauth_api_client_id=" + apiClientId);
             if (!string.IsNullOrEmpty(authToken))
+            {
                 stringBuilder.Append(",konturediauth_token=" + authToken);
+            }
+            if (!string.IsNullOrEmpty(authCredentials?.PortalSid))
+            {
+                stringBuilder.Append("," + $"konturediauth_portalsid={authCredentials.PortalSid}");
+            }
+            if (!string.IsNullOrEmpty(authCredentials?.Login))
+            {
+                stringBuilder.Append("," + $"konturediauth_login={authCredentials.Login},konturediauth_password={authCredentials.Password}");
+            }
+
             return stringBuilder.ToString();
         }
 
+        protected readonly IClusterClient clusterClient;
+
         private readonly string apiClientId;
-        private readonly IWebProxy proxy;
-        private readonly bool enableKeepAlive;
-        private readonly int timeoutInMilliseconds;
     }
 }

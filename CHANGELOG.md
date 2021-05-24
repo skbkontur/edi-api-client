@@ -1,5 +1,9 @@
 # История изменений
 
+## v1.8.1 - 2021.05.11
+- EdiApiClient переведен на ClusterClient
+- Добавлены конструкторы для работы через Singular в классы `TransformerConnectorEdiApiClient`, `InternalEdiApiHttpClient` и `MessagesEdiApiHttpClient`.
+
 ## v1.7.10 - 2020.04.02
 - Добавлен параметр `enableKeepAlive` в конструктор классов `TransformerConnectorEdiApiClient`, `InternalEdiApiHttpClient` и `MessagesEdiApiHttpClient`.
 

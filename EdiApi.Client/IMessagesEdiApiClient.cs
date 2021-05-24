@@ -1,39 +1,31 @@
 using System;
 
-using JetBrains.Annotations;
-
 using SkbKontur.EdiApi.Client.Types.Common;
 using SkbKontur.EdiApi.Client.Types.Messages;
 using SkbKontur.EdiApi.Client.Types.Messages.BoxEvents;
 
+#nullable enable
+
 namespace SkbKontur.EdiApi.Client
 {
-    [PublicAPI]
     public interface IMessagesEdiApiClient : IBaseEdiApiClient
     {
-        [NotNull]
-        BoxDocumentsSettings GetBoxDocumentsSettings([NotNull] string authToken, [NotNull] string boxId);
+        BoxDocumentsSettings GetBoxDocumentsSettings(string authToken, string boxId);
 
-        [NotNull]
-        MessageData GetMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId);
+        MessageData GetMessage(string authToken, string boxId, string messageId);
 
-        [NotNull]
-        InboxMessageMeta GetInboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId);
+        InboxMessageMeta GetInboxMessageMeta(string authToken, string boxId, string messageId);
 
-        [NotNull]
-        OutboxMessageMeta GetOutboxMessageMeta([NotNull] string authToken, [NotNull] string boxId, [NotNull] string messageId);
+        OutboxMessageMeta GetOutboxMessageMeta(string authToken, string boxId, string messageId);
 
-        [NotNull]
-        OutboxMessageMeta SendMessage([NotNull] string authToken, [NotNull] string boxId, [NotNull] MessageData messageData);
+        OutboxMessageMeta SendMessage(string authToken, string boxId, MessageData messageData);
 
-        [NotNull]
-        MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, [CanBeNull] string exclusiveEventId, uint? count = null);
+        MessageBoxEventBatch GetEvents(string authToken, string boxId, string? exclusiveEventId, uint? count = null);
 
-        [NotNull]
-        MessageBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string boxId, DateTime fromDateTime, uint? count = null);
+        MessageBoxEventBatch GetEvents(string authToken, string boxId, DateTime fromDateTime, uint? count = null);
 
-        void MessageDeliveryStarted([NotNull] string authToken, [NotNull] string boxId, [NotNull] string documentCirculationId);
+        void MessageDeliveryStarted(string authToken, string boxId, string documentCirculationId);
 
-        void MessageDeliveryFinished([NotNull] string authToken, [NotNull] string boxId, [NotNull] string documentCirculationId, [NotNull] MessageDeliveryResult messageDeliveryResult);
+        void MessageDeliveryFinished(string authToken, string boxId, string documentCirculationId, MessageDeliveryResult messageDeliveryResult);
     }
 }

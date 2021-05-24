@@ -1,38 +1,39 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Text;
+using System;
+
+using Vostok.Clusterclient.Core.Model;
 
 namespace SkbKontur.EdiApi.Client.Http
 {
     public class HttpClientException : Exception
     {
-        private HttpClientException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
+        private HttpClientException(string message, ResponseCode statusCode, Exception innerException)
+            : base(message, innerException) =>
+            StatusCode = statusCode;
 
-        public static HttpClientException Create(WebException exception, Uri requestUri)
+        private HttpClientException(string message, ResponseCode statusCode)
+            : base(message) =>
+            StatusCode = statusCode;
+
+        public ResponseCode StatusCode { get; }
+
+        public static HttpClientException Create(ClusterResult result)
         {
-            var message = "Request for url '" + requestUri + "' failed";
-            if (!(exception.Response is HttpWebResponse response))
-                return new HttpClientException(message, exception);
-            string serverMessage = null;
-            var responseStream = response.GetResponseStream();
-            if (responseStream != null)
+            var message = "Request for url '" + result.Request.Url + "' failed";
+
+            var statusCode = result.Response.Code;
+
+            if (!result.Response.HasContent)
             {
-                using (var reader = new StreamReader(responseStream, Encoding.UTF8))
-                    serverMessage = reader.ReadToEnd();
+                return new HttpClientException(message, statusCode);
             }
-            var serverException = new HttpClientServerException(serverMessage, exception);
-            return new HttpClientException(message, serverException);
+            return new HttpClientException(message, statusCode, new HttpClientServerException(result.Response.Content.ToString()));
         }
     }
 
     public class HttpClientServerException : Exception
     {
-        protected internal HttpClientServerException(string message, Exception innerException)
-            : base(message, innerException)
+        protected internal HttpClientServerException(string message)
+            : base(message)
         {
         }
     }

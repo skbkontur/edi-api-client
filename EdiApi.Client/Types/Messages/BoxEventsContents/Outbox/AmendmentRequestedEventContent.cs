@@ -1,10 +1,9 @@
-using JetBrains.Annotations;
+#nullable enable
 
 namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.Outbox
 {
     public class AmendmentRequestedEventContent : OutboxDiadocEventContentBase
     {
-        [CanBeNull]
-        public string AmendmentRequestMessage { get; set; }
+        public string? AmendmentRequestMessage { get; set; }
     }
 }

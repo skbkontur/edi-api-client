@@ -1,34 +1,29 @@
 using System;
 
-using JetBrains.Annotations;
-
 using SkbKontur.EdiApi.Client.Types.Common;
 using SkbKontur.EdiApi.Client.Types.Connectors;
 using SkbKontur.EdiApi.Client.Types.Connectors.Transformer;
 
+#nullable enable
+
 namespace SkbKontur.EdiApi.Client
 {
-    [PublicAPI]
     public interface ITransformerConnectorEdiApiClient : IBaseEdiApiClient
     {
-        void TransformationStarted([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId);
+        void TransformationStarted(string authToken, string connectorBoxId, string connectorInteractionId);
 
-        void TransformationPaused([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [CanBeNull] string reason);
+        void TransformationPaused(string authToken, string connectorBoxId, string connectorInteractionId, string? reason);
 
-        void TransformationResumed([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId);
+        void TransformationResumed(string authToken, string connectorBoxId, string connectorInteractionId);
 
-        void TransformationFinished([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string connectorInteractionId, [NotNull] ConnectorTransformationResult transformationResult);
+        void TransformationFinished(string authToken, string connectorBoxId, string connectorInteractionId, ConnectorTransformationResult transformationResult);
 
-        [NotNull]
-        TransformerConnectorBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string connectorBoxId, [CanBeNull] string exclusiveEventId, uint? count = null);
+        TransformerConnectorBoxEventBatch GetEvents(string authToken, string connectorBoxId, string? exclusiveEventId, uint? count = null);
 
-        [NotNull]
-        TransformerConnectorBoxEventBatch GetEvents([NotNull] string authToken, [NotNull] string connectorBoxId, DateTime fromDateTime, uint? count = null);
+        TransformerConnectorBoxEventBatch GetEvents(string authToken, string connectorBoxId, DateTime fromDateTime, uint? count = null);
 
-        [NotNull]
-        MessageEntity GetMessage([NotNull] string authToken, [NotNull] string connectorBoxId, [NotNull] string messageId);
+        MessageEntity GetMessage(string authToken, string connectorBoxId, string messageId);
 
-        [NotNull]
-        ConnectorBoxesInfo GetConnectorBoxesInfo([NotNull] string authToken);
+        ConnectorBoxesInfo GetConnectorBoxesInfo(string authToken);
     }
 }
