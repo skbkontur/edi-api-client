@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
+namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 {
     public enum MessageBoxEventType
     {
@@ -28,5 +28,7 @@
         AmendmentRequested,
         DiadocDocumentDelivered,
         DiadocRevocationRequested,
+        DocumentPackageSignedByRecipientPartiallyOk,
+        DocumentPackageSignedByMePartiallyOk,
     }
 }

@@ -1,4 +1,4 @@
-﻿using SkbKontur.EdiApi.Client.Types.BoxEvents;
+using SkbKontur.EdiApi.Client.Types.BoxEvents;
 using SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents;
 using SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.Inbox;
 using SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.Outbox;
@@ -34,6 +34,8 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
             Register<MessageDocumentPackageSignedByMeFailEventContent>(MessageBoxEventType.DocumentPackageSignedByMeFail);
             Register<AmendmentRequestedEventContent>(MessageBoxEventType.AmendmentRequested);
             Register<DiadocDocumentDeliveredEventContent>(MessageBoxEventType.DiadocDocumentDelivered);
+            Register<MessageDocumentPackageSignedByRecipientPartiallyOkEventContent>(MessageBoxEventType.DocumentPackageSignedByRecipientPartiallyOk);
+            Register<MessageDocumentPackageSignedByMePartiallyOkEventContent>(MessageBoxEventType.DocumentPackageSignedByMePartiallyOk);
         }
     }
 }
