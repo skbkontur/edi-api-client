@@ -1,5 +1,8 @@
 # История изменений
 
+## v1.9.1 - 2021.06.12
+- Добавлены события для подписания документа в Диадоке с разногласиями
+
 ## v1.8.1 - 2021.05.11
 - EdiApiClient переведен на ClusterClient
 - Добавлены конструкторы для работы через Singular в классы `TransformerConnectorEdiApiClient`, `InternalEdiApiHttpClient` и `MessagesEdiApiHttpClient`.
