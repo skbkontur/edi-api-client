@@ -1,4 +1,4 @@
-﻿namespace SkbKontur.EdiApi.Client.Types.Messages
+namespace SkbKontur.EdiApi.Client.Types.Messages
 {
     public class DiadocUrls
     {
@@ -8,6 +8,7 @@
         public string InvoiceCorrectionUrl { get; set; }
         public string UniversalTransferDocumentUrl { get; set; }
         public string UniversalCorrectionDocumentUrl { get; set; }
+        public string PriceListUrl { get; set; }
         public string NonformalizedUrl { get; set; }
     }
 }
