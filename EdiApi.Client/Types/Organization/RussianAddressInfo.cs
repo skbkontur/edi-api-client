@@ -9,6 +9,7 @@ namespace SkbKontur.EdiApi.Client.Types.Organization
         public string Village { get; set; }
         public string Street { get; set; }
         public string House { get; set; }
+        public string Block { get; set; }
         public string Flat { get; set; }
     }
 }
