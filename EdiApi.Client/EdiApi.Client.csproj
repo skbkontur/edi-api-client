@@ -7,6 +7,11 @@
     <RootNamespace>$(AssemblyName)</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Vostok.ClusterClient.Core" Version="0.1.26" />
