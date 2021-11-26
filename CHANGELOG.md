@@ -1,5 +1,8 @@
 # История изменений
 
+## v1.9.9 - 2021.11.26
+- В событие MessageDocumentPackageSignedByRecipientFailEventContent добавлено поле Reason, содержащее комментарий отказа подписи документа получателем
+
 ## v1.9.5 - 2021.09.13
 - Добавлено свойство RussianAddressInfo.Block для передачи корпуса в адресе
 
