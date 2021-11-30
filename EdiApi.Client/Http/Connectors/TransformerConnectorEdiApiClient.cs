@@ -91,7 +91,7 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
 
             return GetEventsInternal(request);
         }
-        
+
         public TransformerConnectorBoxEventBatch GetEvents(string authToken, string connectorBoxId, DateTime fromDateTime, uint? count = null)
         {
             var request = BuildGetRequest("V1/Connectors/Transformers/GetEventsFrom", authToken : authToken)

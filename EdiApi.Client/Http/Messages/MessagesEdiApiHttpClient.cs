@@ -99,7 +99,7 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
 
         public void MessageDeliveryStarted(string authToken, string boxId, string messageId)
         {
-            var request = BuildPostRequest("V1/Messages/MessageDeliveryStarted", authToken: authToken)
+            var request = BuildPostRequest("V1/Messages/MessageDeliveryStarted", authToken : authToken)
                           .WithAdditionalQueryParameter("boxId", boxId)
                           .WithAdditionalQueryParameter("messageId", messageId);
 

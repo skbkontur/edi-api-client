@@ -63,7 +63,7 @@ namespace SkbKontur.EdiApi.Client.Http
                                 Proxy = proxy
                             });
 
-                    if(tracer != null)
+                    if (tracer != null)
                         configuration.SetupDistributedTracing(tracer);
                 });
         }
