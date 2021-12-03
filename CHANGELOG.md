@@ -1,5 +1,9 @@
 # История изменений
 
+## v1.9.14 - 2021.12.03
+- В событие MessageDocumentPackageSignedByRecipientPartiallyOkEventContent добавлено поле Reason, содержащее комментарий подписи с разногласиями получателем
+- Перешли на .NET6
+
 ## v1.9.9 - 2021.11.26
 - В событие MessageDocumentPackageSignedByRecipientFailEventContent добавлено поле Reason, содержащее комментарий отказа подписи документа получателем
 
