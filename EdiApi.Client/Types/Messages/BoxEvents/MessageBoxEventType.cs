@@ -30,5 +30,9 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
         DiadocRevocationRequested,
         DocumentPackageSignedByRecipientPartiallyOk,
         DocumentPackageSignedByMePartiallyOk,
+        OutboxMessageDocumentPackageRecipientPowerOfAttorneyStatus,
+        OutboxMessageDocumentPackageSenderPowerOfAttorneyStatus,
+        InboxMessageDocumentPackageRecipientPowerOfAttorneyStatus,
+        InboxMessageDocumentPackageSenderPowerOfAttorneyStatus,
     }
 }
