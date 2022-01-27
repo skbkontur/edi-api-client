@@ -86,9 +86,9 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Получатель подписал документы с разногласиями в Диадоке. Событие в ящике получателя</summary>
         DocumentPackageSignedByMePartiallyOk,
-        OutboxMessageDocumentPackageRecipientPowerOfAttorneyStatus,
-        OutboxMessageDocumentPackageSenderPowerOfAttorneyStatus,
-        InboxMessageDocumentPackageRecipientPowerOfAttorneyStatus,
-        InboxMessageDocumentPackageSenderPowerOfAttorneyStatus,
+        OutboxDiadocDocumentRecipientPowerOfAttorneyStatusChanged,
+        OutboxDiadocDocumentSenderPowerOfAttorneyStatusChanged,
+        InboxDiadocDocumentRecipientPowerOfAttorneyStatusChanged,
+        InboxDiadocDocumentSenderPowerOfAttorneyStatusChanged,
     }
 }
