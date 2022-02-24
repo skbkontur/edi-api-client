@@ -7,6 +7,7 @@ namespace SkbKontur.EdiApi.Client.Types.Messages
     {
         /// <summary>Метаинформация сообщения</summary>
         public InboxMessageMeta Meta { get; set; }
+
         /// <summary>Данные сообщения</summary>
         public MessageData Data { get; set; }
     }

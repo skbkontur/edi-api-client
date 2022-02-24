@@ -7,6 +7,7 @@
     {
         /// <summary>Список событий</summary>
         public TBoxEvent[] Events { get; set; }
+
         /// <summary>Идентификатор последнего события в наборе (при следующем вызове метода GetEvents необходимо передать именно его)</summary>
         public string LastEventId { get; set; }
     }

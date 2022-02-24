@@ -5,6 +5,7 @@
     {
         /// <summary>Идентификатор ящика</summary>
         public string BoxId { get; set; }
+
         /// <summary>Настройки документов по контрагентам</summary>
         public DocumentsSettingsForPartner[] DocumentsSettingsForPartner { get; set; }
     }

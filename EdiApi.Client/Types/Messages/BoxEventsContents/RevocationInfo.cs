@@ -5,6 +5,7 @@
     {
         /// <summary>Тип аннулированного документа</summary>
         public DiadocDocumentType DiadocDocumentType { get; set; }
+
         /// <summary>Причина аннулирования</summary>
         public string RevocationReason { get; set; }
     }

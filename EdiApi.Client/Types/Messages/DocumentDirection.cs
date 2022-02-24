@@ -5,8 +5,10 @@
     {
         /// <summary>Исходящий</summary>
         FromMe,
+
         /// <summary>Входящий</summary>
         ToMe,
+
         /// <summary>Сообщение может быть входящим или исходящим</summary>
         Bidirectional
     }

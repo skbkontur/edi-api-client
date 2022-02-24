@@ -5,8 +5,10 @@
     {
         /// <summary>СЧФ</summary>
         Invoice,
+
         /// <summary>ДОП</summary>
         Basic,
+
         /// <summary>СЧФДОП</summary>
         InvoiceAndBasic
     }

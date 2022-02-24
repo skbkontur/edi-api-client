@@ -5,6 +5,7 @@
     {
         /// <summary>Имя файла сообщения (используется при передаче сообщения специальными транспортами, например, FTP)</summary>
         public string MessageFileName { get; set; }
+
         /// <summary>Тело сообщения</summary>
         public byte[] MessageBody { get; set; }
     }

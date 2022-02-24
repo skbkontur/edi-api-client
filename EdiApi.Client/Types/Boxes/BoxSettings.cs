@@ -7,10 +7,13 @@ namespace SkbKontur.EdiApi.Client.Types.Boxes
     {
         /// <summary>Тип транспорта, используемый в ящике</summary>
         public TransportType TransportType { get; set; }
+
         /// <summary>Признак основного транспорта</summary>
         public bool IsMain { get; set; }
+
         /// <summary>Типы сообщений, настроенные для ящика. Значение “Any” означает, что данный ящик соответствует настройкам “Транспорт по умолчанию”</summary>
         public DocumentType[] DocumentTypes { get; set; }
+
         /// <summary>Форматы сообщений, настроенные для ящика. Значение “Any” означает, что данный ящик соответствует настройкам “Транспорт по умолчанию”</summary>
         public MessageFormat[] CustomMessageFormats { get; set; }
     }
@@ -24,6 +27,7 @@ namespace SkbKontur.EdiApi.Client.Types.Boxes
 
         /// <summary>Путь папки входящих сообщений на Ftp (заполняется только в том случае, если тип транспорта - “Ftp” и ящик используется для входящих сообщений)</summary>
         public string InboxRelativePath { get; set; }
+
         /// <summary>Путь папки исходящих сообщений на Ftp (заполняется только в том случае, если тип транспорта - “Ftp” и ящик используется для исходящих сообщений)</summary>
         public string OutboxRelativePath { get; set; }
     }

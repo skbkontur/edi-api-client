@@ -5,6 +5,7 @@
     {
         /// <summary>Тип документа</summary>
         public DocumentType DocumentType { get; set; }
+
         /// <summary>Направление документа</summary>
         public DocumentDirection DocumentDirection { get; set; }
     }
