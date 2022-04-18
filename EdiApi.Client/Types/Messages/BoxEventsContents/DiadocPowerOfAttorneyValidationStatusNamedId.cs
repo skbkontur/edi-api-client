@@ -5,16 +5,16 @@
     {
         /// <summary>Неизвестный статус</summary>
         UnknownStatus = 0,
-        
+
         /// <summary>МЧД не может быть проверена</summary>
         CanNotBeValidated = 1,
-        
+
         /// <summary>МЧД валидна</summary>
         IsValid = 2,
-        
+
         /// <summary>МЧД не валидна</summary>
         IsNotValid = 3,
-        
+
         /// <summary>Ошибка во время проверки МЧД</summary>
         ValidationError = 4,
     }

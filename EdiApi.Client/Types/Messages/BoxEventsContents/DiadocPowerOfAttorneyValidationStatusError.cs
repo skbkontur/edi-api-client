@@ -5,7 +5,7 @@
     {
         /// <summary>Код ошибки</summary>
         public string Code { get; set; }
-        
+
         /// <summary>Текст ошибки</summary>
         public string Text { get; set; }
     }
