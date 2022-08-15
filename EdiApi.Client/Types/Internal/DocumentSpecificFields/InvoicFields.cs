@@ -33,6 +33,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
 
         public string GovernmentContractNumber { get; set; }
         public DateTime? GovernmentContractDate { get; set; }
+        public string GovernmentContractId { get; set; }
 
         public string ProposalOrdersNumber { get; set; }
         public DateTime? ProposalOrdersDate { get; set; }

@@ -22,6 +22,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public DateTime? ReceivingDate { get; set; }
         public string DespatchAdviceNumber { get; set; }
         public DateTime? DespatchDate { get; set; }
+        public string GovernmentContractId { get; set; }
         public string CurrencyCode { get; set; }
         public CoinvoicGoodItem[] GoodItems { get; set; }
         public CoinvoicBeforeAfter<decimal?> InvoicTaxableTotal { get; set; }
