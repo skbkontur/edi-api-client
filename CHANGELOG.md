@@ -1,4 +1,6 @@
 # История изменений
+## v2.0.12 - 2022.08.15
+- Добавлены свойства InvoicFields.GovernmentContractId и CoinvoicFields.GovernmentContractId 
 
 ## v2.0.9 - 2022.04.18
 - Добавлены события со статусами проверки МЧД в Диадоке
