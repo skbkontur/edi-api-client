@@ -98,5 +98,53 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Изменился статус проверки МЧД отправителя документа в Диадоке. Событие в ящике получателя</summary>
         InboxDiadocDocumentSenderPowerOfAttorneyStatusChanged,
+
+        /// <summary>Документ отправляется в ГИС МТ Честный ЗНАК. Событие в ящике отправителя</summary>
+        OutboxDiadocDocumentSendingToGisMt,
+
+        /// <summary>Документ отправляется в ГИС МТ Честный ЗНАК. Событие в ящике получателя</summary>
+        InboxDiadocDocumentSendingToGisMt,
+
+        /// <summary>Документ обрабатывается в ГИС МТ Честный ЗНАК.  Событие в ящике отправителя</summary>
+        OutboxDiadocDocumentIsProcessedInGisMt,
+
+        /// <summary>Документ обрабатывается в ГИС МТ Честный ЗНАК.  Событие в ящике получателя</summary>
+        InboxDiadocDocumentIsProcessedInGisMt,
+
+        /// <summary>Документ обработан в ГИС МТ Честный ЗНАК. Произошел переход прав собственности на маркированные товары. Событие в ящике отправителя</summary>
+        OutboxDiadocDocumentSuccessProcessedInGisMt,
+
+        /// <summary>Документ обработан в ГИС МТ Честный ЗНАК. Произошел переход прав собственности на маркированные товары. Событие в ящике получателя</summary>
+        InboxDiadocDocumentSuccessProcessedInGisMt,
+
+        /// <summary>Ошибка обработки документа в ГИС МТ Честный ЗНАК. Требуется реакция со стороны участников документооборота. Событие в ящике отправителя</summary>
+        OutboxDiadocDocumentProcessingFailInGisMt,
+
+        /// <summary>Ошибка обработки документа в ГИС МТ Честный ЗНАК. Требуется реакция со стороны участников документооборота. Событие в ящике получателя</summary>
+        InboxDiadocDocumentProcessingFailInGisMt,
+
+        /// <summary>Запрос на аннулирование документа отправляется в ГИС МТ Честный ЗНАК. Событие в ящике отправителя</summary>
+        OutboxDiadocRevocationSendingToGisMt,
+
+        /// <summary>Запрос на аннулирование документа в ГИС МТ Честный ЗНАК. Событие в ящике получателя</summary>
+        InboxDiadocRevocationSendingToGisMt,
+
+        /// <summary>Запрос на аннулирование документа обрабатывается в ГИС МТ Честный ЗНАК.  Событие в ящике отправителя</summary>
+        OutboxDiadocRevocationIsProcessedInGisMt,
+
+        /// <summary>Запрос на аннулирование документа обрабатывается в ГИС МТ Честный ЗНАК.  Событие в ящике получателя</summary>
+        InboxDiadocRevocationIsProcessedInGisMt,
+
+        /// <summary>Запрос на аннулирование документа принят в ГИС МТ Честный ЗНАК. Произошел переход прав собственности на маркированные товары. Событие в ящике отправителя</summary>
+        OutboxDiadocRevocationSuccessProcessedInGisMt,
+
+        /// <summary>Запрос на аннулирование  документа принят в ГИС МТ Честный ЗНАК. Произошел переход прав собственности на маркированные товары. Событие в ящике получателя</summary>
+        InboxDiadocRevocationSuccessProcessedInGisMt,
+
+        /// <summary>Ошибка обработки запроса на аннулирование в ГИС МТ Честный ЗНАК. Требуется реакция со стороны участников документооборота. Событие в ящике отправителя</summary>
+        OutboxDiadocRevocationProcessingFailInGisMt,
+
+        /// <summary>Ошибка обработки запроса на аннулирование  в ГИС МТ Честный ЗНАК. Требуется реакция со стороны участников документооборота. Событие в ящике получателя</summary>
+        InboxDiadocRevocationProcessingFailInGisMt,
     }
 }

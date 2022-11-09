@@ -40,6 +40,22 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
             Register<OutboxDiadocDocumentSenderPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.OutboxDiadocDocumentSenderPowerOfAttorneyStatusChanged);
             Register<InboxDiadocDocumentRecipientPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.InboxDiadocDocumentRecipientPowerOfAttorneyStatusChanged);
             Register<InboxDiadocDocumentSenderPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.InboxDiadocDocumentSenderPowerOfAttorneyStatusChanged);
+            Register<OutboxDiadocDocumentSendingToGisMtEventContent>(MessageBoxEventType.OutboxDiadocDocumentSendingToGisMt);
+            Register<InboxDiadocDocumentSendingToGisMtEventContent>(MessageBoxEventType.InboxDiadocDocumentSendingToGisMt);
+            Register<OutboxDiadocDocumentIsProcessedInGisMtEventContent>(MessageBoxEventType.OutboxDiadocDocumentIsProcessedInGisMt);
+            Register<InboxDiadocDocumentIsProcessedInGisMtEventContent>(MessageBoxEventType.InboxDiadocDocumentIsProcessedInGisMt);
+            Register<OutboxDiadocDocumentSuccessProcessedInGisMtEventContent>(MessageBoxEventType.OutboxDiadocDocumentSuccessProcessedInGisMt);
+            Register<InboxDiadocDocumentSuccessProcessedInGisMtEventContent>(MessageBoxEventType.InboxDiadocDocumentSuccessProcessedInGisMt);
+            Register<OutboxDiadocDocumentProcessingFailInGisMtEventContent>(MessageBoxEventType.OutboxDiadocDocumentProcessingFailInGisMt);
+            Register<InboxDiadocDocumentProcessingFailInGisMtEventContent>(MessageBoxEventType.InboxDiadocDocumentProcessingFailInGisMt);
+            Register<OutboxDiadocRevocationSendingToGisMtEventContent>(MessageBoxEventType.OutboxDiadocRevocationSendingToGisMt);
+            Register<InboxDiadocRevocationSendingToGisMtEventContent>(MessageBoxEventType.InboxDiadocRevocationSendingToGisMt);
+            Register<OutboxDiadocRevocationIsProcessedInGisMtEventContent>(MessageBoxEventType.OutboxDiadocRevocationIsProcessedInGisMt);
+            Register<InboxDiadocRevocationIsProcessedInGisMtEventContent>(MessageBoxEventType.InboxDiadocRevocationIsProcessedInGisMt);
+            Register<OutboxDiadocRevocationSuccessProcessedInGisMtEventContent>(MessageBoxEventType.OutboxDiadocRevocationSuccessProcessedInGisMt);
+            Register<InboxDiadocRevocationSuccessProcessedInGisMtEventContent>(MessageBoxEventType.InboxDiadocRevocationSuccessProcessedInGisMt);
+            Register<OutboxDiadocRevocationProcessingFailInGisMtEventContent>(MessageBoxEventType.OutboxDiadocRevocationProcessingFailInGisMt);
+            Register<InboxDiadocRevocationProcessingFailInGisMtEventContent>(MessageBoxEventType.InboxDiadocRevocationProcessingFailInGisMt);
         }
     }
 }
