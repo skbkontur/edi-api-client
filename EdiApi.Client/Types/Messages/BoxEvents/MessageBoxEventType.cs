@@ -98,5 +98,17 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Изменился статус проверки МЧД отправителя документа в Диадоке. Событие в ящике получателя</summary>
         InboxDiadocDocumentSenderPowerOfAttorneyStatusChanged,
+
+        /// <summary>Изменился статус в ГИС МТ "Честный знак" для документа, сформированного на основании входящего Invoic</summary>
+        InboxDiadocDocumentGisMtStatusChanged,
+
+        /// <summary>Изменился статус запроса на аннулирование документа в ГИС МТ "Честный знак". Событие в ящике получателя</summary>
+        InboxDiadocRevocationGisMtStatusChanged,
+
+        /// <summary>Изменился статус в ГИС МТ "Честный знак" для документа, сформированного на основании исходящего Invoic</summary>
+        OutboxDiadocDocumentGisMtStatusChanged,
+
+        /// <summary>Изменился статус запроса на аннулирование документа в ГИС МТ "Честный знак". Событие в ящике отправителя</summary>
+        OutboxDiadocRevocationGisMtStatusChanged,
     }
 }

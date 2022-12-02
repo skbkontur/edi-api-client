@@ -40,6 +40,10 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
             Register<OutboxDiadocDocumentSenderPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.OutboxDiadocDocumentSenderPowerOfAttorneyStatusChanged);
             Register<InboxDiadocDocumentRecipientPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.InboxDiadocDocumentRecipientPowerOfAttorneyStatusChanged);
             Register<InboxDiadocDocumentSenderPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.InboxDiadocDocumentSenderPowerOfAttorneyStatusChanged);
+            Register<InboxDiadocDocumentGisMtStatusChanged>(MessageBoxEventType.InboxDiadocDocumentGisMtStatusChanged);
+            Register<InboxDiadocRevocationGisMtStatusChanged>(MessageBoxEventType.InboxDiadocRevocationGisMtStatusChanged);
+            Register<OutboxDiadocDocumentGisMtStatusChanged>(MessageBoxEventType.OutboxDiadocDocumentGisMtStatusChanged);
+            Register<OutboxDiadocRevocationGisMtStatusChanged>(MessageBoxEventType.OutboxDiadocRevocationGisMtStatusChanged);
         }
     }
 }
