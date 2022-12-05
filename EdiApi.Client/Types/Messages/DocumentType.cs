@@ -76,6 +76,9 @@
         Iftmbf,
 
         /// <summary>Подтверждение заявки на транспортировку груза</summary>
-        Iftmbc
+        Iftmbc,
+
+        /// <summary>Неструктурированное сообщение</summary>
+        Condra,
     }
 }
