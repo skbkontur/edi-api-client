@@ -96,6 +96,17 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
 
             return Serializer.Deserialize<OutboxMessageMeta>(result.Response.Content.ToString());
         }
+        
+        public OutboxMessageMeta SendMessageWithAttachments(string authToken, string boxId, MessageData messageData)
+        {
+            var request = BuildPostRequest("V1/Messages/SendMessageWithAttachments", null, authToken, messageData)
+                          .WithAdditionalQueryParameter("boxId", boxId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<OutboxMessageMeta>(result.Response.Content.ToString());
+        }
 
         public void MessageDeliveryStarted(string authToken, string boxId, string messageId)
         {
