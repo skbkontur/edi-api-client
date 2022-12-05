@@ -8,7 +8,7 @@
 
         /// <summary>Тело сообщения</summary>
         public byte[] MessageBody { get; set; }
-        
+
         /// <summary>Список вложенных файлов</summary>
         public MessageAttachment[] MessageAttachments { get; set; }
     }
