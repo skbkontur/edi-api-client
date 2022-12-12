@@ -1,7 +1,7 @@
 ﻿namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
 {
     /// <summary>Тип статуса обработки в ГИС МТ "Честный ЗНАК"</summary>
-    public enum DiadocGisMtOuterStatusType
+    public enum DiadocGisMtStatusType
     {
         /// <summary>Неизвестный тип</summary>
         UnknownStatus = 0,

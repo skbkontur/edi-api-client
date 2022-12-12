@@ -7,6 +7,6 @@
         public string GisMtAttachmentEntityId { get; set; }
 
         /// <summary>Cтатус проверки в ГИС МТ "Честный ЗНАК"</summary>
-        public DiadocGisMtStatus StatusNamedId { get; set; }
+        public DiadocGisMtStatus GisMtStatus { get; set; }
     }
 }

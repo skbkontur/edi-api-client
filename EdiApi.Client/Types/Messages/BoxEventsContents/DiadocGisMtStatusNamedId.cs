@@ -10,12 +10,12 @@
         SendingInProgress = 1,
 
         /// <summary>Обрабатывается в ГИС МТ "Честный ЗНАК"</summary>
-        ProcessingInGisMt = 2,
+        InProcessing = 2,
 
         /// <summary>Обработан в ГИС МТ "Честный ЗНАК"</summary>
-        SuccessProcessedInGisMt = 3,
+        SuccessProcessed = 3,
 
         /// <summary>Ошибка обработки документа в ГИС МТ "Честный ЗНАК"</summary>
-        ProcessingFailInGisMt = 4,
+        ProcessingError = 4,
     }
 }
