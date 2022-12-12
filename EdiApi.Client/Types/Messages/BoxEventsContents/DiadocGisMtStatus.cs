@@ -7,7 +7,7 @@
         public DiadocGisMtStatusNamedId StatusNamedId { get; set; }
 
         /// <summary>Тип статуса обработки в ГИС МТ "Честный ЗНАК"</summary>
-        public DiadocGisMtOuterStatusType OuterStatusType { get; set; }
+        public DiadocGisMtOuterStatusType StatusType { get; set; }
 
         /// <summary>Описание статуса в ГИС МТ "Честный ЗНАК"</summary>
         public string Description { get; set; } = default!;
