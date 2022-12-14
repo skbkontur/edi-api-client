@@ -4,10 +4,10 @@
     public class DiadocGisMtStatus
     {
         /// <summary>Статус проверки в ГИС МТ "Честный ЗНАК"</summary>
-        public DiadocGisMtStatusNamedId StatusNamedId { get; set; }
+        public DiadocGisMtStatusNamedId NamedId { get; set; }
 
         /// <summary>Тип статуса обработки в ГИС МТ "Честный ЗНАК"</summary>
-        public DiadocGisMtStatusType StatusType { get; set; }
+        public DiadocGisMtStatusType Type { get; set; }
 
         /// <summary>Описание статуса в ГИС МТ "Честный ЗНАК"</summary>
         public string Description { get; set; }
