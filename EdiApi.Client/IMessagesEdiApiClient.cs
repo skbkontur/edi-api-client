@@ -20,7 +20,7 @@ namespace SkbKontur.EdiApi.Client
 
         OutboxMessageMeta SendMessage(string authToken, string boxId, MessageData messageData);
 
-        OutboxMessageMeta SendMessageWithAttachments(string authToken, string boxId, MessageData messageData);
+        OutboxMessageMeta SendMessageExtended(string authToken, string boxId, MessageData messageData);
 
         MessageBoxEventBatch GetEvents(string authToken, string boxId, string? exclusiveEventId, uint? count = null);
 
