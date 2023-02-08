@@ -87,18 +87,6 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
 
         public OutboxMessageMeta SendMessage(string authToken, string boxId, MessageData messageData)
         {
-            var request = BuildPostRequest("V1/Messages/SendMessage", null, authToken, messageData.MessageBody)
-                          .WithAdditionalQueryParameter("boxId", boxId)
-                          .WithAdditionalQueryParameter("messageFileName", messageData.MessageFileName);
-
-            var result = clusterClient.Send(request);
-            EnsureSuccessResult(result);
-
-            return Serializer.Deserialize<OutboxMessageMeta>(result.Response.Content.ToString());
-        }
-
-        public OutboxMessageMeta SendMessageExtended(string authToken, string boxId, MessageData messageData)
-        {
             var request = BuildPostRequest("V1/Messages/SendMessageExtended", null, authToken, messageData)
                 .WithAdditionalQueryParameter("boxId", boxId);
 
