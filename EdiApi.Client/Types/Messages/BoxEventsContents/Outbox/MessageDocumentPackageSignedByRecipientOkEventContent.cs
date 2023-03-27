@@ -3,5 +3,7 @@
     /// <summary>Информация о событии DocumentPackageSignedByRecipientOk</summary>
     public class MessageDocumentPackageSignedByRecipientOkEventContent : OutboxDiadocEventContentBase
     {
+        /// <summary>Необходимо извещение о получение на документ со стороны отправителя</summary>
+        public bool NeedReceiptBySender { get; set; }
     }
 }
