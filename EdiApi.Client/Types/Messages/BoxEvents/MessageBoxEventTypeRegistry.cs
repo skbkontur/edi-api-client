@@ -36,6 +36,7 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
             Register<DiadocDocumentDeliveredEventContent>(MessageBoxEventType.DiadocDocumentDelivered);
             Register<MessageDocumentPackageSignedByRecipientPartiallyOkEventContent>(MessageBoxEventType.DocumentPackageSignedByRecipientPartiallyOk);
             Register<MessageDocumentPackageSignedByMePartiallyOkEventContent>(MessageBoxEventType.DocumentPackageSignedByMePartiallyOk);
+            Register<OutboxDiadocDocumentReceiptedBySenderEventContent>(MessageBoxEventType.OutboxDiadocDocumentReceiptedBySender);
             Register<OutboxDiadocDocumentRecipientPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.OutboxDiadocDocumentRecipientPowerOfAttorneyStatusChanged);
             Register<OutboxDiadocDocumentSenderPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.OutboxDiadocDocumentSenderPowerOfAttorneyStatusChanged);
             Register<InboxDiadocDocumentRecipientPowerOfAttorneyStatusChangedEventContent>(MessageBoxEventType.InboxDiadocDocumentRecipientPowerOfAttorneyStatusChanged);

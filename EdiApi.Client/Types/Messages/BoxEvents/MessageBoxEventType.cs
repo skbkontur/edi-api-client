@@ -110,5 +110,8 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Изменился статус запроса на аннулирование документа в ГИС МТ "Честный ЗНАК". Событие в ящике отправителя</summary>
         OutboxDiadocDocumentRevocationGisMtStatusChanged,
+
+        /// <summary>Отправитель подписал извещение о получении. Событие в ящике отправителя</summary>
+        OutboxDiadocDocumentReceiptedBySender,
     }
 }
