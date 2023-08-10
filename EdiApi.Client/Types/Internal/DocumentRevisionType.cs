@@ -8,6 +8,7 @@
         Changed,
         Replace,
         Copy,
-        Provisional
+        Provisional,
+        Notification
     }
 }

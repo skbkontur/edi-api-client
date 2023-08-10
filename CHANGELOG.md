@@ -1,4 +1,7 @@
 # История изменений
+## v2.3.1 - 2023.08.10
+- Добавлен тип Notification в DocumentRevisionType
+
 ## v2.2.4 - 2023.04.04
 - Добавлено свойство IsMdnPositive в структуру AS2SendDetails
 
