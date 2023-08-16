@@ -27,6 +27,8 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public string TransportBy { get; set; }
 
         public string RevisionNumber { get; set; }
+        
+        public string OrdersRevisionNumber { get; set; }
 
         public OrdrspTransportDetails[] TransportDetails { get; set; }
         public CommonGoodItem[] GoodItems { get; set; }

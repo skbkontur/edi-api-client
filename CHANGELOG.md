@@ -1,4 +1,7 @@
 # История изменений
+## v2.3.4 - 2023.08.16
+- Добавлен OrdersRevisionNumber в OrdrspFields
+
 ## v2.3.1 - 2023.08.10
 - Добавлен тип Notification в DocumentRevisionType
 
