@@ -116,5 +116,11 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Отправитель подписал извещение о получении документа. Событие в ящике отправителя</summary>
         OutboxDiadocSenderReceiptFinished,
+
+        /// <summary>Прекратили отслеживать пакет документов в Диадоке. Событие в ящике отправителя</summary>
+        OutboxDiadocDocumentPackageTraceabilityLost,
+
+        /// <summary>Прекратили отслеживать пакет документов в Диадоке. Событие в ящике получателя</summary>
+        InboxDiadocDocumentPackageTraceabilityLost,
     }
 }
