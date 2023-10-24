@@ -1,4 +1,10 @@
 # История изменений
+## v2.4.3 - 2023.10.24
+- Добавлены события OutboxDiadocDocumentPackageTraceabilityLost и InboxDiadocDocumentPackageTraceabilityLost, сигнализирующие о том, что прекращено отслеживание пакета документов в Диадоке
+
+## v2.3.6 - 2023.10.10
+- Добавлены поля IsPromotionalPrice и PromotionalDealNumber в CommonGoodItem
+
 ## v2.3.4 - 2023.08.16
 - Добавлен OrdersRevisionNumber в OrdrspFields
 
