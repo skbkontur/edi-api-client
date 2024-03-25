@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Vostok.ClusterClient.Core" Version="0.1.26" />
     <PackageReference Include="Vostok.ClusterClient.Singular" Version="0.1.11" />
     <PackageReference Include="Vostok.ClusterClient.Tracing" Version="0.1.4" />
