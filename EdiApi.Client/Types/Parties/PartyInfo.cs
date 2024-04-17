@@ -42,5 +42,8 @@ namespace SkbKontur.EdiApi.Client.Types.Parties
         ///     Список платных услуг. В API эта информация доступна только сотрудникам организации, для остальных список будет пустой
         /// </summary>
         public PaidFeatureInfo[] PaidFeatures { get; set; }
+
+        /// <summary>Служебный идентификатор Контур.Ритейл</summary>
+        public string BuyerCodeModule1C { get; set; }
     }
 }
