@@ -8,5 +8,8 @@
 
         /// <summary>Набор документов, которыми можно обмениваться с контрагентом</summary>
         public DocumentSettings[] DocumentSettings { get; set; }
+
+        /// <summary>Настройки товарных позиций</summary>
+        public GoodItemsSettings GoodItemsSettings { get; set; }
     }
 }
