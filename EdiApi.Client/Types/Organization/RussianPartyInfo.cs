@@ -1,6 +1,6 @@
 namespace SkbKontur.EdiApi.Client.Types.Organization
 {
-    /// <summary>Реквизиты организации или точки доставки/отгрузки</summary>
+    /// <summary>Реквизиты российской организации или точки доставки/отгрузки</summary>
     public class RussianPartyInfo
     {
         /// <summary>Реквизиты юридического лица</summary>
