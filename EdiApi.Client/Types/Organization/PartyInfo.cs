@@ -1,4 +1,8 @@
-﻿namespace SkbKontur.EdiApi.Client.Types.Organization
+﻿using System;
+
+using SkbKontur.EdiApi.Client.Types.Common;
+
+namespace SkbKontur.EdiApi.Client.Types.Organization
 {
     /// <summary>Реквизиты и адрес организации или точки доставки/отгрузки</summary>
     public class PartyInfo
@@ -47,5 +51,11 @@
 
         /// <summary>Применяется ли УСН</summary>
         public bool UsesSimplifiedTaxSystem { get; set; }
+
+        /// <summary>Статус GLN</summary>
+        public GlnStatus? GlnStatus { get; set; }
+
+        /// <summary>Дата окончания оплаченного срока действия GLN</summary>
+        public DateTime? GlnExpirationDate { get; set; }
     }
 }

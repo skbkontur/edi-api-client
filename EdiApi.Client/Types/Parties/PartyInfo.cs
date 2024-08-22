@@ -1,5 +1,7 @@
 using System;
 
+using SkbKontur.EdiApi.Client.Types.Common;
+
 namespace SkbKontur.EdiApi.Client.Types.Parties
 {
     /// <summary>Реквизиты организации</summary>
@@ -37,6 +39,12 @@ namespace SkbKontur.EdiApi.Client.Types.Parties
 
         /// <summary>Стратегия маршрутизации сообщений поставщика</summary>
         public SupplierBoxSelectionStrategy SupplierBoxSelectionStrategy { get; set; }
+
+        /// <summary>Статус GLN</summary>
+        public GlnStatus? GlnStatus { get; set; }
+
+        /// <summary>Дата окончания оплаченного срока действия GLN</summary>
+        public DateTime? GlnExpirationDate { get; set; }
 
         /// <summary>
         ///     Список платных услуг. В API эта информация доступна только сотрудникам организации, для остальных список будет пустой
