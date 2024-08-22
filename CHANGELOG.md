@@ -1,4 +1,7 @@
 # История изменений
+## v2.5.3 - 2024.08.22
+- Добавлены поля GlnStatus, GlnExpirationDate в данные об организации
+
 ## v2.4.3 - 2023.10.24
 - Добавлены события OutboxDiadocDocumentPackageTraceabilityLost и InboxDiadocDocumentPackageTraceabilityLost, сигнализирующие о том, что прекращено отслеживание пакета документов в Диадоке
 
