@@ -200,11 +200,11 @@ namespace SkbKontur.EdiApi.Client.Http
             }
             if (!string.IsNullOrEmpty(authCredentials?.PortalSid))
             {
-                stringBuilder.Append("," + $"konturediauth_portalsid={authCredentials.PortalSid}");
+                stringBuilder.Append("," + $"konturediauth_portalsid={authCredentials!.PortalSid}");
             }
             if (!string.IsNullOrEmpty(authCredentials?.Login))
             {
-                stringBuilder.Append("," + $"konturediauth_login={authCredentials.Login},konturediauth_password={authCredentials.Password}");
+                stringBuilder.Append("," + $"konturediauth_login={authCredentials!.Login},konturediauth_password={authCredentials.Password}");
             }
 
             return stringBuilder.ToString();
