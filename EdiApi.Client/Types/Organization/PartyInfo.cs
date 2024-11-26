@@ -16,8 +16,11 @@ namespace SkbKontur.EdiApi.Client.Types.Organization
         /// <summary>Георгафические координаты</summary>
         public GeoCoordinates GeoCoordinates { get; set; }
 
-        /// <summary>Реквизиты</summary>
+        /// <summary>Реквизиты российской организации</summary>
         public RussianPartyInfo RussianPartyInfo { get; set; }
+
+        /// <summary>Реквизиты иностранной организации</summary>
+        public ForeignPartyInfo ForeignPartyInfo { get; set; }
 
         /// <summary>Банковские реквизиты</summary>
         public BankAccount BankAccount { get; set; }
