@@ -14,10 +14,10 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Vostok.ClusterClient.Core" Version="0.1.26" />
-    <PackageReference Include="Vostok.ClusterClient.Singular" Version="0.1.11" />
-    <PackageReference Include="Vostok.ClusterClient.Tracing" Version="0.1.4" />
-    <PackageReference Include="Vostok.ClusterClient.Transport" Version="0.1.17" />
+    <PackageReference Include="Vostok.ClusterClient.Core" Version="0.1.57" />
+    <PackageReference Include="Vostok.ClusterClient.Singular" Version="0.1.29" />
+    <PackageReference Include="Vostok.ClusterClient.Tracing" Version="0.1.8" />
+    <PackageReference Include="Vostok.ClusterClient.Transport" Version="0.1.39" />
   </ItemGroup>
 
 </Project>
