@@ -14,5 +14,11 @@
 
         /// <summary>Ошибки проверки МЧД</summary>
         public DiadocPowerOfAttorneyValidationStatusError[] ValidationErrors { get; set; }
+
+        /// <summary>Протокол валидации с результатами выполнения проверок. Возвращается в случае, когда StatusNamedId принимает значение: IsValid, IsNotValid, HasWarnings</summary>
+        public DiadocPowerOfAttorneyValidationProtocol ValidationProtocol { get; set; }
+
+        /// <summary>Описание ошибки, произошедшей в процессе выполнения операции. Возвращается в случае, если StatusNamedId принимает значение ValidationError или CanNotBeValidated</summary>
+        public DiadocPowerOfAttorneyValidationStatusError OperationError { get; set; }
     }
 }
