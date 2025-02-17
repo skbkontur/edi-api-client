@@ -124,12 +124,6 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
         /// <summary>Прекратили отслеживать пакет документов в Диадоке. Событие в ящике получателя</summary>
         InboxDiadocDocumentPackageTraceabilityLost,
 
-        /// <summary>Изменился статус фиксации отгрузки в ГИС МТ "Честный знак" для документа, сформированного на основании входящего Invoic</summary>
-        InboxDiadocDocumentFixationGisMtStatusChanged,
-
-        /// <summary>Изменился статус отмены фиксации отгрузки в ГИС МТ "Честный знак" для документа, сформированного на основании исходящего Invoic</summary>
-        InboxDiadocDocumentFixationCancellationGisMtStatusChanged,
-
         /// <summary>Изменился статус фиксации отгрузки в ГИС МТ "Честный знак" для документа, сформированного на основании исходящего Invoic</summary>
         OutboxDiadocDocumentFixationGisMtStatusChanged,
 
