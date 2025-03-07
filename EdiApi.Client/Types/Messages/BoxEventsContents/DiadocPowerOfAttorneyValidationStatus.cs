@@ -1,4 +1,6 @@
-﻿namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
+﻿using System;
+
+namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
 {
     /// <summary>Статус проверки МЧД</summary>
     public class DiadocPowerOfAttorneyValidationStatus
@@ -12,7 +14,8 @@
         /// <summary>Текст статуса</summary>
         public string StatusText { get; set; }
 
-        /// <summary>Ошибки проверки МЧД</summary>
+        /// <summary>Ошибки проверки МЧД. Устаревшее свойство. Используйте свойства ValidationProtocol и OperationError с более полной информацией о проверке МЧД</summary>
+        [Obsolete]
         public DiadocPowerOfAttorneyValidationStatusError[] ValidationErrors { get; set; }
 
         /// <summary>Протокол валидации с результатами выполнения проверок. Возвращается в случае, когда StatusNamedId принимает значение: IsValid, IsNotValid, HasWarnings</summary>
