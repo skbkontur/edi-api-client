@@ -32,7 +32,7 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
         /// <summary>Признак исправления</summary>
         public bool? IsRevision { get; set; }
 
-        /// <summary>Действие с черновиком</summary>
-        public string? DraftAction { get; set; }
+        /// <summary>Тип действия с черновиком</summary>
+        public string? DraftActionType { get; set; }
     }
 }
