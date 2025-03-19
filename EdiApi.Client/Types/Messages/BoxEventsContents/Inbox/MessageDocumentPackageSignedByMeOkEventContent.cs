@@ -3,5 +3,7 @@
     /// <summary>Информация о событии DocumentPackageSignedByMeOk</summary>
     public class MessageDocumentPackageSignedByMeOkEventContent : InboxDiadocEventContentBase
     {
+        /// <summary>Статус приложенности МЧД к подписи отправителя</summary>
+        public DiadocPowerOfAttorneyAttachmentStatus SenderPowerOfAttorneyAttachmentStatus { get; set; }
     }
 }
