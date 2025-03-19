@@ -5,5 +5,8 @@
     {
         /// <summary>Статус приложенности МЧД к подписи отправителя</summary>
         public DiadocPowerOfAttorneyAttachmentStatus SenderPowerOfAttorneyAttachmentStatus { get; set; }
+
+        /// <summary>Статус приложенности МЧД к подписи получателя</summary>
+        public DiadocPowerOfAttorneyAttachmentStatus RecipientPowerOfAttorneyAttachmentStatus { get; set; }
     }
 }
