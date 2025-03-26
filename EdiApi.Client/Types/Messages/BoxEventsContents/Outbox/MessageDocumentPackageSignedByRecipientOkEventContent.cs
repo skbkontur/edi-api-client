@@ -6,10 +6,7 @@
         /// <summary>Необходимо извещение о получение на документ со стороны отправителя</summary>
         public bool NeedReceiptBySender { get; set; }
 
-        /// <summary>Статус приложенности МЧД к подписи отправителя</summary>
-        public DiadocPowerOfAttorneyAttachmentStatus SenderPowerOfAttorneyAttachmentStatus { get; set; }
-
         /// <summary>Статус приложенности МЧД к подписи получателя</summary>
-        public DiadocPowerOfAttorneyAttachmentStatus RecipientPowerOfAttorneyAttachmentStatus { get; set; }
+        public DiadocSignaturePowerOfAttorneyInfo PowerOfAttorneyAttachmentStatus { get; set; }
     }
 }
