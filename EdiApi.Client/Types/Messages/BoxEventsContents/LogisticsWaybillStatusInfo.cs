@@ -17,7 +17,7 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
         /// <summary>Признак черновика. Заполняется в событии TransportationCreated</summary>
         public bool? IsDraft { get; set; }
 
-        /// <summary>Тип титула</summary>
+        /// <summary>Тип титула. Заполняется в событиях подписания</summary>
         public string? TitleType { get; set; }
 
         /// <summary>Идентификатор ящика отправителя в Диадоке. Заполняется в событии TitleForwarded</summary>
@@ -29,10 +29,10 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
         /// <summary>Результат приёмки. Заполняется в событии ConsigneeTitleSigned</summary>
         public string? AcceptanceResult { get; set; }
 
-        /// <summary>Признак исправления</summary>
+        /// <summary>Признак исправления. Заполняется в событиях подписания</summary>
         public bool? IsRevision { get; set; }
 
-        /// <summary>Тип действия с черновиком</summary>
+        /// <summary>Тип действия с черновиком. Заполняется в событии DraftAction</summary>
         public string? DraftActionType { get; set; }
     }
 }

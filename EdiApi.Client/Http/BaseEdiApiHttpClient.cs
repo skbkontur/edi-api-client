@@ -140,15 +140,15 @@ namespace SkbKontur.EdiApi.Client.Http
             return Serializer.Deserialize<UsersInfo>(result.Response.Content.ToString());
         }
 
-        public GlobalTransportationIdentifier GetGlobalTransportationIdentifier(string authToken, string partyId)
+        public TransportationDocumentIdentifier GetTransportationDocumentIdentifier(string authToken, string partyId)
         {
-            var request = BuildGetRequest("V1/Logistics/GetGlobalTransportationIdentifier", authToken : authToken)
+            var request = BuildGetRequest("V1/Logistics/GetTransportationDocumentIdentifier", authToken : authToken)
                 .WithAdditionalQueryParameter("partyId", partyId);
 
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<GlobalTransportationIdentifier>(result.Response.Content.ToString());
+            return Serializer.Deserialize<TransportationDocumentIdentifier>(result.Response.Content.ToString());
         }
 
         protected IEdiApiTypesSerializer Serializer { get; }
