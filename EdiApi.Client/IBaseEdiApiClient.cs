@@ -31,6 +31,6 @@ namespace SkbKontur.EdiApi.Client
 
         UsersInfo GetUsersInfo(string authToken, string partyId);
 
-        GlobalTransportationIdentifier GetGlobalTransportationIdentifier(string authToken, string partyId);
+        TransportationDocumentIdentifier GetTransportationDocumentIdentifier(string authToken, string partyId);
     }
 }

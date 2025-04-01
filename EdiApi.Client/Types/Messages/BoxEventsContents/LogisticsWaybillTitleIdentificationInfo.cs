@@ -9,9 +9,9 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
         public string OriginalSenderDiadocBoxId { get; set; } = null!;
 
         /// <summary>Идентификатор транспортной накладной в Минтранс</summary>
-        public string GlobalTransportationId { get; set; } = null!;
+        public string TransportationDocumentId { get; set; } = null!;
 
-        /// <summary>Идентификатор транспортной накладной в Контур.Логистике</summary>
+        /// <summary>Внутренний идентификатор перевозки в Контур.Логистике</summary>
         public string LogisticsTransportationId { get; set; } = null!;
 
         /// <summary>Идентификатор черновика в Контур.Логистике</summary>
