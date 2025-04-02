@@ -8,7 +8,7 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
         /// <summary>Идентификатор ящика в Диадоке, из которого был отправлен титул в Контур.Логистику</summary>
         public string OriginalSenderDiadocBoxId { get; set; } = null!;
 
-        /// <summary>Идентификатор транспортной накладной в Минтранс</summary>
+        /// <summary>УИД транспортного документа в Минтранс</summary>
         public string TransportationDocumentId { get; set; } = null!;
 
         /// <summary>Внутренний идентификатор перевозки в Контур.Логистике</summary>
