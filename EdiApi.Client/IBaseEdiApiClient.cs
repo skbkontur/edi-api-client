@@ -1,4 +1,5 @@
 using SkbKontur.EdiApi.Client.Types.Boxes;
+using SkbKontur.EdiApi.Client.Types.Logistics;
 using SkbKontur.EdiApi.Client.Types.Organization;
 using SkbKontur.EdiApi.Client.Types.Parties;
 
@@ -27,5 +28,9 @@ namespace SkbKontur.EdiApi.Client
         OrganizationCatalogueInfo GetOrganizationCatalogueInfo(string authToken, string partyId);
 
         PartyInfo GetPartyInfoByDepartmentGln(string authToken, string departmentGln);
+
+        UsersInfo GetUsersInfo(string authToken, string partyId);
+
+        TransportationDocumentIdentifier GetTransportationDocumentIdentifier(string authToken, string partyId);
     }
 }

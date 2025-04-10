@@ -50,6 +50,8 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
             Register<InboxDiadocDocumentPackageTraceabilityLost>(MessageBoxEventType.InboxDiadocDocumentPackageTraceabilityLost);
             Register<OutboxDiadocDocumentShipmentFixationGisMtStatusChangedEventContent>(MessageBoxEventType.OutboxDiadocDocumentShipmentFixationGisMtStatusChanged);
             Register<OutboxDiadocDocumentShipmentFixationCancellationGisMtStatusChangedEventContent>(MessageBoxEventType.OutboxDiadocDocumentShipmentFixationCancellationGisMtStatusChanged);
+            Register<OutboxLogisticsWaybillTitlePostingStatusEventContent>(MessageBoxEventType.OutboxLogisticsWaybillTitlePostingStatus);
+            Register<OutboxLogisticsWaybillStatusChangedEventContent>(MessageBoxEventType.OutboxLogisticsWaybillStatusChanged);
         }
     }
 }
