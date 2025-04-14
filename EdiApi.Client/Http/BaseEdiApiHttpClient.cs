@@ -3,6 +3,7 @@ using System.Net;
 using System.Text;
 
 using SkbKontur.EdiApi.Client.Types.Boxes;
+using SkbKontur.EdiApi.Client.Types.Logistics;
 using SkbKontur.EdiApi.Client.Types.Organization;
 using SkbKontur.EdiApi.Client.Types.Parties;
 using SkbKontur.EdiApi.Client.Types.Serialization;
@@ -137,6 +138,17 @@ namespace SkbKontur.EdiApi.Client.Http
             EnsureSuccessResult(result);
 
             return Serializer.Deserialize<UsersInfo>(result.Response.Content.ToString());
+        }
+
+        public TransportationDocumentIdentifier GetTransportationDocumentIdentifier(string authToken, string partyId)
+        {
+            var request = BuildGetRequest("V1/Logistics/GetTransportationDocumentIdentifier", authToken : authToken)
+                .WithAdditionalQueryParameter("partyId", partyId);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return Serializer.Deserialize<TransportationDocumentIdentifier>(result.Response.Content.ToString());
         }
 
         protected IEdiApiTypesSerializer Serializer { get; }
