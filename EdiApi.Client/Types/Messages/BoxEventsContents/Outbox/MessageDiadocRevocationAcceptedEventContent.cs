@@ -5,5 +5,8 @@
     {
         /// <summary>Информация об аннулированном документе</summary>
         public RevocationInfo AcceptedRevocationInfo { get; set; }
+
+        /// <summary>Требуется подписать документ отмены фиксации</summary>
+        public bool IsFixationCancellationGisMtSigningRequired { get; set; }
     }
 }

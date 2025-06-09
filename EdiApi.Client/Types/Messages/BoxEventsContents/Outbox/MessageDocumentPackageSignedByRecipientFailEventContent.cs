@@ -8,5 +8,8 @@
 
         /// <summary>Необходимо извещение о получение на документ со стороны отправителя</summary>
         public bool NeedReceiptBySender { get; set; }
+
+        /// <summary>Требуется подписать документ отмены фиксации</summary>
+        public bool IsFixationCancellationGisMtSigningRequired { get; set; }
     }
 }
