@@ -7,6 +7,6 @@
         public RevocationInfo AcceptedRevocationInfo { get; set; }
 
         /// <summary>Требуется подписать документ отмены фиксации</summary>
-        public bool IsFixationCancellationGisMtSigningRequired { get; set; }
+        public bool IsGisMtFixationCancellationSigningRequired { get; set; }
     }
 }
