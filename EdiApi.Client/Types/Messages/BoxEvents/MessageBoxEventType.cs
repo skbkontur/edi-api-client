@@ -123,10 +123,10 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
         /// <summary>Прекратили отслеживать пакет документов в Диадоке. Событие в ящике получателя</summary>
         InboxDiadocDocumentPackageTraceabilityLost,
 
-        /// <summary>Изменился статус фиксации отгрузки в ГИС МТ "Честный ЗНАК". Событие в ящике отправителя</summary>
+        /// <summary>Изменился статус фиксации кодов при отгрузке в ГИС МТ "Честный ЗНАК". Событие в ящике отправителя</summary>
         OutboxDiadocDocumentShipmentFixationGisMtStatusChanged,
 
-        /// <summary>Изменился статус отмены фиксации отгрузки в ГИС МТ "Честный ЗНАК". Событие в ящике отправителя</summary>
+        /// <summary>Изменился статус отмены фиксации кодов при отгрузке в ГИС МТ "Честный ЗНАК". Событие в ящике отправителя</summary>
         OutboxDiadocDocumentShipmentFixationCancellationGisMtStatusChanged,
 
         /// <summary>Статус отправки титула транспортной накладной в Контур.Логистику. Событие в ящике отправителя</summary>
