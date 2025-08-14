@@ -17,5 +17,8 @@
 
         /// <summary>Ошибка обработки документа в ГИС МТ "Честный ЗНАК"</summary>
         ProcessingError = 4,
+
+        /// <summary>Ошибка отправки документа в ГИС МТ</summary>
+        GisReceivingError = 5,
     }
 }
