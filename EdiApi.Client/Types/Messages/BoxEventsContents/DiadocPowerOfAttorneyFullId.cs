@@ -8,5 +8,8 @@
 
         /// <summary>Регистрационный номер МЧД</summary>
         public string RegistrationNumber { get; set; }
+
+        /// <summary>ИНН представителя из МЧД</summary>
+        public string RepresentativeInn { get; set; }
     }
 }
