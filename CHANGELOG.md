@@ -1,4 +1,7 @@
 # История изменений
+## v2.15.2 - 2025.08.29
+- Добавлено свойство DiadocPowerOfAttorneyFullId.RepresentativeInn ("ИНН представителя из МЧД")
+
 ## v2.14.2 - 2025.08.27
 - Добавлено поле "Требуется подписать документ отмены фиксации" для событий AmendmentRequestedEventContent, MessageDiadocRevocationRequestedEventContent
 
