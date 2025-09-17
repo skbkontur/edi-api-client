@@ -41,6 +41,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
 
         public string[] SalesRegions { get; set; }
         public string[] StoreFormats { get; set; }
+        public string[] StoreSubFormats { get; set; }
 
         public string Comment { get; set; }
 
