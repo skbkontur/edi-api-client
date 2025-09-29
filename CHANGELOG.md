@@ -1,4 +1,7 @@
 # История изменений
+## v2.17.2 - 2025.09.29
+- Удалён GetUsersInfo API метод
+
 ## v2.15.2 - 2025.08.29
 - Добавлено свойство DiadocPowerOfAttorneyFullId.RepresentativeInn ("ИНН представителя из МЧД")
 
