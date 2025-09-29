@@ -90,6 +90,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.GoodItems
     {
         Changed,
         Accepted,
-        Rejected
+        Rejected,
+        Unknown
     }
 }
