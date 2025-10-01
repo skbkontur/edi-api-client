@@ -75,8 +75,6 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.GoodItems
         public bool IsPromotionalPrice { get; set; }
 
         public string PromotionalDealNumber { get; set; }
-
-        public OrdrspGoodItemStatus? OrdrspGoodItemStatus { get; set; }
     }
 
     public class CustomDeclaration
@@ -84,13 +82,5 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.GoodItems
         public string Number { get; set; }
 
         public DateTime? Date { get; set; }
-    }
-
-    public enum OrdrspGoodItemStatus
-    {
-        Changed,
-        Accepted,
-        Rejected,
-        Unknown
     }
 }
