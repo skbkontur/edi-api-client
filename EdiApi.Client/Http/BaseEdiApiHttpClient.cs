@@ -129,17 +129,6 @@ namespace SkbKontur.EdiApi.Client.Http
             return Serializer.Deserialize<OrganizationCatalogueInfo>(result.Response.Content.ToString());
         }
 
-        public UsersInfo GetUsersInfo(string authToken, string partyId)
-        {
-            var request = BuildGetRequest("V1/Users/GetUsersInfo", authToken : authToken)
-                .WithAdditionalQueryParameter("partyId", partyId);
-
-            var result = clusterClient.Send(request);
-            EnsureSuccessResult(result);
-
-            return Serializer.Deserialize<UsersInfo>(result.Response.Content.ToString());
-        }
-
         public TransportationDocumentIdentifier GetTransportationDocumentIdentifier(string authToken, string partyId)
         {
             var request = BuildGetRequest("V1/Logistics/GetTransportationDocumentIdentifier", authToken : authToken)

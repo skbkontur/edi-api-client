@@ -29,8 +29,6 @@ namespace SkbKontur.EdiApi.Client
 
         PartyInfo GetPartyInfoByDepartmentGln(string authToken, string departmentGln);
 
-        UsersInfo GetUsersInfo(string authToken, string partyId);
-
         TransportationDocumentIdentifier GetTransportationDocumentIdentifier(string authToken, string partyId);
     }
 }
