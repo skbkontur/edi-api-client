@@ -31,7 +31,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public string OrdersRevisionNumber { get; set; }
 
         public OrdrspTransportDetails[] TransportDetails { get; set; }
-        public CommonGoodItem[] GoodItems { get; set; }
+        public OrdrspGoodItem[] GoodItems { get; set; }
 
         private decimal? ordrspTotal;
         private decimal? ordrspTaxableTotal;
