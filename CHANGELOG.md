@@ -1,4 +1,7 @@
 # История изменений
+## v2.17.1 - 2025.10.15
+- Добавлен класс OrdrspGoodItem со свойством OrdrspGoodItemStatus
+
 ## v2.16.1 - 2025.10.03
 - Удалён GetUsersInfo API метод
 
