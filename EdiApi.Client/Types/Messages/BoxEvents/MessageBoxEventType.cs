@@ -134,5 +134,8 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Изменился статус транспортной накладной в Контур.Логистике. Событие в ящике отправителя</summary>
         OutboxLogisticsWaybillStatusChanged,
+
+        /// <summary>Дочернее сообщение из архива/мультисообщения</summary>
+        ChildOutboxEntityMessage,
     }
 }
