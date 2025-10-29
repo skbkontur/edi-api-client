@@ -12,6 +12,7 @@ using MessageBoxEventBatch = SkbKontur.EdiApi.Client.Types.Internal.MessageBoxEv
 
 namespace SkbKontur.EdiApi.Client
 {
+    [Obsolete("Internal integrators should use Internal Api V2")]
     public interface IInternalEdiApiHttpClient
     {
         Document? GetDocument(string authToken, DocumentId documentId, bool includeRelatedDocuments = true);

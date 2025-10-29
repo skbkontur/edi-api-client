@@ -16,7 +16,7 @@ namespace SkbKontur.EdiApi.Client.Http
     {
         public static IClusterClient Get(
             Uri externalUri,
-            int defaultRequestTimeoutMs,
+            TimeSpan defaultRequestTimeout,
             IWebProxy? proxy = null,
             ILog? log = null
         )
@@ -28,7 +28,7 @@ namespace SkbKontur.EdiApi.Client.Http
 
             return new ClusterClient(log, configuration =>
                 {
-                    configuration.DefaultTimeout = TimeSpan.FromMilliseconds(defaultRequestTimeoutMs);
+                    configuration.DefaultTimeout = defaultRequestTimeout;
                     configuration.SetupExternalUrl(externalUri);
                     configuration.SetupUniversalTransport(
                         new UniversalTransportSettings
@@ -41,7 +41,7 @@ namespace SkbKontur.EdiApi.Client.Http
 
         public static IClusterClient Get(
             string environmentName,
-            int defaultRequestTimeoutMs,
+            TimeSpan defaultRequestTimeout,
             IWebProxy? proxy = null,
             ILog? log = null,
             ITracer? tracer = null
@@ -54,7 +54,7 @@ namespace SkbKontur.EdiApi.Client.Http
 
             return new ClusterClient(log, configuration =>
                 {
-                    configuration.DefaultTimeout = TimeSpan.FromMilliseconds(defaultRequestTimeoutMs);
+                    configuration.DefaultTimeout = defaultRequestTimeout;
                     configuration.SetupSingular(new SingularClientSettings(environmentName, "Catalogue_EDI_API_Front"));
                     configuration.SetupUniversalTransport(
                         new UniversalTransportSettings

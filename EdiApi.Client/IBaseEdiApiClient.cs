@@ -1,3 +1,5 @@
+using System;
+
 using SkbKontur.EdiApi.Client.Types.Boxes;
 using SkbKontur.EdiApi.Client.Types.Logistics;
 using SkbKontur.EdiApi.Client.Types.Organization;
@@ -11,8 +13,10 @@ namespace SkbKontur.EdiApi.Client
 {
     public interface IBaseEdiApiClient
     {
+        [Obsolete("Use new OpenId Connect authentication scheme")]
         string Authenticate(string portalSid);
 
+        [Obsolete("Use new OpenId Connect authentication scheme")]
         string Authenticate(string login, string password);
 
         PartiesInfo GetAccessiblePartiesInfo(string authToken);

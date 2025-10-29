@@ -18,22 +18,43 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
 {
     public class MessagesEdiApiHttpClient : BaseEdiApiHttpClient, IMessagesEdiApiClient
     {
-        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+        public MessagesEdiApiHttpClient(Uri baseUri,
+                                        IEdiApiTypesSerializer? serializer = null,
+                                        TimeSpan? timeout = null,
+                                        IWebProxy? proxy = null)
+            : base(baseUri, serializer, timeout, proxy)
+        {
+        }
+
+        public MessagesEdiApiHttpClient(string environment,
+                                        IEdiApiTypesSerializer? serializer = null,
+                                        TimeSpan? timeout = null,
+                                        IWebProxy? proxy = null,
+                                        ITracer? tracer = null)
+            : base(environment, serializer, timeout, proxy, tracer)
+        {
+        }
+
+        [Obsolete("Use the constructor overload without apiClientId for OpenID Connect authentication")]
+        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null)
             : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
         }
 
-        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+        [Obsolete("Use the constructor overload without apiClientId for OpenID Connect authentication")]
+        public MessagesEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null)
             : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 
-        public MessagesEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+        [Obsolete("Use the constructor overload without apiClientId for OpenID Connect authentication")]
+        public MessagesEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null, ITracer? tracer = null)
             : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, tracer)
         {
         }
 
-        public MessagesEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+        [Obsolete("Use the constructor overload without apiClientId for OpenID Connect authentication")]
+        public MessagesEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null, ITracer? tracer = null)
             : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, tracer)
         {
         }
