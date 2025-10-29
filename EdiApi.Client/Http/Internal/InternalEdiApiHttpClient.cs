@@ -20,24 +20,25 @@ using MessageBoxEventBatch = SkbKontur.EdiApi.Client.Types.Internal.MessageBoxEv
 
 namespace SkbKontur.EdiApi.Client.Http.Internal
 {
+    [Obsolete("Internal integrators should use Internal Api V2")]
     public class InternalEdiApiHttpClient : BaseEdiApiHttpClient, IInternalEdiApiHttpClient
     {
-        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null)
             : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null)
             : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+        public InternalEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null, ITracer? tracer = null)
             : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, tracer)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+        public InternalEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null, ITracer? tracer = null)
             : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, tracer)
         {
         }
