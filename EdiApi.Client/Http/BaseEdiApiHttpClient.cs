@@ -24,28 +24,58 @@ namespace SkbKontur.EdiApi.Client.Http
             string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer,
             int timeoutInMilliseconds, IWebProxy? proxy = null)
         {
+            if (string.IsNullOrEmpty(apiClientId))
+                throw new ArgumentNullException(nameof(apiClientId));
+
             this.apiClientId = apiClientId;
             Serializer = serializer;
-            clusterClient = ClusterClientFactory.Get(baseUri, timeoutInMilliseconds, proxy);
+            clusterClient = ClusterClientFactory.Get(baseUri, TimeSpan.FromMilliseconds(timeoutInMilliseconds), proxy);
         }
 
         protected BaseEdiApiHttpClient(
             string apiClientId, string environment, IEdiApiTypesSerializer serializer,
             int timeoutInMilliseconds, IWebProxy? proxy = null, ITracer? tracer = null)
         {
+            if (string.IsNullOrEmpty(apiClientId))
+                throw new ArgumentException(nameof(apiClientId));
+
             this.apiClientId = apiClientId;
             Serializer = serializer;
-            clusterClient = ClusterClientFactory.Get(environment, timeoutInMilliseconds, proxy, tracer : tracer);
+            clusterClient = ClusterClientFactory.Get(environment, TimeSpan.FromMilliseconds(timeoutInMilliseconds), proxy, tracer : tracer);
         }
 
+        protected BaseEdiApiHttpClient(Uri baseUri,
+                                       IEdiApiTypesSerializer? serializer = null,
+                                       TimeSpan? timeout = null,
+                                       IWebProxy? proxy = null)
+        {
+            Serializer = serializer ?? new JsonEdiApiTypesSerializer();
+            clusterClient = ClusterClientFactory.Get(baseUri, timeout ?? DefaultTimeout, proxy);
+        }
+
+        protected BaseEdiApiHttpClient(string environment,
+                                       IEdiApiTypesSerializer? serializer = null,
+                                       TimeSpan? timeout = null,
+                                       IWebProxy? proxy = null,
+                                       ITracer? tracer = null)
+        {
+            Serializer = serializer ?? new JsonEdiApiTypesSerializer();
+            clusterClient = ClusterClientFactory.Get(environment, timeout ?? DefaultTimeout, proxy, tracer : tracer);
+        }
+
+        [Obsolete("Use new OpenId Connect authentication scheme")]
         public string Authenticate(string portalSid) =>
             DoAuthenticate(new AuthCredentials {PortalSid = portalSid});
 
+        [Obsolete("Use new OpenId Connect authentication scheme")]
         public string Authenticate(string login, string password) =>
             DoAuthenticate(new AuthCredentials {Login = login, Password = password});
 
         private string DoAuthenticate(AuthCredentials authCredentials)
         {
+            if (IsOpenIdConnectEnabled())
+                throw new InvalidOperationException("The client is configured with the new OpenId Connect authentication method that is incompatible with the legacy '/V1/Authenticate' endpoint");
+
             var request = BuildPostRequest("V1/Authenticate", authCredentials);
 
             var result = clusterClient.Send(request);
@@ -142,7 +172,8 @@ namespace SkbKontur.EdiApi.Client.Http
 
         protected IEdiApiTypesSerializer Serializer { get; }
 
-        protected const int DefaultTimeout = 30 * 1000;
+        protected const int DefaultTimeoutMs = 30_000;
+        private static readonly TimeSpan DefaultTimeout = TimeSpan.FromMilliseconds(DefaultTimeoutMs);
 
         protected virtual Request BuildPostRequest(string relativeUrl, AuthCredentials? authCredentials = null, string? authToken = null)
             => BuildPostRequest(relativeUrl, authCredentials, authToken, Array.Empty<byte>());
@@ -190,7 +221,26 @@ namespace SkbKontur.EdiApi.Client.Http
             }
         }
 
+        private bool IsOpenIdConnectEnabled() => string.IsNullOrEmpty(apiClientId);
+
         private string BuildAuthorizationHeader(AuthCredentials? authCredentials, string? authToken)
+        {
+            if (IsOpenIdConnectEnabled())
+            {
+                if (string.IsNullOrEmpty(authToken))
+                    throw new ArgumentNullException(nameof(authToken), "AuthToken should not be empty when using the new OpenId Connect authentication scheme.");
+                return BuildBearerAuthorizationHeader(authToken!);
+            }
+
+            return BuildKonturEdiAuthorizationHeader(authCredentials, authToken);
+        }
+
+        private static string BuildBearerAuthorizationHeader(string authToken)
+        {
+            return $"Bearer {authToken}";
+        }
+
+        private string BuildKonturEdiAuthorizationHeader(AuthCredentials? authCredentials, string? authToken)
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("KonturEdiAuth ");
@@ -213,6 +263,6 @@ namespace SkbKontur.EdiApi.Client.Http
 
         protected readonly IClusterClient clusterClient;
 
-        private readonly string apiClientId;
+        private readonly string? apiClientId;
     }
 }
