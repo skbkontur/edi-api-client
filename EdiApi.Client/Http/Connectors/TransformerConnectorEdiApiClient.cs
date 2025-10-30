@@ -115,7 +115,7 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<MessageEntity>(result.Response.Content.ToString());
+            return DeserializeResponse<MessageEntity>(result);
         }
 
         public ConnectorBoxesInfo GetConnectorBoxesInfo(string authToken)
@@ -125,7 +125,7 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<ConnectorBoxesInfo>(result.Response.Content.ToString());
+            return DeserializeResponse<ConnectorBoxesInfo>(result);
         }
 
         private TransformerConnectorBoxEventBatch GetEventsInternal(Request request)
@@ -133,7 +133,7 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            var boxEventBatch = Serializer.Deserialize<TransformerConnectorBoxEventBatch>(result.Response.Content.ToString());
+            var boxEventBatch = DeserializeResponse<TransformerConnectorBoxEventBatch>(result);
 
             boxEventBatch.Events ??= new TransformerConnectorBoxEvent[0];
             foreach (var boxEvent in boxEventBatch.Events)
