@@ -2,6 +2,7 @@ using System;
 using System.Net;
 
 using Vostok.Clusterclient.Core;
+using Vostok.Clusterclient.Core.Model;
 using Vostok.Clusterclient.Singular;
 using Vostok.Clusterclient.Tracing;
 using Vostok.Clusterclient.Transport;
@@ -36,6 +37,7 @@ namespace SkbKontur.EdiApi.Client.Http
                                 AllowAutoRedirect = false,
                                 Proxy = proxy
                             });
+                    configuration.AddRequestTransform(request => request.WithUserAgentHeader(UserAgentProvider.GetUserAgent()));
                 });
         }
 
@@ -62,6 +64,7 @@ namespace SkbKontur.EdiApi.Client.Http
                                 AllowAutoRedirect = false,
                                 Proxy = proxy
                             });
+                    configuration.AddRequestTransform(request => request.WithUserAgentHeader(UserAgentProvider.GetUserAgent()));
 
                     if (tracer != null)
                         configuration.SetupDistributedTracing(tracer);
