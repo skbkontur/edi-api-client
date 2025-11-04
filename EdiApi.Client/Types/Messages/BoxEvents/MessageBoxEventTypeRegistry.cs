@@ -52,7 +52,6 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
             Register<OutboxDiadocDocumentShipmentFixationCancellationGisMtStatusChangedEventContent>(MessageBoxEventType.OutboxDiadocDocumentShipmentFixationCancellationGisMtStatusChanged);
             Register<OutboxLogisticsWaybillTitlePostingStatusEventContent>(MessageBoxEventType.OutboxLogisticsWaybillTitlePostingStatus);
             Register<OutboxLogisticsWaybillStatusChangedEventContent>(MessageBoxEventType.OutboxLogisticsWaybillStatusChanged);
-            Register<ChildOutboxMessageEventContent>(MessageBoxEventType.ChildOutboxMessage);
         }
     }
 }
