@@ -9,15 +9,10 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.Outbox
         /// <summary>Тип транспорта</summary>
         public TransportType TransportType { get; set; }
 
-        /// <summary>
-        ///     Внутренний идентификатор родительского документа
-        ///     (архива/мультисообщения/изначального сообщения при переотправке)
-        /// </summary>
+        /// <summary>Внутренний идентификатор родительского сообщения — архива, мультисообщения, или изначального сообщения при переотправке из мониторинга</summary>
         public string? ParentDocumentCirculationId { get; set; }
 
-        /// <summary>
-        ///     Имя файла сообщения
-        /// </summary>
+        /// <summary>Имя файла сообщения. Заполняется при распаковке сообщения из архива, мультисообщения и при переотправке сообщения из мониторинга</summary>
         public string? MessageFileName { get; set; }
     }
 }
