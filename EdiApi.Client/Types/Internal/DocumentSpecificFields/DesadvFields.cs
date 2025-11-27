@@ -24,6 +24,8 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
 
         public string TransportBy { get; set; }
 
+        public string MercurySendingStatus { get; set; }
+
         public decimal? DesadvTotal { get { return desadvTotal ?? desadvTaxableTotal; } set { desadvTotal = value; } }
         public decimal? DesadvTotalWithVAT { get; set; }
         public decimal? DesadvTotalVAT { get; set; }
