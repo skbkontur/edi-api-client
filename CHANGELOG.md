@@ -1,4 +1,7 @@
 # История изменений
+## v2.19.3 - 2025.11.28
+- Добавлены поля ParentDocumentCirculationId и MessageFileName в событие NewOutboxMessageEventContent
+
 ## v2.18.6 - 2025.11.28
 - Добавлено поле MercurySendingStatus в DesadvFields
 
