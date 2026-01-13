@@ -45,18 +45,18 @@ namespace SkbKontur.EdiApi.Client.Http.Messages
 
         public MessagesEdiApiHttpClient(Uri baseUri,
                                         IEdiApiTypesSerializer? serializer = null,
-                                        TimeSpan? timeoutInMilliseconds = null,
+                                        TimeSpan? timeout = null,
                                         IWebProxy? proxy = null)
-            : base(baseUri, serializer, timeoutInMilliseconds, proxy)
+            : base(baseUri, serializer, timeout, proxy)
         {
         }
 
         public MessagesEdiApiHttpClient(string environment,
                                         IEdiApiTypesSerializer? serializer = null,
-                                        TimeSpan? timeoutInMilliseconds = null,
+                                        TimeSpan? timeout = null,
                                         IWebProxy? proxy = null,
                                         ITracer? tracer = null)
-            : base(environment, serializer, timeoutInMilliseconds, proxy, tracer)
+            : base(environment, serializer, timeout, proxy, tracer)
         {
         }
 
