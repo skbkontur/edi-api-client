@@ -60,5 +60,8 @@ namespace SkbKontur.EdiApi.Client.Types.Organization
 
         /// <summary>Дата окончания оплаченного срока действия GLN</summary>
         public DateTime? GlnExpirationDate { get; set; }
+
+        /// <summary>Дополнительный идентификатор точки доставки</summary>
+        public string DeliveryPartyAdditionalCode { get; set; }
     }
 }
