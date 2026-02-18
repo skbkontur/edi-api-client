@@ -2,6 +2,7 @@ using System;
 using System.Net;
 
 using Vostok.Clusterclient.Core;
+using Vostok.Clusterclient.Core.Model;
 using Vostok.Clusterclient.Singular;
 using Vostok.Clusterclient.Tracing;
 using Vostok.Clusterclient.Transport;
@@ -16,7 +17,7 @@ namespace SkbKontur.EdiApi.Client.Http
     {
         public static IClusterClient Get(
             Uri externalUri,
-            int defaultRequestTimeoutMs,
+            TimeSpan defaultRequestTimeout,
             IWebProxy? proxy = null,
             ILog? log = null
         )
@@ -28,7 +29,7 @@ namespace SkbKontur.EdiApi.Client.Http
 
             return new ClusterClient(log, configuration =>
                 {
-                    configuration.DefaultTimeout = TimeSpan.FromMilliseconds(defaultRequestTimeoutMs);
+                    configuration.DefaultTimeout = defaultRequestTimeout;
                     configuration.SetupExternalUrl(externalUri);
                     configuration.SetupUniversalTransport(
                         new UniversalTransportSettings
@@ -36,12 +37,13 @@ namespace SkbKontur.EdiApi.Client.Http
                                 AllowAutoRedirect = false,
                                 Proxy = proxy
                             });
+                    configuration.AddRequestTransform(request => request.WithUserAgentHeader(UserAgentProvider.GetUserAgent()));
                 });
         }
 
         public static IClusterClient Get(
             string environmentName,
-            int defaultRequestTimeoutMs,
+            TimeSpan defaultRequestTimeout,
             IWebProxy? proxy = null,
             ILog? log = null,
             ITracer? tracer = null
@@ -54,7 +56,7 @@ namespace SkbKontur.EdiApi.Client.Http
 
             return new ClusterClient(log, configuration =>
                 {
-                    configuration.DefaultTimeout = TimeSpan.FromMilliseconds(defaultRequestTimeoutMs);
+                    configuration.DefaultTimeout = defaultRequestTimeout;
                     configuration.SetupSingular(new SingularClientSettings(environmentName, "Catalogue_EDI_API_Front"));
                     configuration.SetupUniversalTransport(
                         new UniversalTransportSettings
@@ -62,6 +64,7 @@ namespace SkbKontur.EdiApi.Client.Http
                                 AllowAutoRedirect = false,
                                 Proxy = proxy
                             });
+                    configuration.AddRequestTransform(request => request.WithUserAgentHeader(UserAgentProvider.GetUserAgent()));
 
                     if (tracer != null)
                         configuration.SetupDistributedTracing(tracer);
