@@ -1,4 +1,7 @@
 # История изменений
+## v2.20.1 - 2026.02.18
+- Добавлено поле DeliveryPartyAdditionalCode в PartyInfo
+
 ## v2.19.3 - 2025.11.28
 - Добавлены поля ParentDocumentCirculationId и MessageFileName в событие NewOutboxMessageEventContent
 
