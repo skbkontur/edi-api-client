@@ -22,6 +22,12 @@
         PriceList,
 
         /// <summary>Неформализованный документ</summary>
-        Nonformalized
+        Nonformalized,
+
+        /// <summary>Документ о приёме груза перевозчиком по перевозке</summary>
+        TransportationReception,
+
+        /// <summary>Документ о доставке груза перевозчиком по перевозке</summary>
+        TransportationDelivery,
     }
 }

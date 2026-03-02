@@ -52,6 +52,8 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
             Register<InboxDiadocDocumentShipmentFixationGisMtStatusChangedEventContent>(MessageBoxEventType.InboxDiadocDocumentShipmentFixationGisMtStatusChanged);
             Register<OutboxDiadocDocumentShipmentFixationCancellationGisMtStatusChangedEventContent>(MessageBoxEventType.OutboxDiadocDocumentShipmentFixationCancellationGisMtStatusChanged);
             Register<InboxDiadocDocumentShipmentFixationCancellationGisMtStatusChangedEventContent>(MessageBoxEventType.InboxDiadocDocumentShipmentFixationCancellationGisMtStatusChanged);
+            Register<OutboxDiadocPostingErrorEventContent>(MessageBoxEventType.OutboxDiadocPostingError);
+            Register<InboxDiadocPostingErrorEventContent>(MessageBoxEventType.InboxDiadocPostingError);
         }
     }
 }

@@ -134,5 +134,11 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Изменился статус отмены фиксации кодов при отгрузке в ГИС МТ "Честный ЗНАК". Событие в ящике получателя</summary>
         InboxDiadocDocumentShipmentFixationCancellationGisMtStatusChanged,
+
+        /// <summary>Ошибка отправки пакета документов в Диадок. Событие в ящике отправителя</summary>
+        OutboxDiadocPostingError,
+
+        /// <summary>Ошибка отправки пакета документов в Диадок. Событие в ящике получателя</summary>
+        InboxDiadocPostingError,
     }
 }
