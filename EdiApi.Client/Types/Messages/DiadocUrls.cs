@@ -26,5 +26,11 @@ namespace SkbKontur.EdiApi.Client.Types.Messages
 
         /// <summary>Ссылка на неформализованный документ в Диадоке</summary>
         public string NonformalizedUrl { get; set; }
+
+        /// <summary>Ссылка на документ о приёме груза перевозчиком по перевозке в Диадоке</summary>
+        public string TransportationReceptionUrl { get; set; }
+
+        /// <summary>Ссылка на документ о доставке груза перевозчиком по перевозке в Диадоке</summary>
+        public string TransportationDeliveryUrl { get; set; }
     }
 }

@@ -140,5 +140,11 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Изменился статус транспортной накладной в Контур.Логистике. Событие в ящике отправителя</summary>
         OutboxLogisticsWaybillStatusChanged,
+
+        /// <summary>Ошибка отправки пакета документов в Диадок. Событие в ящике отправителя</summary>
+        OutboxDiadocPostingError,
+
+        /// <summary>Ошибка отправки пакета документов в Диадок. Событие в ящике получателя</summary>
+        InboxDiadocPostingError,
     }
 }
