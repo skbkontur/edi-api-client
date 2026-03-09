@@ -17,6 +17,8 @@ namespace SkbKontur.EdiApi.Client.Types.Internal
         public string Number { get; set; }
         public DateTime? Date { get; set; }
         public LinkedDocumentInfo[] LinkedDocuments { get; set; }
+        public string MessageSendInterface { get; set; }
+        public string OrderChainDcId { get; set; }
 
         public OrdersFields OrdersFields { get; set; }
         public DesadvFields DesadvFields { get; set; }
