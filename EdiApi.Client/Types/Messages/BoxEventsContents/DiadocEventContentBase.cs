@@ -26,6 +26,12 @@
         /// <summary>Идентификатор неформализованного документа</summary>
         public string NonformalizedId { get; set; }
 
+        /// <summary>Идентификатор документа о приёме груза перевозчиком по перевозке</summary>
+        public string TransportationReceptionId { get; set; }
+
+        /// <summary>Идентификатор документа о доставке груза перевозчиком по перевозке</summary>
+        public string TransportationDeliveryId { get; set; }
+
         /// <summary>Ссылки на документы в Диадоке</summary>
         public DiadocUrls DiadocUrls { get; set; }
 

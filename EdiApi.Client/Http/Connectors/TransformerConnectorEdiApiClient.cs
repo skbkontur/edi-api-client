@@ -18,22 +18,22 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
 {
     public class TransformerConnectorEdiApiClient : BaseEdiApiHttpClient, ITransformerConnectorEdiApiClient
     {
-        public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+        public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null)
             : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
         }
 
-        public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+        public TransformerConnectorEdiApiClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null)
             : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 
-        public TransformerConnectorEdiApiClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+        public TransformerConnectorEdiApiClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null, ITracer? tracer = null)
             : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, tracer)
         {
         }
 
-        public TransformerConnectorEdiApiClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+        public TransformerConnectorEdiApiClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null, ITracer? tracer = null)
             : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, tracer)
         {
         }
@@ -115,7 +115,7 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<MessageEntity>(result.Response.Content.ToString());
+            return DeserializeResponse<MessageEntity>(result);
         }
 
         public ConnectorBoxesInfo GetConnectorBoxesInfo(string authToken)
@@ -125,7 +125,7 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<ConnectorBoxesInfo>(result.Response.Content.ToString());
+            return DeserializeResponse<ConnectorBoxesInfo>(result);
         }
 
         private TransformerConnectorBoxEventBatch GetEventsInternal(Request request)
@@ -133,7 +133,7 @@ namespace SkbKontur.EdiApi.Client.Http.Connectors
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            var boxEventBatch = Serializer.Deserialize<TransformerConnectorBoxEventBatch>(result.Response.Content.ToString());
+            var boxEventBatch = DeserializeResponse<TransformerConnectorBoxEventBatch>(result);
 
             boxEventBatch.Events ??= new TransformerConnectorBoxEvent[0];
             foreach (var boxEvent in boxEventBatch.Events)
