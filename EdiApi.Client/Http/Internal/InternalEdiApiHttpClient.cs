@@ -20,24 +20,25 @@ using MessageBoxEventBatch = SkbKontur.EdiApi.Client.Types.Internal.MessageBoxEv
 
 namespace SkbKontur.EdiApi.Client.Http.Internal
 {
+    [Obsolete("Internal integrators should use Internal Api V2")]
     public class InternalEdiApiHttpClient : BaseEdiApiHttpClient, IInternalEdiApiHttpClient
     {
-        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null)
             : this(apiClientId, baseUri, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null)
+        public InternalEdiApiHttpClient(string apiClientId, Uri baseUri, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null)
             : base(apiClientId, baseUri, serializer, timeoutInMilliseconds, proxy)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+        public InternalEdiApiHttpClient(string apiClientId, string environment, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null, ITracer? tracer = null)
             : this(apiClientId, environment, new JsonEdiApiTypesSerializer(), timeoutInMilliseconds, proxy, tracer)
         {
         }
 
-        public InternalEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeout, IWebProxy? proxy = null, ITracer? tracer = null)
+        public InternalEdiApiHttpClient(string apiClientId, string environment, IEdiApiTypesSerializer serializer, int timeoutInMilliseconds = DefaultTimeoutMs, IWebProxy? proxy = null, ITracer? tracer = null)
             : base(apiClientId, environment, serializer, timeoutInMilliseconds, proxy, tracer)
         {
         }
@@ -52,7 +53,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<Document>(result.Response.Content.ToString());
+            return DeserializeResponse<Document>(result);
         }
 
         public MessageBoxEventBatch GetEvents(string authToken, string? exclusiveEventPointer, int? count = null)
@@ -71,7 +72,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            var boxEventBatch = Serializer.Deserialize<MessageBoxEventBatch>(result.Response.Content.ToString());
+            var boxEventBatch = DeserializeResponse<MessageBoxEventBatch>(result);
             foreach (var boxEvent in boxEventBatch.Events)
             {
                 AdjustEventContent(boxEvent);
@@ -88,7 +89,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            var boxEvents = Serializer.Deserialize<MessageBoxEvent[]>(result.Response.Content.ToString());
+            var boxEvents = DeserializeResponse<MessageBoxEvent[]>(result);
             foreach (var boxEvent in boxEvents)
             {
                 AdjustEventContent(boxEvent);
@@ -115,7 +116,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<BoxesInfo>(result.Response.Content.ToString());
+            return DeserializeResponse<BoxesInfo>(result);
         }
 
         public InternalPartyInfo GetInternalPartyInfo(string authToken, string partyId)
@@ -126,7 +127,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<InternalPartyInfo>(result.Response.Content.ToString());
+            return DeserializeResponse<InternalPartyInfo>(result);
         }
 
         public PartyInfoWithEmployee[] GetPartiesByUser(string authToken, string userId)
@@ -137,7 +138,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<PartyInfoWithEmployee[]>(result.Response.Content.ToString());
+            return DeserializeResponse<PartyInfoWithEmployee[]>(result);
         }
 
         public PartyInfoWithEmployees[] GetPartiesInfoByInn(string authToken, string partyInn)
@@ -148,7 +149,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<PartyInfoWithEmployees[]>(result.Response.Content.ToString());
+            return DeserializeResponse<PartyInfoWithEmployees[]>(result);
         }
 
         public PartySettings GetPartySettings(string authToken, string partyId)
@@ -159,7 +160,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<PartySettings>(result.Response.Content.ToString());
+            return DeserializeResponse<PartySettings>(result);
         }
 
         public string AddOrUpdateParty(string authToken, string partyId, EditablePartySettings editablePartySettings)
@@ -170,7 +171,7 @@ namespace SkbKontur.EdiApi.Client.Http.Internal
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
 
-            return Serializer.Deserialize<string>(result.Response.Content.ToString());
+            return DeserializeResponse<string>(result);
         }
 
         public void AddEmployee(string authToken, string partyId, string email)
