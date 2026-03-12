@@ -13,11 +13,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Vostok.ClusterClient.Core" Version="0.1.59" />
-    <PackageReference Include="Vostok.ClusterClient.Singular" Version="0.1.30" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Vostok.ClusterClient.Core" Version="0.1.60" />
+    <PackageReference Include="Vostok.ClusterClient.Singular" Version="0.1.32" />
     <PackageReference Include="Vostok.ClusterClient.Tracing" Version="0.1.9" />
-    <PackageReference Include="Vostok.ClusterClient.Transport" Version="0.1.40" />
+    <PackageReference Include="Vostok.ClusterClient.Transport" Version="0.1.41" />
+    <PackageReference Update="Nerdbank.GitVersioning" Version="3.8.118" />
   </ItemGroup>
 
 </Project>
