@@ -1,4 +1,10 @@
 # История изменений
+## v2.21.1 - 2026.03.12
+- Добавлена аутентификация по OpenId Connect. Старая аутентификация помечена устаревшей. См. [документацию](https://developer.kontur.ru/doc/edi?about=2).
+- Добавлены async-версии методов.
+- Удалены события `OutboxLogisticsWaybillTitlePostingStatus` и `OutboxLogisticsWaybillStatusChanged`.
+- Обновлены версии библиотек.
+
 ## v2.20.1 - 2026.02.18
 - Добавлено поле DeliveryPartyAdditionalCode в PartyInfo
 
