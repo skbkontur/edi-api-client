@@ -14,10 +14,14 @@ namespace SkbKontur.EdiApi.Client.Types.Parties
 
     public enum IntegrationType
     {
-        Undefined,
-        Module1C,
-        SelfDevelopedSolution,
-        Web
+        Undefined = 0,
+        Module1C = 1,
+        SelfDevelopedSolution = 2,
+        Web = 3,
+        BuyerModule1C = 4,
+        SmallRetail = 5,
+        Market = 6,
+        BuyerSelfDevelopedSolution = 7,
     }
 
     public class ReportingSettings
