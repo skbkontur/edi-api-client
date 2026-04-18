@@ -1,7 +1,7 @@
 ﻿namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.V2
 {
     /// <summary>Тип документа</summary>
-    public enum DiadocDocumentType
+    public enum DiadocDocumentTypeV2
     {
         /// <summary>Неизвестно</summary>
         Unknown = 0,

@@ -13,7 +13,7 @@
         public string MessageId { get; set; }
 
         /// <summary>Тип документа</summary>
-        public DiadocDocumentType DocumentType { get; set; }
+        public DiadocDocumentTypeV2 DocumentType { get; set; }
 
         /// <summary>Идентификатор документа</summary>
         public string DocumentId { get; set; }

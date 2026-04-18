@@ -10,6 +10,6 @@
         public DiadocPowerOfAttorneyFullId FullId { get; set; }
 
         /// <summary>Информация о статусе проверки МЧД</summary>
-        public DiadocPowerOfAttorneyValidationStatus Status { get; set; }
+        public DiadocPowerOfAttorneyValidationStatusV2 Status { get; set; }
     }
 }

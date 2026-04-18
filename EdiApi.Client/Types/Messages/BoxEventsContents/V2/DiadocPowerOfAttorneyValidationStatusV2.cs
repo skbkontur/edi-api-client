@@ -1,7 +1,7 @@
 ﻿namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.V2
 {
     /// <summary>Информация о статусе проверки МЧД</summary>
-    public class DiadocPowerOfAttorneyValidationStatus
+    public class DiadocPowerOfAttorneyValidationStatusV2
     {
         /// <summary>Критичность статуса проверки МЧД</summary>
         public DiadocPowerOfAttorneyValidationStatusSeverity Severity { get; set; }
