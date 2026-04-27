@@ -6,6 +6,9 @@
         /// <summary>Участник документооборота</summary>
         public DiadocDocumentParticipant Participant { get; set; }
 
+        /// <summary>Тип титула документа</summary>
+        public DiadocDocumentTitleType TitleType { get; set; }
+
         /// <summary>Статус титула документа, относящийся к участнику документооборота</summary>
         public DiadocParticipantTitleStatus Status { get; set; }
 

@@ -3,9 +3,6 @@
     /// <summary>Информация о титуле документа</summary>
     public class DiadocDocumentTitle
     {
-        /// <summary>Тип титула документа</summary>
-        public DiadocDocumentTitleType DocumentTitleType { get; set; }
-
         /// <summary>Идентификатор титула документа</summary>
         public string DocumentTitleId { get; set; }
 
