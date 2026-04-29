@@ -3,22 +3,10 @@
     /// <summary>Состояние титула документа по участнику документооборота</summary>
     public class DiadocParticipantTitleState
     {
-        /// <summary>Участник документооборота</summary>
-        public DiadocDocumentParticipant Participant { get; set; }
+        /// <summary>Информация о титуле документа участника документооборота</summary>
+        public DiadocParticipantTitle ParticipantTitle { get; set; }
 
-        /// <summary>Тип титула документа</summary>
-        public DiadocDocumentTitleType TitleType { get; set; }
-
-        /// <summary>Статус титула документа, относящийся к участнику документооборота</summary>
-        public DiadocParticipantTitleStatus Status { get; set; }
-
-        /// <summary>Информация о подписи</summary>
-        public DiadocSignature Signature { get; set; }
-
-        /// <summary>Информация о титуле документа</summary>
-        public DiadocDocumentTitle Title { get; set; }
-
-        /// <summary>Информация об отклонении подписи</summary>
-        public DiadocSignatureRejection Rejection { get; set; }
+        /// <summary>Список ответов участников документооборота на титул документа</summary>
+        public DiadocParticipantTitleResponse[] ParticipantTitleResponses { get; set; }
     }
 }

@@ -6,8 +6,8 @@
         /// <summary>Неизвестно</summary>
         Unknown = 0,
 
-        /// <summary>Подпись титула отклонена</summary>
-        SigningRejected = 1,
+        /// <summary>Титул отклонен</summary>
+        Rejected = 1,
 
         /// <summary>Титул подписан</summary>
         Signed = 2,
