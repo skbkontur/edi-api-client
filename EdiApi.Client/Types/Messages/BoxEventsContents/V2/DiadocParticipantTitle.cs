@@ -24,7 +24,7 @@
         /// <summary>Информация о титуле ЭТрН</summary>
         public DiadocLogisticsWaybillInfo LogisticsWaybillInfo { get; set; }
 
-        /// <summary>Информация о титуле ЭЗЗ</summary>
-        public DiadocLogisticsOrderRequestInfo LogisticsOrderRequestInfo { get; set; }
+        /// <summary>Список причин отказа</summary>
+        public string[] RejectionReasons { get; set; }
     }
 }
