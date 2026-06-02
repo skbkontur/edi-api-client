@@ -23,5 +23,8 @@
 
         /// <summary>Информация о титуле ЭТрН</summary>
         public DiadocLogisticsWaybillInfo LogisticsWaybillInfo { get; set; }
+
+        /// <summary>Список причин отказа</summary>
+        public string[] RejectionReasons { get; set; }
     }
 }
