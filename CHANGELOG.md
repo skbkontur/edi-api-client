@@ -1,4 +1,7 @@
 # История изменений
+## v2.23.1 - 2026.06.02
+- Добавлено поле SenderProvider в Internal/Document.cs
+
 ## v2.22.1 - 2026.04.15
 - Добавлено поле IntegrationTypes в InternalPartyInfo.cs
 
