@@ -14,5 +14,8 @@
 
         /// <summary>Информация об отклонении подписи</summary>
         public DiadocSignatureRejection Rejection { get; set; }
+
+        /// <summary>Информация об отправке титула в роуминг</summary>
+        public DiadocRoamingNotification RoamingNotification { get; set; }
     }
 }

@@ -18,9 +18,6 @@
         /// <summary>Информация о подписи</summary>
         public DiadocSignature Signature { get; set; }
 
-        /// <summary>Информация об отправке титула в роуминг</summary>
-        public DiadocRoamingNotification RoamingNotification { get; set; }
-
         /// <summary>Информация о титуле ЭТрН</summary>
         public DiadocLogisticsWaybillInfo LogisticsWaybillInfo { get; set; }
 
