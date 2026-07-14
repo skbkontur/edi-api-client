@@ -3,11 +3,13 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+using SkbKontur.EdiApi.Client.Http.XsdSchemas;
 using SkbKontur.EdiApi.Client.Types.Boxes;
 using SkbKontur.EdiApi.Client.Types.Logistics;
 using SkbKontur.EdiApi.Client.Types.Organization;
 using SkbKontur.EdiApi.Client.Types.Parties;
 using SkbKontur.EdiApi.Client.Types.Serialization;
+using SkbKontur.EdiApi.Client.Types.XsdSchemas;
 
 using Vostok.Clusterclient.Core;
 using Vostok.Clusterclient.Core.Model;
@@ -245,6 +247,26 @@ namespace SkbKontur.EdiApi.Client.Http
             return DeserializeResponse<TransportationDocumentIdentifier>(result);
         }
 
+        public XsdSchemasDownloadResult DownloadXsdSchemasArchive(string authToken, string? version = null, bool includeTargetNamespace = false)
+        {
+            var request = BuildDownloadXsdSchemasArchiveRequest(authToken, version, includeTargetNamespace);
+
+            var result = clusterClient.Send(request);
+            EnsureSuccessResult(result);
+
+            return XsdSchemasDownloadResultBuilder.Build(result.Response);
+        }
+
+        public async Task<XsdSchemasDownloadResult> DownloadXsdSchemasArchiveAsync(string authToken, string? version = null, bool includeTargetNamespace = false)
+        {
+            var request = BuildDownloadXsdSchemasArchiveRequest(authToken, version, includeTargetNamespace);
+
+            var result = await clusterClient.SendAsync(request);
+            EnsureSuccessResult(result);
+
+            return XsdSchemasDownloadResultBuilder.Build(result.Response);
+        }
+
         protected IEdiApiTypesSerializer Serializer { get; }
 
         protected const int DefaultTimeoutMs = 30_000;
@@ -347,6 +369,15 @@ namespace SkbKontur.EdiApi.Client.Http
         {
             return BuildGetRequest("V1/Logistics/GetTransportationDocumentIdentifier", authToken : authToken)
                 .WithAdditionalQueryParameter("partyId", partyId);
+        }
+
+        private Request BuildDownloadXsdSchemasArchiveRequest(string authToken, string? version = null, bool includeTargetNamespace = false)
+        {
+            return Request.Get("V1/Schemas")
+                          .WithHeader("Authorization", BuildAuthorizationHeader(authCredentials : null, authToken))
+                          .WithAdditionalQueryParameter("version", version)
+                          .WithAdditionalQueryParameter("includeTargetNamespace", includeTargetNamespace)
+                          .WithAcceptHeader("application/zip");
         }
 
         private string BuildAuthorizationHeader(AuthCredentials? authCredentials, string? authToken)
