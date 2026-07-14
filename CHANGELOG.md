@@ -1,4 +1,11 @@
 # История изменений
+## v2.23.X - 2026.07.14
+- Добавлено поле SenderProvider в Internal/Document.cs
+- Добавлено событие второй версии OutboxDiadocDocumentPostingErrorV2, содержащее в себе ошибку отправки документа в Диадок
+- Добавлено событие второй версии OutboxDiadocDocumentPostedV2, содержащее в себе информацию об успешно отправленном документе в Диадок
+- Добавлено событие второй версии OutboxDiadocDocumentStateChangedV2, содержащее в себе информацию о состоянии документа в Диадоке
+- Добавлено событие второй версии OutboxDiadocDocumentTraceabilityLostV2, сигнализирующее о невозможности далее отслеживать состояние документа в Диадоке
+
 ## v2.22.1 - 2026.04.15
 - Добавлено поле IntegrationTypes в InternalPartyInfo.cs
 
