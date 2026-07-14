@@ -5,6 +5,7 @@ using SkbKontur.EdiApi.Client.Types.Boxes;
 using SkbKontur.EdiApi.Client.Types.Logistics;
 using SkbKontur.EdiApi.Client.Types.Organization;
 using SkbKontur.EdiApi.Client.Types.Parties;
+using SkbKontur.EdiApi.Client.Types.XsdSchemas;
 
 using PartyInfo = SkbKontur.EdiApi.Client.Types.Parties.PartyInfo;
 
@@ -43,5 +44,8 @@ namespace SkbKontur.EdiApi.Client
 
         TransportationDocumentIdentifier GetTransportationDocumentIdentifier(string authToken, string partyId);
         Task<TransportationDocumentIdentifier> GetTransportationDocumentIdentifierAsync(string authToken, string partyId);
+
+        XsdSchemasDownloadResult DownloadXsdSchemasArchive(string? version = null, bool includeTargetNamespace = false);
+        Task<XsdSchemasDownloadResult> DownloadXsdSchemasArchiveAsync(string? version = null, bool includeTargetNamespace = false);
     }
 }
