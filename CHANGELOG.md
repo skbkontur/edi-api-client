@@ -1,4 +1,7 @@
 # История изменений
+## v2.27.X - 2026.07.29
+- Добавлены события `OutboxDiadocUniversalMessage` и `InboxDiadocUniversalMessage` с информацией об универсальном сообщении Диадока.
+
 ## v2.23.15 - 2026.07.14
 - Добавлено поле SenderProvider в Internal/Document.cs
 - Добавлено событие второй версии OutboxDiadocDocumentPostingErrorV2, содержащее в себе ошибку отправки документа в Диадок
