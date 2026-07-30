@@ -6,6 +6,6 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.Outbox
     public class OutboxDiadocUniversalMessageEventContent : OutboxDiadocEventContentBase
     {
         /// <summary>Информация об универсальном сообщении</summary>
-        public DiadocUniversalMessageEventInfo UniversalMessage { get; set; } = null!;
+        public DiadocUniversalMessageInfo UniversalMessage { get; set; } = null!;
     }
 }
