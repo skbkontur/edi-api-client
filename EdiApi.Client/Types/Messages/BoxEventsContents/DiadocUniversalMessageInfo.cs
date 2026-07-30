@@ -5,16 +5,19 @@ using SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.V2;
 namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
 {
     /// <summary>Информация об универсальном сообщении в событии EDI</summary>
-    public class DiadocUniversalMessageEventInfo
+    public class DiadocUniversalMessageInfo
     {
+        /// <summary>Идентификатор универсального сообщения</summary>
+        public string UniversalMessageEntityId { get; set; } = null!;
+
         /// <summary>Тип титула документа, к которому относится универсальное сообщение</summary>
         public DiadocDocumentTitleType DocumentTitleType { get; set; }
 
         /// <summary>Идентификатор титула документа, к которому относится универсальное сообщение</summary>
-        public string DocumentTitleId { get; set; } = null!;
+        public string DocumentTitleEntityId { get; set; } = null!;
 
-        /// <summary>Идентификатор универсального сообщения</summary>
-        public string UniversalMessageEntityId { get; set; } = null!;
+        /// <summary>Создатель универсального сообщения</summary>
+        public DiadocUniversalMessageCreator Creator { get; set; } = null!;
 
         /// <summary>Признак того, что универсальное сообщение не влияет на документооборот</summary>
         public bool IsOutOfWorkflow { get; set; }
