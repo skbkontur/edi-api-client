@@ -247,12 +247,9 @@ namespace SkbKontur.EdiApi.Client.Http
             return DeserializeResponse<TransportationDocumentIdentifier>(result);
         }
 
-        public XsdSchemasDownloadResult DownloadXsdSchemasArchive(string? version = null, bool includeTargetNamespace = false)
+        public XsdSchemasDownloadResult DownloadXsdSchemasArchive(string authToken, string? version = null, bool includeTargetNamespace = false)
         {
-            var request = Request.Get("V1/Schemas")
-                                 .WithAdditionalQueryParameter("version", version)
-                                 .WithAdditionalQueryParameter("includeTargetNamespace", includeTargetNamespace)
-                                 .WithAcceptHeader("application/zip");
+            var request = BuildDownloadXsdSchemasArchiveRequest(authToken, version, includeTargetNamespace);
 
             var result = clusterClient.Send(request);
             EnsureSuccessResult(result);
@@ -260,12 +257,9 @@ namespace SkbKontur.EdiApi.Client.Http
             return XsdSchemasDownloadResultBuilder.Build(result.Response);
         }
 
-        public async Task<XsdSchemasDownloadResult> DownloadXsdSchemasArchiveAsync(string? version = null, bool includeTargetNamespace = false)
+        public async Task<XsdSchemasDownloadResult> DownloadXsdSchemasArchiveAsync(string authToken, string? version = null, bool includeTargetNamespace = false)
         {
-            var request = Request.Get("V1/Schemas")
-                                 .WithAdditionalQueryParameter("version", version)
-                                 .WithAdditionalQueryParameter("includeTargetNamespace", includeTargetNamespace)
-                                 .WithAcceptHeader("application/zip");
+            var request = BuildDownloadXsdSchemasArchiveRequest(authToken, version, includeTargetNamespace);
 
             var result = await clusterClient.SendAsync(request);
             EnsureSuccessResult(result);
@@ -375,6 +369,15 @@ namespace SkbKontur.EdiApi.Client.Http
         {
             return BuildGetRequest("V1/Logistics/GetTransportationDocumentIdentifier", authToken : authToken)
                 .WithAdditionalQueryParameter("partyId", partyId);
+        }
+
+        private Request BuildDownloadXsdSchemasArchiveRequest(string authToken, string? version = null, bool includeTargetNamespace = false)
+        {
+            return Request.Get("V1/Schemas")
+                          .WithHeader("Authorization", BuildAuthorizationHeader(authCredentials : null, authToken))
+                          .WithAdditionalQueryParameter("version", version)
+                          .WithAdditionalQueryParameter("includeTargetNamespace", includeTargetNamespace)
+                          .WithAcceptHeader("application/zip");
         }
 
         private string BuildAuthorizationHeader(AuthCredentials? authCredentials, string? authToken)

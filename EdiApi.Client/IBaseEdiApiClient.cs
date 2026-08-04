@@ -45,7 +45,7 @@ namespace SkbKontur.EdiApi.Client
         TransportationDocumentIdentifier GetTransportationDocumentIdentifier(string authToken, string partyId);
         Task<TransportationDocumentIdentifier> GetTransportationDocumentIdentifierAsync(string authToken, string partyId);
 
-        XsdSchemasDownloadResult DownloadXsdSchemasArchive(string? version = null, bool includeTargetNamespace = false);
-        Task<XsdSchemasDownloadResult> DownloadXsdSchemasArchiveAsync(string? version = null, bool includeTargetNamespace = false);
+        XsdSchemasDownloadResult DownloadXsdSchemasArchive(string authToken, string? version = null, bool includeTargetNamespace = false);
+        Task<XsdSchemasDownloadResult> DownloadXsdSchemasArchiveAsync(string authToken, string? version = null, bool includeTargetNamespace = false);
     }
 }
