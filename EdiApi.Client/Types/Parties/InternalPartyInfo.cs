@@ -11,5 +11,6 @@ namespace SkbKontur.EdiApi.Client.Types.Parties
         public IntegrationType[] IntegrationTypes { get; set; }
         public bool IsTest { get; set; }
         public TradingPartnerSettings[] TradingPartnerSettings { get; set; }
+        public string CommercialProviderId { get; set; }
     }
 }
