@@ -1,4 +1,8 @@
 # История изменений
+## v2.24 - 2026.08.11
+- Добалены методы получения архива с XSD-схемами EDI-сообщений
+- Добавлено поле CommercialProviderId в InternalPartyInfo.cs
+
 ## v2.23.15 - 2026.07.14
 - Добавлено поле SenderProvider в Internal/Document.cs
 - Добавлено событие второй версии OutboxDiadocDocumentPostingErrorV2, содержащее в себе ошибку отправки документа в Диадок
