@@ -10,7 +10,7 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
         /// <summary>Идентификатор ящика</summary>
         public string BoxId { get; set; } = null!;
 
-        /// <summary>Вычисленная роль создателя универсального сообщения в контексте документа</summary>
+        /// <summary>Роль создателя универсального сообщения в контексте документа</summary>
         public DiadocDocumentParticipantRole DocumentParticipantRole { get; set; }
     }
 }
