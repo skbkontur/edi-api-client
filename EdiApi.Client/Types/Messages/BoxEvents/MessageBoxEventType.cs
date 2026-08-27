@@ -149,8 +149,5 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>В Диадоке появилось универсальное сообщение. Событие в ящике отправителя</summary>
         OutboxDiadocUniversalMessage,
-
-        /// <summary>В Диадоке появилось универсальное сообщение. Событие в ящике получателя</summary>
-        InboxDiadocUniversalMessage,
     }
 }

@@ -57,7 +57,6 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
             Register<OutboxDiadocDocumentStateChangedEventContentV2>(MessageBoxEventType.OutboxDiadocDocumentStateChangedV2);
             Register<OutboxDiadocDocumentTraceabilityLostEventContentV2>(MessageBoxEventType.OutboxDiadocDocumentTraceabilityLostV2);
             Register<OutboxDiadocUniversalMessageEventContent>(MessageBoxEventType.OutboxDiadocUniversalMessage);
-            Register<InboxDiadocUniversalMessageEventContent>(MessageBoxEventType.InboxDiadocUniversalMessage);
         }
     }
 }
