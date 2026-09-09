@@ -1,5 +1,7 @@
 #nullable enable
 
+using System;
+
 using SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents.V2;
 
 namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
@@ -15,6 +17,9 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
 
         /// <summary>Идентификатор титула документа, к которому относится универсальное сообщение</summary>
         public string DocumentTitleEntityId { get; set; } = null!;
+
+        /// <summary>Время создания универсального сообщения</summary>
+        public DateTime DocumentCirculationStartTimestamp { get; set; }
 
         /// <summary>Создатель универсального сообщения</summary>
         public DiadocUniversalMessageCreator Creator { get; set; } = null!;
