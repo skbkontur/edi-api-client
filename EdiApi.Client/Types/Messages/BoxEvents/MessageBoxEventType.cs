@@ -146,5 +146,8 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEvents
 
         /// <summary>Прекратили отслеживать документ в Диадоке. Событие второй версии. Событие в ящике отправителя</summary>
         OutboxDiadocDocumentTraceabilityLostV2,
+
+        /// <summary>В Диадоке появилось универсальное сообщение. Событие в ящике отправителя</summary>
+        OutboxDiadocUniversalMessage,
     }
 }
