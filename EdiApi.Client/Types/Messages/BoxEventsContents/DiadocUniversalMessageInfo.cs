@@ -19,7 +19,7 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
         public string DocumentTitleEntityId { get; set; } = null!;
 
         /// <summary>Время создания универсального сообщения</summary>
-        public DateTime DocumentCirculationStartTimestamp { get; set; }
+        public DateTime CreationDateTime { get; set; }
 
         /// <summary>Создатель универсального сообщения</summary>
         public DiadocUniversalMessageCreator Creator { get; set; } = null!;
