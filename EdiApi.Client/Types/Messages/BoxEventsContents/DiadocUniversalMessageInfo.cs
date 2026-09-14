@@ -9,14 +9,17 @@ namespace SkbKontur.EdiApi.Client.Types.Messages.BoxEventsContents
     /// <summary>Информация об универсальном сообщении в событии EDI</summary>
     public class DiadocUniversalMessageInfo
     {
-        /// <summary>Идентификатор универсального сообщения</summary>
-        public string UniversalMessageEntityId { get; set; } = null!;
+        /// <summary>Идентификатор документа, к которому относится универсальное сообщение</summary>
+        public string DocumentId { get; set; } = null!;
 
         /// <summary>Тип титула документа, к которому относится универсальное сообщение</summary>
         public DiadocDocumentTitleType DocumentTitleType { get; set; }
 
         /// <summary>Идентификатор титула документа, к которому относится универсальное сообщение</summary>
-        public string DocumentTitleEntityId { get; set; } = null!;
+        public string DocumentTitleId { get; set; } = null!;
+
+        /// <summary>Идентификатор универсального сообщения</summary>
+        public string UniversalMessageEntityId { get; set; } = null!;
 
         /// <summary>Время создания универсального сообщения</summary>
         public DateTime CreationDateTime { get; set; }
