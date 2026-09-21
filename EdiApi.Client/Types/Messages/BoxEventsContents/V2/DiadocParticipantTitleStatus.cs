@@ -11,5 +11,8 @@
 
         /// <summary>Титул подписан</summary>
         Signed = 2,
+
+        /// <summary>Титул частично подписан</summary>
+        PartiallySigned = 3,
     }
 }
