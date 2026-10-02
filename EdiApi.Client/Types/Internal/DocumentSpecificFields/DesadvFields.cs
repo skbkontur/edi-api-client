@@ -34,6 +34,8 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public DocumentRevisionType DocumentRevisionType { get; set; }
         public CommonGoodItem[] GoodItems { get; set; }
 
+        public string BaseIdOf1C { get; set; }
+
         private decimal? desadvTotal;
         private decimal? desadvTaxableTotal;
     }

@@ -23,6 +23,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public string VersionOf1C { get; set; }
         public string VersionOfModule1C { get; set; }
         public ScheduleItem[] ScheduleItems { get; set; }
+        public string BaseIdOf1C { get; set; }
     }
 
     public class ScheduleItem
