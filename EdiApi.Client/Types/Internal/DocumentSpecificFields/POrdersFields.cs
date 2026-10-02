@@ -30,6 +30,8 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public DateTime? DocumentSendDateTime { get; set; }
         public CommonGoodItem[] GoodItems { get; set; }
 
+        public string BaseIdOf1C { get; set; }
+
         private decimal? ordersTotal;
         private decimal? ordersTaxableTotal;
     }
