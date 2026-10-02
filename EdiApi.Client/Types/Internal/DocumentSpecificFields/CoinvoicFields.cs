@@ -31,5 +31,6 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public CoinvoicBeforeAfter<decimal?> InvoicTotalWithVATForIV { get; set; }
         public CoinvoicBeforeAfter<decimal?> InvoicTaxableTotalForIV { get; set; }
         public CoinvoicBeforeAfter<decimal?> InvoicTotalVATForIV { get; set; }
+        public string BaseIdOf1C { get; set; }
     }
 }
