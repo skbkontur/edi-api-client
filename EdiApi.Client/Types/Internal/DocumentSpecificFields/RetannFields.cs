@@ -29,7 +29,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public decimal? RetannTotalWithVat { get; set; }
         public decimal? RetannTotal { get; set; }
         public RetannGoodItem[] GoodItems { get; set; }
-        
+
         public string BaseIdOf1C { get; set; }
     }
 }

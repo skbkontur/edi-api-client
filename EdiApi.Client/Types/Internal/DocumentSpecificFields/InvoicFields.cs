@@ -79,7 +79,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public string FreeText { get; set; }
         public string FactoringEncription { get; set; }
         public CommonGoodItem[] GoodItems { get; set; }
-        
+
         public string BaseIdOf1C { get; set; }
 
         private decimal? invoicTotal;

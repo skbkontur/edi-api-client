@@ -32,7 +32,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
 
         public OrdrspTransportDetails[] TransportDetails { get; set; }
         public OrdrspGoodItem[] GoodItems { get; set; }
-        
+
         public string BaseIdOf1C { get; set; }
 
         private decimal? ordrspTotal;

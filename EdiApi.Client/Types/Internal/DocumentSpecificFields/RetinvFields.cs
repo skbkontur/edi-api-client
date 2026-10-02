@@ -18,7 +18,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
 
         public string ReturnReceivingNumber { get; set; }
         public DateTime? ReturnReceivingDate { get; set; }
-        
+
         public string BaseIdOf1C { get; set; }
     }
 }

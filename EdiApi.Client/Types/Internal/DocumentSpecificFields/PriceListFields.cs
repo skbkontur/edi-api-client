@@ -53,7 +53,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public string PriceCatalogueName { get; set; }
 
         public PriceListGoodItem[] GoodItems { get; set; }
-        
+
         public string BaseIdOf1C { get; set; }
     }
 
