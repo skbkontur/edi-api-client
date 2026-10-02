@@ -27,6 +27,8 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
 
         public string ReturnInvoiceNumber { get; set; }
         public DateTime? ReturnInvoiceDate { get; set; }
+        
+        public string BaseIdOf1C { get; set; }
 
         private decimal? desadvTotal;
         private decimal? desadvTaxableTotal;
