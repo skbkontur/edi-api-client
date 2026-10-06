@@ -35,5 +35,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
         public decimal? RetinsTotalWithVat { get; set; }
         public decimal? RetinsTotal { get; set; }
         public RetinsGoodItem[] GoodItems { get; set; }
+
+        public string BaseIdOf1C { get; set; }
     }
 }
