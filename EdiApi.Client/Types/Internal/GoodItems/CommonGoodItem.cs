@@ -75,6 +75,8 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.GoodItems
         public bool IsPromotionalPrice { get; set; }
 
         public string PromotionalDealNumber { get; set; }
+
+        public string QuantityChangeReason { get; set; }
     }
 
     public class CustomDeclaration
