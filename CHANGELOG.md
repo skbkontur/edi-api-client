@@ -1,4 +1,7 @@
 # История изменений
+## v2.28.3 - 2026.10.20
+- В событие `OutboxDiadocDocumentStateChangedEventContentV2` добавлены новые поля и значения enum.
+
 ## v2.27.9 - 2026.09.30
 - Добавлено событие `OutboxDiadocUniversalMessage` с информацией об универсальном сообщении в Диадоке.
 
