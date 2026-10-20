@@ -23,5 +23,8 @@
 
         /// <summary>Список причин отказа</summary>
         public string[] RejectionReasons { get; set; }
+
+        /// <summary>Временное поле. Идентификатор внешнего документа, в котором находится текущий титул</summary>
+        public DiadocDocumentIdentifier ExternalDocumentIdentifier { get; set; }
     }
 }
