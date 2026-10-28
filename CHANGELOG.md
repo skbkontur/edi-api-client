@@ -1,4 +1,7 @@
 # История изменений
+## v2.29.2 - 2026.10.28
+- Добавлено поле `QuantityChangeReason` в DesadvFields, OrdrspFields и CommonGoodItem.
+
 ## v2.28.3 - 2026.10.20
 - В событие `OutboxDiadocDocumentStateChangedEventContentV2` добавлены новые поля и значения enum.
 
