@@ -1,5 +1,5 @@
 # История изменений
-## v2.29.2 - 2026.10.28
+## v2.29.3 - 2026.10.28
 - Добавлено поле `QuantityChangeReason` в DesadvFields, OrdrspFields и CommonGoodItem.
 
 ## v2.28.3 - 2026.10.20
