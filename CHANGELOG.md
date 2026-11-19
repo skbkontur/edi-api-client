@@ -1,4 +1,20 @@
 # История изменений
+## v2.30.2 - 2026.11.19
+- Добавлено поле `BaseIdOf1C` в:
+  - CoinvoicFields;
+  - DelforFields;
+  - DesadvFields;
+  - InvoicFields;
+  - OrdersFields;
+  - OrdrspFields;
+  - POrdersFields;
+  - PriceListFields;
+  - RecadvFields;
+  - RetannFields;
+  - RetdesFields;
+  - RetinsFields;
+  - RetrecFields.
+
 ## v2.29.3 - 2026.10.28
 - Добавлено поле `QuantityChangeReason` в DesadvFields, OrdrspFields и CommonGoodItem.
 
