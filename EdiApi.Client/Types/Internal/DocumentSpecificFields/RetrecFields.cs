@@ -28,5 +28,7 @@ namespace SkbKontur.EdiApi.Client.Types.Internal.DocumentSpecificFields
 
         public string ReturnDeliveryNoteNumber { get; set; }
         public DateTime? ReturnDeliveryNoteDate { get; set; }
+
+        public string BaseIdOf1C { get; set; }
     }
 }
